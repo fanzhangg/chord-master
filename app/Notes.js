@@ -1,5 +1,3 @@
-const chromatic = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
-
 class Pitch {
     constructor(note, octave) {
         this.note = note;
@@ -7,40 +5,55 @@ class Pitch {
     }
 }
 
-// Get a note after `step` steps
-function getNoteAfter(pitch, step){
-    let noteIndex = chromatic.indexOf(pitch.note);
-    if (noteIndex === -1){
-        console.error("Invalid note");
+class ChordManager {
+    constructor() {
+        this.chromatic = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
     }
-    let note = pitch.note;
-    let octave = pitch.octave;
-    if (noteIndex + step >= chromatic.length){  // The note is in the next octave
-        octave++;
-        note = chromatic[noteIndex + step - chromatic.length];
-    } else {
-        note = chromatic[noteIndex + step];
+
+    /**
+     * Get the note after some steps
+     * @param pitch: Pitch
+     * @param step: int
+     * @returns {Pitch}
+     */
+    getNextNote(pitch, step) {
+        let noteIndex = this.chromatic.indexOf(pitch.note);
+        if (noteIndex === -1) {  // The pitch has an invalid note
+            console.error("Invalid note");
+        }
+        let note = pitch.note;
+        let octave = pitch.octave;
+        if (noteIndex + step >= this.chromatic.length) {  // The note is in the next octave
+            octave++;
+            note = this.chromatic[noteIndex + step - this.chromatic.length];
+        } else {    // the note is in the same octave
+            note = this.chromatic[noteIndex + step];
+        }
+        return new Pitch(note, octave);
     }
-    return new Pitch(note, octave);
+
+    /**
+     * Get a chord with the root note and of the certain type
+     * @param root: Pitch
+     * @param type: int
+     * @returns {Array}
+     */
+    getChord(root, type) {
+        const types = {
+            "major": [0, 4, 7],
+            "minor": [0, 3, 7]
+        };
+        const steps = types[type];
+        let resNotes = [];
+        for (let i = 0; i < steps.length; i++) {
+            const note = this.getNextNote(root, steps[i]);
+            resNotes.push(note);
+        }
+        return resNotes;
+    }
 }
 
-// Get a major chord starting from the root pitch
-function getMajorChord(root) {
-    const third = getNoteAfter(root, 4);
-    const fifth = getNoteAfter(root, 7);
-    return [root, third, fifth];
-}
-
-// Get a minor chord starting from the root pitch
-function getMinorChord(root) {
-    const third = getNoteAfter(root, 3);
-    const fifth = getNoteAfter(root, 7);
-    return [root, third, fifth];
-}
-
-const pitch1 = new Pitch("C", 1);
-const majorChord = getMajorChord(pitch1);
-console.log(majorChord);
-
-const minorChord = getMinorChord(pitch1);
-console.log(minorChord);
+const pitch = new Pitch("C", "2");
+const chordManager = new ChordManager();
+const chord = chordManager.getChord(pitch, "major");
+console.log(chord);
