@@ -62,6 +62,9 @@ class ChordManager {
             rootNote = root.slice(0, 1);
         }
         const rootOctave = root.slice(-1);
+        if(root.length > 3) {
+            alert(`"${root}" is not a valid note`)
+        }
         if (this.chromatic.includes(rootNote) === false || isNaN(parseInt(rootOctave, 10))) {
             alert(`"${root}" is not a valid note`)
         }
@@ -76,7 +79,6 @@ class ChordManager {
             } else {
                 chordString = `${chordString}${note}${octave}`;
             }
-
         }
         document.getElementById("chord").innerHTML = chordString;
     }
