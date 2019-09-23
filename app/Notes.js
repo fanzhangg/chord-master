@@ -51,9 +51,36 @@ class ChordManager {
         }
         return resNotes;
     }
+
+    showChord() {
+        const frm = document.forms["root_frm"];
+        const root = frm.elements[0].value;
+        let rootNote = "";
+        if (root.charAt(1) === '#') {
+            rootNote = root.slice(0, 2);
+        } else {
+            rootNote = root.slice(0, 1);
+        }
+        const rootOctave = root.slice(-1);
+        if (this.chromatic.includes(rootNote) === false || isNaN(parseInt(rootOctave, 10))) {
+            alert(`"${root}" is not a valid note`)
+        }
+        const pitch = new Pitch(rootNote, rootOctave);
+        const chord = this.getChord(pitch, "major");
+        let chordString = "";
+        for (let i = 0; i < chord.length; i++) {
+            const note = chord[i].note;
+            const octave = chord[i].octave;
+            if (i !== chord.length - 1){
+                chordString = chordString + note + octave + ". ";
+            } else {
+                chordString = `${chordString}${note}${octave}`;
+            }
+
+        }
+        document.getElementById("chord").innerHTML = chordString;
+    }
 }
 
 const pitch = new Pitch("C", "2");
 const chordManager = new ChordManager();
-const chord = chordManager.getChord(pitch, "major");
-console.log(chord);
