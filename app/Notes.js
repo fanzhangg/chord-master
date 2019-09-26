@@ -6,8 +6,8 @@ class Pitch {
 }
 
 class ChordManager {
-    static chromatic = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
-
+    constructor() {
+    };
     /**
      * Get the type of the chord from the "chord_type_frm"
      * @returns {String}
@@ -100,6 +100,8 @@ class ChordManager {
     }
 }
 
+ChordManager.chromatic = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+
 /**
  * Initialize the page
  */
@@ -113,4 +115,4 @@ class Initializer {
     }
 }
 
-const init = new Initializer();
+new Initializer();
