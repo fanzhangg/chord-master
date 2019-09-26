@@ -6,8 +6,15 @@ class Pitch {
 }
 
 class ChordManager {
-    constructor() {
-        this.chromatic = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+    static chromatic = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+
+    static getChordType() {
+        const chordTypeFrm = document.getElementById("chord_type_frm");
+        for (let i = 0; i < chordTypeFrm.length; i++) {
+            if (chordTypeFrm[i].checked) {
+                return chordTypeFrm[i].value;
+            }
+        }
     }
 
     /**
@@ -16,7 +23,7 @@ class ChordManager {
      * @param step: int
      * @returns {Pitch}
      */
-    getNextNote(pitch, step) {
+    static getNextNote(pitch, step) {
         let noteIndex = this.chromatic.indexOf(pitch.note);
         if (noteIndex === -1) {  // The pitch has an invalid note
             console.error("Invalid note");
@@ -38,10 +45,11 @@ class ChordManager {
      * @param type: int
      * @returns {Array}
      */
-    getChord(root, type) {
+    static getChord(root, type) {
         const types = {
             "major": [0, 4, 7],
-            "minor": [0, 3, 7]
+            "minor": [0, 3, 7],
+            "diminished": [0, 3, 6]
         };
         const steps = types[type];
         let resNotes = [];
@@ -52,7 +60,7 @@ class ChordManager {
         return resNotes;
     }
 
-    showChord() {
+    static showChord() {
         const frm = document.forms["root_frm"];
         const root = frm.elements[0].value;
         let rootNote = "";
@@ -69,20 +77,32 @@ class ChordManager {
             alert(`"${root}" is not a valid note`)
         }
         const pitch = new Pitch(rootNote, rootOctave);
-        const chord = this.getChord(pitch, "major");
+        const chordType = ChordManager.getChordType();
+        const chord = this.getChord(pitch, chordType);
         let chordString = "";
         for (let i = 0; i < chord.length; i++) {
             const note = chord[i].note;
             const octave = chord[i].octave;
             if (i !== chord.length - 1){
-                chordString = chordString + note + octave + ". ";
+                chordString = chordString + note + octave + ", ";
             } else {
                 chordString = `${chordString}${note}${octave}`;
             }
         }
         document.getElementById("chord").innerHTML = chordString;
     }
+
+    static get
 }
 
-const pitch = new Pitch("C", "2");
-const chordManager = new ChordManager();
+class Initializer {
+    constructor() {
+        Initializer.setDefaultChordType();
+    }
+    static setDefaultChordType() {
+        const chordTypeFrm = document.getElementById("chord_type_frm");
+        chordTypeFrm[0].checked = true; // Set major to be checked by default
+    }
+}
+
+const init = new Initializer();

@@ -7,10 +7,21 @@
 <body>
 <h1>Chord Master</h1>
 <h2>It is as easy as CEG</h2>
+<form id="chord_type_frm">
+    <label>
+        <input type="radio" name="chord_type" value="major">
+    </label> Major
+    <label>
+        <input type="radio" name="chord_type" value="minor">
+    </label> Minor
+    <label>
+        <input type="radio" name="chord_type" value="diminished">
+    </label> Diminished
+</form>
 <form id="root_frm">
     Root Note: <input name="root" placeholder="C2">
 </form>
-<button onclick="chordManager.showChord()">Get Chord</button>
+<button onclick="ChordManager.showChord()">Get Chord</button>
 <p id="chord"></p>
 
 <script src="app/Notes.js"></script>
