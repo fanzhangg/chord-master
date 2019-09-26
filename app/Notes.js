@@ -8,6 +8,10 @@ class Pitch {
 class ChordManager {
     static chromatic = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
 
+    /**
+     * Get the type of the chord from the "chord_type_frm"
+     * @returns {String}
+     */
     static getChordType() {
         const chordTypeFrm = document.getElementById("chord_type_frm");
         for (let i = 0; i < chordTypeFrm.length; i++) {
@@ -60,6 +64,9 @@ class ChordManager {
         return resNotes;
     }
 
+    /**
+     * Display the notes of the chord in "chord"
+     */
     static showChord() {
         const frm = document.forms["root_frm"];
         const root = frm.elements[0].value;
@@ -91,10 +98,11 @@ class ChordManager {
         }
         document.getElementById("chord").innerHTML = chordString;
     }
-
-    static get
 }
 
+/**
+ * Initialize the page
+ */
 class Initializer {
     constructor() {
         Initializer.setDefaultChordType();
