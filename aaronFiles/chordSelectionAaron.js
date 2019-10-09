@@ -47,7 +47,7 @@ function getNextNote(pitch, step) {
     return new Pitch(note, octave);
 }
 
-function getChord(root) {
+function getChord(rootNote, rootOctave) {
     const types = {
         "Major Triad": [0, 4, 7],
         "Minor Triad": [0, 3, 7],
@@ -55,22 +55,29 @@ function getChord(root) {
     };
     const steps = types[currentType];
     let resNotes = [];
+
+    let rootObject = new Pitch(rootNote, rootOctave.toString()); // Creates a Pitch object
+
     for (let i = 0; i < steps.length; i++) {
-        const note = getNextNote(testPitch, steps[i]); //Assume for now the root is C
+        const note = getNextNote(rootObject, steps[i]);
         resNotes.push(note);
     }
     return resNotes;
 }
 
-function typeChord(root) {
-    let currentChord = getChord(root);
+function typeChord(rootNote, rootOctave) {
+    try {
+        let currentChord = getChord(rootNote, rootOctave);
 
-    let chordString = "";
+        let chordString = "";
 
-    for (let i = 0; i < currentChord.length; i++) {
-        chordString = chordString + currentChord[i].getNoteOctave() + " ";
+        for (let i = 0; i < currentChord.length; i++) {
+            chordString = chordString + currentChord[i].getNoteOctave() + ", ";
+        }
+
+        document.getElementById("spelledChord").innerHTML = "Notes in chord: " + chordString;
     }
-
-    document.getElementById("spelledChord").innerHTML = "Notes in chord: " + chordString
-    ;
+    catch {
+        alert("Please select a chord type before clicking a note!")
+    }
 }
