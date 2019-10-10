@@ -53,7 +53,22 @@ class ChordManager {
         const types = {
             "major": [0, 4, 7],
             "minor": [0, 3, 7],
-            "diminished": [0, 3, 6]
+            "diminished": [0, 3, 6],
+            "dim7": [0, 3, 6, 7],
+            "augmented": [0, 4, 8],
+            "dream": [0, 5, 6, 7],
+            "maj6": [0, 4, 7, 9],
+            "min6": [0, 3, 7, 9],
+            "min6ix9ine": [0, 3, 7, 2, 9],
+            "mu": [0, 2, 4, 7],
+            "neapolitan": [1, 5, 8],
+            "Ode-to-Neapolitan hexachord 'Atonal' ": [0, 1, 4, 5, 8, 9],
+            "power": [0, 7],
+            "suspended": [0, 5, 7],
+            "viennese ver 1": [0, 1, 6],
+            "viennese ver 2": [0, 6, 7]
+
+
         };
         const steps = types[type];
         let resNotes = [];
