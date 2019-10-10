@@ -3,8 +3,10 @@ import {KeyboardElement} from "./Element.mjs";
 class Keyboard {
     constructor(container){
         this._container = container;
+
         // The piano keyboard interface
         this._keyboardInterface = new KeyboardElement(container, 48, 2);
+        window.addEventListener('resize', this._resize.bind(this)); // Resize the keyboard according to the width of the window
         this._resize()
     }
 

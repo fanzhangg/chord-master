@@ -3,6 +3,10 @@ class Pitch {
         this.note = note;
         this.octave = octave;
     }
+
+    toString() {
+        return this.note + this.octave;
+    }
 }
 
 class ChordManager {
@@ -59,7 +63,7 @@ class ChordManager {
         let resNotes = [];
         for (let i = 0; i < steps.length; i++) {
             const note = this.getNextNote(root, steps[i]);
-            resNotes.push(note);
+            resNotes.push(note.toString());
         }
         return resNotes;
     }
@@ -88,12 +92,11 @@ class ChordManager {
         const chord = this.getChord(pitch, chordType);
         let chordString = "";
         for (let i = 0; i < chord.length; i++) {
-            const note = chord[i].note;
-            const octave = chord[i].octave;
+            const pitch = chord[i].toString();
             if (i !== chord.length - 1){
-                chordString = chordString + note + octave + ", ";
+                chordString = chordString + pitch + ", ";
             } else {
-                chordString = `${chordString}${note}${octave}`;
+                chordString = `${chordString}${pitch}`;
             }
         }
         document.getElementById("chord").innerHTML = chordString;
@@ -101,18 +104,3 @@ class ChordManager {
 }
 
 ChordManager.chromatic = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
-
-/**
- * Initialize the page
- */
-class Initializer {
-    constructor() {
-        Initializer.setDefaultChordType();
-    }
-    static setDefaultChordType() {
-        const chordTypeFrm = document.getElementById("chord_type_frm");
-        chordTypeFrm[0].checked = true; // Set major to be checked by default
-    }
-}
-
-new Initializer();

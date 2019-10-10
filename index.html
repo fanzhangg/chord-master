@@ -2,28 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Chord Master</title>
+    <title>Piano</title>
+    <script type="module" src="./app/Main.mjs"></script>
+    <link rel="stylesheet" href="style/keyboard.css">
 </head>
 <body>
-<h1>Chord Master</h1>
-<h2>It is as easy as CEG</h2>
-<form id="chord_type_frm">
-    <label>
-        <input type="radio" name="chord_type" value="major">
-    </label> Major
-    <label>
-        <input type="radio" name="chord_type" value="minor">
-    </label> Minor
-    <label>
-        <input type="radio" name="chord_type" value="diminished">
-    </label> Diminished
-</form>
-<form id="root_frm">
-    Root Note: <input name="root" placeholder="C2">
-</form>
-<button onclick="ChordManager.showChord()">Get Chord</button>
-<p id="chord"></p>
-
-<script src="app/Notes.js"></script>
+    <form id="chord_type_frm">
+        <label>
+            <input type="radio" name="chord_type" value="major">
+        </label> Major
+        <label>
+            <input type="radio" name="chord_type" value="minor">
+        </label> Minor
+        <label>
+            <input type="radio" name="chord_type" value="diminished">
+        </label> Diminished
+    </form>
+    <p id="chord">Chord</p>
 </body>
 </html>

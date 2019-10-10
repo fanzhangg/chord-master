@@ -1,0 +1,7 @@
+{
+  "name": "chord-master",
+  "version": "1.0.0",
+  "dependencies": {
+    "tone": "latest"
+  }
+}
