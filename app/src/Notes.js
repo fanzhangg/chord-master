@@ -3,6 +3,10 @@ class Pitch {
         this.note = note;
         this.octave = octave;
     }
+
+    toString() {
+        return this.note + this.octave;
+    }
 }
 
 class ChordManager {
@@ -74,7 +78,7 @@ class ChordManager {
         let resNotes = [];
         for (let i = 0; i < steps.length; i++) {
             const note = this.getNextNote(root, steps[i]);
-            resNotes.push(note);
+            resNotes.push(note.toString());
         }
         return resNotes;
     }
@@ -103,12 +107,11 @@ class ChordManager {
         const chord = this.getChord(pitch, chordType);
         let chordString = "";
         for (let i = 0; i < chord.length; i++) {
-            const note = chord[i].note;
-            const octave = chord[i].octave;
+            const pitch = chord[i].toString();
             if (i !== chord.length - 1){
-                chordString = chordString + note + octave + ", ";
+                chordString = chordString + pitch + ", ";
             } else {
-                chordString = `${chordString}${note}${octave}`;
+                chordString = `${chordString}${pitch}`;
             }
         }
         document.getElementById("chord").innerHTML = chordString;
@@ -116,6 +119,7 @@ class ChordManager {
 }
 
 ChordManager.chromatic = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+<<<<<<< HEAD:app/Notes.js
 
 /**
  * Initialize the page
@@ -131,3 +135,5 @@ class Initializer {
 }
 
 new Initializer();
+=======
+>>>>>>> 6115ad719a60ee9dfe49292e48e35c1a432a502c:app/src/Notes.js

@@ -1,0 +1,70 @@
+#container {
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    background-color: aquamarine;
+}
+
+#keyboard {
+    /* leave a space for the border */
+    width: calc(100% - 2 * 1px);
+    height: 200px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+#keyboard .key {
+    height: calc(100% - 2 * 1px);
+    position: absolute;
+    top: 0;
+}
+
+#keyboard .key {
+    border: 1px solid gray;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#keyboard .key.white {
+    /* white key behind black key */
+    z-index: 0;
+}
+
+#keyboard .key.white {
+    background-color: #ffffff;
+}
+
+#keyboard .key.white:hover {
+    background-color: #f0f0f0;
+}
+
+#keyboard .key.white:active {
+    background-color: lightgrey;
+}
+
+#keyboard .key.black {
+    z-index: 1;
+    height: 50%;
+}
+
+#keyboard .key.black {
+    background-color: #303952;
+    /* black key is of half width of white key */
+    width: 100%;
+    /*left: 25%;*/
+}
+
+#keyboard .key.black:hover {
+    background-color: #596275;
+}
+
+#keyboard .key.black:active {
+    background-color: gray;
+}
