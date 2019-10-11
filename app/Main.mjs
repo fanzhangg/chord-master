@@ -1,4 +1,6 @@
 import {Keyboard} from "./src/keyboard/Keyboard.mjs";
+// import {Tone} from "tone";
+// import Tone from "tone";
 
 
 /**
@@ -19,10 +21,11 @@ const container = document.createElement('div');
 container.id = 'container';
 document.body.appendChild(container);
 
-new Keyboard(container);
+const keyboard = new Keyboard(container);
 
 // Set default chord type
 const chordTypeFrm = document.getElementById("chord_type_frm");
 chordTypeFrm[0].checked = true; // Set major to be checked by default
+
 
 

@@ -35,10 +35,21 @@
 #keyboard .key.white {
     /* white key behind black key */
     z-index: 0;
+    text-align: center;
+    color: gray;
+    background-color: white;
 }
 
-#keyboard .key.white {
-    background-color: #ffffff;
+#keyboard .key.white > #noteStr {
+    position: absolute;
+    top: 130px;
+    width: 100%;
+}
+
+#keyboard .key.white > #keyStr {
+    position: absolute;
+    top: 150px;
+    width: 100%;
 }
 
 #keyboard .key.white:hover {
@@ -52,13 +63,16 @@
 #keyboard .key.black {
     z-index: 1;
     height: 50%;
+    text-align: center;
+    color: lightgrey;
+    background-color: #303952;
+    width: 100%;
 }
 
-#keyboard .key.black {
-    background-color: #303952;
-    /* black key is of half width of white key */
+#keyboard .key.black > #keyStr {
+    position: absolute;
     width: 100%;
-    /*left: 25%;*/
+    top: 40px;
 }
 
 #keyboard .key.black:hover {

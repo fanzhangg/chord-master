@@ -1,59 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
-<<<<<<< HEAD
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Chord Master</title>
-    <head>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-<body>
-<h1>Chord Master</h1>
-<h2>It is as easy as CEG</h2>
-<form id="chord_type_frm">
-
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown button
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href=app/Notes.js>major</a>
-            <a class="dropdown-item" href=app/Notes.js >minor</a>
-            <a class="dropdown-item" href= app/Notes.js >diminished</a>
-        </div>
-    </div>
-<!--    <label>-->
-<!--        <input type="radio" name="chord_type" value="major">-->
-<!--    </label> Major-->
-<!--    <label>-->
-<!--        <input type="radio" name="chord_type" value="minor">-->
-<!--    </label> Minor-->
-<!--    <label>-->
-<!--        <input type="radio" name="chord_type" value="diminished">-->
-<!--    </label> Diminished-->
-</form>
-<form id="root_frm">
-    Root Note: <input name="root" placeholder="C2">
-</form>
-<button onclick="ChordManager.showChord()">Get Chord</button>
-<p id="chord"></p>
-
-<script src="app/Notes.js"></script>
-
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-=======
     <meta charset="UTF-8">
     <title>Piano</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.0.1/Tone.min.js"></script>
     <script type="module" src="./app/Main.mjs"></script>
     <link rel="stylesheet" href="style/keyboard.css">
 </head>
+
 <body>
     <form id="chord_type_frm">
         <label>
@@ -67,6 +21,5 @@
         </label> Diminished
     </form>
     <p id="chord">Chord</p>
->>>>>>> 6115ad719a60ee9dfe49292e48e35c1a432a502c
 </body>
 </html>

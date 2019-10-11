@@ -17,7 +17,6 @@ class KeyboardElement{
         this.resize(lowest, octaves);
 
         this._prevKeys = [];
-        this.lowest = lowest;
     }
 
     resize(lowest, octaves){
@@ -34,7 +33,21 @@ class KeyboardElement{
             } else {
                 key.classList.add('white');
             }
-            this._container.appendChild(key);   // Add each key as the child of 'keyboard' class
+
+            // Add the note on the key if it is C
+            const note = this._getNote(i);
+            if (note.search(/C[^#]/) === 0){  // Starts with C, not C#
+                const noteStr = document.createElement("p");
+                noteStr.id = 'noteStr';
+                noteStr.innerText = note;
+                key.appendChild(noteStr);
+            }
+
+            // Add the key binding to the piano key
+            const keyStr = document.createElement("p");
+            keyStr.id = 'keyStr';
+            keyStr.innerText = "1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./".charAt(i);
+            key.appendChild(keyStr);
 
             let noteOctave = Math.floor(i / 12) - Math.floor(lowest / 12);
             let offset = offsets[i % 12] + noteOctave * 7;
@@ -45,22 +58,18 @@ class KeyboardElement{
                 key.style.width = `${keyWidth * 100 / 2}%`; // half width
                 key.style.left = `${offset * keyWidth * 100 + keyWidth * 100 / 4}%`;    // + 1/4 width
             }
-            // key.style.width = `${keyWidth * 100}%`;
-            // key.style.left = `${offset * keyWidth * 100}%`;
+
             key.id = i.toString();
             key.setAttribute('touch-action', 'none');
 
-            // const fill = document.createElement('div');
-            // fill.classList.add('fill');
-            // fill.id = i.toString();
-            // key.appendChild(fill);
-
+            this._container.appendChild(key);   // Add each key as the child of 'keyboard' class
             this._bindKeyEvents(key);   // Bind event listeners
             this._keys[i] = key;    // Add key to the keys list
         }
     }
 
     _bindKeyEvents(key){
+
         key.addEventListener('pointerup', (e) => {
             // Get the chord type
             const chordTypeFrm = document.getElementById("chord_type_frm");
@@ -71,40 +80,46 @@ class KeyboardElement{
                 }
             }
 
-            // Get the chord
-            const root = parseInt(e.target.id);  // get current note
-            const chordSteps = chords[chordType];
-            const third = root + chordSteps[0];
-            const fifth = root + chordSteps[1];
-            const chordStr = `${root} ${third} ${fifth}`;
-            const chordText = document.getElementById("chord");
-            chordText.innerText = chordStr; // Update text in `chord`
-
             // Change the previous keys' color back to the original color
             for (let i = 0; i < this._prevKeys.length; i++) {
                 const prevDiv = document.getElementById(this._prevKeys[i]);
                 prevDiv.style.removeProperty("background-color");
             }
 
+            const chordSteps = chords[chordType];   // Get half steps of the chord
+
+            let chordStr = "";
 
             // Change color of keys of the chord
             for (let i = 0; i < chordSteps.length; i ++) {
                 const noteId = parseInt(e.target.id) + chordSteps[i];
-
-                const note = (noteId - this.lowest) % 12;
-                const octave = (noteId - this.lowest) / 12;
-
-
+                chordStr += ` ${this._getNote(noteId)}`;
                 const noteDiv = document.getElementById(`${noteId}`);
+
                 if (noteDiv !== null) { // noteDiv in bound
                     noteDiv.style.backgroundColor = "#f7d794";  // Change the color to yellow
                     this._prevKeys.push(noteId);    // Save the key as a previous key
-                }
-                else {
+                } else {
                     console.log(`${noteId} out of bound`);
                 }
             }
+
+            document.getElementById("chord").innerText = chordStr;  // Display the notes in the chord in 'chord' p
         })
+    }
+
+    /**
+     * Get the scientific notation of note based on id
+     * @param id: Integer
+     * @private
+     * @return {String}
+     */
+    _getNote(id){
+        let note = id % 12;
+        const chromatic = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+        note = chromatic[note];
+        const octave = Math.floor(id / 12) + 2;
+        return `${note}${octave}`;
     }
 }
 
