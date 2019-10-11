@@ -82,6 +82,20 @@ class Keyboard {
                     console.log(`${note}${octave}`);
                     sampler.triggerAttackRelease(`${note}${octave}`, "4n");
                 });
+
+                for(let i = 0; i < 59; i++){
+                    const key = document.getElementById(i.toString());
+                    key.addEventListener('pointerup', e=>{
+                        //TODO: pressing the last key does not trigger a sound
+                        let note = i % 12;
+                        const chromatic = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+                        note = chromatic[note];
+                        const octave = Math.floor(i / 12) + 2;
+
+                        sampler.triggerAttackRelease(`${note}${octave}`, "4n");
+
+                    })
+                }
             }
         }).toMaster();
     }
