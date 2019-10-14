@@ -13,8 +13,20 @@
     width: calc(100% - 2 * 1px);
     height: 200px;
     position: absolute;
-    bottom: 0;
+    bottom: 2px;
     left: 0;
+}
+
+#keyboard p {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    /* Disable text selection */
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
 }
 
 #keyboard .key {
@@ -24,7 +36,7 @@
 }
 
 #keyboard .key {
-    border: 1px solid gray;
+    border: 1px solid #303952;
     position: absolute;
     left: 0;
     top: 0;
@@ -40,13 +52,13 @@
     background-color: white;
 }
 
-#keyboard .key.white > #noteStr {
+#keyboard .key.white > .noteStr {
     position: absolute;
     top: 130px;
     width: 100%;
 }
 
-#keyboard .key.white > #keyStr {
+#keyboard .key.white > .keyStr {
     position: absolute;
     top: 150px;
     width: 100%;
@@ -69,10 +81,10 @@
     width: 100%;
 }
 
-#keyboard .key.black > #keyStr {
+#keyboard .key.black > .keyStr {
     position: absolute;
     width: 100%;
-    top: 40px;
+    top: 50px;
 }
 
 #keyboard .key.black:hover {
