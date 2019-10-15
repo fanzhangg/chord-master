@@ -91,3 +91,5 @@ public
 
 # DynamoDB Local files
 .dynamodb/
+.idea
+.DS_Store
