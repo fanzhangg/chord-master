@@ -41,7 +41,7 @@ class NoteManager{
 
     /**
      * Get the list of notes in the selected chord
-     * @param id
+     * @param  id: str
      * @returns {Array}
      */
     static getChordList(id){

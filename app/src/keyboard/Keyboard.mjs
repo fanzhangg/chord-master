@@ -4,6 +4,7 @@ import {NoteManager} from "./NoteManager.mjs";
 class Keyboard {
     constructor(container){
         this._container = container;
+        this.maxId = 0; // The max id of the key
 
         // The piano keyboard interface
         this._keyboardInterface = new KeyboardElement(container);
@@ -15,14 +16,20 @@ class Keyboard {
     _resize(){
         const keyWidth = 24;
         let octaves = Math.round((window.innerWidth / keyWidth) / 12);
-        octaves = Math.max(octaves, 2);
-        octaves = Math.min(octaves, 7);
+        octaves = Math.max(octaves, 2); // Octave not less than 2
+        octaves = Math.min(octaves, 7); // Octave not greater than 7
+        this.maxId = octaves * 12;
         this._keyboardInterface.resize(0, octaves);  // Populate keys
     }
 
+    /**
+     * Bind event listener to trigger the sound of the chord when clicking a key on the piano or press a key
+     * on the keyboard
+     * @private
+     */
     _bindSound(){
-        // bind each key to trigger corresponding sound
-        const sampler = new Tone.Sampler({
+        const keyboard = this;
+        this.sampler = new Tone.Sampler({
             "A0" : "A0.[mp3|ogg]",
             "C1" : "C1.[mp3|ogg]",
             "D#1" : "Ds1.[mp3|ogg]",
@@ -60,19 +67,35 @@ class Keyboard {
                 document.addEventListener('keydown', e => {
                     // Press a key on keyboard to trigger the corresponding sound
                     const noteId = "1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./".indexOf(e.key);  // Get the note id bind by the key
-                    const note = NoteManager.getNote(noteId);
-                    sampler.triggerAttackRelease(note, "4n");
+                    keyboard.playChord(noteId);
                 });
 
                 document.addEventListener('pointerdown', (e)=>{
-                    const id = e.target.id;
-                    if (id !== "") {
-                        const note = NoteManager.getNote(e.target.id);
-                        sampler.triggerAttackRelease(note, "4n");
-                    }
+                    const noteId = e.target.id;   // TODO: use data-note-id attr instead of id
+                    keyboard.playChord(noteId);
                 })
             }
         }).toMaster();
+    }
+
+    /**
+     * Check if the noteId is a valid id, play the chord if true
+     * @param noteId: String
+     * @returns {boolean}
+     */
+    playChord(noteId) {
+        if (isNaN(parseInt(noteId))){
+            console.log(`${noteId} is not an integer`);
+            return false
+        } else if (parseInt(noteId) < 0 || parseInt(noteId) > this.maxId){
+            console.log(`${noteId} is not a valid id`);
+            return false
+        } else {
+            for (let chordNote of NoteManager.getChordList(noteId)) {
+                console.log(`play ${chordNote}`);
+                this.sampler.triggerAttackRelease(chordNote, "4n");
+            }
+        }
     }
 }
 
