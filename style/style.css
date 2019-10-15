@@ -1,0 +1,14 @@
+body {
+    background-color: #63cdda;
+}
+
+#chord {
+    font-family: 'Abril Fatface', cursive;
+    font-size: 60px;
+    color: white;
+    text-align: center;
+    position: absolute;
+    top: 20%;
+    left: 0;
+    width: 100%;
+}
