@@ -5,10 +5,10 @@
     <title>Piano</title>
 
     <!-- Bootstrap -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.0.1/Tone.min.js"></script>
     <script type="module" src="./app/Main.mjs"></script>
+    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Barlow+Semi+Condensed&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/keyboard.css">
     <link rel="stylesheet" href="style/style.css">
@@ -17,16 +17,17 @@
 <body>
     <!--https://stackoverflow.com/questions/31914071/selecting-only-one-button-from-button-group-->
     <!--https://stackoverflow.com/questions/34659366/with-bootstrap-how-do-i-show-radio-inputs-as-buttons-->
+    <!--https://getbootstrap.com/docs/4.0/components/buttons/#checkbox-and-radio-buttons-->
     <div class="container">
-        <div class="btn-group" data-toggle="buttons" id="chord_type_frm">
+        <div class="btn-group btn-group-toggle" data-toggle="buttons" id="chord_type_frm">
             <label class="btn btn-primary active">
-                <input type="radio" name="chord_type" value="major" checked> Major
+                <input type="radio" name="chord_type" value="major" autocomplete="off" checked> Major
             </label>
             <label class="btn btn-primary">
-                <input type="radio" name="chord_type" value="minor"> Minor
+                <input type="radio" name="chord_type" autocomplete="off" value="minor"> Minor
             </label>
             <label class="btn btn-primary">
-                <input type="radio" name="chord_type" value="diminished"> Diminished
+                <input type="radio" name="chord_type" autocomplete="off" value="diminished"> Diminished
             </label>
         </div>
     </div>
