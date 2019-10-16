@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Piano</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.0.1/Tone.min.js"></script>
     <script type="module" src="./app/Main.mjs"></script>
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Barlow+Semi+Condensed&display=swap" rel="stylesheet">
@@ -11,17 +17,13 @@
 </head>
 
 <body>
-    <form id="chord_type_frm">
-        <label>
-            <input type="radio" name="chord_type" value="major">
-        </label> Major
-        <label>
-            <input type="radio" name="chord_type" value="minor">
-        </label> Minor
-        <label>
-            <input type="radio" name="chord_type" value="diminished">
-        </label> Diminished
-    </form>
+    <div class="btn-toolbar" role="toolbar" aria-label="Chord Toolbar">
+        <div class="btn-group mr-2" role="group" aria-label="Chord Type" id="chord-type">
+            <button type="button" class="btn btn-secondary">Major</button>
+            <button type="button" class="btn btn-secondary">Minor</button>
+            <button type="button" class="btn btn-secondary">Diminished</button>
+        </div>
+    </div>
 
     <div id="chord">• &nbsp;&nbsp; • &nbsp;&nbsp; •</div>
 </body>
