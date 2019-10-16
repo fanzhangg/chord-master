@@ -18,7 +18,7 @@ The application is a piano keyboard with chord hints. The user can select the ty
 
 The end users are musicians who are looking to expand their repertoire of chords, making more interesting and creative music.  The main target we are looking at right now is talented musicians and digital audio producers with little theory background because although they tend to have less knowledge of chords, they are still very capable of creating amazing music. Our application will help them get started on the chords quickly and make full use of the chords knowledge.
 
-Code of Conduct
+## Code of Conduct
 
 We are sapient.
 To be sapient is to be limited.
