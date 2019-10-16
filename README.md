@@ -17,3 +17,24 @@ The application is a piano keyboard with chord hints. The user can select the ty
 ### Who is the end user?
 
 The end users are musicians who are looking to expand their repertoire of chords, making more interesting and creative music.  The main target we are looking at right now is talented musicians and digital audio producers with little theory background because although they tend to have less knowledge of chords, they are still very capable of creating amazing music. Our application will help them get started on the chords quickly and make full use of the chords knowledge.
+
+Code of Conduct
+
+We are sapient.
+To be sapient is to be limited.
+In our limitation, we make choices that are unwise or are flawed.
+
+If we make unwise choices because of our limitation,
+we cannot judge others for the same reason.
+
+So, we cannot judge,
+thus we forgive.
+
+This project and its results are intended as:
+a place of learning,
+a place of understanding,
+a place of teaching,
+a place of sharing,
+a place of creators creating the tools for other creators to create complicated things elegantly.
+
+Be well, Creator. Be well and create.
