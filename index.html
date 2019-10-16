@@ -5,9 +5,7 @@
     <title>Piano</title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-          crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.0.1/Tone.min.js"></script>
     <script type="module" src="./app/Main.mjs"></script>
@@ -17,11 +15,19 @@
 </head>
 
 <body>
-    <div class="btn-toolbar" role="toolbar" aria-label="Chord Toolbar">
-        <div class="btn-group mr-2" role="group" aria-label="Chord Type" id="chord-type">
-            <button type="button" class="btn btn-secondary">Major</button>
-            <button type="button" class="btn btn-secondary">Minor</button>
-            <button type="button" class="btn btn-secondary">Diminished</button>
+    <!--https://stackoverflow.com/questions/31914071/selecting-only-one-button-from-button-group-->
+    <!--https://stackoverflow.com/questions/34659366/with-bootstrap-how-do-i-show-radio-inputs-as-buttons-->
+    <div class="container">
+        <div class="btn-group" data-toggle="buttons" id="chord_type_frm">
+            <label class="btn btn-primary active">
+                <input type="radio" name="chord_type" value="major" checked> Major
+            </label>
+            <label class="btn btn-primary">
+                <input type="radio" name="chord_type" value="minor"> Minor
+            </label>
+            <label class="btn btn-primary">
+                <input type="radio" name="chord_type" value="diminished"> Diminished
+            </label>
         </div>
     </div>
 
