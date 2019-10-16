@@ -1,4 +1,4 @@
-import {NoteManager} from "./NoteManager.mjs"
+import {Note} from "../Note.mjs"
 
 const offsets = [0, 0.5, 1, 1.5, 2, 3, 3.5, 4, 4.5, 5, 5.5, 6];
 
@@ -36,7 +36,7 @@ class KeyboardElement{
             }
 
             // Add the note on the key if it is C
-            const note = NoteManager.getNote(i);
+            const note = Note.getNote(i);
             if (note.search(/C[^#]/) === 0){  // Starts with C, not C#
                 const noteStr = document.createElement("p");
                 noteStr.classList.add('noteStr');
@@ -49,7 +49,7 @@ class KeyboardElement{
             const keyStr = document.createElement("p");
             keyStr.classList.add('keyStr');
             keyStr.id = i.toString();
-            keyStr.innerText = NoteManager.getKey(i);
+            keyStr.innerText = Note.getKey(i);
             key.appendChild(keyStr);
 
 
@@ -124,7 +124,7 @@ class KeyboardElement{
         // Change color of keys of the chord
         for (let i = 0; i < chordSteps.length; i ++) {
             const noteId = parseInt(id) + chordSteps[i];
-            chordStr += ` ${NoteManager.getNote(noteId)}`;
+            chordStr += ` ${Note.getNote(noteId)}`;
             const noteDiv = document.getElementById(`${noteId}`);
 
             if (noteDiv !== null) { // noteDiv in bound

@@ -4,7 +4,7 @@ const chords = {
     "diminished": [0, 3, 6]
 };
 
-class NoteManager{
+class Note{
     /**
      * Get the scientific notation of note based on id
      * @param id: Integer
@@ -45,15 +45,15 @@ class NoteManager{
      * @returns {Array}
      */
     static getChordList(id){
-        const steps = NoteManager.getChordSteps();
+        const steps = Note.getChordSteps();
         let notes = [];
         for (let i = 0; i < steps.length; i++){
             const curId = parseInt(id) + steps[i];
-            const curNote = NoteManager.getNote(`${curId}`);
+            const curNote = Note.getNote(`${curId}`);
             notes.push(curNote);
         }
         return notes
     }
 }
 
-export {NoteManager}
+export {Note}
