@@ -29,13 +29,7 @@ class Note{
 
     static getChordSteps(){
         // Get the chord type
-        const chordTypeFrm = document.getElementById("chord_type_frm");
-        let chordType = "major";
-        for (let i = 0; i < chordTypeFrm.length; i++) {
-            if (chordTypeFrm[i].checked) {
-                chordType = chordTypeFrm[i].value;
-            }
-        }
+        const chordType = document.querySelector('input[name="chord_type"]:checked').value;
         return chords[chordType];
     }
 
