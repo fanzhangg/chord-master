@@ -29,7 +29,7 @@ class Note{
 
     static getChordSteps(){
         // Get the chord type
-        const chordType = document.querySelector('input[name="chord_type"]:checked').value;
+        const chordType = document.querySelector('input[name="chordTypeButton"]:checked').value;
         return chords[chordType];
     }
 
