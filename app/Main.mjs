@@ -1,31 +1,15 @@
 import {Keyboard} from "./src/keyboard/Keyboard.mjs";
-// import {Tone} from "tone";
-// import Tone from "tone";
+import {ChordTypeSelector} from "./src/chordTypeSelector.mjs";
 
+// Add keyboard view
+const keyboardContainer = document.createElement('div');
+keyboardContainer.id = 'keyboard-container';
+document.body.appendChild(keyboardContainer);
 
-/**
- * Initialize the page
- */
+const keyboard = new Keyboard(keyboardContainer);
 
-class Initializer {
-    constructor() {
-        Initializer.setDefaultChordType();
-    }
-    static setDefaultChordType() {
-        const chordTypeFrm = document.getElementById("chord_type_frm");
-        chordTypeFrm[0].checked = true; // Set major to be checked by default
-    }
-}
-
-const container = document.createElement('div');
-container.id = 'container';
-document.body.appendChild(container);
-
-const keyboard = new Keyboard(container);
-
-// Set default chord type
-const chordTypeFrm = document.getElementById("chord_type_frm");
-chordTypeFrm[0].checked = true; // Set major to be checked by default
-
-
-
+// // Add chord type selector view
+// const chordTypeContainer = document.createElement('div');
+// chordTypeContainer.id = 'chord-type-selector-container';
+// document.body.appendChild(chordTypeContainer);
+// new ChordTypeSelector(chordTypeContainer);

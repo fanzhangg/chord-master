@@ -84,10 +84,10 @@ class Keyboard {
      * @returns {boolean}
      */
     playChord(noteId) {
-        if (isNaN(parseInt(noteId))){   // noteId is not an integer string
+        if (isNaN(parseInt(noteId))){
             console.log(`${noteId} is not an integer`);
             return false
-        } else if (parseInt(noteId) < 0 || parseInt(noteId) > this.maxId){  // noteId is out of bound
+        } else if (parseInt(noteId) < 0 || parseInt(noteId) > this.maxId){
             console.log(`${noteId} is not a valid id`);
             return false
         } else {
@@ -95,7 +95,6 @@ class Keyboard {
                 console.log(`play ${chordNote}`);
                 this.sampler.triggerAttackRelease(chordNote, "4n");
             }
-            return true
         }
     }
 }

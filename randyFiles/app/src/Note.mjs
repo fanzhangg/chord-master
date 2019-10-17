@@ -1,10 +1,24 @@
 const chords = {
     "major": [0, 4, 7],
     "minor": [0, 3, 7],
-    "diminished": [0, 3, 6]
+    "diminished": [0, 3, 6],
+    "augmented": [0, 4, 8],
+    "dim7": [0, 3, 6, 9],
+    "dream": [0, 5, 6, 7],
+    "elektra": [0, 7, 9, 1, 4],
+    "maj6": [0, 4, 7, 9],
+    "major6ix9ine": [0, 4, 7, 9, 2],
+    "minor6": [0, 3, 7, 9],
+    "mu": [0, 2, 4, 7],
+    "neopolitan": [1, 5, 8],
+    "ode-to-neopolitan": [0, 1, 4, 5, 8, 9],
+    "power": [0,7],
+    "suspended": [0, 5, 7],
+    "viennesever1": [0,1,6],
+    "viennesever2":[0, 6, 7]
 };
 
-class NoteManager{
+class Note{
     /**
      * Get the scientific notation of note based on id
      * @param id: Integer
@@ -29,13 +43,7 @@ class NoteManager{
 
     static getChordSteps(){
         // Get the chord type
-        const chordTypeFrm = document.getElementById("chord_type_frm");
-        let chordType = "major";
-        for (let i = 0; i < chordTypeFrm.length; i++) {
-            if (chordTypeFrm[i].checked) {
-                chordType = chordTypeFrm[i].value;
-            }
-        }
+        const chordType = document.querySelector('input[name="chord_type"]:checked').value;
         return chords[chordType];
     }
 
@@ -45,15 +53,15 @@ class NoteManager{
      * @returns {Array}
      */
     static getChordList(id){
-        const steps = NoteManager.getChordSteps();
+        const steps = Note.getChordSteps();
         let notes = [];
         for (let i = 0; i < steps.length; i++){
             const curId = parseInt(id) + steps[i];
-            const curNote = NoteManager.getNote(`${curId}`);
+            const curNote = Note.getNote(`${curId}`);
             notes.push(curNote);
         }
         return notes
     }
 }
 
-export {NoteManager}
+export {Note}
