@@ -2,12 +2,6 @@ import {Note} from "../Note.mjs"
 
 const offsets = [0, 0.5, 1, 1.5, 2, 3, 3.5, 4, 4.5, 5, 5.5, 6];
 
-const chords = {
-    "major": [0, 4, 7],
-    "minor": [0, 3, 7],
-    "diminished": [0, 3, 6]
-};
-
 class KeyboardElement{
     constructor(container){
         this._container = document.createElement('div');
@@ -75,35 +69,18 @@ class KeyboardElement{
     }
 
     _bindKeyEvents(key){
-        const chordSteps = this._getChordSteps();
-
         key.addEventListener('pointerdown', (e) => {
+            let chordSteps = Note.getChordSteps();
             this._showChord(chordSteps, e.target.id)
         });
 
         document.addEventListener('keydown', (e) => {
-            const noteId = "1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./".indexOf(e.key);
+            let chordSteps = Note.getChordSteps();
+            let noteId = "1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./".indexOf(e.key);
             if (noteId !== -1){
                 this._showChord(chordSteps, noteId)
             }
         })
-    }
-
-    /**
-     * Get the chord steps of the currently selected chord type
-     * @returns {String}
-     * @private
-     */
-    _getChordSteps(){
-        // Get the chord type
-        const chordTypeFrm = document.getElementById("chord_type_frm");
-        let chordType = "major";
-        for (let i = 0; i < chordTypeFrm.length; i++) {
-            if (chordTypeFrm[i].checked) {
-                chordType = chordTypeFrm[i].value;
-            }
-        }
-        return chords[chordType];
     }
 
     /**
