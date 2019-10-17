@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>Piano</title>
 
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.0.1/Tone.min.js"></script>
     <script type="module" src="./app/Main.mjs"></script>
     <!-- Google Font -->
@@ -14,20 +19,26 @@
 </head>
 
 <body>
-    <div class="piano-container" id="chord_type_frm">
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-            <label class="btn btn-primary active">
-                <input type="radio" name="chordTypeButton" value="major" autocomplete="off" checked> Major
-            </label>
-            <label class="btn btn-primary">
-                <input type="radio" name="chordTypeButton" autocomplete="off" value="minor"> Minor
-            </label>
-            <label class="btn btn-primary">
-                <input type="radio" name="chordTypeButton" autocomplete="off" value="diminished"> Diminished
-            </label>
+    <div class="container" id="chord_type_frm">
+        <div class="col-md-12 text-center">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-primary active">
+                    <input type="radio" name="chordTypeButton" value="major" autocomplete="off" checked> Major
+                </label>
+                <label class="btn btn-primary">
+                    <input type="radio" name="chordTypeButton" autocomplete="off" value="minor"> Minor
+                </label>
+                <label class="btn btn-primary">
+                    <input type="radio" name="chordTypeButton" autocomplete="off" value="diminished"> Diminished
+                </label>
+            </div>
         </div>
     </div>
 
     <div id="chord">• &nbsp;&nbsp; • &nbsp;&nbsp; •</div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
