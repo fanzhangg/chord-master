@@ -1,5 +1,7 @@
 body {
     background-color: #70a1ff;
+    /* Disable scrolling */
+    margin: 0; height: 100%; overflow: hidden
 }
 
 #chord {
