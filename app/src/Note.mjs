@@ -11,8 +11,11 @@ const chords = {
     "minor6": [0, 3, 7, 9],
     "mu": [0, 2, 4, 7],
     "neopolitan": [1, 5, 8],
+    "ode-to-neopolitan": [0, 1, 4, 5, 8, 9],
     "power": [0,7],
     "suspended": [0, 5, 7],
+    "viennesever1": [0,1,6],
+    "viennesever2":[0, 6, 7]
 };
 
 class Note{
@@ -30,10 +33,6 @@ class Note{
         return `${note}${octave}`;
     }
 
-    static get chordNames(){
-        return Object.keys(chords);
-    }
-
     /**
      * Get the key on the keyboard to trigger the sound of the id
      * @param id
@@ -44,7 +43,7 @@ class Note{
 
     static getChordSteps(){
         // Get the chord type
-        const chordType = document.querySelector('input[name="chordTypeButton"]:checked').value;
+        const chordType = document.querySelector('input[name="chord_type"]:checked').value;
         return chords[chordType];
     }
 
