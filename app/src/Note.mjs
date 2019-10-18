@@ -19,6 +19,10 @@ class Note{
         return `${note}${octave}`;
     }
 
+    static get chordNames(){
+        return Object.keys(chords);
+    }
+
     /**
      * Get the key on the keyboard to trigger the sound of the id
      * @param id
