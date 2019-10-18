@@ -1,4 +1,5 @@
 const chords = {
+    "nay": [0],
     "major": [0, 4, 7],
     "minor": [0, 3, 7],
     "diminished": [0, 3, 6],
