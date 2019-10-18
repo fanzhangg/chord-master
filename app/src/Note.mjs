@@ -1,7 +1,18 @@
 const chords = {
     "major": [0, 4, 7],
     "minor": [0, 3, 7],
-    "diminished": [0, 3, 6]
+    "diminished": [0, 3, 6],
+    "augmented": [0, 4, 8],
+    "dim7": [0, 3, 6, 9],
+    "dream": [0, 5, 6, 7],
+    "elektra": [0, 7, 9, 1, 4],
+    "maj6": [0, 4, 7, 9],
+    "major6ix9ine": [0, 4, 7, 9, 2],
+    "minor6": [0, 3, 7, 9],
+    "mu": [0, 2, 4, 7],
+    "neopolitan": [1, 5, 8],
+    "power": [0,7],
+    "suspended": [0, 5, 7],
 };
 
 class Note{
