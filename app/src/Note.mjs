@@ -51,7 +51,7 @@ class Note{
 
     /**
      * Get the list of notes in the selected chord
-     * @param  id: str
+     * @param  id: String
      * @returns {Array}
      */
     static getChordList(id){
@@ -63,6 +63,23 @@ class Note{
             notes.push(curNote);
         }
         return notes
+    }
+
+    /**
+     * Convert a note string to a html of the note, make '#' as a superscript
+     * @param noteStr: String
+     * @returns {String}
+     */
+    static toNoteHTML(noteStr){
+        let noteHTML = "";
+        for (let j = 0; j < noteStr.length; j++){
+            if (noteStr[j] === "#"){
+                noteHTML += "<sup>#</sup>"
+            } else {
+                noteHTML += noteStr[j]
+            }
+        }
+        return noteHTML
     }
 }
 

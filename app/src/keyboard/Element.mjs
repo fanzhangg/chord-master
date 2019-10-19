@@ -101,8 +101,11 @@ class KeyboardElement{
         // Change color of keys of the chord
         for (let i = 0; i < chordSteps.length; i ++) {
             const noteId = parseInt(id) + chordSteps[i];
-            chordStr += ` ${Note.getNote(noteId)}`;
             const noteDiv = document.getElementById(`${noteId}`);
+            // Wrap # in a <sup> div
+            let noteStr = Note.getNote(noteId);
+            let noteHTML = Note.toNoteHTML(noteStr);
+            chordStr += noteHTML;
 
             if (noteDiv !== null) { // noteDiv in bound
                 noteDiv.style.backgroundColor = "#f7d794";  // Change the color to yellow
@@ -112,7 +115,7 @@ class KeyboardElement{
             }
         }
 
-        document.getElementById("chord").innerText = chordStr;  // Display the notes in the chord in 'chord' p
+        document.getElementById("chord").innerHTML = chordStr;  // Display the notes in the chord in 'chord' p
     }
 }
 
