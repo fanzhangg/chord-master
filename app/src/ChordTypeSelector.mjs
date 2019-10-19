@@ -27,7 +27,7 @@ class ChordTypeSelector{
 
             label.setAttribute("for", name);
             label.classList.add("btn", "btn-primary");
-            label.innerHTML = name;
+            label.innerHTML = name.toUpperCase()[0] + name.slice(1);
 
             label.appendChild(radio);
             btnGroup.appendChild(label);
