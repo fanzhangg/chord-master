@@ -105,7 +105,7 @@ class KeyboardElement{
             // Wrap # in a <sup> div
             let noteStr = Note.getNote(noteId);
             let noteHTML = Note.toNoteHTML(noteStr);
-            chordStr += noteHTML;
+            chordStr += ` ${noteHTML}`;
 
             if (noteDiv !== null) { // noteDiv in bound
                 noteDiv.style.backgroundColor = "#f7d794";  // Change the color to yellow
