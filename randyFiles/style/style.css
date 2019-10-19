@@ -1,5 +1,5 @@
 body {
-    background-color: #63cdda;
+    background-color: #70a1ff;
 }
 
 #chord {
@@ -11,4 +11,8 @@ body {
     top: 20%;
     left: 0;
     width: 100%;
+}
+
+#chord_type_frm {
+    margin-top: 40px;
 }

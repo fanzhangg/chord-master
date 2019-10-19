@@ -1,4 +1,4 @@
-#container {
+#piano-container {
     width: 100%;
     height: 200px;
     position: absolute;
@@ -10,10 +10,10 @@
 
 #keyboard {
     /* leave a space for the border */
-    width: calc(100% - 2 * 1px);
+    width: 100%;
     height: 200px;
     position: absolute;
-    bottom: 2px;
+    bottom: 0px;
     left: 0;
 }
 
