@@ -55,7 +55,7 @@ class Note{
      * @returns {Array}
      */
     static getChordList(id){
-        const steps = Note.getChordSteps();
+        const steps = this.curSteps;
         let notes = [];
         for (let i = 0; i < steps.length; i++){
             const curId = parseInt(id) + steps[i];
@@ -82,5 +82,7 @@ class Note{
         return noteHTML
     }
 }
+
+Note.curSteps = [0];
 
 export {Note}
