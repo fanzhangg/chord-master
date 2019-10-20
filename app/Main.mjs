@@ -12,5 +12,5 @@ const keyboard = new Keyboard(keyboardContainer);
 const chordTypeContainer = document.createElement('div');
 chordTypeContainer.id = 'chord_type_frm';
 chordTypeContainer.classList.add("container");
-document.body.appendChild(chordTypeContainer);
+document.body.insertBefore(chordTypeContainer, document.body.firstChild);    // Insert as the first child
 new ChordTypeSelector(chordTypeContainer);
