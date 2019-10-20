@@ -9,28 +9,40 @@ class ChordTypeSelector{
         const col = document.createElement("div");
         col.classList.add("col-md-12", "text-center");
 
-        const btnGroup = document.createElement("div");
-        btnGroup.classList.add("btn-group", "btn-group-toggle");
-        btnGroup.setAttribute("data-toggle", "buttons");
+        // nest dropdown in the button group
+        // ref: https://getbootstrap.com/docs/4.3/components/button-group/
+        const btnGroup = document.createElement("div"); // Button group
+        btnGroup.classList.add("btn-group");
+        btnGroup.setAttribute("role", "group");
 
-        for (let name of Note.chordNames){
-            let radio = document.createElement('input');
-            let label = document.createElement('label');
-            radio.type = 'radio';
-            radio.name = "chordTypeButton";
-            radio.value = name;
-            radio.setAttribute("autocomplete", "off");
-            if (Note.chordNames[0] === name){
-                radio.checked = true;
-                label.classList.add("active");
+        for (let type in Note.chords){  // Add each type as a drop down button
+            console.log(`Create button for ${type}`);
+            const button = document.createElement("button");    // button to trigger dropdown
+            button.setAttribute("type", "button");
+            button.classList.add("btn", "btn-secondary", "dropdown-toggle");
+            button.setAttribute("data-toggle", "dropdown");
+            button.id = type;
+            button.innerText = type;
+
+            const dropdown = document.createElement("div"); // dropdown menu
+            dropdown.classList.add("dropdown-menu");
+
+            for (let name in Note.chords[type]){    // Add each name to the type button
+                const dropdownItem = document.createElement("a");   // dropdown item
+                dropdownItem.classList.add("dropdown-item");
+                dropdownItem.href = "#";
+                dropdownItem.innerText = name;
+
+                dropdown.appendChild(dropdownItem);
+                console.log(`Create the dropdown item ${name}`)
             }
 
-            label.setAttribute("for", name);
-            label.classList.add("btn", "btn-primary");
-            label.innerHTML = name.toUpperCase()[0] + name.slice(1);
-
-            label.appendChild(radio);
-            btnGroup.appendChild(label);
+            const dropdownGroup = document.createElement("btn-div");
+            dropdownGroup.classList.add("btn-group");
+            dropdownGroup.setAttribute("role", "button");
+            dropdownGroup.appendChild(button);
+            dropdownGroup.appendChild(dropdown);
+            btnGroup.appendChild(dropdownGroup)
         }
 
         col.appendChild(btnGroup);
