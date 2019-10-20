@@ -3,6 +3,7 @@ import {Note} from "./Note.mjs"
 class ChordTypeSelector{
     constructor(container){
         this._renderView(container);
+        this._onClick();
     }
 
     _renderView(container){
@@ -47,6 +48,20 @@ class ChordTypeSelector{
 
         col.appendChild(btnGroup);
         container.appendChild(col);
+    }
+
+    /**
+     * Show select option in bootstrap dropdown menu
+     * ref: https://jsfiddle.net/cmcculloh/xnpf1rr9/
+     * @private
+     */
+    _onClick(){
+        $(".dropdown-menu a").click(function(){
+            $("#chord_type_frm").find(".btn").each(function () {  // Reset the text on the button to its id
+                $(this).text((this).id);
+            });
+            $(this).parent().parent().find('.btn').html($(this).text());    // Change the button's text to the selected one
+        });
     }
 }
 
