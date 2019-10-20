@@ -13,6 +13,15 @@ const chords = {
 };
 
 class Note{
+
+    static setCurStep(chordType, chordName){
+        Note.curSteps = chords[chordType][chordName];
+    }
+
+    // static get curSteps(){
+    //     return Note.curSteps;
+    // }
+
     /**
      * Get the scientific notation of note based on id
      * @param id: Integer
@@ -43,11 +52,12 @@ class Note{
         return "1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./".charAt(id)
     }
 
-    static getChordSteps(){
-        // Get the chord type
-        const chordType = document.querySelector('input[name="chordTypeButton"]:checked').value;
-        return chords[chordType];
-    }
+    // static getChordSteps(){
+    //     // Get the chord type
+    //     // const chordType = document.querySelector('input[name="chordTypeButton"]:checked').value;
+    //     // return chords[chordType];
+    //     return this.curSteps;
+    // }
 
     /**
      * Get the list of notes in the selected chord
