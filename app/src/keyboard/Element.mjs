@@ -70,12 +70,12 @@ class KeyboardElement{
 
     _bindKeyEvents(key){
         key.addEventListener('pointerdown', (e) => {
-            let chordSteps = Note.getChordSteps();
+            let chordSteps = Note.curSteps;
             this._showChord(chordSteps, e.target.id)
         });
 
         document.addEventListener('keydown', (e) => {
-            let chordSteps = Note.getChordSteps();
+            let chordSteps = Note.curSteps;
             let noteId = "1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./".indexOf(e.key);
             if (noteId !== -1){
                 this._showChord(chordSteps, noteId)
