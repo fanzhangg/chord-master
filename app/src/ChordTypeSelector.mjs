@@ -57,12 +57,15 @@ class ChordTypeSelector{
      */
     _onClick(){
         $(".dropdown-menu a").click(function(){
-            let button = $(this).parent().parent().find(".btn").first(); // Get the name of the chord type
-            let chordType = $(button).attr('id');
+            let button = $(this).parent().parent().find(".btn").first(); // Get the button of the current dropdown menu
+
+            let chordType = $(button).attr('id');   // Get the name of the chord type
             $("#chord_type_frm").find(".btn").each(function () {  // Reset the text on the button to its id
-                $(this).text((this).id);
+                $(this).text((this).id);    // Change the text back to the chord type
+                $(this).removeClass("active");  // Disactive the button
             });
             $(this).parent().parent().find('.btn').html($(this).text());    // Change the button's text to the selected one
+            $(button).addClass("active");   // Active the selected button
             let chordName = $(this).text(); // Get the name of the chord
             Note.setCurStep(chordType, chordName);
         });
