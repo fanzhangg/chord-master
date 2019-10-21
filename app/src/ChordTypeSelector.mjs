@@ -20,7 +20,7 @@ class ChordTypeSelector{
             console.log(`Create button for ${type}`);
             const button = document.createElement("button");    // button to trigger dropdown
             button.setAttribute("type", "button");
-            button.classList.add("btn", "btn-secondary", "dropdown-toggle");
+            button.classList.add("btn", "btn-primary", "dropdown-toggle");
             button.setAttribute("data-toggle", "dropdown");
             button.id = type;
             button.innerText = type;
