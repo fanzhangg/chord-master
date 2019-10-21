@@ -6,9 +6,24 @@ const chords = {
         "diminished triad": [0, 3, 6]
     },
     "seventh": {
-        "diminished seventh": [0, 3, 6, 9],
+        "diminished seventh": [0, 3, 6, 9], // C E♭ G♭ B♭♭
         "half diminished seventh": [0, 3, 6, 8],
-        "minor seventh": [0, 3, 7, 8]
+        "minor seventh": [0, 3, 7, 8],
+        "major seventh": [0, 4, 7, 11], // C E G B
+        "augmented seventh": [0, 4, 8, 10], // C E G♯ B♭
+        "augmented major seventh": [0, 4, 8, 11] // C E G♯ B
+    },
+    "extended": {
+        "dominant ninth": [0, 4, 7, 10, 14],    // C E G B♭ D
+        "dominant seventh": [0, 4, 7, 10, 14, 16],  // C E G B♭ D F
+        "dominant thirteenth": [0, 4, 7, 10, 14, 16, 20] // C E G B♭ D F A
+    },
+    "altered": {
+        "seventh augmented fifth": [0, 4, 8, 10],   // C E G♯ B♭
+        "seventh minor ninth": [0, 4, 7, 10, 13],   // C E G B♭ D♭
+        "seventh sharp ninth": [0, 4, 7, 10, 15],  // C E G B♭ D♯
+        "seventh augmented eleventh": [0, 4, 7, 10, 14, 17],   // C E G B♭ D F♯
+        "half-diminished seventh ": [0, 3, 6, 10]  // C E♭ G♭ B♭
     }
 };
 
