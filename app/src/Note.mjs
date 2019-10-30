@@ -14,9 +14,9 @@ const chords = {
         "augmented major seventh": [0, 4, 8, 11] // C E G♯ B
     },
     "extended": {
-        "dominant ninth": [0, 4, 7, 10, 14],    // C E G B♭ D
-        "dominant seventh": [0, 4, 7, 10, 14, 16],  // C E G B♭ D F
-        "dominant thirteenth": [0, 4, 7, 10, 14, 16, 20] // C E G B♭ D F A
+        "dominant ninth": [0, 4, 7, 10, 14],    // C E G B♭ D`//TODO: should be B-flat
+        "dominant eleventh": [0, 4, 7, 10, 14, 17],  // C E G B♭ D F
+        "dominant thirteenth": [0, 4, 7, 10, 14, 17, 20] // C E G B♭ D F A
     },
     "altered": {
         "seventh augmented fifth": [0, 4, 8, 10],   // C E G♯ B♭
