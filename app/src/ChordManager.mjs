@@ -7,23 +7,21 @@ const chordFamilies = {
     },
     "seventh": {
         "diminished seventh": [0, 3, 6, 9], // C E♭ G♭ B♭♭
-        "half diminished seventh": [0, 3, 6, 8],
-        "minor seventh": [0, 3, 7, 8],
+        "half diminished seventh": [0, 3, 6, 10],
+        "minor seventh": [0, 3, 7, 10],
         "major seventh": [0, 4, 7, 11], // C E G B
         "augmented seventh": [0, 4, 8, 10], // C E G♯ B♭
         "augmented major seventh": [0, 4, 8, 11] // C E G♯ B
     },
-    "extended": {
-        "dominant ninth": [0, 4, 7, 10, 14],    // C E G B♭ D`//TODO: should be B-flat
-        "dominant eleventh": [0, 4, 7, 10, 14, 17],  // C E G B♭ D F
-        "dominant thirteenth": [0, 4, 7, 10, 14, 17, 20] // C E G B♭ D F A
+    "dominant": {
+        "dominant ninth": [0, 4, 7, 10, 14],    // C E G B♭ D`// TODO: should be B-flat
+        "dominant thirteenth": [0, 4, 7, 10, 14, 21] // C E G B♭ D F A
     },
     "altered": {
-        "seventh augmented fifth": [0, 4, 8, 10],   // C E G♯ B♭
-        "seventh minor ninth": [0, 4, 7, 10, 13],   // C E G B♭ D♭
+        "seventh sharp fifth": [0, 4, 8, 10],   // C E G♯ B♭
+        "seventh flat ninth": [0, 4, 7, 10, 13],   // C E G B♭ D♭
         "seventh sharp ninth": [0, 4, 7, 10, 15],  // C E G B♭ D♯
-        "seventh augmented eleventh": [0, 4, 7, 10, 14, 17],   // C E G B♭ D F♯
-        "half-diminished seventh ": [0, 3, 6, 10]  // C E♭ G♭ B♭
+        "seventh sharp eleventh": [0, 4, 7, 10, 14, 18],   // C E G B♭ D F♯
     }
 };
 
