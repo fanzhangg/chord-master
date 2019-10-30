@@ -1,4 +1,4 @@
-const chords = {
+const chordFamilies = {
     "triad": {  // chord with 3 notes
         "major triad": [0, 4, 7],
         "minor triad": [0, 3, 7],
@@ -27,15 +27,11 @@ const chords = {
     }
 };
 
-class Note{
+class ChordManager{
 
     static setCurStep(chordType, chordName){
-        Note.curSteps = chords[chordType][chordName];
+        ChordManager.curSteps = chordFamilies[chordType][chordName];
     }
-
-    // static get curSteps(){
-    //     return Note.curSteps;
-    // }
 
     /**
      * Get the scientific notation of note based on id
@@ -51,12 +47,8 @@ class Note{
         return `${note}${octave}`;
     }
 
-    static get chordNames(){
-        return Object.keys(chords);
-    }
-
-    static get chords(){
-        return chords
+    static get chordFamilies(){
+        return chordFamilies
     }
 
     /**
@@ -66,13 +58,6 @@ class Note{
     static getKey(id) {
         return "1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./".charAt(id)
     }
-
-    // static getChordSteps(){
-    //     // Get the chord type
-    //     // const chordType = document.querySelector('input[name="chordTypeButton"]:checked').value;
-    //     // return chords[chordType];
-    //     return this.curSteps;
-    // }
 
     /**
      * Get the list of notes in the selected chord
@@ -84,7 +69,7 @@ class Note{
         let notes = [];
         for (let i = 0; i < steps.length; i++){
             const curId = parseInt(id) + steps[i];
-            const curNote = Note.getNote(`${curId}`);
+            const curNote = ChordManager.getNote(`${curId}`);
             notes.push(curNote);
         }
         return notes
@@ -108,6 +93,6 @@ class Note{
     }
 }
 
-Note.curSteps = [0];
+ChordManager.curSteps = [0];    // Initialize current step
 
-export {Note}
+export {ChordManager}

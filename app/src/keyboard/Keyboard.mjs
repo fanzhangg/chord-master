@@ -1,5 +1,5 @@
 import {KeyboardElement} from "./Element.mjs";
-import {Note} from "../Note.mjs";
+import {ChordManager} from "../ChordManager.mjs";
 
 class Keyboard {
     constructor(container){
@@ -91,7 +91,7 @@ class Keyboard {
             console.log(`${noteId} is not a valid id`);
             return false
         } else {
-            for (let chordNote of Note.getChordList(noteId)) {
+            for (let chordNote of ChordManager.getChordList(noteId)) {
                 console.log(`play ${chordNote}`);
                 this.sampler.triggerAttackRelease(chordNote, "4n");
             }
