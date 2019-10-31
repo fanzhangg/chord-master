@@ -16,7 +16,16 @@ class ChordTypeSelector{
         btnGroup.classList.add("btn-group");
         btnGroup.setAttribute("role", "group");
 
-        for (let type in ChordManager.chordFamilies){  // Add each type as a drop down button
+        // Adds zero chord (single note)
+        const zeroButton = document.createElement("button");
+        btnGroup.appendChild(zeroButton);
+        zeroButton.setAttribute("type", "button");
+        zeroButton.classList.add("btn", "btn-primary", "single-btn", "active"); // automatically sets as active for bootstrap
+        zeroButton.id = "Single Note";
+        zeroButton.innerText = "Single Note";
+        zeroButton.href = "#";
+
+        for (let type in ChordManager.chords){  // Add each type as a drop down button
             console.log(`Create button for ${type}`);
             const button = document.createElement("button");    // button to trigger dropdown
             button.setAttribute("type", "button");
@@ -28,7 +37,7 @@ class ChordTypeSelector{
             const dropdown = document.createElement("div"); // dropdown menu
             dropdown.classList.add("dropdown-menu");
 
-            for (let name in ChordManager.chordFamilies[type]){    // Add each name to the type button
+            for (let name in ChordManager.chords[type]){    // Add each name to the type button
                 const dropdownItem = document.createElement("a");   // dropdown item
                 dropdownItem.classList.add("dropdown-item");
                 dropdownItem.href = "#";
@@ -55,14 +64,25 @@ class ChordTypeSelector{
      * ref: https://jsfiddle.net/cmcculloh/xnpf1rr9/
      * @private
      */
+
     _onClick(){
+        // Selection for single button
+        $(".single-btn").click(function(){
+            $("#chord_type_frm").find(".btn").each(function () {  // Reset the text on the button to its id
+                $(this).text((this).id);    // Change the text back to the chord type
+                $(this).removeClass("active");  // Deactivate the button
+            });
+            $(".single-btn").addClass("active");
+            ChordManager.setCurStep("zero", "zero");
+        });
+        // Selection for dropdown buttons
         $(".dropdown-menu a").click(function(){
             let button = $(this).parent().parent().find(".btn").first(); // Get the button of the current dropdown menu
 
             let chordType = $(button).attr('id');   // Get the name of the chord type
             $("#chord_type_frm").find(".btn").each(function () {  // Reset the text on the button to its id
                 $(this).text((this).id);    // Change the text back to the chord type
-                $(this).removeClass("active");  // Disactive the button
+                $(this).removeClass("active");  // Deactivate the button
             });
             $(this).parent().parent().find('.btn').html($(this).text());    // Change the button's text to the selected one
             $(button).addClass("active");   // Active the selected button
