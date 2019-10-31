@@ -1,3 +1,12 @@
+// const scaleDegreeChords = {
+//     "triad": {  // chord with 3 notes
+//         "major triad": [{degree: 1, quality: "perfect"}, [3, "Major"], [5, "Perfect"]],
+//         "minor triad": [[1, "Perfect"], [3, "Minor"], [5, "Perfect"]],
+//         "augmented triad": [[1, "Perfect"], [3, "Minor"], [5, "Perfect"]],
+//         "diminished triad": [0, 3, 6]
+//     }
+// }
+
 const chords = {
     "triad": {  // chord with 3 notes
         "major triad": [0, 4, 7],
@@ -28,9 +37,14 @@ const chords = {
 };
 
 class Note{
-
+    // Takes gets steps from the dictionary above, for the zero code sets to just 0.
     static setCurStep(chordType, chordName){
-        Note.curSteps = chords[chordType][chordName];
+        if (chordType === "zero" && chordName === "zero"){
+            Note.curSteps = [0];
+        }
+        else {
+            Note.curSteps = chords[chordType][chordName];
+        }
     }
 
     // static get curSteps(){
