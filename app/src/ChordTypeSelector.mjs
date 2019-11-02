@@ -73,7 +73,7 @@ class ChordTypeSelector{
                 $(this).removeClass("active");  // Deactivate the button
             });
             $(".single-btn").addClass("active");
-            Note.setCurStep("zero", "zero");
+            Note.setCurStepDirectly([0]);
         });
         // Selection for dropdown buttons
         $(".dropdown-menu a").click(function(){
