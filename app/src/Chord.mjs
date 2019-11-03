@@ -1,4 +1,4 @@
-const chords = {
+const chordFamilies = {
     "Triads": {  // chord with 3 notes
         "Major Triad": [0, 4, 7],
         "Minor Triad": [0, 3, 7],
@@ -27,14 +27,14 @@ const chords = {
     }
 };
 
-class Note{
+class Chord{
     // Takes gets steps from the dictionary above, for the zero code sets to just 0.
     static setCurStep(chordType, chordName){
-        Note.curSteps = chords[chordType][chordName];
+        Chord.curSteps = chordFamilies[chordType][chordName];
     }
 
     static setCurStepDirectly(stepsArray){
-        Note.curSteps = stepsArray;
+        Chord.curSteps = stepsArray;
     }
 
     /**
@@ -52,7 +52,7 @@ class Note{
     }
 
     static get chords(){
-        return chords
+        return chordFamilies
     }
 
     /**
@@ -73,7 +73,7 @@ class Note{
         let notes = [];
         for (let i = 0; i < steps.length; i++){
             const curId = parseInt(id) + steps[i];
-            const curNote = Note.getNote(`${curId}`);
+            const curNote = Chord.getNote(`${curId}`);
             notes.push(curNote);
         }
         return notes
@@ -84,7 +84,7 @@ class Note{
      * @param noteStr: String
      * @returns {String}
      */
-    static toNoteHTML(noteStr){
+    static toNotesHTML(noteStr){
         let noteHTML = "";
         for (let j = 0; j < noteStr.length; j++){
             if (noteStr[j] === "#"){
@@ -97,6 +97,6 @@ class Note{
     }
 }
 
-Note.curSteps = [0];
+Chord.curSteps = [0];
 
-export {Note}
+export {Chord}
