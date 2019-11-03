@@ -1,12 +1,3 @@
-// const scaleDegreeChords = {
-//     "triad": {  // chord with 3 notes
-//         "major triad": [{degree: 1, quality: "perfect"}, [3, "Major"], [5, "Perfect"]],
-//         "minor triad": [[1, "Perfect"], [3, "Minor"], [5, "Perfect"]],
-//         "augmented triad": [[1, "Perfect"], [3, "Minor"], [5, "Perfect"]],
-//         "diminished triad": [0, 3, 6]
-//     }
-// }
-
 const chords = {
     "Triads": {  // chord with 3 notes
         "Major Triad": [0, 4, 7],
@@ -46,10 +37,6 @@ class Note{
         Note.curSteps = stepsArray;
     }
 
-    // static get curSteps(){
-    //     return Note.curSteps;
-    // }
-
     /**
      * Get the scientific notation of note based on id
      * @param id: Integer
@@ -64,10 +51,6 @@ class Note{
         return `${note}${octave}`;
     }
 
-    static get chordNames(){
-        return Object.keys(chords);
-    }
-
     static get chords(){
         return chords
     }
@@ -79,13 +62,6 @@ class Note{
     static getKey(id) {
         return "1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./".charAt(id)
     }
-
-    // static getChordSteps(){
-    //     // Get the chord type
-    //     // const chordType = document.querySelector('input[name="chordTypeButton"]:checked').value;
-    //     // return chords[chordType];
-    //     return this.curSteps;
-    // }
 
     /**
      * Get the list of notes in the selected chord
