@@ -1,4 +1,4 @@
-import {ChordManager} from "./ChordManager.mjs"
+import {Note} from "./Note.mjs"
 
 class ChordTypeSelector{
     constructor(container){
@@ -25,7 +25,7 @@ class ChordTypeSelector{
         zeroButton.innerText = "Single Note";
         zeroButton.href = "#";
 
-        for (let type in ChordManager.chords){  // Add each type as a drop down button
+        for (let type in Note.chords){  // Add each type as a drop down button
             console.log(`Create button for ${type}`);
             const button = document.createElement("button");    // button to trigger dropdown
             button.setAttribute("type", "button");
@@ -37,7 +37,7 @@ class ChordTypeSelector{
             const dropdown = document.createElement("div"); // dropdown menu
             dropdown.classList.add("dropdown-menu");
 
-            for (let name in ChordManager.chords[type]){    // Add each name to the type button
+            for (let name in Note.chords[type]){    // Add each name to the type button
                 const dropdownItem = document.createElement("a");   // dropdown item
                 dropdownItem.classList.add("dropdown-item");
                 dropdownItem.href = "#";
@@ -73,7 +73,7 @@ class ChordTypeSelector{
                 $(this).removeClass("active");  // Deactivate the button
             });
             $(".single-btn").addClass("active");
-            ChordManager.setCurStep("zero", "zero");
+            Note.setCurStepDirectly([0]);
         });
         // Selection for dropdown buttons
         $(".dropdown-menu a").click(function(){
@@ -87,7 +87,7 @@ class ChordTypeSelector{
             $(this).parent().parent().find('.btn').html($(this).text());    // Change the button's text to the selected one
             $(button).addClass("active");   // Active the selected button
             let chordName = $(this).text(); // Get the name of the chord
-            ChordManager.setCurStep(chordType, chordName);
+            Note.setCurStep(chordType, chordName);
         });
     }
 }

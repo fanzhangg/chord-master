@@ -1,46 +1,41 @@
 const chords = {
-    "triad": {  // chord with 3 notes
-        "major triad": [0, 4, 7],
-        "minor triad": [0, 3, 7],
-        "augmented triad": [0, 4, 8],
-        "diminished triad": [0, 3, 6]
+    "Triads": {  // chord with 3 notes
+        "Major Triad": [0, 4, 7],
+        "Minor Triad": [0, 3, 7],
+        "Augmented Triad": [0, 4, 8],
+        "Diminished Triad": [0, 3, 6]
     },
-    "seventh": {
-        "diminished seventh": [0, 3, 6, 9], // C E♭ G♭ B♭♭
-        "half diminished seventh": [0, 3, 6, 8],
-        "minor seventh": [0, 3, 7, 8],
-        "major seventh": [0, 4, 7, 11], // C E G B
-        "augmented seventh": [0, 4, 8, 10], // C E G♯ B♭
-        "augmented major seventh": [0, 4, 8, 11] // C E G♯ B
+    "Sevenths": {   // triads with a 7th added on
+        "Dominant Seventh": [0, 4, 7, 10],
+        "Major Seventh": [0, 4, 7, 11], // C E G B
+        "Minor Seventh": [0, 3, 7, 10],
+        "Diminished Seventh": [0, 3, 6, 9], // C E♭ G♭ B♭♭
+        "Half Diminished Seventh": [0, 3, 6, 10],
+        "Augmented Seventh": [0, 4, 8, 10], // C E G♯ B♭
+        "Augmented Major Seventh": [0, 4, 8, 11] // C E G♯ B
     },
-    "extended": {
-        "dominant ninth": [0, 4, 7, 10, 14],    // C E G B♭ D
-        "dominant seventh": [0, 4, 7, 10, 14, 16],  // C E G B♭ D F
-        "dominant thirteenth": [0, 4, 7, 10, 14, 16, 20] // C E G B♭ D F A
+    "Extended": {
+        "Dominant Ninth": [0, 4, 7, 10, 14],    // C E G B♭ D
+        "Dominant Seventh": [0, 4, 7, 10, 14, 16],  // C E G B♭ D F WRONG FIX!
+        "Dominant Thirteenth": [0, 4, 7, 10, 14, 16, 20] // C E G B♭ D F A
     },
-    "altered": {
-        "seventh augmented fifth": [0, 4, 8, 10],   // C E G♯ B♭
-        "seventh minor ninth": [0, 4, 7, 10, 13],   // C E G B♭ D♭
-        "seventh sharp ninth": [0, 4, 7, 10, 15],  // C E G B♭ D♯
-        "seventh augmented eleventh": [0, 4, 7, 10, 14, 17],   // C E G B♭ D F♯
-        "half-diminished seventh ": [0, 3, 6, 10]  // C E♭ G♭ B♭
+    "Altered": {
+        "Seventh Augmented Fifth": [0, 4, 8, 10],   // C E G♯ B♭
+        "Seventh Minor Ninth": [0, 4, 7, 10, 13],   // C E G B♭ D♭
+        "Seventh Sharp Ninth": [0, 4, 7, 10, 15],  // C E G B♭ D♯
+        "Seventh Augmented Eleventh": [0, 4, 7, 10, 14, 17],   // C E G B♭ D F♯
     }
 };
 
-class ChordManager{
+class Note{
     // Takes gets steps from the dictionary above, for the zero code sets to just 0.
     static setCurStep(chordType, chordName){
-        if (chordType === "zero" && chordName === "zero"){
-            ChordManager.curSteps = [0];
-        }
-        else {
-            ChordManager.curSteps = chords[chordType][chordName];
-        }
+        Note.curSteps = chords[chordType][chordName];
     }
 
-    // static get curSteps(){
-    //     return Note.curSteps;
-    // }
+    static setCurStepDirectly(stepsArray){
+        Note.curSteps = stepsArray;
+    }
 
     /**
      * Get the scientific notation of note based on id
@@ -56,10 +51,6 @@ class ChordManager{
         return `${note}${octave}`;
     }
 
-    static get chordNames(){
-        return Object.keys(chords);
-    }
-
     static get chords(){
         return chords
     }
@@ -72,13 +63,6 @@ class ChordManager{
         return "1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./".charAt(id)
     }
 
-    // static getChordSteps(){
-    //     // Get the chord type
-    //     // const chordType = document.querySelector('input[name="chordTypeButton"]:checked').value;
-    //     // return chords[chordType];
-    //     return this.curSteps;
-    // }
-
     /**
      * Get the list of notes in the selected chord
      * @param  id: String
@@ -89,7 +73,7 @@ class ChordManager{
         let notes = [];
         for (let i = 0; i < steps.length; i++){
             const curId = parseInt(id) + steps[i];
-            const curNote = ChordManager.getNote(`${curId}`);
+            const curNote = Note.getNote(`${curId}`);
             notes.push(curNote);
         }
         return notes
@@ -113,6 +97,6 @@ class ChordManager{
     }
 }
 
-ChordManager.curSteps = [0];
+Note.curSteps = [0];
 
-export {ChordManager}
+export {Note}
