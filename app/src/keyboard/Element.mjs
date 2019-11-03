@@ -1,4 +1,4 @@
-import {ChordManager} from "../ChordManager.mjs"
+import {Chord} from "../Chord.mjs"
 
 const offsets = [0, 0.5, 1, 1.5, 2, 3, 3.5, 4, 4.5, 5, 5.5, 6];
 
@@ -30,7 +30,7 @@ class KeyboardElement{
             }
 
             // Add the note on the key if it is C
-            const note = ChordManager.getNote(i);
+            const note = Chord.getNote(i);
             if (note.search(/C[^#]/) === 0){  // Starts with C, not C#
                 const noteStr = document.createElement("p");
                 noteStr.classList.add('noteStr');
@@ -43,7 +43,7 @@ class KeyboardElement{
             const keyStr = document.createElement("p");
             keyStr.classList.add('keyStr');
             keyStr.id = i.toString();
-            keyStr.innerText = ChordManager.getKey(i);
+            keyStr.innerText = Chord.getKey(i);
             key.appendChild(keyStr);
 
 
@@ -70,12 +70,12 @@ class KeyboardElement{
 
     _bindKeyEvents(key){
         key.addEventListener('pointerdown', (e) => {
-            let chordSteps = ChordManager.curSteps;
+            let chordSteps = Chord.curSteps;
             this._showChord(chordSteps, e.target.id)
         });
 
         document.addEventListener('keydown', (e) => {
-            let chordSteps = ChordManager.curSteps;
+            let chordSteps = Chord.curSteps;
             let noteId = "1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./".indexOf(e.key);
             if (noteId !== -1){
                 this._showChord(chordSteps, noteId)
@@ -103,8 +103,8 @@ class KeyboardElement{
             const noteId = parseInt(id) + chordSteps[i];
             const noteDiv = document.getElementById(`${noteId}`);
             // Wrap # in a <sup> div
-            let noteStr = ChordManager.getNote(noteId);
-            let noteHTML = ChordManager.toNoteHTML(noteStr);
+            let noteStr = Chord.getNote(noteId);
+            let noteHTML = Chord.toNotesHTML(noteStr);
             chordStr += ` ${noteHTML}`;
 
             if (noteDiv !== null) { // noteDiv in bound
