@@ -30,11 +30,21 @@ const chordFamilies = {
 class Chord{
     // Takes gets steps from the dictionary above, for the zero code sets to just 0.
     static setCurStep(chordType, chordName){
-        Chord.curSteps = chordFamilies[chordType][chordName];
+        Chord.curSteps = chordFamilies[chordType][chordName]; // Gets the non-inverted chord from chordFamilies.
+        Chord.curStepsNoInversion = chordFamilies[chordType][chordName]; // saves the steps with no inversion so we can go back to it later.
+        // this.applyInversion(Chord.curSteps); // Applies the inversion the Chord.curSteps
     }
 
     static setCurStepDirectly(stepsArray){
         Chord.curSteps = stepsArray;
+    }
+
+    static applyInversion(inversionID) {
+        Chord.curSteps = Chord.curStepsNoInversion;
+        for (let i = 0; i < inversionID; i++) {
+            Chord.curSteps[i] += 12;
+        }
+
     }
 
     /**

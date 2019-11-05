@@ -25,13 +25,23 @@ class ChordTypeSelector{
         invDropdownButton.href = "#";
 
         const invDropdown = document.createElement("div"); // dropdown menu
-        invDropdown.classList.add("dropdown-menu");
+        invDropdown.classList.add("dropdown-menu", "dropdown-menu-for-inversions");
+
+        const dropdownItem0 = document.createElement("a");   // Dropdown items for inversion. Subject to change.
+        dropdownItem0.classList.add("dropdown-item");
+        dropdownItem0.href = "#";
+        dropdownItem0.innerText = "None";
+        dropdownItem0.id = "0";
+        invDropdown.appendChild(dropdownItem0);
 
         const dropdownItem = document.createElement("a");   // Dropdown items for inversion. Subject to change.
         dropdownItem.classList.add("dropdown-item");
         dropdownItem.href = "#";
         dropdownItem.innerText = "First";
+        dropdownItem.id = "1";
         invDropdown.appendChild(dropdownItem);
+
+
 
         invGroup.appendChild(invDropdownButton);
         invGroup.appendChild(invDropdown);
@@ -93,8 +103,11 @@ class ChordTypeSelector{
      */
 
     _onClick(){
-        $("#Inversion").click(function(){ // Inversion drop-down
-            // alert("hello")
+        let inversionID = 0; // variable holds the number of inversion you are on
+        $(".dropdown-menu a").filter(".dropdown-menu-for-inversions a").click(function(){ // Inversion drop-down
+            inversionID = parseInt($(this).attr("id"), 10);   // Get the name of the chord type
+            Chord.applyInversion(inversionID);
+            // alert($(this).attr("id")); // this gets the id
         });
         // Selection for single button
         $(".single-btn").click(function(){
@@ -108,7 +121,6 @@ class ChordTypeSelector{
         // Selection for dropdown buttons
         $(".dropdown-menu a").filter(".dropdown-menu-for-chords a").click(function(){ //only selects the chord buttons
             let button = $(this).parent().parent().find(".btn").first(); // Get the button of the current dropdown menu
-
             let chordType = $(button).attr('id');   // Get the name of the chord type
             $("#chord_type_frm").find(".btn").each(function () {  // Reset the text on the button to its id
                 $(this).text((this).id);    // Change the text back to the chord type
