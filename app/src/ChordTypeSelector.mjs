@@ -21,8 +21,8 @@ class ChordTypeSelector{
         btnGroup.appendChild(zeroButton);
         zeroButton.setAttribute("type", "button");
         zeroButton.classList.add("btn", "btn-primary", "single-btn", "active"); // automatically sets as active for bootstrap
-        zeroButton.id = "Single Chord";
-        zeroButton.innerText = "Single Chord";
+        zeroButton.id = "Single Note";
+        zeroButton.innerText = "Single Note";
         zeroButton.href = "#";
 
         for (let type in Chord.chords){  // Add each type as a drop down button
