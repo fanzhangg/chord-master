@@ -19,7 +19,9 @@ class Keyboard {
         octaves = Math.max(octaves, 2); // Octave not less than 2
         octaves = Math.min(octaves, 7); // Octave not greater than 7
         this.maxId = octaves * 12;
-        this._keyboardInterface.resize(0, octaves);  // Populate keys
+        // this._keyboardInterface.resize(0, octaves);  // Populate keys
+        this._keyboardInterface.resize(19, octaves);  // Populate keys
+
     }
 
     /**
