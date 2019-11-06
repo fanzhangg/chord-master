@@ -30,9 +30,9 @@ const chordFamilies = {
 class Chord{
     // Takes gets steps from the dictionary above, for the zero code sets to just 0.
     static setCurStep(chordType, chordName){
-        Chord.curSteps = chordFamilies[chordType][chordName]; // Gets the non-inverted chord from chordFamilies.
-        Chord.curStepsNoInversion = chordFamilies[chordType][chordName]; // saves the steps with no inversion so we can go back to it later.
-        // this.applyInversion(Chord.curSteps); // Applies the inversion the Chord.curSteps
+        Chord.curSteps = chordFamilies[chordType][chordName].slice(); // Gets the non-inverted chord from chordFamilies.
+        Chord.curStepsNoInversion = chordFamilies[chordType][chordName].slice(); // saves the steps with no inversion so we can go back to it later.
+        // I also had to use .slice() to make a copy so they didn't reference the same array.
     }
 
     static setCurStepDirectly(stepsArray){
@@ -40,9 +40,11 @@ class Chord{
     }
 
     static applyInversion(inversionID) {
-        Chord.curSteps = Chord.curStepsNoInversion;
-        for (let i = 0; i < inversionID; i++) {
-            Chord.curSteps[i] += 12;
+        if (Chord.curSteps.length !== 1) { // We have this condition to avoid the 1 note breaking the inversion.
+            Chord.curSteps = Chord.curStepsNoInversion.slice();
+            for (let i = 0; i < inversionID; i++) {
+                Chord.curSteps[i] += 12;
+            }
         }
 
     }
