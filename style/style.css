@@ -18,3 +18,8 @@ body {
 #chord_type_frm {
     margin-top: 40px;
 }
+
+.separated-group {
+    margin-left: 20px;
+    margin-right: 20px;
+}
