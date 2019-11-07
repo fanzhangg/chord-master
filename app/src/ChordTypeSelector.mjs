@@ -19,7 +19,7 @@ class ChordTypeSelector{
         const invDropdownButton = document.createElement("button"); // Creates inversion dropdown button
 
         invDropdownButton.setAttribute("type", "button");
-        invDropdownButton.classList.add("btn", "btn-primary", "dropdown-toggle");
+        invDropdownButton.classList.add("btn", "btn-secondary", "dropdown-toggle");
         invDropdownButton.setAttribute("data-toggle", "dropdown");
         invDropdownButton.id = "inversion_selector";
         invDropdownButton.innerText = "Inversion";
@@ -117,7 +117,7 @@ class ChordTypeSelector{
         });
         // Selection for single button
         $(".single-btn").click(function(){
-            $("#chord_type_frm").find(".btn").each(function () {  // Reset the text on the button to its id
+            $("#chord_type_frm").find(".btn").filter(".chord-type-button").each(function () {  // Reset the text on the button to its id
                 $(this).text((this).id);    // Change the text back to the chord type
                 $(this).removeClass("active");  // Deactivate the button
             });
