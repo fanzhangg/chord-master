@@ -12,7 +12,7 @@ class ChordTypeSelector{
 
 
         const invGroup = document.createElement("div"); // Inversion button group
-        invGroup.classList.add("btn-group", "separated-group");
+        invGroup.classList.add("btn-group", "separated-group", "inversion-group");
         invGroup.setAttribute("role", "group");
 
 
@@ -21,7 +21,7 @@ class ChordTypeSelector{
         invDropdownButton.setAttribute("type", "button");
         invDropdownButton.classList.add("btn", "btn-primary", "dropdown-toggle");
         invDropdownButton.setAttribute("data-toggle", "dropdown");
-        invDropdownButton.id = "Inversion";
+        invDropdownButton.id = "inversion_selector";
         invDropdownButton.innerText = "Inversion";
         invDropdownButton.href = "#";
 
@@ -52,14 +52,14 @@ class ChordTypeSelector{
         // nest dropdown in the button group
         // ref: https://getbootstrap.com/docs/4.3/components/button-group/
         const btnGroup = document.createElement("div"); // Button group
-        btnGroup.classList.add("btn-group", "separated-group");
+        btnGroup.classList.add("btn-group", "separated-group", "chord-name-group");
         btnGroup.setAttribute("role", "group");
 
         // Adds zero chord (single note)
         const zeroButton = document.createElement("button");
         btnGroup.appendChild(zeroButton);
         zeroButton.setAttribute("type", "button");
-        zeroButton.classList.add("btn", "btn-primary", "single-btn", "active"); // automatically sets as active for bootstrap
+        zeroButton.classList.add("btn", "btn-primary", "single-btn", "active", "chord-type-button"); // automatically sets as active for bootstrap
         zeroButton.id = "Single Note";
         zeroButton.innerText = "Single Note";
         zeroButton.href = "#";
@@ -68,7 +68,7 @@ class ChordTypeSelector{
             console.log(`Create button for ${type}`);
             const button = document.createElement("button");    // button to trigger dropdown
             button.setAttribute("type", "button");
-            button.classList.add("btn", "btn-primary", "dropdown-toggle");
+            button.classList.add("btn", "btn-primary", "dropdown-toggle", "chord-type-button");
             button.setAttribute("data-toggle", "dropdown");
             button.id = type;
             button.innerText = type;
@@ -109,7 +109,10 @@ class ChordTypeSelector{
         let inversionID = 0; // variable holds the number of inversion you are on
         $(".dropdown-menu a").filter(".dropdown-menu-for-inversions a").click(function(){ // Inversion drop-down
             inversionID = parseInt($(this).attr("id"), 10);   // Get the name of the chord type
-            Chord.applyInversion(inversionID);
+            // console.log(parseInt($(this).attr("id"), 10));
+            Chord.setInversionID(inversionID);
+            $("#inversion_selector").text((this).innerText);
+            $("#inversion_selector").addClass("active")
             // alert($(this).attr("id")); // this gets the id
         });
         // Selection for single button
@@ -125,13 +128,14 @@ class ChordTypeSelector{
         $(".dropdown-menu a").filter(".dropdown-menu-for-chords a").click(function(){ //only selects the chord buttons
             let button = $(this).parent().parent().find(".btn").first(); // Get the button of the current dropdown menu
             let chordType = $(button).attr('id');   // Get the name of the chord type
-            $("#chord_type_frm").find(".btn").each(function () {  // Reset the text on the button to its id
+            $("#chord_type_frm").find(".btn").filter(".chord-type-button").each(function () {  // Reset the text on the button to its id
                 $(this).text((this).id);    // Change the text back to the chord type
                 $(this).removeClass("active");  // Deactivate the button
             });
             $(this).parent().parent().find('.btn').html($(this).text());    // Change the button's text to the selected one
             $(button).addClass("active");   // Active the selected button
             let chordName = $(this).text(); // Get the name of the chord
+            console.log(inversionID);
             Chord.setCurStep(chordType, chordName);
         });
     }
