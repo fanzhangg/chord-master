@@ -36,4 +36,32 @@ class Sampler {
             this._player.fadeOut = 0.2;
         })
     }
+
+    keyDown(note, time){
+        if (this._loaded){
+            let pitch = this._midiToFrequencyPitch(note);
+            const duration = this._player.buffer.get(note).duration * 0.95;
+            this._player.start(note, time, 0, duration - this._player.fadeOut, pitch);
+        }
+    }
+
+    keyUp(note, time){
+        if (this._loaded){
+            this._player.stop(note, time);
+        }
+    }
+
+     _midiToFrequencyPitch(midi){
+        let mod = midi % 3;
+        if (mod === 1){
+            return 1
+        } else if (mod === 2){
+            return -1
+        } else {
+            return 0
+        }
+    }
 }
+
+export {Sampler}
+
