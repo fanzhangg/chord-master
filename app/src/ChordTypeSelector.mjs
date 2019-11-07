@@ -19,7 +19,7 @@ class ChordTypeSelector{
         const invDropdownButton = document.createElement("button"); // Creates inversion dropdown button
 
         invDropdownButton.setAttribute("type", "button");
-        invDropdownButton.classList.add("btn", "btn-primary", "dropdown-toggle");
+        invDropdownButton.classList.add("btn", "btn-secondary", "dropdown-toggle");
         invDropdownButton.setAttribute("data-toggle", "dropdown");
         invDropdownButton.id = "Inversion";
         invDropdownButton.innerText = "Inversion";
@@ -59,7 +59,7 @@ class ChordTypeSelector{
         const zeroButton = document.createElement("button");
         btnGroup.appendChild(zeroButton);
         zeroButton.setAttribute("type", "button");
-        zeroButton.classList.add("btn", "btn-primary", "single-btn", "active"); // automatically sets as active for bootstrap
+        zeroButton.classList.add("btn", "btn-secondary", "single-btn", "active"); // automatically sets as active for bootstrap
         zeroButton.id = "Single Note";
         zeroButton.innerText = "Single Note";
         zeroButton.href = "#";
@@ -68,7 +68,7 @@ class ChordTypeSelector{
             console.log(`Create button for ${type}`);
             const button = document.createElement("button");    // button to trigger dropdown
             button.setAttribute("type", "button");
-            button.classList.add("btn", "btn-primary", "dropdown-toggle");
+            button.classList.add("btn", "btn-secondary", "dropdown-toggle");
             button.setAttribute("data-toggle", "dropdown");
             button.id = type;
             button.innerText = type;
