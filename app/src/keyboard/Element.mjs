@@ -48,8 +48,13 @@ class KeyboardElement{
 
 
             // calculate the position of the div
-            let noteOctave = Math.floor(i / 12) - Math.floor(lowest / 12);
-            let offset = offsets[i % 12] + noteOctave * 7;
+            let lowestOctave = Math.floor(lowest / 12);
+            let lowestOffset = offsets[lowest % 12]  + lowestOctave * 7;
+
+            let noteOctave = Math.floor(i / 12);
+            let offset = offsets[i % 12]  + noteOctave * 7 - lowestOffset;
+
+            // let lowestOctave = offsets[lowest % 12]  + noteOctave * 7;;
             if (Number.isInteger(offset) === true){  // Is white key
                 key.style.width = `${keyWidth * 100}%`;
                 key.style.left = `${offset * keyWidth * 100}%`;
