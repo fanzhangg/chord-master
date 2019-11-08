@@ -29,7 +29,7 @@ a:hover{
 }
 
 body {
-    background-color: #545371;
+    background-color: rgb(55, 55, 55);
     /* Disable scrolling */
     margin: 0; height: 100%; overflow: hidden
 }
