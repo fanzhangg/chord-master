@@ -1,5 +1,5 @@
 import {Keyboard} from "./src/keyboard/Keyboard.mjs";
-import {ChordTypeSelector} from "./src/ChordTypeSelector.mjs";
+import {ChordSettingToolbar} from "./src/settingToolbar/ChordSettingToolbar.mjs";
 
 // Add keyboard view
 const keyboardContainer = document.createElement('div');
@@ -13,4 +13,4 @@ const chordTypeContainer = document.createElement('div');
 chordTypeContainer.id = 'chord_type_frm';
 chordTypeContainer.classList.add("container");
 document.body.insertBefore(chordTypeContainer, document.body.firstChild);    // Insert as the first child
-new ChordTypeSelector(chordTypeContainer);
+new ChordSettingToolbar(chordTypeContainer);
