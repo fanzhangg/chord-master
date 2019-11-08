@@ -59,7 +59,7 @@ class ChordTypeSelector{
         const zeroButton = document.createElement("button");
         btnGroup.appendChild(zeroButton);
         zeroButton.setAttribute("type", "button");
-        zeroButton.classList.add("btn", "btn-primary", "single-btn", "active", "chord-type-button"); // automatically sets as active for bootstrap
+        zeroButton.classList.add("btn", "btn-secondary", "single-btn", "active", "chord-type-button"); // automatically sets as active for bootstrap
         zeroButton.id = "Single Note";
         zeroButton.innerText = "Single Note";
         zeroButton.href = "#";
@@ -68,7 +68,7 @@ class ChordTypeSelector{
             console.log(`Create button for ${type}`);
             const button = document.createElement("button");    // button to trigger dropdown
             button.setAttribute("type", "button");
-            button.classList.add("btn", "btn-primary", "dropdown-toggle", "chord-type-button");
+            button.classList.add("btn", "btn-secondary", "dropdown-toggle", "chord-type-button");
             button.setAttribute("data-toggle", "dropdown");
             button.id = type;
             button.innerText = type;
