@@ -28,33 +28,30 @@ const chordFamilies = {
 };
 
 class Chord{
-
-    static setInversionID(inversionID) {
-        Chord.inversionID = inversionID;
-        console.log(Chord.inversionID);
-        this.applyInversion(Chord.inversionID)
-    }
-
-    // Takes gets steps from the dictionary above, for the zero code sets to just 0.
-    static setCurStep(chordType, chordName){
-        Chord.curSteps = chordFamilies[chordType][chordName].slice(); // Gets the non-inverted chord from chordFamilies.
-        Chord.curStepsNoInversion = chordFamilies[chordType][chordName].slice(); // Gets the non-inverted chord from chordFamilies.
-        this.applyInversion(Chord.inversionID)
-        // I also had to use .slice() to make a copy so they didn't reference the same array.
-    }
-
-    static setCurStepDirectly(stepsArray){
-        Chord.curSteps = stepsArray;
-    }
-
-    static applyInversion(inversionID) {
-        Chord.curSteps = Chord.curStepsNoInversion.slice();
-        if (Chord.curSteps.length !== 1) { // We have this condition to avoid the 1 note breaking the inversion.
-            for (let i = 0; i < inversionID; i++) {
-                Chord.curSteps[i] += 12;
-            }
+    /**
+     * Return the half steps of the chord from the root. [0] if no chord type is specified
+     * @return {Array}
+     */
+    static getHalfSteps(){
+        if (this.family === null){
+            return [0]
+        } else {
+            return [...chordFamilies[this.family][this.type]];
         }
+    }
 
+    /**
+     * Set the half steps of the chord from the root based on its type and inversion number
+     */
+    static setHalfSteps() {
+        const halfSteps = this.getHalfSteps();
+        if (Chord.family !== null) { // We have this condition to avoid the 1 note breaking the inversion.
+            for (let i = 0; i < this.inversionNum; i++) {
+                halfSteps[i] += 12;
+            }
+            Chord.curSteps = halfSteps;
+            console.log(`Chord.curSteps: ${halfSteps}`);
+        }
     }
 
     /**
@@ -69,10 +66,6 @@ class Chord{
         note = chromatic[note];
         const octave = Math.floor(id / 12) + 1;
         return `${note}${octave}`;
-    }
-
-    static get chords(){
-        return chordFamilies
     }
 
     /**
@@ -118,5 +111,8 @@ class Chord{
 }
 
 Chord.curSteps = [0];
+Chord.type = null;
+Chord.family = null;
+Chord.inversionNum = 0;
 
 export {Chord}
