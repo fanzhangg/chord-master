@@ -44,7 +44,7 @@ class InversionTypeBtnGroup{
             const dropdownItem = document.createElement("a");   // Dropdown items for inversion. Subject to change.
             dropdownItem.classList.add("dropdown-item");
             dropdownItem.innerText = this.inversionTypes[i];
-            dropdownItem.id = i.toString();
+            dropdownItem.dataset.inversionNum = i.toString();   // Store the inversion number
             dropdownMenu.appendChild(dropdownItem);
         }
 
@@ -52,12 +52,17 @@ class InversionTypeBtnGroup{
     }
 
     _keyDown(){
-        let inversionID = 0;
-        $("#inversionDropdownMenu").click(function(){
-            inversionID = parseInt($(this).attr("id"), 10);   // Set the id of the inversion
-            Chord.setInversionID(inversionID);
-            $("#inversion_selector").text((this).innerText);
-            $("#inversion_selector").addClass("active")
+
+        $("#inversionDropdownMenu a").click(function(){
+            const inversionNum = parseInt($(this).attr("data-inversion-num"), 10);   // Set the id of the inversion
+            Chord.setInversionID(inversionNum);
+            const button = $("#inversionDropdownBtn");
+            $(button).text((this).innerText);
+            if (inversionNum === 0){    // Click on the None item
+                $(button.removeClass("active"));    // Deactivate the button
+            } else {
+                $(button).addClass("active");   // Activate the button
+            }
         })
     }
 }
