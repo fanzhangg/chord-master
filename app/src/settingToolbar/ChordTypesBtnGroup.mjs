@@ -127,9 +127,9 @@ class ChordTypeBtnGroup{
             $(button).html(chordType);    // Change the button's text to the selected chord type
             $(button).addClass("active");   // Active the selected button
 
-            Chord.setCurStep(chordFamily, chordType);
             Chord.type = chordType;
             Chord.family = chordFamily;
+            Chord.setHalfSteps();   // Set the half steps of the chord
             console.log(`Chord.type: ${Chord.type}, curSteps: ${Chord.curSteps}, family: ${Chord.family}`);
         });
 
@@ -152,9 +152,10 @@ class ChordTypeBtnGroup{
             $(this).addClass("active"); // activate the button
 
             Chord.curSteps = [0];   // Update the curStep to a single note
-            Chord.type = "Single Note";
-            Chord.family = "Single Note";
-            console.log(`Chord.type: ${Chord.type}, curSteps: ${Chord.curSteps}, family: ${Chord.family}`);
+            Chord.type = null;
+            Chord.family = null;
+            Chord.inversionNum = 0;
+            console.log(`Chord.type: ${Chord.type}, curSteps: ${Chord.curSteps}, family: ${Chord.family}, inversionNum: ${Chord.inversionNum}`);
             }
         )
     }
