@@ -115,6 +115,11 @@ class ChordTypeBtnGroup{
         $("#chordTypeBtnGroup a").click(function () {
             group._resetBtnsText();  // Reset button's text to its id
 
+            const inversionBtn = $("#inversionDropdownBtn");
+            $(inversionBtn).attr("data-toggle", "dropdown");    // Enable dropdown
+            $(inversionBtn).removeClass("disabled");    // Enable the button
+            //TODO: change the dropdown items based on the chord family
+
             let button = $(this).parent().parent().find(".btn").first();    // Get the button the menu belongs to
             const chordFamily = $(button).attr("data-chord-family"); // Get the chord family from data attribute
             const chordType = $(this).attr("data-chord-type");  // Get the chord type from data attribute
@@ -139,6 +144,11 @@ class ChordTypeBtnGroup{
         const group = this;
         $("#singleNoteBtn").click( function () {
             group._resetBtnsText();
+
+            const inversionBtn = $("#inversionDropdownBtn");
+            $(inversionBtn).attr("data-toggle", "");    // Disable dropdown
+            $(inversionBtn).addClass("disabled");   // Disable the button
+
             $(this).addClass("active"); // activate the button
 
             Chord.curSteps = [0];   // Update the curStep to a single note
