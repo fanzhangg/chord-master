@@ -1,5 +1,4 @@
 import {Keyboard} from "./src/keyboard/Keyboard.mjs";
-import {ChordTypeSelector} from "./src/ChordTypeSelector.mjs";
 import {ChordSettingToolbar} from "./src/settingToolbar/ChordSettingToolbar.mjs";
 
 
