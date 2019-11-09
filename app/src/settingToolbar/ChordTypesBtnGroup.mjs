@@ -43,14 +43,23 @@ class ChordTypeBtnGroup{
         // nest dropdown in the button group
         // ref: https://getbootstrap.com/docs/4.3/components/button-group/
         const btnGroup = document.createElement("div"); // Button group
-        btnGroup.classList.add("btn-group", "separated-group", "chord-name-group");
+        btnGroup.classList.add("btn-group");
         btnGroup.setAttribute("role", "group");
         btnGroup.id = "chordTypeBtnGroup";
 
+        this._renderLabel(container);
         this._renderSingleNoteBtn(btnGroup);
         this._renderBtns(btnGroup);
 
         container.appendChild(btnGroup);
+    }
+
+    _renderLabel(btnGroup){
+        const label = document.createElement("span");
+        label.innerText = "Type:";
+        label.classList.add("text-muted", "btn");
+        label.setAttribute("disabled", "true");
+        btnGroup.appendChild(label);
     }
 
     /**

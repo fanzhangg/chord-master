@@ -27,11 +27,21 @@ class InversionTypeBtnGroup{
         button.id = "inversionDropdownBtn";
         button.innerText = "None";
 
+        this._renderLabel(dropdown);
+
         dropdown.appendChild(button);
 
         this._renderDropdownMenu(dropdown);
 
         container.appendChild(dropdown);
+    }
+
+    _renderLabel(container){
+        const label = document.createElement("span");
+        label.innerText = "Inversion:";
+        label.classList.add("text-muted", "btn");
+        label.setAttribute("disabled", "true");
+        container.appendChild(label);
     }
 
     _renderDropdownMenu(dropdown){
@@ -43,6 +53,7 @@ class InversionTypeBtnGroup{
         for (let i = 0; i < 4; i++) { // Adds each button to the inversion dropdown.
             const dropdownItem = document.createElement("a");   // Dropdown items for inversion. Subject to change.
             dropdownItem.classList.add("dropdown-item");
+            dropdownItem.href = "#";
             dropdownItem.innerText = this.inversionTypes[i];
             dropdownItem.dataset.inversionNum = i.toString();   // Store the inversion number
             dropdownMenu.appendChild(dropdownItem);
