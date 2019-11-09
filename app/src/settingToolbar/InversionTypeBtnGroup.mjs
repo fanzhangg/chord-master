@@ -54,8 +54,10 @@ class InversionTypeBtnGroup{
     _keyDown(){
 
         $("#inversionDropdownMenu a").click(function(){
-            const inversionNum = parseInt($(this).attr("data-inversion-num"), 10);   // Set the id of the inversion
-            Chord.setInversionID(inversionNum);
+            const inversionNum = parseInt($(this).attr("data-inversion-num"), 10);   // Get the number of the inversion
+            Chord.inversionNum = inversionNum;  // Assign inversion num
+            Chord.setHalfSteps(inversionNum);
+            console.log(`Chord.inversionNum: ${Chord.inversionNum}`);
             const button = $("#inversionDropdownBtn");
             $(button).text((this).innerText);
             if (inversionNum === 0){    // Click on the None item
