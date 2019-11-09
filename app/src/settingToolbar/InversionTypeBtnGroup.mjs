@@ -22,7 +22,7 @@ class InversionTypeBtnGroup{
         dropdown.id = "inversionTypeDropdown";
 
         const button = document.createElement("button");
-        button.classList.add("btn", "btn-secondary", "dropdown-toggle");
+        button.classList.add("btn", "btn-secondary", "dropdown-toggle", "disabled");    // Initially set disabled
         button.setAttribute("data-toggle", "dropdown");
         button.id = "inversionDropdownBtn";
         button.innerText = "None";
