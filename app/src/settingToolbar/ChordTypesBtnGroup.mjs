@@ -123,6 +123,9 @@ class ChordTypeBtnGroup{
             $(button).addClass("active");   // Active the selected button
 
             Chord.setCurStep(chordFamily, chordType);
+            Chord.type = chordType;
+            Chord.family = chordFamily;
+            console.log(`Chord.type: ${Chord.type}, curSteps: ${Chord.curSteps}, family: ${Chord.family}`);
         });
 
         this._keyDownOnSingleNoteBtn();
@@ -137,8 +140,11 @@ class ChordTypeBtnGroup{
         $("#singleNoteBtn").click( function () {
             group._resetBtnsText();
             $(this).addClass("active"); // activate the button
+
             Chord.curSteps = [0];   // Update the curStep to a single note
-            console.log(`Set curStep to ${Chord.curSteps}`);
+            Chord.type = "Single Note";
+            Chord.family = "Single Note";
+            console.log(`Chord.type: ${Chord.type}, curSteps: ${Chord.curSteps}, family: ${Chord.family}`);
             }
         )
     }
