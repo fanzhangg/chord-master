@@ -13,6 +13,7 @@ class ChordSettingToolbar{
                             .attr("class", "p-2")
                                 .append("div")  // Append btn-toolbar
                                     .attr("class", "btn-toolbar")
+                                    .attr("id", "settingToolbar")
                                     .attr("role", "toolbar")
                                     .attr("aria-label", "Toolbar to set chord");
 

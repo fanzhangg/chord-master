@@ -18,7 +18,7 @@ class InversionTypeBtnGroup{
 
     _renderView(container) {
         const dropdown = document.createElement("div"); // Inversion button group
-        dropdown.classList.add("dropdown");
+        dropdown.classList.add("dropdown", "ml-3");
         dropdown.id = "inversionTypeDropdown";
 
         const button = document.createElement("button");
