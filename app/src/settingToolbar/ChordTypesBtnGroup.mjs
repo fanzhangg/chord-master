@@ -140,12 +140,36 @@ class ChordTypeBtnGroup{
             Chord.type = chordType;
             Chord.family = chordFamily;
             Chord.setHalfSteps();   // Set the half steps of the chord
-            console.log(`Chord.type: ${Chord.type}, curSteps: ${Chord.curSteps}, family: ${Chord.family}`);
 
-            inversionBtn
+            const inversionMenu = $("#inversionDropdownMenu");
+            inversionMenu.empty();
+
+            group._changeInversionDropdownItems(inversionMenu);
+            console.log(`Chord.type: ${Chord.type}, curSteps: ${Chord.curSteps}, family: ${Chord.family}`);
         });
 
         this._keyDownOnSingleNoteBtn();
+    }
+
+    _changeInversionDropdownItems(dropdownMenu){
+        const inversionTypes = {
+            0: "None",
+            1: "First",
+            2: "Second",
+            3: "Third",
+            4: "Fourth",
+            5: "Fifth"
+        };
+        let totalInversionNum = Chord.getHalfSteps().length;
+
+        for (let i = 0; i < totalInversionNum; i++) { // Adds each button to the inversion dropdown.
+            const dropdownItem = document.createElement("a");   // Dropdown items for inversion. Subject to change.
+            dropdownItem.classList.add("dropdown-item");
+            dropdownItem.href = "#";
+            dropdownItem.innerText = inversionTypes[i];
+            dropdownItem.dataset.inversionNum = i.toString();   // Store the inversion number
+            dropdownMenu.append(dropdownItem);
+        }
     }
 
     /**
