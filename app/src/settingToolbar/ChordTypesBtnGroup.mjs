@@ -144,6 +144,12 @@ class ChordTypeBtnGroup{
             const inversionMenu = $("#inversionDropdownMenu");
             inversionMenu.empty();
 
+            $("#chordTypeBtnGroup a").on("click", function () {
+                $("#inversionDropdownBtn").text("None"); // Changes text.
+                Chord.inversionNum = 0;
+                Chord.setHalfSteps();
+            });
+
             group._changeInversionDropdownItems(inversionMenu);
             console.log(`Chord.type: ${Chord.type}, curSteps: ${Chord.curSteps}, family: ${Chord.family}`);
         });
@@ -158,7 +164,8 @@ class ChordTypeBtnGroup{
             2: "Second",
             3: "Third",
             4: "Fourth",
-            5: "Fifth"
+            5: "Fifth",
+            6: "Sixth"
         };
         let totalInversionNum = Chord.getHalfSteps().length;
 

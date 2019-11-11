@@ -97,7 +97,7 @@ class InversionTypeBtnGroup{
         //     console.log("Inversion dropdown menu is clicked");
         // });
 
-        $("#inversionDropdownMenu").click(e=>{
+        $("#inversionDropdownMenu").on("click",e=>{
             console.log("Item is clicked");
             const item = $(e.target);
             const inversionNum = parseInt($(item).attr("data-inversion-num"), 10);   // Get the number of the inversion
