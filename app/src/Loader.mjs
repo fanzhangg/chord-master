@@ -17,6 +17,7 @@ class Loader {
         // StartAudioContext(Tone.context, loader);
         // StartAudioContext starts the Web Audio API's AudioContext on an explicit user action.
 
+
         this.loaded = false;
 
         Tone.Buffer.on("load", () => {
