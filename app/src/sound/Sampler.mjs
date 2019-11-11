@@ -65,8 +65,11 @@ class Sampler {
         return urls;
     }
 
+    /**
+     * Load the audio files
+     * @return {Promise<any>}
+     */
     load(){
-        console.log("Loading the sound");
         return new Promise( done => {
             this._player = new Tone.Sampler(this._urls, {"baseUrl" : "./app/audio/",
                 "onload": done}).toMaster();
@@ -74,6 +77,11 @@ class Sampler {
         })
     }
 
+    /**
+     * Trigger the sound of a note
+     * @param note integer
+     * @param time
+     */
     keyDown(note, time){
         console.log(`${this._loaded}`);
         if (this._loaded){
@@ -85,6 +93,11 @@ class Sampler {
         }
     }
 
+    /**
+     * Release the note
+     * @param note
+     * @param time
+     */
     keyUp(note, time){
         if (this._loaded){
             this._player.triggerRelease(note);

@@ -13,9 +13,12 @@ class Sound {
         this._piano = new Sampler("./app/audio/", this._range.lowest, this._range.highest);
     }
 
+    /**
+     * Load the piano audio
+     * @return {Promise<[]>}
+     */
     load(){
         // return promise after resolving loading the sampler
-        console.log("Sound: loading the sound");
         return Promise.all([this._piano.load()]);
     }
 
