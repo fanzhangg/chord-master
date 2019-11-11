@@ -3,6 +3,8 @@ import {Chord} from "../Chord.mjs";
 
 class InversionTypeBtnGroup{
     constructor(container) {
+        this.currentInversionID = 0;
+
         this.inversionTypes = {
             0: "None",
             1: "First",
@@ -17,6 +19,7 @@ class InversionTypeBtnGroup{
     }
 
     _renderView(container) {
+
         const dropdown = document.createElement("div"); // Inversion button group
         dropdown.classList.add("dropdown", "ml-3");
         dropdown.id = "inversionTypeDropdown";
@@ -31,7 +34,7 @@ class InversionTypeBtnGroup{
 
         dropdown.appendChild(button);
 
-        this._renderDropdownMenu(dropdown);
+        // this._renderDropdownMenu(dropdown);
 
         container.appendChild(dropdown);
     }
@@ -44,13 +47,17 @@ class InversionTypeBtnGroup{
         container.appendChild(label);
     }
 
+
+
     _renderDropdownMenu(dropdown){
         const dropdownMenu = document.createElement("div");
         dropdownMenu.classList.add("dropdown-menu");
         dropdownMenu.classList.add("aria-labelledby", "dropdownMenuButton");
         dropdownMenu.id = "inversionDropdownMenu";
 
-        for (let i = 0; i < 4; i++) { // Adds each button to the inversion dropdown.
+        let totalInversionNum = Chord.getHalfSteps().length - 1;
+
+        for (let i = 0; i < totalInversionNum; i++) { // Adds each button to the inversion dropdown.
             const dropdownItem = document.createElement("a");   // Dropdown items for inversion. Subject to change.
             dropdownItem.classList.add("dropdown-item");
             dropdownItem.href = "#";
@@ -63,6 +70,13 @@ class InversionTypeBtnGroup{
     }
 
     _keyDown(){
+        const inversionTypeBtnGroup = this;
+
+        $("#inversionDropdownBtn").click(function(){
+           //  $("#inversionDropdownMenu").remove();
+            const dropdown = document.getElementById("inversionTypeDropdown");
+            inversionTypeBtnGroup._renderDropdownMenu(dropdown);
+        });
 
         $("#inversionDropdownMenu a").click(function(){
             const inversionNum = parseInt($(this).attr("data-inversion-num"), 10);   // Get the number of the inversion
@@ -76,6 +90,7 @@ class InversionTypeBtnGroup{
             } else {
                 $(button).addClass("active");   // Activate the button
             }
+
         })
     }
 }

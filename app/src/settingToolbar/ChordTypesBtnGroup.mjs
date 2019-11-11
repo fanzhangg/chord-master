@@ -1,4 +1,5 @@
 import {Chord} from "../Chord.mjs";
+// import {InversionTypeBtnGroup} from "./InversionTypeBtnGroup.mjs";
 
 class ChordTypeBtnGroup{
     constructor(container){
@@ -140,6 +141,8 @@ class ChordTypeBtnGroup{
             Chord.family = chordFamily;
             Chord.setHalfSteps();   // Set the half steps of the chord
             console.log(`Chord.type: ${Chord.type}, curSteps: ${Chord.curSteps}, family: ${Chord.family}`);
+
+            inversionBtn
         });
 
         this._keyDownOnSingleNoteBtn();
