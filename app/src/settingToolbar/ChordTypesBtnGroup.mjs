@@ -199,6 +199,9 @@ class ChordTypeBtnGroup{
             Chord.family = null;
             Chord.inversionNum = 0;
             console.log(`Chord.type: ${Chord.type}, curSteps: ${Chord.curSteps}, family: ${Chord.family}, inversionNum: ${Chord.inversionNum}`);
+
+            $("#inversionDropdownBtn").text("None"); // Changes text.
+
             }
         )
     }
