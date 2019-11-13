@@ -3,19 +3,8 @@ import {Chord} from "../Chord.mjs";
 
 class InversionTypeBtnGroup{
     constructor(container) {
-        this.currentInversionID = 0;
-
-        this.inversionTypes = {
-            0: "None",
-            1: "First",
-            2: "Second",
-            3: "Third",
-            4: "Fourth",
-            5: "Fifth"
-        };
-
-        this._renderView(container);
-        this._keyDown();
+        this._renderView(container); // renders the inversion dropdown
+        this._keyDown(); // adds dropdown logic
     }
 
     _renderView(container) {
@@ -41,15 +30,6 @@ class InversionTypeBtnGroup{
 
         dropdown.appendChild(dropdownMenu);
 
-        // const dropdownItem = document.createElement("a");   // Dropdown items for inversion. Subject to change.
-        // dropdownItem.classList.add("dropdown-item");
-        // dropdownItem.href = "#";
-        // dropdownItem.innerText = "None";
-        // dropdownItem.dataset.inversionNum = "0";   // Store the inversion number
-        // dropdownMenu.appendChild(dropdownItem);
-
-        // this._renderDropdownMenu(dropdown);
-
         container.appendChild(dropdown);
     }
 
@@ -61,42 +41,7 @@ class InversionTypeBtnGroup{
         container.appendChild(label);
     }
 
-
-
-    _renderDropdownMenu(dropdownMenu){
-        // const dropdownMenu = document.createElement("div");
-        // dropdownMenu.classList.add("dropdown-menu");
-        // dropdownMenu.classList.add("aria-labelledby", "dropdownMenuButton");
-        // dropdownMenu.id = "inversionDropdownMenu";
-
-        let totalInversionNum = Chord.getHalfSteps().length;
-
-        for (let i = 0; i < totalInversionNum; i++) { // Adds each button to the inversion dropdown.
-            const dropdownItem = document.createElement("a");   // Dropdown items for inversion. Subject to change.
-            dropdownItem.classList.add("dropdown-item");
-            dropdownItem.href = "#";
-            dropdownItem.innerText = this.inversionTypes[i];
-            dropdownItem.dataset.inversionNum = i.toString();   // Store the inversion number
-            dropdownMenu.appendChild(dropdownItem);
-        }
-
-        // dropdown.appendChild(dropdownMenu);
-    }
-
     _keyDown(){
-        // const inversionTypeBtnGroup = this;
-
-        // $("#inversionDropdownBtn").click(function(){
-        //    //  $("#inversionDropdownMenu").remove();
-        //     const dropdown = document.getElementById("inversionTypeDropdown");
-        //     const menu = $("#inversionDropdownMenu");
-        //     menu.empty();
-        //     inversionTypeBtnGroup._renderDropdownMenu(menu);
-        // });
-        // $("#inversionDropdownMenu").click(function () {
-        //     console.log("Inversion dropdown menu is clicked");
-        // });
-
         $("#inversionDropdownMenu").on("click",e=>{
             console.log("Item is clicked");
             const item = $(e.target);

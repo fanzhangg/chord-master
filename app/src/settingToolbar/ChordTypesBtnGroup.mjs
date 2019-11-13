@@ -63,7 +63,7 @@ class ChordTypeBtnGroup{
     }
 
     /**
-     * Adds single note button to the group
+     * Adds single note button to the group to play one note at a time.
      * @param btnGroup
      * @private
      */
@@ -96,22 +96,22 @@ class ChordTypeBtnGroup{
             const dropdown = document.createElement("div"); // dropdown menu
             dropdown.classList.add("dropdown-menu");
 
-            for (let type in this.chordFamilies[family]){    // Add each name to the type button
+            for (let type in this.chordFamilies[family]){    // Adds each chord name to the type button
                 const dropdownItem = document.createElement("a");   // dropdown item
                 dropdownItem.classList.add("dropdown-item");
                 dropdownItem.href = "#";
                 dropdownItem.innerText = type;
                 dropdownItem.dataset.chordType = type;
 
-                dropdown.appendChild(dropdownItem);
+                dropdown.appendChild(dropdownItem); // adds this chord name button to the type dropdown.
             }
 
             const dropdownGroup = document.createElement("btn-div");
             dropdownGroup.classList.add("btn-group");
             dropdownGroup.setAttribute("role", "button");
-            dropdownGroup.appendChild(button);
-            dropdownGroup.appendChild(dropdown);
-            btnGroup.appendChild(dropdownGroup)
+            dropdownGroup.appendChild(button); //adds the dropdown button to the group
+            dropdownGroup.appendChild(dropdown); //adds the actual dropdown to the group (bootstrap takes care of connecting the two)
+            btnGroup.appendChild(dropdownGroup) // adds the dropdown to the chord type group.
         }
     }
 
@@ -157,7 +157,7 @@ class ChordTypeBtnGroup{
     }
 
     _changeInversionDropdownItems(dropdownMenu){
-        const inversionTypes = {
+        const inversionTypes = { // Assigns inversionIDs to strings.
             0: "None",
             1: "First",
             2: "Second",
@@ -172,7 +172,7 @@ class ChordTypeBtnGroup{
             const dropdownItem = document.createElement("a");   // Dropdown items for inversion. Subject to change.
             dropdownItem.classList.add("dropdown-item");
             dropdownItem.href = "#";
-            dropdownItem.innerText = inversionTypes[i];
+            dropdownItem.innerText = inversionTypes[i]; // Changes text to string from dictionary above
             dropdownItem.dataset.inversionNum = i.toString();   // Store the inversion number
             dropdownMenu.append(dropdownItem);
         }
