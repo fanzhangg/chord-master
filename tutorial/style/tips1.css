@@ -27,17 +27,19 @@ body{
 .carousel-inner{
   text-align: center;
   padding-bottom: 75px;
+  width: 100vh;
+  margin: 0 auto;
 }
 
 .carousel-item{
-  text-align: center;
-  width: 500px;
 
 }
 
 p{
   color: #E4EFF1;
 }
+
+
 .tip1{
   color: #E4EFF1;
   text-align: center;
