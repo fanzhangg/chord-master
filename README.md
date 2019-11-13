@@ -10,6 +10,7 @@ Chord Master is a web application for musician to harmonize a melody with chords
 - Run index.html in a local server
 
 ## Contributing
+we are thanksful to the community for contributing bugfixes and improvements. Please follow the [Chord of Conduct](./CODE_OF_CONDUCT.md) when contributing.
 
 ## License
 
