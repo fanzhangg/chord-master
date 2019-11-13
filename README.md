@@ -6,8 +6,8 @@ Chord Master is a web application for musician to harmonize a melody with chords
 
 ## Installation
 
-- Clone the repository
-- Run through a local server
+- Clone the repository;
+- Run through a local server;
 ```shell
 cd chord-master
 # If Python version returned above is 3.X
@@ -17,6 +17,10 @@ python3 -m http.server
 python -m SimpleHTTPServer
 ```
 - By default, this will run the contents of the directory on a local web server, on port 8000. You can go to this server by going to the URL localhost:8000 in your web browser. 
+
+## Credit
+
+It is built by Fan Zhang, Aaron Gould, Randy Jose Beidelschies, and Roman Bactol. It uses Tone.js to generate the piano sound, jQuery, and D3 to manupilate the document element.
 
 ## Contributing
 we are thanksful to the community for contributing bugfixes and improvements. Please follow the [Chord of Conduct](./CODE_OF_CONDUCT.md) when contributing.
