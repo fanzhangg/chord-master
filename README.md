@@ -14,4 +14,4 @@ we are thanksful to the community for contributing bugfixes and improvements. Pl
 
 ## License
 
-Chord Master is [MIT licensed](./LICENSE.md).
+Chord Master is [MIT licensed](./LICENSE).
