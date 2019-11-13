@@ -1,5 +1,4 @@
 import {Chord} from "../Chord.mjs";
-// import {InversionTypeBtnGroup} from "./InversionTypeBtnGroup.mjs";
 
 class ChordTypeBtnGroup{
     constructor(container){

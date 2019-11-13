@@ -1,5 +1,5 @@
 /* global d3 */
-import {} from "../third_party/d3.js";
+import "../third_party/d3.js";
 import {ChordTypeBtnGroup} from "./ChordTypesBtnGroup.mjs";
 import {InversionTypeBtnGroup} from "./InversionTypeBtnGroup.mjs";
 
