@@ -1,6 +1,8 @@
 import {Keyboard} from "./src/keyboard/Keyboard.mjs";
 import {ChordSettingToolbar} from "./src/settingToolbar/ChordSettingToolbar.mjs";
 import {Loader} from "./src/Loader.mjs";
+import {ChordProgression} from "./src/ChordProgression.mjs";
+import {ProgressionButtons} from "./src/settingToolbar/ProgressionButtons.mjs";
 
 
 // Add chord type selector view
@@ -11,6 +13,12 @@ import {Loader} from "./src/Loader.mjs";
 new Loader();
 
 new ChordSettingToolbar();
+
+const progressionContainer = document.createElement('div');
+progressionContainer.id = "progression-container";
+document.body.appendChild(progressionContainer);
+
+new ChordProgression(progressionContainer);
 
 // Add keyboard view
 const keyboardContainer = document.createElement('div');

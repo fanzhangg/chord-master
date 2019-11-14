@@ -2,6 +2,7 @@
 import "../third_party/d3.js";
 import {ChordTypeBtnGroup} from "./ChordTypesBtnGroup.mjs";
 import {InversionTypeBtnGroup} from "./InversionTypeBtnGroup.mjs";
+import {ProgressionButtons} from "./ProgressionButtons.mjs";
 
 class ChordSettingToolbar{
     constructor(){
@@ -19,6 +20,7 @@ class ChordSettingToolbar{
 
         const chordTypeBtnGroup = new ChordTypeBtnGroup(toolbar.node());
         const inversionTypeBtnGroup = new InversionTypeBtnGroup(toolbar.node());
+        const progressionButtons = new ProgressionButtons(toolbar.node());
     }
 }
 
