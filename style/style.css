@@ -26,7 +26,7 @@ body {
 
 #progression-container {
     background-color: #aae2ff;
-    width: 400px;
+    width: 450px;
     height: 120px;
     margin: 0 auto;
     margin-top: 125px;
@@ -40,5 +40,13 @@ body {
     font-family: 'Abril Fatface', cursive;
     font-size: larger;
     margin-top: 50px;
+}
+
+.chord-column {
+    background: #596275;
+    padding: 20px;
+    font-size: larger;
+    width: 30px;
+    border: 1px solid black;
 }
 

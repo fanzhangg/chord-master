@@ -4,6 +4,34 @@ import {KeyboardElement} from "./keyboard/Element.mjs";
 
 // import {Keyboard} from "/app/src/keyboard/Keyboard.mjs"
 
+const chordSymbols = { // Holds the symbols for each chord name.
+    "Major": "",
+    "Minor": "m",
+    "Augmented": "Aug",
+    "Diminished" : "Dim"
+};
+
+/**
+ * Holds the chord information for each chord in the inversion.
+ */
+class InversionChord {
+    constructor(rootNote, quality, notes) {
+        this.rootNote = rootNote; // Holds the root note of the chord
+        this.quality = quality; // Holds the type of chord
+        this.notes = notes; // Holds the ID of the piano keys to be played
+    }
+
+    getRepresentation() {  // Returns a div element that is put into the progression holder
+        const chordRepresentation = document.createElement("div");
+        chordRepresentation.classList.add("col-2", "chord-column");
+        chordRepresentation.innerText = this.rootNote + " " + chordSymbols[this.quality];
+        chordRepresentation.dataset.notes = this.notes; // Sets notes attached to representation to be played later
+
+        return chordRepresentation;
+    }
+}
+
+
 /**
  * Holds information for sequence of chords.
  */
@@ -13,14 +41,9 @@ class ChordProgression {
     }
 
     _renderView(container) {
-        const chordListHolder = document.createElement("div");
+        // Created chordListHolder out of the class so I can edit it everywhere.
         chordListHolder.classList.add("chord-list-holder");
 
-        const chords = document.createElement("a"); // Creates the string that will hold chord names
-        chords.classList.add("progression-text");
-        chords.innerText = "Add Chords Here";
-
-        chordListHolder.appendChild(chords);
         container.append(chordListHolder);
     }
 
@@ -29,13 +52,15 @@ class ChordProgression {
      * @param chord
      */
     static addChord() {
-        let chord = Chord.getHalfSteps();  // This needs to be fixed. I am thinking about taking it from "KeyboardElement"
+        let chord = new InversionChord("A", "Major", [5,14,7]);  // This needs to be fixed. I am thinking about taking it from "KeyboardElement"
+
         if (ChordProgression.chordsList.length === 8) {
             alert("Progression List can not have length longer than eight.")
         }
         else {
-            ChordProgression.chordsList.push(chord);
-            this.updateText();
+            ChordProgression.chordsList.push(chord.notes);
+            chordListHolder.appendChild(chord.getRepresentation()); // attaches the div element to the chords holder.
+            // this.updateText();
         }
     }
 
@@ -45,7 +70,7 @@ class ChordProgression {
     static resetChord() {
         const group = this;
         group.chordsList = [];
-        this.updateText();
+        chordListHolder.innerHTML = ""
     }
 
 
@@ -56,12 +81,14 @@ class ChordProgression {
         alert(ChordProgression.chordsList);
     }
 
-    static updateText() {
-        $(".progression-text").text(ChordProgression.chordsList)
-    }
+    // static updateText() {
+    //     $(".progression-text").text(ChordProgression.chordsList)
+    // }
 
 }
 
+const chordListHolder = document.createElement("div"); // Creates global variables to be accessed throughout.
+chordListHolder.classList.add("row");
 ChordProgression.chordsList = [];
 
 export {ChordProgression}
