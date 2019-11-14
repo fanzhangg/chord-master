@@ -1,9 +1,8 @@
 import "../third_party/jquery-3.4.1.js";
 import {ChordProgression} from "../ChordProgression.mjs";
+
 // import {Keyboard} from "/app/src/keyboard/Keyboard.mjs"
 
-// To DO: put all this code in settings toolbar.
-// Then make use this class to build the actual div.
 
 class ProgressionButtons {
     constructor(container) {
@@ -59,7 +58,7 @@ class ProgressionButtons {
     _keyDown(){
         $("#addBtn").on("click", function () { // Add button logic
             console.log("Add Chord");
-            ChordProgression.addChord(["G"]);
+            ChordProgression.addChord()
         });
 
         $("#playBtn").on("click", function () {  // Play button logic

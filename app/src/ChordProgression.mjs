@@ -1,8 +1,8 @@
 import "./third_party/jquery-3.4.1.js";
-// import {Keyboard} from "/app/src/keyboard/Keyboard.mjs"
+import {Chord} from "./Chord.mjs";
+import {KeyboardElement} from "./keyboard/Element.mjs";
 
-// To DO: put all this code in settings toolbar.
-// Then make use this class to build the actual div.
+// import {Keyboard} from "/app/src/keyboard/Keyboard.mjs"
 
 /**
  * Holds information for sequence of chords.
@@ -14,7 +14,7 @@ class ChordProgression {
 
     _renderView(container) {
         const chordListHolder = document.createElement("div");
-        chordListHolder.classList.add("chordListHolder");
+        chordListHolder.classList.add("chord-list-holder");
 
         const chords = document.createElement("a"); // Creates the string that will hold chord names
         chords.classList.add("progression-text");
@@ -28,9 +28,15 @@ class ChordProgression {
      * Adds chord to chord list
      * @param chord
      */
-    static addChord(chord) {
-        ChordProgression.chordsList.push(chord);
-        this.updateText();
+    static addChord() {
+        let chord = Chord.getHalfSteps();  // This needs to be fixed. I am thinking about taking it from "KeyboardElement"
+        if (ChordProgression.chordsList.length === 8) {
+            alert("Progression List can not have length longer than eight.")
+        }
+        else {
+            ChordProgression.chordsList.push(chord);
+            this.updateText();
+        }
     }
 
     /**
