@@ -111,7 +111,7 @@ class Chord{
 }
 
 Chord.curSteps = [0];
-Chord.type = null;
+Chord.type = "Single";
 Chord.family = null;
 Chord.inversionNum = 0;
 

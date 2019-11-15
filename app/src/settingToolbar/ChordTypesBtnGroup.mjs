@@ -194,7 +194,7 @@ class ChordTypeBtnGroup{
             $(this).addClass("active"); // activate the button
 
             Chord.curSteps = [0];   // Update the curStep to a single note
-            Chord.type = null;
+            Chord.type = "Single";
             Chord.family = null;
             Chord.inversionNum = 0;
             console.log(`Chord.type: ${Chord.type}, curSteps: ${Chord.curSteps}, family: ${Chord.family}, inversionNum: ${Chord.inversionNum}`);

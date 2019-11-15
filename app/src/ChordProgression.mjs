@@ -5,10 +5,11 @@ import {KeyboardElement} from "./keyboard/Element.mjs";
 // import {Keyboard} from "/app/src/keyboard/Keyboard.mjs"
 
 const chordSymbols = { // Holds the symbols for each chord name.
-    "Major": "",
+    "Single": "One Note",
+    "Major Triad": "",
     "Minor Triad": "m",
-    "Augmented": "Aug",
-    "Diminished" : "Dim"
+    "Augmented Triad": "Aug",
+    "Diminished Triad" : "Dim"
 };
 
 /**
@@ -25,9 +26,9 @@ class InversionChord {
         const chordRepresentation = document.createElement("div");
         chordRepresentation.classList.add("col-2", "chord-column");
         chordRepresentation.innerText = this.rootNote + " " + chordSymbols[this.type];
-        chordRepresentation.dataset.notes = this.notes; // Sets notes attached to representation to be played later
+        chordRepresentation.dataset.type = this.type; // Sets notes attached to representation to be played later
         chordRepresentation.id = "chord-representation";
-        chordRepresentation.addEventListener("click", function(){alert(type)}); // Fix this!
+        // chordRepresentation.addEventListener("click", alert(this.type)); // Fix this!
 
         return chordRepresentation;
     }
@@ -55,14 +56,14 @@ class ChordProgression {
      * @param chord
      */
     static addChord() {
-        let chord = new InversionChord("A2", "Minor Triad", [5,14,7]);  //  Update chord.mjs variables
+        let currentChord = new InversionChord("A2", Chord.type, Chord.getChordList());  //  Update chord.mjs variables
 
         if (ChordProgression.chordsList.length === 6) {
             alert("Progression List can not have length longer than eight.")
         }
         else {
-            ChordProgression.chordsList.push(chord.notes);
-            chordListHolder.appendChild(chord.getRepresentation()); // attaches the div element to the chords holder.
+            ChordProgression.chordsList.push(Chord.type);
+            chordListHolder.appendChild(currentChord.getRepresentation()); // attaches the div element to the chords holder.
             // this.updateText();
         }
     }
