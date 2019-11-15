@@ -6,7 +6,7 @@ import {KeyboardElement} from "./keyboard/Element.mjs";
 
 const chordSymbols = { // Holds the symbols for each chord name.
     "Major": "",
-    "Minor": "m",
+    "Minor Triad": "m",
     "Augmented": "Aug",
     "Diminished" : "Dim"
 };
@@ -15,17 +15,19 @@ const chordSymbols = { // Holds the symbols for each chord name.
  * Holds the chord information for each chord in the inversion.
  */
 class InversionChord {
-    constructor(rootNote, quality, notes) {
+    constructor(rootNote, type, notes) {
         this.rootNote = rootNote; // Holds the root note of the chord
-        this.quality = quality; // Holds the type of chord
+        this.type = type; // Holds the type of chord
         this.notes = notes; // Holds the ID of the piano keys to be played
     }
 
     getRepresentation() {  // Returns a div element that is put into the progression holder
         const chordRepresentation = document.createElement("div");
         chordRepresentation.classList.add("col-2", "chord-column");
-        chordRepresentation.innerText = this.rootNote + " " + chordSymbols[this.quality];
+        chordRepresentation.innerText = this.rootNote + " " + chordSymbols[this.type];
         chordRepresentation.dataset.notes = this.notes; // Sets notes attached to representation to be played later
+        chordRepresentation.id = "chord-representation";
+        chordRepresentation.addEventListener("click", function(){alert(type)}); // Fix this!
 
         return chordRepresentation;
     }
@@ -37,7 +39,8 @@ class InversionChord {
  */
 class ChordProgression {
     constructor(container) {
-        this._renderView(container)
+        this._renderView(container);
+        this._keyDown();
     }
 
     _renderView(container) {
@@ -52,9 +55,9 @@ class ChordProgression {
      * @param chord
      */
     static addChord() {
-        let chord = new InversionChord("A", "Major", [5,14,7]);  // This needs to be fixed. I am thinking about taking it from "KeyboardElement"
+        let chord = new InversionChord("A2", "Minor Triad", [5,14,7]);  //  Update chord.mjs variables
 
-        if (ChordProgression.chordsList.length === 8) {
+        if (ChordProgression.chordsList.length === 6) {
             alert("Progression List can not have length longer than eight.")
         }
         else {
@@ -81,9 +84,15 @@ class ChordProgression {
         alert(ChordProgression.chordsList);
     }
 
-    // static updateText() {
-    //     $(".progression-text").text(ChordProgression.chordsList)
-    // }
+    alertHello(){
+        alert("hello");
+    }
+
+    _keyDown() {
+        $(".chord-representation").click(function() {
+            alert("hello")
+        });
+    }
 
 }
 
