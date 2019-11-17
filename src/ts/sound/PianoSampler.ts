@@ -93,6 +93,12 @@ class PianoSampler {
             (this._sampler as Sampler).triggerRelease(note, time);
         }
     }
+
+    keyDownUp(note: string, duration="4n"){
+        if (this._loaded){
+            (this._sampler as Sampler).triggerAttackRelease(note, duration);
+        }
+    }
 }
 
 export {PianoSampler}

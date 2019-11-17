@@ -37,4 +37,8 @@ export class PianoSound {
         // @ts-ignore
         this._piano.keyUp(note, time);
     }
+
+    keyDownUp(note: string){
+        this._piano.keyDownUp(note);
+    }
 }
