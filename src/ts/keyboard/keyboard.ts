@@ -38,9 +38,12 @@ class Keyboard extends EventEmitter{
 
             // Add the note on the key if it is C
             const noteName = Note.toNoteName(keyNum);
-            if (keyNum % 12 === 0){  // Starts with C, not C#
+            const isC = keyNum % 12 === 0;
+            if (isC){  // Starts with C, not C#
                 const noteP = document.createElement("p");
                 noteP.classList.add('note-name');
+                noteP.dataset.noteName = noteName;
+                noteP.dataset.keyNum = keyNum.toString();
                 noteP.innerText = noteName;
                 key.appendChild(noteP);
             }
@@ -79,6 +82,12 @@ class Keyboard extends EventEmitter{
             this.emit("keyDown", keyNum);
         });
 
+        key.addEventListener("pointerout", (e) => { // Release the key if the pointer moves out of the key div
+            const target = e.target as HTMLDivElement;
+            const keyNum = parseInt(target.getAttribute("data-key-num") as string);
+            this.emit("keyUp", keyNum);
+        });
+
         key.addEventListener("pointerup", (e) => {
             const target = e.target as HTMLDivElement;
             const keyNum = parseInt(target.getAttribute("data-key-num") as string);
@@ -110,7 +119,8 @@ class Keyboard extends EventEmitter{
         }
 
         for (const note of notes as Array<string>){
-            const key = document.querySelectorAll(`.key[data-note-name=${note}]`)[0];
+            const selectorNote = note.replace("#", "\\#");
+            const key = document.querySelectorAll(`.key[data-note-name=${selectorNote}]`)[0];
             key.classList.add("highlight"); // Highlight the key
             this._prevKeys.push(key);
         }

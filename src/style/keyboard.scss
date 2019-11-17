@@ -44,6 +44,7 @@
     height: 100%;
 }
 
+
 #keyboard .key.white {
     /* white key behind black key */
     z-index: 0;
@@ -69,7 +70,7 @@
 }
 
 #keyboard .key.white:active {
-    background-color: lightgrey;
+    background-color: yellow;
 }
 
 #keyboard .key.black {
@@ -93,4 +94,12 @@
 
 #keyboard .key.black:active {
     background-color: gray;
+}
+
+#keyboard .key.highlight {
+    background-color: yellow;
+}
+
+#keyboard .key.highlight:hover {
+    background-color: orange;
 }

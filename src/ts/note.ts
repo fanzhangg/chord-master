@@ -11,6 +11,7 @@ export class Note {
     }
 
     static toNoteName(keyNum: number): string {
+        // TODO: the octave might be wrong
         const octave = Math.floor(keyNum / 12);
         const chroma = Note.chromas[keyNum % 12];
         return `${chroma}${octave}`
