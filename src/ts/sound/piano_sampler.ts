@@ -1,5 +1,5 @@
 import {Buffer, Sampler} from "tone";
-
+import "../audio/*.mp3";
 
 class PianoSampler {
     _lowest: number;
@@ -64,7 +64,7 @@ class PianoSampler {
         return new Promise( done => {
             // Initialize the sampler with piano audio files
             console.log("Loading the audio");
-            this._sampler = new Sampler(this._urls, done, "./src/audio/",).toMaster();
+            this._sampler = new Sampler(this._urls, done, this._baseUrl,).toMaster();
         })
     }
 

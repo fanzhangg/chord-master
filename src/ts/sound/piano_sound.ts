@@ -1,5 +1,7 @@
 import {PianoSampler} from "./piano_sampler";
 import * as Tone from "tone/tone";
+require("../sound/*.mp3");
+import {baseUrl} from "../sound/"
 
 class PianoSound {
     _lowest: number;
@@ -15,7 +17,7 @@ class PianoSound {
         this._lowest = lowest;
         this._highest = highest;
         // make the samples loaded a range of audios
-        this._piano = new PianoSampler(".../static/audio/", this._lowest, this._highest);
+        this._piano = new PianoSampler("./audio/", this._lowest, this._highest);
     }
 
     /**
