@@ -41,6 +41,7 @@
   },
   "dependencies": {
     "@tonaljs/tonal": "^3.2.2",
+    "d3": "^5.14.0",
     "tone": "^13.8.25"
   }
 }
