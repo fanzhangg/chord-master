@@ -30,10 +30,13 @@
   },
   "homepage": "https://azu.github.io/parcel-typescript-example/",
   "devDependencies": {
+    "@types/node": "^12.12.8",
+    "@types/tone": "https://github.com/Tonejs/TypeScript.git",
     "cross-env": "^5.2.0",
     "gh-pages": "^1.2.0",
     "node-sass": "^4.13.0",
     "parcel-bundler": "^1.9.7",
+    "sass": "^1.23.6",
     "typescript": "^3.7.2"
   },
   "dependencies": {
