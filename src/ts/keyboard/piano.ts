@@ -1,4 +1,4 @@
-import {Keyboard} from "./keyboard";
+import {Keyboard} from "./Keyboard";
 import {EventEmitter} from "events"
 
 class Piano extends EventEmitter{

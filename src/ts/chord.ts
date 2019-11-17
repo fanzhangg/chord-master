@@ -1,4 +1,4 @@
-import {Note} from "./note"
+import {Note} from "./Note"
 
 const chordFamilies: any = {
     "Triads": {  // chord with 3 notes

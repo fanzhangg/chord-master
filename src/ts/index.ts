@@ -1,6 +1,6 @@
-import {Piano} from "./keyboard/piano";
-import {Note} from "./note";
-import {PianoSound} from "./sound/piano_sound";
+import {Piano} from "./keyboard/Piano";
+import {Note} from "./Note";
+import {PianoSound} from "./sound/PianoSound";
 
 const pianoContainer = document.createElement("div");
 pianoContainer.id = "pianoContainer";

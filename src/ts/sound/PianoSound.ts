@@ -1,4 +1,4 @@
-import {PianoSampler} from "./piano_sampler";
+import {PianoSampler} from "./PianoSampler";
 import * as Tone from "tone/tone";
 
 export class PianoSound {
