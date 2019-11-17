@@ -1,40 +1,30 @@
 # Chord Master
 
-## Project Vision
+[Demo](https://fanzhangg.github.io/chord-master/)
 
-### What are you building? 
+Chord Master is a web application for musician to harmonize a melody with chords. It provides tools to select chord type, inverse chord and build chord progression.
 
-We are building a teaching and exploring tool for musicians to search and experiment with different types of chords. Our application, Chord Master, boosts musician to learn chords from the beginner to the master. It would help musicians to discover new chords and inspire their next songs. 
+## Installation
 
-### What problem does it solve?
+- Clone the repository;
+- Run through a local server;
+```shell
+cd chord-master
+# If Python version returned above is 3.X
+python3 -m http.server
+# On windows try "python" instead of "python3"
+# If Python version returned above is 2.X
+python -m SimpleHTTPServer
+```
+- By default, this will run the contents of the directory on a local web server, on port 8000. You can go to this server by going to the URL localhost:8000 in your web browser. 
 
-Many musicians start their music creation as a hobby, but they may lack necessary music theory background to help them go further in their music career. Our goal is to make the process of learning chords easy and interesting, and let musicians benefit most from the knowledge. Our product will help musicians inexperienced with music theory to get familiar with chords and let the knowledge as their source of inspiration.
+## Credit
 
-### What will it do?
+It is built by Fan Zhang, Aaron Gould, Randy Jose Beidelschies, and Roman Bactol. It uses Tone.js to generate the piano sound, jQuery, and D3 to manupilate the document element.
 
-The application is a piano keyboard with chord hints. The user can select the type of the chord (i.e. Minor, Major) or the types of music they want the chords to fit in. After pressing a key on the keyboard, the application will find a matching chord. Then, it will highlight the keys of the chords starting with the root key on the keyboard, and plays the sounds of the keys of the chords. In this approach, the user can find a chord easily, learn a chord interactively, and explores chords beyond a standard one.
+## Contributing
+we are thanksful to the community for contributing bugfixes and improvements. Please follow the [Chord of Conduct](./CODE_OF_CONDUCT.md) when contributing.
 
-### Who is the end user?
+## License
 
-The end users are musicians who are looking to expand their repertoire of chords, making more interesting and creative music.  The main target we are looking at right now is talented musicians and digital audio producers with little theory background because although they tend to have less knowledge of chords, they are still very capable of creating amazing music. Our application will help them get started on the chords quickly and make full use of the chords knowledge.
-
-## Code of Conduct
-
-We are sapient.
-To be sapient is to be limited.
-In our limitation, we make choices that are unwise or are flawed.
-
-If we make unwise choices because of our limitation,
-we cannot judge others for the same reason.
-
-So, we cannot judge,
-thus we forgive.
-
-This project and its results are intended as:
-a place of learning,
-a place of understanding,
-a place of teaching,
-a place of sharing,
-a place of creators creating the tools for other creators to create complicated things elegantly.
-
-Be well, Creator. Be well and create.
+Chord Master is [MIT licensed](./LICENSE).
