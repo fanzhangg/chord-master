@@ -1,9 +1,7 @@
 import {PianoSampler} from "./piano_sampler";
 import * as Tone from "tone/tone";
-require("../sound/*.mp3");
-import {baseUrl} from "../sound/"
 
-class PianoSound {
+export class PianoSound {
     _lowest: number;
     _highest: number;
     _piano: PianoSampler;
@@ -40,5 +38,3 @@ class PianoSound {
         this._piano.keyUp(note, time);
     }
 }
-
-export {PianoSound}

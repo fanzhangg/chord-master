@@ -33,7 +33,7 @@ class Piano extends EventEmitter{
     }
 
     public keyDown(keyNum: number){
-        this._keyboardInterface.keyDown.bind(this._keyboardInterface, keyNum);
+        this._keyboardInterface.keyDown(keyNum);
     }
 
     _emitKeyDown(keyNum: number){
@@ -41,7 +41,7 @@ class Piano extends EventEmitter{
     }
 
     keyUp(keyNum: number){
-        this._keyboardInterface.keyUp.bind(this._keyboardInterface, keyNum);
+        this._keyboardInterface.keyUp(keyNum);
     }
 
     _emitKeyUp(keyNum: number){
