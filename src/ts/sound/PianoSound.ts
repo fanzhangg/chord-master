@@ -1,5 +1,6 @@
 import {PianoSampler} from "./PianoSampler";
 import * as Tone from "tone/tone";
+import {Frequency} from "tone/tone"
 
 export class PianoSound {
     _lowest: number;
@@ -27,18 +28,30 @@ export class PianoSound {
         return Promise.all([this._piano.load()]);
     }
 
-    keyDown(note: string){
-        console.log(` Piano plays ${note}`);
-        this._piano.keyDown(note);
+    /**
+     * Play a chord
+     * @param notes Notes in the chord
+     */
+    keyDown(notes: Array<Frequency>){
+        console.log(` Piano plays ${notes}`);
+        this._piano.keyDown(notes);
     }
 
-    keyUp(note: string, time=Tone.now()){
+    /**
+     * Stop plyaing a chord
+     * @param notes Notes in the chord
+     * @param time The lag between releasing the key and stopping playing the chord
+     */
+    keyUp(notes: Array<string>, time=Tone.now()){
         time += .5;
-        // @ts-ignore
-        this._piano.keyUp(note, time);
+        this._piano.keyUp(notes, time);
     }
 
-    keyDownUp(note: string){
-        this._piano.keyDownUp(note);
+    /**
+     * Play a chord and stop
+     * @param notes 
+     */
+    keyDownUp(notes: Array<string>, duration: string = "4n"){
+        this._piano.keyDownUp(notes, duration);
     }
 }

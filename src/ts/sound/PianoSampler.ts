@@ -1,4 +1,4 @@
-import {Buffer, Sampler} from "tone";
+import {Buffer, Sampler, Frequency} from "tone/tone";
 import "../audio/*.mp3";
 
 class PianoSampler {
@@ -21,9 +21,10 @@ class PianoSampler {
         // @ts-ignore
         Buffer.on("load", () => {  // Callback when all buffers are loaded
             console.log("All buffers are loaded");
-            this._loaded=true
+            this._loaded=true   // The audio is loaded
         });
-
+        
+        // Urls of the audio files
         this._urls = {"A0" : "A0.[mp3|ogg]",
             "C1" : "C1.[mp3|ogg]",
             "D#1" : "Ds1.[mp3|ogg]",
@@ -60,43 +61,46 @@ class PianoSampler {
      * Load the audio files
      * @return {Promise<>}
      */
-    load(){
+    load(): Promise<any>{
         return new Promise( done => {
             // Initialize the sampler with piano audio files
             console.log("Loading the audio");
-            this._sampler = new Sampler(this._urls, done, this._baseUrl,).toMaster();
+            this._sampler = new Sampler(this._urls, done, this._baseUrl,).toMaster() as Sampler;
         })
     }
 
     /**
-     * Trigger the sound of a note
-     * @param note integer
+     * Trigger a chord
+     * @param notes notes in the chord
      */
-    keyDown(note: string){
+    keyDown(notes: Array<Frequency>){
         console.log(`${this._loaded}`);
         if (this._loaded){
-            console.log(`Sampler plays ${note}`);
-            (this._sampler as Sampler).triggerAttack(note);
-            // let pitch = this._midiToFrequencyPitch(note);
-            // const duration = this._player.buffer.get(note).duration * 0.95;
-            // this._player.start(note, time, 0, duration - this._player.fadeOut, pitch);
+            console.log(`Sampler plays ${notes}`);
+            (this._sampler as Sampler).triggerAttack(notes);
         }
     }
 
     /**
-     * Release the note
+     * Release the chord
      * @param time
      */
-    keyUp(note: string, time: number){
+    keyUp(notes: Array<string>, time: string | number){
         if (this._loaded){
-            // @ts-ignore
-            (this._sampler as Sampler).triggerRelease(note, time);
+            //@ts-ignore
+            (this._sampler as Sampler).triggerRelease(notes, time);
         }
     }
 
-    keyDownUp(note: string, duration="4n"){
+    /**
+     * Play and release a chord
+     * @param notes An array of notes in the chord
+     * @param duration The time the note should be held
+     */
+    keyDownUp(notes: Array<string>, duration: string|number){
         if (this._loaded){
-            (this._sampler as Sampler).triggerAttackRelease(note, duration);
+            //@ts-ignore
+            (this._sampler as Sampler).triggerAttackRelease(notes, duration);
         }
     }
 }
