@@ -31,8 +31,8 @@ const chordFamilies: any = {
 
 class Chord {
     static halfSteps = [0];
-    static type = "Single";
-    static family = null;
+    static type: string = "Single"; // Must have a type
+    static family: string | null = null;    // Family is nullable if it is a  single note
     static inversionNum = 0;
     static rootKeyNum: number | null = null;
     static notes: Array<string> | null = null;
