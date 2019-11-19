@@ -1,17 +1,17 @@
 import {Note} from "../Note";
 import {Chord} from "../Chord";
-import {EventEmitter} from "events";
 
 const offsets = [0, 0.5, 1, 1.5, 2, 3, 3.5, 4, 4.5, 5, 5.5, 6];
 
-class Keyboard extends EventEmitter{
+class Keyboard{
     _container: HTMLElement;
     _keys: Array<HTMLElement>;
-    _prevKeys: Array<Element>;
+    _prevKeys: Array<HTMLElement>;
     _chords: Array<Array<string>>;
+    onKeyDown: any;
+    onKeyUp: any;
 
     constructor(container: Element){
-        super();
         this._container = document.createElement('div');
         this._container.id = 'keyboard';
         container.setAttribute('touch-action', 'none');
@@ -21,6 +21,10 @@ class Keyboard extends EventEmitter{
         this._prevKeys = [];
 
         this._chords = [];
+
+        // Callback events
+        this.onKeyDown = function(){}   
+        this.onKeyUp = function(){}
     }
 
     resize(lowestKeyNum=0, octaves: number){
@@ -48,14 +52,13 @@ class Keyboard extends EventEmitter{
                 key.appendChild(noteP);
             }
 
-            // calculate the position of the div
+            // Calculate the position of the div
             let lowestOctave = Math.floor(lowestKeyNum / 12);
             let lowestOffset = offsets[lowestKeyNum % 12]  + lowestOctave * 7;
 
             let noteOctave = Math.floor(keyNum / 12);
             let offset = offsets[keyNum % 12]  + noteOctave * 7 - lowestOffset;
 
-            // let lowestOctave = offsets[lowest % 12]  + noteOctave * 7;;
             if (Number.isInteger(offset) === true){  // Is white key
                 key.style.width = `${keyWidth * 100}%`;
                 key.style.left = `${offset * keyWidth * 100}%`;
@@ -79,20 +82,30 @@ class Keyboard extends EventEmitter{
         key.addEventListener('pointerdown', (e) => {
             const target = e.target as HTMLDivElement;
             const keyNum = parseInt(target.getAttribute("data-key-num") as string);
-            this.emit("keyDown", keyNum);
+            this.onKeyDown(keyNum);
         });
 
         key.addEventListener("pointerout", (e) => { // Release the key if the pointer moves out of the key div
             const target = e.target as HTMLDivElement;
             const keyNum = parseInt(target.getAttribute("data-key-num") as string);
-            this.emit("keyUp", keyNum);
+            this.onKeyUp(keyNum);
         });
 
         key.addEventListener("pointerup", (e) => {
             const target = e.target as HTMLDivElement;
             const keyNum = parseInt(target.getAttribute("data-key-num") as string);
-            this.emit("keyUp", keyNum);
+            this.onKeyUp(keyNum);
         });
+    }
+
+    /**
+     * Unhilight keys
+     * @param keys an array of key element
+     */
+    _unhighlight(keys: Array<HTMLElement>){
+        keys.forEach(function (key){
+            key.classList.remove("highlight");
+        })
     }
 
 
@@ -101,32 +114,26 @@ class Keyboard extends EventEmitter{
      * @param keyNum of selected key
      * @public
      */
-    public keyDown(keyNum: number){
+    public highlight(chord: Array<string>){
         // Change the previous keys' color back to the original color
-        this._prevKeys.forEach(function (key) {
-            key.classList.remove("highlight");
-        });
+        this._unhighlight(this._prevKeys);
 
         this._prevKeys = [];    // Reset the prev keys
 
-        Chord.getChordList(keyNum);    // Set the Half Steps
-
-        const notes = Chord.notes;
-
-        if (!notes){ // notes do not exists
+        if (!chord){ // Chord does not exist
             console.warn("Notes not specified. Cannot play the chord");
             return false;
         }
 
-        for (const note of notes as Array<string>){
+        for (const note of chord as Array<string>){
             const selectorNote = note.replace("#", "\\#");
             const key = document.querySelectorAll(`.key[data-note-name=${selectorNote}]`)[0];
             key.classList.add("highlight"); // Highlight the key
-            this._prevKeys.push(key);
+            this._prevKeys.push(key as HTMLElement);
         }
 
-        this._chords.push(notes);
-        console.log(`Push the chord ${notes}`);
+        this._chords.push(chord);
+        console.log(`Push the chord ${chord}`);
         return true;
     }
 

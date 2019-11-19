@@ -1,27 +1,23 @@
 import {Keyboard} from "./Keyboard";
-import {EventEmitter} from "events"
+import { Chord } from "../Chord";
 
-class Piano extends EventEmitter{
+class Piano{
     _container: Element;
     _keyboardInterface: Keyboard;
+    onNotes: any;
 
     constructor(container: Element){
-        super();
         this._container = container;
 
         // The piano keyboard interface
         this._keyboardInterface = new Keyboard(container);
-        this._keyboardInterface.on("keyDown", (keyNum: number) => {
-            this.keyDown(keyNum);
-            this._emitKeyDown(keyNum);
-        });
-        this._keyboardInterface.on("keyUp", (keyNum: number) => {
-            this.keyUp(keyNum);
-            this._emitKeyUp(keyNum);
-        });
+        this._keyboardInterface.onKeyDown = this.keyDown.bind(this);    // Trigger the callback event after clicking a key
 
         window.addEventListener('resize', this._resize.bind(this)); // Resize the keyboard according to the width of the window
         this._resize();
+
+        // Callback events
+        this.onNotes = function(){};
     };
 
     _resize(){
@@ -33,19 +29,18 @@ class Piano extends EventEmitter{
     }
 
     public keyDown(keyNum: number){
-        this._keyboardInterface.keyDown(keyNum);
+        this._setChord(keyNum);
     }
 
-    _emitKeyDown(keyNum: number){
-        this.emit("keyDown", keyNum);
+    _setChord(keyNum: number){
+        const chord = Chord.getChordList(keyNum);
+        console.log(`Set the chord to ${chord}`);
+        this._keyboardInterface.highlight(chord);
+        this.onNotes(chord);
     }
 
     keyUp(keyNum: number){
         this._keyboardInterface.keyUp(keyNum);
-    }
-
-    _emitKeyUp(keyNum: number){
-        this.emit("keyUp", keyNum);
     }
 }
 
