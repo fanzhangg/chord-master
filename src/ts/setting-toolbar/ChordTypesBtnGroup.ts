@@ -1,4 +1,5 @@
 import {Chord} from "../Chord";
+import $ from "jquery";
 
 class ChordTypeBtnGroup{
     chordFamilies: any;

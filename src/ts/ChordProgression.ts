@@ -1,6 +1,4 @@
 import {EventEmitter} from "events";
-import { Note } from "./Note";
-import { chord } from "d3";
 
 export class ChordProgression extends EventEmitter{
     chords: Array<Array<string>>;
