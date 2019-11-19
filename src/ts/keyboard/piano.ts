@@ -4,7 +4,8 @@ import { Chord } from "../Chord";
 class Piano{
     _container: Element;
     _keyboardInterface: Keyboard;
-    onNotes: any;
+    onKeyDown: any;
+    onKeyUp: any;
 
     constructor(container: Element){
         this._container = container;
@@ -12,12 +13,14 @@ class Piano{
         // The piano keyboard interface
         this._keyboardInterface = new Keyboard(container);
         this._keyboardInterface.onKeyDown = this.keyDown.bind(this);    // Trigger the callback event after clicking a key
+        this._keyboardInterface.onKeyUp = this.keyUp.bind(this);
 
         window.addEventListener('resize', this._resize.bind(this)); // Resize the keyboard according to the width of the window
         this._resize();
 
         // Callback events
-        this.onNotes = function(){};
+        this.onKeyDown = function(){};
+        this.onKeyUp = function(){};
     };
 
     _resize(){
@@ -36,11 +39,12 @@ class Piano{
         const chord = Chord.getChordList(keyNum);
         console.log(`Set the chord to ${chord}`);
         this._keyboardInterface.highlight(chord);
-        this.onNotes(chord);
+        this.onKeyDown(chord);
     }
 
     keyUp(keyNum: number){
-        this._keyboardInterface.keyUp(keyNum);
+        const chord = Chord.getChordList(keyNum);
+        this.onKeyUp(chord);
     }
 }
 
