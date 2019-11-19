@@ -73,10 +73,11 @@ class PianoSampler {
      * Trigger a chord
      * @param notes notes in the chord
      */
-    keyDown(notes: Array<Frequency>){
+    keyDown(notes: Array<string>){
         console.log(`${this._loaded}`);
         if (this._loaded){
             console.log(`Sampler plays ${notes}`);
+            //@ts-ignore
             (this._sampler as Sampler).triggerAttack(notes);
         }
     }

@@ -32,7 +32,7 @@ export class PianoSound {
      * Play a chord
      * @param notes Notes in the chord
      */
-    keyDown(notes: Array<Frequency>){
+    keyDown(notes: Array<string>){
         console.log(` Piano plays ${notes}`);
         this._piano.keyDown(notes);
     }
