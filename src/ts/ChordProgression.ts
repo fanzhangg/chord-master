@@ -1,18 +1,19 @@
-import {EventEmitter} from "events";
+import {Chord} from "./chord";
 
-export class ChordProgression extends EventEmitter{
+export class ChordProgression{
     chords: Array<Array<string>>;
     curIndex: number;
     _container: HTMLElement;
     maxLen: 10;
+    onChordDown: any;
 
     constructor(container: HTMLElement){
-        super();
         this.chords = [];
         this.curIndex = 0;
         this.maxLen = 10;
         this._container = container;
         this._renderView(container);
+        this.onChordDown = function(){};
     }
 
     _renderView(container: HTMLElement){
@@ -30,9 +31,7 @@ export class ChordProgression extends EventEmitter{
 
     _bindChordEvents(chordDiv: HTMLDivElement){
         chordDiv.addEventListener("pointerdown", (e) => {
-            const target = e.target as HTMLDivElement;
-            const chordName = target.dataset.chordName as string;
-            this.emit("chordDown", chordName);
+            this.onChordDown();
 
         })
     }
