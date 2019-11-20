@@ -32,9 +32,12 @@ body{
 }
 
 .carousel-item{
-
+  height: 300px;
 }
 
+img{
+  margin-bottom: 25px;
+}
 p{
   color: #E4EFF1;
 }

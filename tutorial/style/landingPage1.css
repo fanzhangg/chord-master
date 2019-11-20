@@ -34,9 +34,14 @@ body{
   width: 55%;
   text-align: center;
   font-size: 2.5vh;
-  color: #E4EFF1;
+
   margin: 0 auto;
 }
+
+p{
+  color: #E4EFF1;
+}
+
 
 #page-container{
   position: relative;
