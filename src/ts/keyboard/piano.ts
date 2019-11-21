@@ -42,7 +42,6 @@ class Piano{
      */
     _enableAddBtn(){
         if (Chord.type !== "Single"){
-            console.log("Add button enabled");
             const addBtn = document.querySelector("#addBtn") as HTMLElement;
             addBtn.classList.remove("disabled");
         }
@@ -52,6 +51,8 @@ class Piano{
         Chord.rootKeyNum = keyNum;
         Chord.rootNoteName = Note.toNoteName(keyNum);
         const chord = Chord.getChordList(keyNum);
+        Chord.notes = chord;    // Set the notes to the notes in the current chord
+
         console.log(`Set the chord to ${chord}`);
         this._keyboardInterface.highlight(chord);
         this.onKeyDown(chord);

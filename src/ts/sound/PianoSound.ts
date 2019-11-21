@@ -32,7 +32,6 @@ export class PianoSound {
      * @param notes Notes in the chord
      */
     keyDown(notes: Array<string>){
-        console.log(`Piano triggers ${notes}`);
         this._piano.keyDown(notes);
     }
 
@@ -43,7 +42,6 @@ export class PianoSound {
      */
     keyUp(notes: Array<string>, time=Tone.now()){
         time += .5;
-        console.log(`Piano releases ${notes}`);
         this._piano.keyUp(notes, time);
     }
 
@@ -52,7 +50,6 @@ export class PianoSound {
      * @param notes 
      */
     keyDownUp(notes: Array<string>, duration: string = "4n"){
-        console.log(` Piano triggeres and releases ${notes}`);
         this._piano.keyDownUp(notes, duration);
     }
 }

@@ -132,12 +132,10 @@ class Keyboard{
         }
 
         this._chords.push(chord);
-        console.log(`Push the chord ${chord}`);
         return true;
     }
 
     public keyUp(keyNum: number){
-        console.log(`${keyNum} released`);
         return
     }
 }
