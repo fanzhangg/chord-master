@@ -3,11 +3,27 @@ import $ from "jquery";
 
 
 const chordSymbols: any = { // Holds the symbols for each chord name.
-    "Single": "One Note",
+    //Triads
+    "Single Note": "",
     "Major Triad": "",
     "Minor Triad": "m",
-    "Augmented Triad": "Aug",
-    "Diminished Triad" : "Dim"
+    "Augmented Triad": "aug",
+    "Diminished Triad": "dim",
+    //Sevenths
+    "Dominant Seventh": "7",
+    "Major Seventh": "maj7",
+    "Minor Seventh": "min7",
+    "Diminished Seventh": "dim7",
+    "Half Diminished Seventh": "min7♭5",
+    "Augmented Seventh": "aug7",
+    "Augmented Major Seventh": "augM7",
+    //Extended
+    "Dominant Ninth": "9",
+    "Dominant Thirtheenth": "13",
+    //Altered
+    "Seventh Minor Ninth": "7♭9",
+    "Seventh Sharp Ninth": "7#9",
+    "Seventh Augmented Eleventh": "7aug11"
 };
 
 /**
