@@ -39,13 +39,13 @@ p1{
   width: 93vh;
   padding: 2%;
   font-size: 2.3vh;
-  background-color: yellow;
-  border-radius: 30px 0px 0px 30px;
+  /*background-color: white;*/
+  /*border-radius: 30px 0px 0px 30px;*/
 
 }
 
 p3{
-  color: green;
+  color: #E4EFF1;
 }
 
 .pianoinfo{
@@ -53,12 +53,12 @@ p3{
   width: 93vh;
   padding: 2%;
   font-size: 2.3vh;
-  background-color: green;
-  border-radius: 0px 30px 30px 0px;
+  /*background-color: white;*/
+  /*border-radius: 0px 30px 30px 0px;*/
 }
 
 p4{
-  color: yellow;
+  color: #E4EFF1;
 }
 
 .wrap{
