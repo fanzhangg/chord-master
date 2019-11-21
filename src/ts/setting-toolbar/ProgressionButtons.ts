@@ -23,7 +23,7 @@ class ProgressionButtons {
         this._renderLabel(labelBtnGroup);
 
         const addButton = document.createElement("button");
-        addButton.classList.add("btn", "btn-secondary");
+        addButton.classList.add("btn", "btn-secondary", "disabled");
         addButton.id = "addBtn";
         addButton.innerText = "Add";
         btnGroup.appendChild(addButton);

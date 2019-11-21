@@ -33,7 +33,19 @@ class Piano{
     }
 
     public keyDown(keyNum: number){
+        this._enableAddBtn();
         this._setChord(keyNum);
+    }
+
+    /**
+     * Enable add progression if the chord type is not single
+     */
+    _enableAddBtn(){
+        if (Chord.type !== "Single"){
+            console.log("Add button enabled");
+            const addBtn = document.querySelector("#addBtn") as HTMLElement;
+            addBtn.classList.remove("disabled");
+        }
     }
 
     _setChord(keyNum: number){

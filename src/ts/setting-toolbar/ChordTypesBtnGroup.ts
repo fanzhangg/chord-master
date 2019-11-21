@@ -34,7 +34,7 @@ class ChordTypeBtnGroup{
             }
         };
         this._renderView(container);
-        this._keydown();
+        this._clickMenuItems();
     }
 
     /**
@@ -121,15 +121,14 @@ class ChordTypeBtnGroup{
      * Handle events when the user clicks on a dropdown menu item
      * @private
      */
-    _keydown() {
-        const group = this;
-        $("#chordTypeBtnGroup a").click(function () {
-            group._resetBtnsText();  // Reset button's text to its id
+    _clickMenuItems() {
+        const self = this;
+        $("#chordTypeBtnGroup a").click(function () {   // Click the menu items in the chordTypeBtnGroup
+            self._resetBtnsText();  // Reset button's text to its id
 
             const inversionBtn = $("#inversionDropdownBtn");
-            $(inversionBtn).attr("data-toggle", "dropdown");    // Enable dropdown
+            $(inversionBtn).attr("data-toggle", "dropdown");    // Enable dropdown of the dropdown button
             $(inversionBtn).removeClass("disabled");    // Enable the button
-            //TODO: change the dropdown items based on the chord family
 
             let button = $(this).parent().parent().find(".btn").first();    // Get the button the menu belongs to
             const chordFamily = $(button).attr("data-chord-family"); // Get the chord family from data attribute
@@ -151,11 +150,11 @@ class ChordTypeBtnGroup{
                 Chord.setHalfSteps();
             });
 
-            group._changeInversionDropdownItems(inversionMenu);
+            self._changeInversionDropdownItems(inversionMenu);
             console.log(`Chord.type: ${Chord.type}, curSteps: ${Chord.halfSteps}, family: ${Chord.family}`);
         });
 
-        this._keyDownOnSingleNoteBtn();
+        this._clickSingleNoteBtn();
     }
 
     _changeInversionDropdownItems(dropdownMenu: JQuery<HTMLElement>){
@@ -187,7 +186,7 @@ class ChordTypeBtnGroup{
      * Handle the event when the user clicks on the Single Note Btn
      * @private
      */
-    _keyDownOnSingleNoteBtn(){
+    _clickSingleNoteBtn(){
         const group = this;
         $("#singleNoteBtn").click( function () {
             group._resetBtnsText();
@@ -204,7 +203,10 @@ class ChordTypeBtnGroup{
             Chord.inversionNum = 0;
             console.log(`Chord.type: ${Chord.type}, curSteps: ${Chord.halfSteps}, family: ${Chord.family}, inversionNum: ${Chord.inversionNum}`);
 
-            $("#inversionDropdownBtn").text("None"); // Changes text.
+            $("#inversionDropdownBtn").text("None"); // Changes text
+
+            $("#addBtn").addClass("disabled");  // Disable add button
+
 
             }
         )
