@@ -42,9 +42,12 @@ class InversionTypeBtnGroup{
     }
 
     _keyDown(){
-        $("#inversionDropdownMenu").on("click",e=>{
+        $("#inversionDropdownMenu").on("click",e => {
             console.log("Item is clicked");
             const item = $(e.target);
+            if (!item.is('a')){ // If the user clicks on the edge of the dropdown menu
+                return false;
+            }
             const inversionNum = parseInt($(item).attr("data-inversion-num") as string, 10);   // Get the number of the inversion
             Chord.inversionNum = inversionNum;  // Assign inversion num
             Chord.setHalfSteps();
