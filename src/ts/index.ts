@@ -2,7 +2,9 @@ import {Piano} from "./keyboard/Piano";
 import {PianoSound} from "./sound/PianoSound";
 import { ChordSettingToolbar } from "./setting-toolbar/ChordSettingToolbar";
 import { ChordProgression } from "./ChordProgression";
+import { Loader } from "./interface/Loader";
 
+new Loader();
 
 // Chord Toolbar
 new ChordSettingToolbar();

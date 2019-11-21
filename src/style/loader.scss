@@ -54,3 +54,14 @@
     background-color: rgb(55, 55, 55);
     z-index: 999;
 }
+
+#progressText {
+    position: absolute;
+    top: 60%;
+    z-index: 1000;
+    color: white;
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+
+};
