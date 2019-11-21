@@ -1,4 +1,4 @@
-import {Buffer, Sampler, Frequency} from "tone/tone";
+import {Buffer, Sampler} from "tone/tone";
 import "../audio/*.mp3";
 
 class PianoSampler {
