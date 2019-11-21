@@ -4,7 +4,7 @@ import $ from "jquery";
 class ProgressionButtons {
     constructor(container: HTMLElement) {
         this._renderView(container);
-        this._keyDown();
+        this._buttonClicked();
     }
 
     _renderView(container: HTMLElement){
@@ -46,13 +46,13 @@ class ProgressionButtons {
 
     _renderLabel(btnGroup: HTMLElement){
         const label = document.createElement("span");
-        label.innerText = "Progression";
+        label.innerText = "Progression:";
         label.classList.add("text-muted", "btn");
         label.setAttribute("disabled", "true");
         btnGroup.appendChild(label);
     }
 
-    _keyDown(){
+    _buttonClicked(){
         $("#addBtn").on("click", function () { // Add button logic
             console.log("Add Chord");
             ChordProgression.addChord()
