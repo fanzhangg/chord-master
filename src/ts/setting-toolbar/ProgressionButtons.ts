@@ -1,5 +1,6 @@
 import {ChordProgression} from "../ChordProgression";
 import $ from "jquery";
+import { Chord } from "../music-theory/Chord";
 
 class ProgressionButtons {
     constructor(container: HTMLElement) {
@@ -53,10 +54,6 @@ class ProgressionButtons {
     }
 
     _buttonClicked(){
-        $("#addBtn").on("click", function () { // Add button logic
-            console.log("Add Chord");
-            ChordProgression.addChord()
-        });
 
         $("#playBtn").on("click", function () {  // Play button logic
             console.log("Play progression");

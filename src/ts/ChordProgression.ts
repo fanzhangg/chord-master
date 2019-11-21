@@ -1,4 +1,4 @@
-import {Chord} from "./Chord";
+import {Chord} from "./music-theory/Chord";
 import $ from "jquery";
 
 
@@ -75,7 +75,7 @@ class ChordProgression {
      * @param chord
      */
     static addChord() {
-        let currentChord = new InversionChord(Chord.rootNoteName, Chord.type, Chord.inversionNum);  //  Update chord.mjs variables
+        let currentChord = new InversionChord(Chord.rootNoteName as string, Chord.type, Chord.inversionNum);  //  Update chord.mjs variables
         if (ChordProgression.chordsList.length === 6) {
             alert("Progression List can not have length longer than eight.")
         }

@@ -1,4 +1,4 @@
-import {Chord} from "../Chord";
+import {Chord} from "../music-theory/Chord";
 import $ from "jquery";
 
 class ChordTypeBtnGroup{

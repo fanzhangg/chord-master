@@ -1,6 +1,6 @@
 import {Keyboard} from "./Keyboard";
-import { Chord } from "../Chord";
-import {Note} from "../Note";
+import { Chord } from "../music-theory/Chord";
+import {Note} from "../music-theory/Note";
 
 class Piano{
     _container: Element;

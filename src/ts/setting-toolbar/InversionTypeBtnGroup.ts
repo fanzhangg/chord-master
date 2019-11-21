@@ -1,5 +1,5 @@
 import $ from "jquery";
-import {Chord} from "../Chord";
+import {Chord} from "../music-theory/Chord";
 
 class InversionTypeBtnGroup{
     constructor(container: HTMLElement) {
