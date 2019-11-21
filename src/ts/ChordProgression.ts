@@ -57,7 +57,7 @@ class InversionChord {
  * Holds information for sequence of chords.
  */
 class ChordProgression {
-    static chordsList: Array<string> = [];
+    static chordsList: Array<Array<string>> = [];
     constructor(container: HTMLElement) {
         this._renderView(container);
         this._keyDown();
@@ -80,9 +80,14 @@ class ChordProgression {
             alert("Progression List can not have length longer than eight.")
         }
         else {
-            ChordProgression.chordsList.push(Chord.type);
+            if (Chord.notes === null){
+                console.warn("Current notes not set. Can't add the chord to the progression");
+                alert("Current notes not set. Can't add the chord to the progression");
+            } else {
+                ChordProgression.chordsList.push(Chord.notes as string[]);
+                console.log(`ChordList: ${this.chordsList}`)
             chordListHolder.appendChild(currentChord.getRepresentation()); // attaches the div element to the chords holder.
-            // this.updateText();
+            }
         }
     }
 
@@ -117,6 +122,5 @@ class ChordProgression {
 
 const chordListHolder = document.createElement("div"); // Creates global variables to be accessed throughout.
 chordListHolder.classList.add("row");
-ChordProgression.chordsList = [];
 
 export {ChordProgression}
