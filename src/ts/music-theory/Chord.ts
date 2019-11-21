@@ -35,7 +35,7 @@ class Chord {
     static family: string | null = null;    // Family is nullable if it is a  single note
     static inversionNum = 0;
     static rootKeyNum: number | null = null;
-    static rootNoteName: string;
+    static rootNoteName: string | null = null;
     static notes: Array<string> | null = null;
 
     /**
