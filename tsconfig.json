@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "system", // Silence the error on "import $ from jqeury"
     "moduleResolution": "node",
     "newLine": "LF",
     "outDir": "./lib/",
