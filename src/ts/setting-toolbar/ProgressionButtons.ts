@@ -1,5 +1,6 @@
 import {ChordProgression} from "../ChordProgression";
 import $ from "jquery";
+import { Chord } from "../music-theory/Chord";
 
 class ProgressionButtons {
     constructor(container: HTMLElement) {
@@ -53,6 +54,14 @@ class ProgressionButtons {
     }
 
     _buttonClicked(){
+        $("#addBtn").on("click", function () {
+            console.log("Add a new chord to progression");
+            if (Chord.type == "Single"){
+                console.warn("Single note, cannot be added to progression")
+            } else {
+                ChordProgression.addChord();
+            }
+        })
 
         $("#playBtn").on("click", function () {  // Play button logic
             console.log("Play progression");
