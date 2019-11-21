@@ -25,7 +25,6 @@ sound.load();
 
 piano.onKeyDown = function(chord: Array<string>){
     sound.keyDown(chord);
-    progression.appendChord(chord.toString());
 }
 
 piano.onKeyUp = function(chord: Array<string>){
