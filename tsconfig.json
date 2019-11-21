@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "module": "system", // Silence the error on "import $ from jqeury"
+    "module": "commonjs", 
     "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true, // Silence the error on "import $ from jqeury"
     "newLine": "LF",
     "outDir": "./lib/",
     "target": "es5",
