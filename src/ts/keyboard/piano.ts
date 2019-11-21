@@ -1,5 +1,6 @@
 import {Keyboard} from "./Keyboard";
 import { Chord } from "../Chord";
+import {Note} from "../Note";
 
 class Piano{
     _container: Element;
@@ -36,6 +37,8 @@ class Piano{
     }
 
     _setChord(keyNum: number){
+        Chord.rootKeyNum = keyNum;
+        Chord.rootNoteName = Note.toNoteName(keyNum);
         const chord = Chord.getChordList(keyNum);
         console.log(`Set the chord to ${chord}`);
         this._keyboardInterface.highlight(chord);
