@@ -1,6 +1,5 @@
 import {ChordProgression} from "../ChordProgression";
 import $ from "jquery";
-import { Chord } from "../music-theory/Chord";
 
 class ProgressionButtons {
     constructor(container: HTMLElement) {
