@@ -16,16 +16,39 @@ const chordFamilies = {
     },
     "Extended": {
         "Dominant Ninth": [0, 4, 7, 10, 14],    // C E G B♭ D
-        "Dominant Seventh": [0, 4, 7, 10, 14, 16],  // C E G B♭ D F WRONG FIX!
         "Dominant Thirteenth": [0, 4, 7, 10, 14, 16, 20] // C E G B♭ D F A
     },
     "Altered": {
-        "Seventh Augmented Fifth": [0, 4, 8, 10],   // C E G♯ B♭
         "Seventh Minor Ninth": [0, 4, 7, 10, 13],   // C E G B♭ D♭
         "Seventh Sharp Ninth": [0, 4, 7, 10, 15],  // C E G B♭ D♯
         "Seventh Augmented Eleventh": [0, 4, 7, 10, 14, 17],   // C E G B♭ D F♯
     }
 };
+
+const chordNameSheet = {
+    //Triads
+    "Single Note": "",
+    "Major Triad": "",
+    "Minor Triad": "m",
+    "Augmented Triad": "aug",
+    "Diminished Triad": "dim",
+    //Sevenths
+    "Dominant Seventh": "7",
+    "Major Seventh": "maj7",
+    "Minor Seventh": "min7",
+    "Diminished Seventh": "dim7",
+    "Half Diminished Seventh": "min7♭5",
+    "Augmented Seventh": "aug7",
+    "Augmented Major Seventh": "augM7",
+    //Extended
+    "Dominant Ninth": "9",
+    "Dominant Thirtheenth": "13",
+    //Altered
+    "Seventh Minor Ninth": "7♭9",
+    "Seventh Sharp Ninth": "7#9",
+    "Seventh Augmented Eleventh": "7aug11"
+};
+
 
 class Chord{
     /**
