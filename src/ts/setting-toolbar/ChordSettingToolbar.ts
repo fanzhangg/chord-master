@@ -20,7 +20,6 @@ class ChordSettingToolbar{
         const toolbarEle = toolbar.node() as HTMLElement;
         new ChordTypeBtnGroup(toolbarEle);
         new InversionTypeBtnGroup(toolbarEle);
-        new ProgressionButtons(toolbarEle);
     }
 }
 

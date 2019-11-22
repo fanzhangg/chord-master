@@ -3,9 +3,14 @@ import $ from "jquery";
 import { Chord } from "../music-theory/Chord";
 
 class ProgressionButtons {
+    onPlayChord: any;
+
     constructor(container: HTMLElement) {
         this._renderView(container);
         this._buttonClicked();
+
+        // callback events
+        this.onPlayChord = function(){};
     }
 
     _renderView(container: HTMLElement){
@@ -63,6 +68,11 @@ class ProgressionButtons {
             }
         })
 
+        const playBtn = document.querySelector("#playBtn") as HTMLElement;
+        playBtn.addEventListener("pointerdown", e=>{
+            this._playChord();
+        })
+
         $("#playBtn").on("click", function () {  // Play button logic
             console.log("Play progression");
             ChordProgression.playChord();
@@ -75,6 +85,10 @@ class ProgressionButtons {
         });
     }
 
+    _playChord(){
+        const chords = ChordProgression.chordsList;
+        this.onPlayChord(chords);
+    };
 }
 
 export {ProgressionButtons}

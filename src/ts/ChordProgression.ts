@@ -33,6 +33,7 @@ class InversionChord {
     rootNote: string
     type: string
     inversion: number
+    onChordPlayed: any;
     
     constructor(rootNote: string, type: string, inversion: number) {
         this.rootNote = rootNote; // Holds the root note of the chord
@@ -105,7 +106,7 @@ class ChordProgression {
      * Plays through the chords using sequencers.
      */
     static playChord() {
-        alert(ChordProgression.chordsList);
+        // alert(ChordProgression.chordsList);
     }
 
     alertHello(){
