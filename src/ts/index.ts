@@ -4,6 +4,7 @@ import { ChordSettingToolbar } from "./setting-toolbar/ChordSettingToolbar";
 import { ChordProgression } from "./ChordProgression";
 import { Loader } from "./interface/Loader";
 import {Chord} from "./music-theory/Chord";
+import $ from "jquery";
 
 new Loader();
 
@@ -36,6 +37,11 @@ piano.onKeyUp = function(chord: Array<string>){
 
 
 chordProgression.chordNameClicked = function(rootNote: string, type: string, inversion: number, notes: Array<T>) {
-    alert(rootNote + " " + type + " " + inversion + " " + notes);
-    sound.keyDownUp(notes)
+    // alert(rootNote + " " + type + " " + inversion + " " + notes);
+    sound.keyDownUp(notes);
+
+    // Chord.rootNoteName = rootNote;
+    // Chord.type = type;
+    // Chord.inversionNum = inversion;
+
 };

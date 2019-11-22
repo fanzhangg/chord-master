@@ -75,7 +75,7 @@ class ChordProgression {
     addChord() {
         let currentChordRepresentation = this.getRepresentation(Chord.rootNoteName as string, Chord.type, Chord.inversionNum, Chord.notes);
         if (ChordProgression.chordsList.length === 6) {
-            alert("Progression List can not have length longer than eight.")
+            alert("Progression List can not have length longer than six.")
         }
         else {
             ChordProgression.chordsList.push(Chord.type);
@@ -88,8 +88,7 @@ class ChordProgression {
      * Clears the list of chords
      */
     resetChord() {
-        const group = this;
-        group.chordsList = [];
+        ChordProgression.chordsList = [];
         chordListHolder.innerHTML = ""
     }
 
@@ -105,12 +104,13 @@ class ChordProgression {
         const chordRepresentation = document.createElement("div");
         chordRepresentation.classList.add("col-2", "chord-column");
         chordRepresentation.innerText = rootNote + " " + chordSymbols[type];
-        chordRepresentation.dataset.type = type; // Sets notes attached to representation to be played later
+        chordRepresentation.dataset.type = type; // Sets info attached to div. These aren't  used at all.
         chordRepresentation.dataset.rootNote = rootNote;
         chordRepresentation.dataset.inversion = inversion.toString();
+        chordRepresentation.dataset.notes = notes.toString();
         chordRepresentation.id = "chord-representation";
         chordRepresentation.addEventListener("pointerdown", e=>{ // adds the playable functionality whenever its clicked
-            this.chordNameClicked(rootNote, type, inversion, notes);
+            this.chordNameClicked(rootNote, type, inversion, notes); // Re add this once we get this fixed!!!
         });
         return chordRepresentation;
 
