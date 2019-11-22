@@ -42,6 +42,7 @@ class InversionTypeBtnGroup{
     }
 
     _keyDown(){
+        // @ts-ignore
         $("#inversionDropdownMenu").on("click",e => {
             console.log("Item is clicked");
             const item = $(e.target);

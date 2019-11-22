@@ -1,11 +1,11 @@
-import {ChordProgression} from "../ChordProgression";
-import $ from "jquery";
-import { Chord } from "../music-theory/Chord";
+// import {ChordProgression} from "../ChordProgression";
+// import $ from "jquery";
+// import { Chord } from "../music-theory/Chord";
 
 class ProgressionButtons {
     constructor(container: HTMLElement) {
         this._renderView(container);
-        this._buttonClicked();
+        // this._buttonClicked();
     }
 
     _renderView(container: HTMLElement){
@@ -53,27 +53,27 @@ class ProgressionButtons {
         btnGroup.appendChild(label);
     }
 
-    _buttonClicked(){
-        $("#addBtn").on("click", function () {
-            console.log("Add a new chord to progression");
-            if (Chord.type == "Single"){
-                console.warn("Single note, cannot be added to progression")
-            } else {
-                ChordProgression.addChord();
-            }
-        })
-
-        $("#playBtn").on("click", function () {  // Play button logic
-            console.log("Play progression");
-            ChordProgression.playChord();
-
-        });
-
-        $("#resetBtn").on("click", function () {  // Play button logic
-            console.log("Play progression");
-            ChordProgression.resetChord();
-        });
-    }
+    // _buttonClicked(){
+    //     $("#addBtn").on("click", function () {
+    //         console.log("Add a new chord to progression");
+    //         if (Chord.type == "Single"){
+    //             console.warn("Single note, cannot be added to progression")
+    //         } else {
+    //             ChordProgression.addChord();
+    //         }
+    //     })
+    //
+    //     $("#playBtn").on("click", function () {  // Play button logic
+    //         console.log("Play progression");
+    //         ChordProgression.playChord();
+    //
+    //     });
+    //
+    //     $("#resetBtn").on("click", function () {  // Play button logic
+    //         console.log("Play progression");
+    //         ChordProgression.resetChord();
+    //     });
+    // }
 
 }
 
