@@ -19,6 +19,13 @@ document.body.appendChild(pianoContainer);
 
 const piano = new Piano(pianoContainer);
 
+const progresssionBtnsContainer = document.createElement("div");
+progresssionBtnsContainer.id = "progressionContainer";
+document.body.appendChild(progresssionBtnsContainer);
+
+const progressionBtns = new ProgressionButtons(progresssionBtnsContainer);
+
+
 const progresssionContainer = document.createElement("div");
 progresssionContainer.id = "progressionContainer";
 document.body.appendChild(progresssionContainer);
@@ -36,29 +43,20 @@ piano.onKeyUp = function(chord: Array<string>){
     sound.keyUp(chord);
 }
 
-const progresssionBtnsContainer = document.createElement("div");
-progresssionBtnsContainer.id = "progressionContainer";
-document.body.appendChild(progresssionBtnsContainer);
-
-const progressionBtns = new ProgressionButtons(progresssionBtnsContainer);
 
 progressionBtns.onPlayChord = function(chords: Array<Array<string>>){
+	let events = [];
+	for (let i = 0; i < chords.length; i++){
+		const event = {"time": i, "chord": chords[i]};
+		events.push(event);
+	}
 
-	//pass in an array of events
-	var seq = new Sequence(function(time, note){
-		console.log(note);
-		sound.keyDownUp(note);
-	//chords in the progression
+	const part = new Part(function(time, value){
+		//the value is an object which contains both the note and the velocity
+		sound.keyDownUp(value.chord, "2n", time);
+		//@ts-ignore
+	}, events).start(0);
 	//@ts-ignore
-	}, chords, "4n");
-	
-	//loop the part 3 times
-	seq.loop = 3
-	seq.loopEnd = '1m';
-	//start the part at the beginning of the Transport's timeline
-	seq.start(0);
-
-	//start/stop the transport
 	Transport.toggle();
 }
 
