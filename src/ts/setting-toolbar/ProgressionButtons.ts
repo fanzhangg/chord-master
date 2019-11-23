@@ -1,13 +1,9 @@
-// import {ChordProgression} from "../ChordProgression";
-// import $ from "jquery";
-// import { Chord } from "../music-theory/Chord";
-
 class ProgressionButtons {
     onPlayChord: any;
 
     constructor(container: HTMLElement) {
         this._renderView(container);
-        this._buttonClicked();
+        // this._buttonClicked();
 
         // callback events
         this.onPlayChord = function(){};
@@ -57,38 +53,6 @@ class ProgressionButtons {
         label.setAttribute("disabled", "true");
         btnGroup.appendChild(label);
     }
-
-    _buttonClicked(){
-        $("#addBtn").on("click", function () {
-            console.log("Add a new chord to progression");
-            if (Chord.type == "Single"){
-                console.warn("Single note, cannot be added to progression")
-            } else {
-                ChordProgression.addChord();
-            }
-        })
-
-        const playBtn = document.querySelector("#playBtn") as HTMLElement;
-        playBtn.addEventListener("pointerdown", e=>{
-            this._playChord();
-        })
-
-        $("#playBtn").on("click", function () {  // Play button logic
-            console.log("Play progression");
-            ChordProgression.playChord();
-
-        });
-
-        $("#resetBtn").on("click", function () {  // Play button logic
-            console.log("Play progression");
-            ChordProgression.resetChord();
-        });
-    }
-
-    _playChord(){
-        const chords = ChordProgression.chordsList;
-        this.onPlayChord(chords);
-    };
 }
 
 export {ProgressionButtons}
