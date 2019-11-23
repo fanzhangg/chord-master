@@ -1,0 +1,238 @@
+#pianoContainer {
+  width: 100%;
+  height: 200px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  background-color: aquamarine; }
+
+#keyboard {
+  /* leave a space for the border */
+  width: 100%;
+  height: 200px;
+  position: absolute;
+  bottom: 0px;
+  left: 0; }
+
+#keyboard p {
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  /* Disable text selection */
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */ }
+
+#keyboard .key {
+  height: calc(100% - 2 * 1px);
+  position: absolute;
+  top: 0; }
+
+#keyboard .key {
+  border: 1px solid #303952;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%; }
+
+#keyboard .key.white {
+  /* white key behind black key */
+  z-index: 0;
+  text-align: center;
+  color: gray;
+  background-color: white; }
+
+#keyboard .key.white > .note-name {
+  position: absolute;
+  top: 130px;
+  width: 100%; }
+
+#keyboard .key.white > .keyStr {
+  position: absolute;
+  top: 150px;
+  width: 100%; }
+
+#keyboard .key.white:hover {
+  background-color: #f0f0f0; }
+
+#keyboard .key.white:active {
+  background-color: yellow; }
+
+#keyboard .key.black {
+  z-index: 1;
+  height: 50%;
+  text-align: center;
+  color: lightgrey;
+  background-color: #303952;
+  width: 100%; }
+
+#keyboard .key.black > .keyStr {
+  position: absolute;
+  width: 100%;
+  top: 50px; }
+
+#keyboard .key.black:hover {
+  background-color: #596275; }
+
+#keyboard .key.black:active {
+  background-color: gray; }
+
+#keyboard .key.highlight {
+  background-color: yellow; }
+
+#keyboard .key.highlight:hover {
+  background-color: orange; }
+
+/* ref: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_loader5 */
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1000;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #6c757d;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite; }
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg); } }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s; }
+
+@-webkit-keyframes animatebottom {
+  from {
+    bottom: -100px;
+    opacity: 0; }
+  to {
+    bottom: 0px;
+    opacity: 1; } }
+
+@keyframes animatebottom {
+  from {
+    bottom: -100px;
+    opacity: 0; }
+  to {
+    bottom: 0;
+    opacity: 1; } }
+
+#mask {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #373737;
+  z-index: 999; }
+
+#progressText {
+  position: absolute;
+  top: 60%;
+  z-index: 1000;
+  color: white;
+  font-size: 20px;
+  width: 100%;
+  text-align: center; }
+
+#progressionContainer {
+  background-color: white;
+  box-shadow: #373737;
+  width: 80%;
+  height: 100vh;
+  margin-right: 10%;
+  margin-left: 10%;
+  margin-top: 20px; }
+  #progressionContainer .chord-list-holder {
+    margin-top: 5%;
+    margin-left: 5%;
+    width: 90%; }
+  #progressionContainer .progression-text {
+    font-family: 'Abril Fatface', cursive;
+    font-size: 40px;
+    margin-top: 50px; }
+  #progressionContainer .chord-column {
+    background: rgba(0, 0, 0, 0);
+    padding: 20px;
+    font-size: 50px;
+    width: 30px;
+    color: black; }
+
+a,
+a:focus,
+a:hover {
+  color: #BCD4E0; }
+
+.nav-masthead .nav-link {
+  padding: .25rem 0;
+  margin-top: -73px;
+  font-weight: 700;
+  color: #BCD4E0;
+  background-color: transparent;
+  border-bottom: .25rem solid transparent; }
+
+.nav-masthead .nav-link + .nav-link {
+  margin-left: 1rem; }
+
+body {
+  background-color: #373737;
+  /* Disable scrolling */
+  margin: 0;
+  height: 100%;
+  overflow: hidden; }
+
+#chord {
+  font-family: 'Abril Fatface', cursive;
+  font-size: 60px;
+  color: #BCD4E0;
+  text-align: center;
+  position: absolute;
+  top: 20%;
+  left: 0;
+  width: 100%; }
+
+#chord_type_frm {
+  margin-top: 35px; }
+
+.separated-group {
+  margin-left: 20px;
+  margin-right: 20px; }
+
+#progression-container {
+  background-color: #aae2ff;
+  width: 525px;
+  height: 120px;
+  margin: 0 auto;
+  margin-top: 125px; }
+
+
+/*# sourceMappingURL=/style.e0c02e61.css.map */
