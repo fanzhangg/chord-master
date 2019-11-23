@@ -135,7 +135,7 @@ class Keyboard{
         return true;
     }
 
-    public keyUp(keyNum: number){
+    public keyUp(){
         return
     }
 }
