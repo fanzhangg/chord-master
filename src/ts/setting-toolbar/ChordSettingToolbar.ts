@@ -1,7 +1,6 @@
 import * as d3 from "d3";
 import {ChordTypeBtnGroup} from "./ChordTypesBtnGroup";
 import {InversionTypeBtnGroup} from "./InversionTypeBtnGroup";
-import { ProgressionButtons } from "./ProgressionButtons";
 
 class ChordSettingToolbar{
     constructor(){
