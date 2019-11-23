@@ -85,7 +85,8 @@ class ChordProgression {
                 console.warn("Current notes not set. Can't add the chord to the progression");
                 alert("Current notes not set. Can't add the chord to the progression");
             } else {
-                ChordProgression.chordsList.push(Chord.notes as string[]);
+                const notes = [...Chord.notes]; // copy the notes to avoid the reference to Chord.notes
+                ChordProgression.chordsList.push(notes);
                 console.log(`ChordList: ${this.chordsList}`)
             chordListHolder.appendChild(currentChord.getRepresentation()); // attaches the div element to the chords holder.
             }

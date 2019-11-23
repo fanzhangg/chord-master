@@ -25,7 +25,7 @@ const chordFamilies: any = {
         "Seventh Augmented Fifth": [0, 4, 8, 10],   // C E G♯ B♭
         "Seventh Minor Ninth": [0, 4, 7, 10, 13],   // C E G B♭ D♭
         "Seventh Sharp Ninth": [0, 4, 7, 10, 15],  // C E G B♭ D♯
-        "Seventh Augmented Eleventh": [0, 4, 7, 10, 14, 17],   // C E G B♭ D F♯
+        "Seventh Augmented Eleventh": [0, 4, 7, 10, 14, 18],   // C E G B♭ D F♯
     }
 };
 
@@ -81,7 +81,7 @@ class Chord {
             notes.push(curNote);
         }
 
-        this.notes = notes;
+        // this.notes = notes;
 
         return notes
     }
