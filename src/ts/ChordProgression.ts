@@ -42,10 +42,9 @@ class ChordProgression {
         this.addButtonLogic()
     }
 
-    addButtonLogic() {
-        $("#addBtn").on("click", e=> { // adds the logic for clicking.
-            console.log("Add a new chord to progression");
-            if (Chord.type == "Single"){
+    _bindEventListeners() {
+        $("#addBtn").on("click", () => { // adds the logic for clicking.
+            if (Chord.type == "Single"){    // Does not add single chord to the progression
                 console.warn("Single note, cannot be added to progression")
             } else {
                 this.addChord();
@@ -106,8 +105,8 @@ class ChordProgression {
     /**
      * Plays through the chords using sequencers.
      */
-    static playChord() {
-        // alert(ChordProgression.chordsList);
+    playChord() {
+        this.onPlayChord(this.chordsList);
     }
 
     getRepresentation(rootNote: string, type: string, inversion: number, notes: Array<string>) { // Returns a div element that is put into the progression holder
