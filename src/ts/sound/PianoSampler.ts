@@ -95,11 +95,12 @@ class PianoSampler {
      * Play and release a chord
      * @param notes An array of notes in the chord
      * @param duration The time the note should be held
+     * @param time When to start the attack
      */
-    keyDownUp(notes: Array<string>, duration: string|number){
+    keyDownUp(notes: Array<string>, duration: string|number, time: number | string){
         if (this._loaded){
             //@ts-ignore
-            (this._sampler as Sampler).triggerAttackRelease(notes, duration);
+            (this._sampler as Sampler).triggerAttackRelease(notes, duration, time);
         }
     }
 }

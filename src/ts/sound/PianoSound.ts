@@ -49,7 +49,7 @@ export class PianoSound {
      * Play a chord and stop
      * @param notes 
      */
-    keyDownUp(notes: Array<string>, duration: string = "4n"){
-        this._piano.keyDownUp(notes, duration);
+    keyDownUp(notes: Array<string>, duration: string| number = "4n", time: number | string = 0){
+        this._piano.keyDownUp(notes, duration, time);
     }
 }
