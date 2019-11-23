@@ -1,6 +1,6 @@
-import {ChordProgression} from "../ChordProgression";
-import $ from "jquery";
-import { Chord } from "../music-theory/Chord";
+// import {ChordProgression} from "../ChordProgression";
+// import $ from "jquery";
+// import { Chord } from "../music-theory/Chord";
 
 class ProgressionButtons {
     onPlayChord: any;
