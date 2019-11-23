@@ -29,19 +29,19 @@ class ProgressionButtons {
         this._renderLabel(labelBtnGroup);
 
         const addButton = document.createElement("button");
-        addButton.classList.add("btn", "btn-secondary", "disabled");
+        addButton.classList.add("btn", "btn-outline-secondary", "disabled");
         addButton.id = "addBtn";
         addButton.innerText = "Add";
         btnGroup.appendChild(addButton);
 
         const playButton = document.createElement("button");
-        playButton.classList.add("btn", "btn-secondary");
+        playButton.classList.add("btn", "btn-outline-secondary");
         playButton.id = "playBtn";
         playButton.innerText = "Play";
         btnGroup.appendChild(playButton);
 
         const resetButton = document.createElement("button");
-        resetButton.classList.add("btn", "btn-secondary");
+        resetButton.classList.add("btn", "btn-outline-secondary");
         resetButton.id = "resetBtn";
         resetButton.innerText = "Reset" ;
         btnGroup.appendChild(resetButton);
