@@ -50,15 +50,15 @@ class ChordProgression {
             } else {
                 this.addChord();
             }
-        })
+        });
 
-        $("#playBtn").on("click", e=> {  // Play button logic
+        $("#playBtn").on("click", () => {  // Play button logic
             console.log("Play progression");
             this.playChord();
 
         });
 
-        $("#resetBtn").on("click", e=> {  // Play button logic
+        $("#resetBtn").on("click", () => {  // Play button logic
             console.log("Play progression");
             this.resetChordProgression();
         });
@@ -73,11 +73,10 @@ class ChordProgression {
 
     /**
      * Adds chord to chord list
-     * @param chord
      */
     addChord() {
         if (this.chordsList.length >= 6) {
-            console.warn(`chordList len (${this.chordsList.length}) exceeds the max len. Cannot add new chord`)
+            console.warn(`chordList len (${this.chordsList.length}) exceeds the max len. Cannot add new chord`);
             alert("Progression List can not have length longer than six.")
         }
         else {
@@ -87,7 +86,7 @@ class ChordProgression {
             } else {
                 const notes = [...Chord.notes]; // copy the notes
                 this.chordsList.push(notes);    // Add the notes in the chord to the chordList
-                console.log(`Add ${notes} to chordList`)
+                console.log(`Add ${notes} to chordList`);
                 const chordEle = this.getRepresentation(Chord.rootNoteName!, Chord.type, Chord.inversionNum, Chord.notes);
             chordListHolder.appendChild(chordEle); // attaches the div element to the chords holder.
             }
@@ -99,7 +98,7 @@ class ChordProgression {
      */
     resetChordProgression() {
         this.chordsList = [];   // Clear the chord list
-        chordListHolder.innerHTML = ""  // Clear the note elements
+        chordListHolder.innerHTML = "";  // Clear the note elements
         console.log("Chord list is reset")
     }
 
@@ -120,7 +119,7 @@ class ChordProgression {
         chordRepresentation.dataset.inversion = inversion.toString();
         chordRepresentation.dataset.notes = notes.toString();
         chordRepresentation.id = "chord-representation";
-        chordRepresentation.addEventListener("pointerdown", e =>{ // adds the playable functionality whenever its clicked
+        chordRepresentation.addEventListener("pointerdown", () =>{ // adds the playable functionality whenever its clicked
             this.chordNameClicked(rootNote, type, inversion, notes); // Re add this once we get this fixed!!!
         });
         return chordRepresentation;
