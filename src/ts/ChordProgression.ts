@@ -29,10 +29,13 @@ const chordSymbols: any = { // Holds the symbols for each chord name.
  * Holds information for sequence of chords.
  */
 class ChordProgression {
-    static chordsList: Array<Array<string>> = [];
     chordNameClicked: any;
+    chordsList: Array<Array<string>>;
+    onPlayChord: Function;
 
     constructor(container: HTMLElement) {
+        this.chordsList = [];   // An array to store each chord in the progression as an array of notes
+
         this._renderView(container);
         this.chordNameClicked = function(){};
 
@@ -57,7 +60,7 @@ class ChordProgression {
 
         $("#resetBtn").on("click", e=> {  // Play button logic
             console.log("Play progression");
-            this.resetChord();
+            this.resetChordProgression();
         });
     }
 
@@ -73,8 +76,8 @@ class ChordProgression {
      * @param chord
      */
     addChord() {
-        let currentChordRepresentation = this.getRepresentation(Chord.rootNoteName as string, Chord.type, Chord.inversionNum, Chord.notes);
-        if (ChordProgression.chordsList.length === 6) {
+        if (this.chordsList.length >= 6) {
+            console.warn(`chordList len (${this.chordsList.length}) exceeds the max len. Cannot add new chord`)
             alert("Progression List can not have length longer than six.")
         }
         else {
@@ -82,20 +85,22 @@ class ChordProgression {
                 console.warn("Current notes not set. Can't add the chord to the progression");
                 alert("Current notes not set. Can't add the chord to the progression");
             } else {
-                const notes = [...Chord.notes]; // copy the notes to avoid the reference to Chord.notes
-                ChordProgression.chordsList.push(notes);
-                console.log(`ChordList: ${this.chordsList}`)
-            chordListHolder.appendChild(currentChord.getRepresentation()); // attaches the div element to the chords holder.
+                const notes = [...Chord.notes]; // copy the notes
+                this.chordsList.push(notes);    // Add the notes in the chord to the chordList
+                console.log(`Add ${notes} to chordList`)
+                const chordEle = this.getRepresentation(Chord.rootNoteName!, Chord.type, Chord.inversionNum, Chord.notes);
+            chordListHolder.appendChild(chordEle); // attaches the div element to the chords holder.
             }
         }
     }
 
     /**
-     * Clears the list of chords
+     * Reset the chord progression
      */
-    resetChord() {
-        ChordProgression.chordsList = [];
-        chordListHolder.innerHTML = ""
+    resetChordProgression() {
+        this.chordsList = [];   // Clear the chord list
+        chordListHolder.innerHTML = ""  // Clear the note elements
+        console.log("Chord list is reset")
     }
 
 
@@ -106,7 +111,7 @@ class ChordProgression {
         // alert(ChordProgression.chordsList);
     }
 
-    getRepresentation(rootNote: string, type: string, inversion: number, notes: Array<T>) { // Returns a div element that is put into the progression holder
+    getRepresentation(rootNote: string, type: string, inversion: number, notes: Array<string>) { // Returns a div element that is put into the progression holder
         const chordRepresentation = document.createElement("div");
         chordRepresentation.classList.add("col-2", "chord-column");
         chordRepresentation.innerText = rootNote + " " + chordSymbols[type];
@@ -115,7 +120,7 @@ class ChordProgression {
         chordRepresentation.dataset.inversion = inversion.toString();
         chordRepresentation.dataset.notes = notes.toString();
         chordRepresentation.id = "chord-representation";
-        chordRepresentation.addEventListener("pointerdown", e=>{ // adds the playable functionality whenever its clicked
+        chordRepresentation.addEventListener("pointerdown", e =>{ // adds the playable functionality whenever its clicked
             this.chordNameClicked(rootNote, type, inversion, notes); // Re add this once we get this fixed!!!
         });
         return chordRepresentation;
