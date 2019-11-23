@@ -2,7 +2,12 @@ class ProgressionButtons {
     onPlayChord: any;
 
     constructor(container: HTMLElement) {
-        this._renderView(container);
+        const row = document.createElement("div");
+        row.classList.add("row", "justify-content-md-center");
+
+        container.appendChild(row);
+
+        this._renderView(row);
         // this._buttonClicked();
 
         // callback events
@@ -12,7 +17,7 @@ class ProgressionButtons {
     _renderView(container: HTMLElement){
 
         const btnGroup = document.createElement("div"); // Button group for the buttons.
-        btnGroup.classList.add("btn-group");
+        btnGroup.classList.add("btn-group", "p-2");
         btnGroup.setAttribute("role", "group");
         btnGroup.id = "progressionBtnGroup";
 
@@ -41,7 +46,7 @@ class ProgressionButtons {
         resetButton.innerText = "Reset" ;
         btnGroup.appendChild(resetButton);
 
-        container.appendChild(labelBtnGroup);
+        // container.appendChild(labelBtnGroup);
         container.appendChild(btnGroup);
 
     }
