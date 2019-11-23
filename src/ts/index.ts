@@ -3,7 +3,7 @@ import {PianoSound} from "./sound/PianoSound";
 import { ChordSettingToolbar } from "./setting-toolbar/ChordSettingToolbar";
 import { ChordProgression } from "./ChordProgression";
 import { Loader } from "./interface/Loader";
-import {Sequence, Part, Synth, Transport} from "tone/tone";
+import {Part, Transport} from "tone/tone";
 import { ProgressionButtons } from "./setting-toolbar/ProgressionButtons";
 
 
@@ -23,7 +23,7 @@ const progresssionBtnsContainer = document.createElement("div");
 progresssionBtnsContainer.id = "progressionContainer";
 document.body.appendChild(progresssionBtnsContainer);
 
-const progressionBtns = new ProgressionButtons(progresssionBtnsContainer);
+new ProgressionButtons(progresssionBtnsContainer);
 
 
 const progresssionContainer = document.createElement("div");
@@ -44,14 +44,14 @@ piano.onKeyUp = function(chord: Array<string>){
 }
 
 
-progressionBtns.onPlayChord = function(chords: Array<Array<string>>){
+chordProgression.onPlayChord = function(chords: Array<Array<string>>){
 	let events = [];
 	for (let i = 0; i < chords.length; i++){
 		const event = {"time": i, "chord": chords[i]};
 		events.push(event);
 	}
 
-	const part = new Part(function(time, value){
+	new Part(function(time, value){
 		//the value is an object which contains both the note and the velocity
 		sound.keyDownUp(value.chord, "2n", time);
 		//@ts-ignore

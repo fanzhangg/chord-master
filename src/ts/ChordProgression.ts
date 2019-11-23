@@ -37,9 +37,12 @@ class ChordProgression {
         this.chordsList = [];   // An array to store each chord in the progression as an array of notes
 
         this._renderView(container);
+        this._bindEventListeners();
+
+        // callback events
         this.chordNameClicked = function(){};
 
-        this.addButtonLogic()
+        this.onPlayChord = function(){};
     }
 
     _bindEventListeners() {
