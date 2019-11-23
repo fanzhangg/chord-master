@@ -1,5 +1,6 @@
 @import "keyboard";
 @import "loader";
+@import "progression";
 
 a,
 a:focus,
@@ -52,23 +53,4 @@ body {
     height: 120px;
     margin: 0 auto;
     margin-top: 125px;
-}
-
-.chord-list-holder {
-    margin-top: 30px;
-    margin-left: 20%;
-}
-
-.progression-text {
-    font-family: 'Abril Fatface', cursive;
-    font-size: larger;
-    margin-top: 50px;
-}
-
-.chord-column {
-    background: rgba(0, 0, 0, 0);
-    padding: 20px;
-    font-size: 40px;
-    width: 30px;
-    color: white;
 }

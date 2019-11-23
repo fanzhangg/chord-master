@@ -19,16 +19,12 @@ document.body.appendChild(pianoContainer);
 
 const piano = new Piano(pianoContainer);
 
-const progresssionBtnsContainer = document.createElement("div");
-progresssionBtnsContainer.id = "progressionContainer";
-document.body.appendChild(progresssionBtnsContainer);
-
-new ProgressionButtons(progresssionBtnsContainer);
-
-
+// Progression
 const progresssionContainer = document.createElement("div");
 progresssionContainer.id = "progressionContainer";
 document.body.appendChild(progresssionContainer);
+
+new ProgressionButtons(progresssionContainer);
 
 const chordProgression = new ChordProgression(progresssionContainer);
 
@@ -41,7 +37,7 @@ piano.onKeyDown = function(chord: Array<string>){
 
 piano.onKeyUp = function(chord: Array<string>){
     sound.keyUp(chord);
-}
+};
 
 
 chordProgression.onPlayChord = function(chords: Array<Array<string>>){
@@ -58,7 +54,7 @@ chordProgression.onPlayChord = function(chords: Array<Array<string>>){
 	}, events).start(0);
 	//@ts-ignore
 	Transport.toggle();
-}
+};
 
 
 

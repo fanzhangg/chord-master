@@ -1,0 +1,29 @@
+#progressionContainer {
+  background-color: white;
+  box-shadow: #373737;
+  width: 80%;
+  height: 100vh;
+  margin-right: 10%;
+  margin-left: 10%;
+  margin-top: 20px;
+
+  .chord-list-holder {
+    margin-top: 5%;
+    margin-left: 5%;
+    width: 90%;
+  }
+
+  .progression-text {
+    font-family: 'Abril Fatface', cursive;
+    font-size: 40px;
+    margin-top: 50px;
+  }
+
+  .chord-column {
+    background: rgba(0, 0, 0, 0);
+    padding: 20px;
+    font-size: 50px;
+    width: 30px;
+    color: black;
+  }
+}
