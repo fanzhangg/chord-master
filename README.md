@@ -34,7 +34,7 @@ Deploy dist folder to GitHub Pages.
 It is built by Fan Zhang, Aaron Gould, Randy Jose Beidelschies, and Roman Bactol. It uses Tone.js to generate the piano sound, jQuery to manupilate the document element.
 
 ## Contributing
-we are thanksful to the community for contributing bugfixes and improvements. Please follow the [Chord of Conduct](./CODE_OF_CONDUCT.md) when contributing.
+we are thanksful to the community for contributing bugfixes and improvements. Please follow the [Code of Conduct](./CODE_OF_CONDUCT.md) when contributing.
 
 ## License
 
