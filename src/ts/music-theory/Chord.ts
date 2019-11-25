@@ -30,19 +30,63 @@ const chordFamilies: any = {
 };
 
 class Chord {
-    static halfSteps = [0];
-    static type: string = "Single"; // Must have a type
-    static family: string | null = null;    // Family is nullable if it is a  single note
-    static inversionNum = 0;
-    static rootKeyNum: number | null = null;
-    static rootNoteName: string | null = null;
-    static notes: Array<string> | null = null;
+    private halfSteps = [0];
+    private type: string = "Single"; // Must have a type
+    private family: string | null = null;    // Family is nullable if it is a  single note
+    private inversionNum = 0;
+    private rootKeyNum: number | null = null;
+    private rootNoteName: string | null = null;
+    private notes: Array<string> | null = null;
+
+    getHalfSteps(){
+        return this.halfSteps;
+    }
+    setHalfStepsDirectly(halfSteps: Array<number>){
+        this.halfSteps = halfSteps;
+    }
+    getType(){
+        return this.type;
+    }
+    setType(type: string) {
+        this.type = type;
+    }
+    getFamily(){
+        return this.family;
+    }
+    setFamily(family: string) {
+        this.family = family;
+    }
+    getInversionNum(){
+        return this.inversionNum;
+    }
+    setInversionNum(inversionNum: number) {
+        this.inversionNum = inversionNum;
+    }
+    getRootKeyNum(){
+        return this.inversionNum;
+    }
+    setRootKeyNum(rootKeyNum: number) {
+        this.rootKeyNum = rootKeyNum;
+    }
+    getRootNoteName(){
+        return this.rootNoteName;
+    }
+    setRootNoteName(rootNoteName: string) {
+        this.rootNoteName = rootNoteName;
+    }
+    getNotes(){
+        return this.notes;
+    }
+    setNotes(notes: Array<string>){
+        this.notes = notes;
+    }
+
 
     /**
      * Return the half steps of the chord from the root. [0] if no chord type is specified
      * @return {Array}
      */
-    static getHalfSteps(){
+    private getHalfStepsFromDict(){
         if (this.family === null){
             return [0]
         } else {
@@ -54,14 +98,14 @@ class Chord {
     /**
      * Set the half steps of the chord from the root based on its type and inversion number
      */
-    static setHalfSteps() {
-        const halfSteps = this.getHalfSteps();
-        if (Chord.family !== null) { // We have this condition to avoid the 1 note breaking the inversion.
+    private setHalfSteps() {
+        const halfSteps = this.getHalfStepsFromDict();
+        if (this.getFamily() !== null) { // We have this condition to avoid the 1 note breaking the inversion.
             for (let i = 0; i < this.inversionNum; i++) {
                 halfSteps[i] += 12;
             }
-            Chord.halfSteps = halfSteps;
-            console.log(`Chord.curSteps: ${halfSteps}`);
+            this.setHalfStepsDirectly(halfSteps);
+            console.log(`this.getHalfSteps()": ${halfSteps}`);
         }
     }
 
@@ -70,7 +114,7 @@ class Chord {
      * @returns {Array}
      * @param rootKeyNum
      */
-    static getChordList(rootKeyNum: number): Array<string>{
+    private getChordList(rootKeyNum: number): Array<string>{
         this.rootKeyNum = rootKeyNum;
 
         const halfSteps = this.halfSteps;
