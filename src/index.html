@@ -5,11 +5,141 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Chord Master</title>
     <link rel="stylesheet" href="./style/style.scss"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
 <div id="mask"></div>
 <div id="progressText">0%</div>
+
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand text-muted">Chord Master</a>
+
+    <button class="btn text-muted">
+        <i class="fas fa-question-circle"></i>
+    </button>
+</nav>
+
+<main class="container-fluid mt-5">
+    <div class="row" id="progressionContainer">
+        <div class="col mx-0">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-small btn-outline-secondary">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <button type="button" class="btn btn-small btn-outline-secondary">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </button>
+                    </div>
+                    <button type="button" class="btn btn-small">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                </div>
+                <div class="card-body" id="chordsCardBody">
+                    <div class="d-flex justify-content-left flex-wrap mt-5 mb-5 ml-5 mr-5">
+                        <div class="btn-chord active">
+                            <div class="button-chord-name shadow">
+                                <div>Cm</div>
+                            </div>
+                            <div class="btn-chord-delete shadow-sm">
+                                <i class="material-icons">clear</i>
+                            </div>
+                        </div>
+
+                        <div class="btn-chord">
+                            <div class="button-chord-name shadow">
+                                <div>Cm</div>
+                            </div>
+                            <div class="btn-chord-delete shadow-sm">
+                                <i class="material-icons">clear</i>
+                            </div>
+                        </div>
+
+                        <div class="btn-chord">
+                            <div class="button-chord-name shadow">
+                                <div>Cm</div>
+                            </div>
+                            <div class="btn-chord-delete shadow-sm">
+                                <i class="material-icons">clear</i>
+                            </div>
+                        </div>
+
+                        <div class="btn-chord">
+                            <div class="button-chord-name shadow">
+                                <div>Cm</div>
+                            </div>
+                            <div class="btn-chord-delete shadow-sm">
+                                <i class="material-icons">clear</i>
+                            </div>
+                        </div>
+
+                        <div class="btn-chord">
+                            <div class="button-chord-name add shadow">
+
+                                <i class="material-icons">
+                                    add
+                                </i>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col mx-0">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header d-flex flex-row align-items-center flex-wrap">
+                    <span class="mr-2 text-muted">Major Triad:</span>
+                    <div class="dropup mr-4">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+                                data-submenu aria-expanded="true">
+                            Chord Type
+                        </button>
+                        <div class="dropdown-menu">
+                            <div class="dropdown dropright dropdown-submenu">
+                                <button class="dropdown-item dropdown-toggle" type="button" data-toggle="dropdown">
+                                    Triad
+                                </button>
+                                <div class="dropdown-menu">
+                                    <button class="dropdown-item" type="button">Major Triad</button>
+                                    <button class="dropdown-item" type="button">Major Triad</button>
+                                    <button class="dropdown-item" type="button">Major Triad</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <span class="mr-2 text-muted">Inversion:</span>
+                    <div class="dropup">
+                        <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button"
+                           id="ChordInversionDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">
+                            None
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">First</a>
+                            <a class="dropdown-item" href="#">Second</a>
+                            <a class="dropdown-item" href="#">Third</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-body" id="pianoContainer">
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 
 <script src="ts/index.ts"></script>
 </body>
