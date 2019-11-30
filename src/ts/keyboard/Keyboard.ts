@@ -22,10 +22,15 @@ class Keyboard{
         this._chords = [];
 
         // Callback events
-        this.onKeyDown = function(){}   
-        this.onKeyUp = function(){}
+        this.onKeyDown = function(){};
+        this.onKeyUp = function(){};
     }
 
+    /**
+     * Resize the keyboard according to the window's width
+     * @param lowestKeyNum
+     * @param octaves
+     */
     resize(lowestKeyNum=0, octaves: number){
         this._container.innerHTML = ''; // Clear the previous ones
         const keyWidth = (1 / 7) / octaves;
@@ -77,7 +82,12 @@ class Keyboard{
         }
     }
 
-    _bindKeyEvents(key: HTMLDivElement) {
+    /**
+     * Bind the key events to the key
+     * @param key
+     * @private
+     */
+    private _bindKeyEvents(key: HTMLDivElement) {
         key.addEventListener('pointerdown', (e) => {
             const target = e.target as HTMLDivElement;
             const keyNum = parseInt(target.getAttribute("data-key-num") as string);
@@ -101,7 +111,7 @@ class Keyboard{
      * Unhilight keys
      * @param keys an array of key element
      */
-    _unhighlight(keys: Array<HTMLElement>){
+    private _unhighlight(keys: Array<HTMLElement>){
         keys.forEach(function (key){
             key.classList.remove("highlight");
         })
@@ -110,12 +120,12 @@ class Keyboard{
 
     /**
      * Show the chord by displaying the chord string and highlight the keys in the chord
-     * @param keyNum of selected key
      * @public
+     * @param chord
      */
     public highlight(chord: Array<string>){
         // Change the previous keys' color back to the original color
-        this._unhighlight(this._prevKeys);
+        this._unhighlight(this._prevKeys);  // Unhilight previous keys
 
         this._prevKeys = [];    // Reset the prev keys
 
@@ -124,11 +134,14 @@ class Keyboard{
             return false;
         }
 
-        for (const note of chord as Array<string>){
-            const selectorNote = note.replace("#", "\\#");
-            const key = document.querySelectorAll(`.key[data-note-name=${selectorNote}]`)[0];
-            key.classList.add("highlight"); // Highlight the key
-            this._prevKeys.push(key as HTMLElement);
+        for (const note of chord as Array<string>){ // Loop through the notes in the chord
+            const selectorNote = note.replace("#", "\\#");  // # is encoded as \\#
+            const key = document.querySelector(`.key[data-note-name=${selectorNote}]`);
+            // Get the key of the note. Return null if there are no matches
+            if (key !== null){  // Only highlight the key if it is in the boundary
+                key.classList.add("highlight"); // Highlight the key
+                this._prevKeys.push(key as HTMLElement);    // Save the keys as prevKeys
+            }
         }
 
         this._chords.push(chord);
