@@ -24,14 +24,22 @@ class Piano{
         this.onKeyUp = function(){};
     };
 
+    /**
+     * Resize the keyboard according to the window's width
+     * @private
+     */
     _resize(){
         const keyWidth = 27;
         let octaves = Math.round((window.innerWidth / keyWidth) / 12);
-        octaves = Math.max(octaves, 2); // Octave not less than 2
-        octaves = Math.min(octaves, 7); // Octave not greater than 7
-        this._keyboardInterface.resize(31, octaves);  // Populate keys
+        octaves = Math.max(octaves, 1); // Octave not less than 2
+        octaves = Math.min(octaves, 4); // Octave not greater than 7
+        this._keyboardInterface.resize(31, octaves);  // Populate keys from G2
     }
 
+    /**
+     * Set the chord after a key is down
+     * @param keyNum
+     */
     public keyDown(keyNum: number){
         this._enableAddBtn();
         this._setChord(keyNum);
@@ -47,6 +55,11 @@ class Piano{
         }
     }
 
+    /**
+     * Get the chord based on the root note, highlight the keys on the keyboard. and play the sound
+     * @param keyNum
+     * @private
+     */
     _setChord(keyNum: number){
         Chord.rootKeyNum = keyNum;
         Chord.rootNoteName = Note.toNoteName(keyNum);
@@ -58,6 +71,10 @@ class Piano{
         this.onKeyDown(chord);
     }
 
+    /**
+     * Release the sound
+     * @param keyNum
+     */
     keyUp(keyNum: number){
         const chord = Chord.getChordList(keyNum);
         this.onKeyUp(chord);
