@@ -33,7 +33,7 @@ class Piano{
         let octaves = Math.round((window.innerWidth / keyWidth) / 12);
         octaves = Math.max(octaves, 1); // Octave not less than 2
         octaves = Math.min(octaves, 4); // Octave not greater than 7
-        this._keyboardInterface.resize(31, octaves);  // Populate keys from G2
+        this._keyboardInterface.resize(36, octaves);  // Populate keys from G2
     }
 
     /**
