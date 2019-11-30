@@ -1,3 +1,12 @@
+// Third-party modules
+import "bootstrap"
+import 'bootstrap/dist/css/bootstrap.css' // Import precompiled Bootstrap css
+import '@fortawesome/fontawesome-free/css/all.css'
+import "material-design-icons"
+import "bootstrap-submenu/dist/css/bootstrap-submenu.css"
+import "bootstrap-submenu/dist/js/bootstrap-submenu"
+import "jquery"
+
 import {Piano} from "./keyboard/Piano";
 import {PianoSound} from "./sound/PianoSound";
 import { ChordSettingToolbar } from "./setting-toolbar/ChordSettingToolbar";
