@@ -12,8 +12,8 @@ import {PianoSound} from "./sound/PianoSound";
 import { ChordSettingToolbar } from "./setting-toolbar/ChordSettingToolbar";
 import { ChordProgression } from "./ChordProgression";
 import { Loader } from "./interface/Loader";
-import {Part, Transport} from "tone/tone";
-import { ProgressionButtons } from "./setting-toolbar/ProgressionButtons";
+import {ChordTypeBtn} from "./setting-toolbar/ChordTypeBtn";
+import {InversionBtn} from "./setting-toolbar/InversionBtn";
 
 
 new Loader();
@@ -21,11 +21,7 @@ new Loader();
 // Chord Toolbar
 new ChordSettingToolbar();
 
-// Piano
-const pianoContainer = document.createElement("div");
-pianoContainer.id = "pianoContainer";
-document.body.appendChild(pianoContainer);
-
+const pianoContainer = document.getElementById("pianoContainer")!;
 const piano = new Piano(pianoContainer);
 
 // Progression
@@ -40,8 +36,16 @@ const chordProgression = new ChordProgression(progresssionContainer);
 const sound = new PianoSound(0, 100);
 sound.load();
 
-piano.onKeyDown = function(chord: Array<string>){
-    sound.keyDown(chord);
+
+piano.onKeyDown = function(chord: Array<string>, clicked: boolean){
+    if (clicked){   // The user clicked a key, the sound will be released after the user releases the key
+        sound.keyDown(chord);
+    } else {    // The user does not click the key, the sound will stop after a certain time
+        // sound.keyDown(chord);
+        // sound.keyUp(chord);
+        sound.keyDownUp(chord);
+    }
+
 };
 
 piano.onKeyUp = function(chord: Array<string>){
