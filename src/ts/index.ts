@@ -30,16 +30,20 @@ sound.load();
 const progression = new ChordProgression();
 
 
-piano.onKeyDown = function(chord: Array<string>, clicked: boolean){
-    if (clicked){   // The user clicked a key, the sound will be released after the user releases the key
-        sound.keyDown(chord);
-    } else {    // The user does not click the key, the sound will stop after a certain time
-        sound.keyDownUp(chord);
-    }
+piano.onKeyDown = function(chord: Chord){
+    progression.update(chord);
+
+    const notes = chord.getNotes();
+    sound.keyDown(notes);
 };
 
 piano.onKeyUp = function(chord: Array<string>){
     sound.keyUp(chord);
+};
+
+piano.onSetChord = function(chord: Chord){
+    const notes = chord.getNotes();
+    sound.keyDownUp(notes);
 };
 
 chordTypeBtn.onSetChordType = function (type: string, family: string) {
