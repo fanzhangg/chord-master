@@ -3,7 +3,7 @@ import {Note} from "./Note"
 
 
 class Chord {
-    static chordFamilies: any = {
+    static readonly chordFamilies: any = {
         "Triads": {  // chord with 3 notes
             "Major Triad": [0, 4, 7],
             "Minor Triad": [0, 3, 7],
