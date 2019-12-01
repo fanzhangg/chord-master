@@ -4,7 +4,8 @@ import { Chord } from "../music-theory/Chord";
 class Piano{
     private _keyboardInterface: Keyboard;
     public onKeyDown: Function;
-    public onKeyUp: any;
+    public onKeyUp: Function;
+    public onSetChord: Function;
     public currChord: Chord;
 
     constructor(container: Element){
@@ -21,8 +22,9 @@ class Piano{
         // Callback events
         this.onKeyDown = function(){};
         this.onKeyUp = function(){};
+        this.onSetChord = function () {};
 
-        this._setChord(48);
+        this.setChord(new Chord());
     };
 
     /**
@@ -42,7 +44,8 @@ class Piano{
      * @param keyNum
      */
     public keyDown(keyNum: number){
-        this._setChord(keyNum);
+        this.setRootKeyNum(keyNum);
+        this.onKeyDown(this.currChord);
     }
 
     /**
@@ -53,8 +56,8 @@ class Piano{
     public setChordType(family: string, type: string){
         this.currChord.type = type;
         this.currChord.family = family;
-        this.currChord.inversionNum = 0;
-        this._setChord(this.currChord.rootKeyNum, false);
+        this.currChord.inversionNum = 0;    // Reset inversion number to 0
+        this.setChord(this.currChord);
     }
 
     /**
@@ -62,23 +65,29 @@ class Piano{
      * @param inversionNum
      */
     public setInversion(inversionNum: number){
-        this.currChord.inversionNum = inversionNum;
-        this._setChord(this.currChord.rootKeyNum, false);
+        this.currChord.inversionNum = inversionNum; // Update inversion number
+        this.setChord(this.currChord);
     }
 
     /**
      * Get the chord based on the root note, highlight the keys on the keyboard. and play the sound
-     * @param keyNum
-     * @param clicked
-     * @private
+     * @public
+     * @param chord
      */
-    _setChord(keyNum: number, clicked=true){
-        this.currChord.rootKeyNum = keyNum;  // Update root note
+    public setChord(chord: Chord){
+        this.currChord = chord;  // Update current chord
         const notes = this.currChord.getNotes();
 
         console.log(`Set the chord to ${notes}`);
         this._keyboardInterface.highlight(notes);
-        this.onKeyDown(notes, clicked);
+        this.onSetChord(chord);
+    }
+
+    setRootKeyNum(keyNum: number){
+        this.currChord.rootKeyNum = keyNum;
+        const notes = this.currChord.getNotes();
+        this._keyboardInterface.highlight(notes);
+        console.log(`Set the root key num to ${this.currChord.rootKeyNum}`);
     }
 
     /**
