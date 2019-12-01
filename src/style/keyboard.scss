@@ -11,6 +11,7 @@
     position: absolute;
     bottom: 0;
     left: 0;
+    border: .5px solid black;
 }
 
 #keyboard p {
@@ -28,11 +29,11 @@
 #keyboard .key {
     height: calc(100% - 2 * 1px);
     position: absolute;
-    top: 0;
+    top: 1px;
 }
 
 #keyboard .key {
-    border: 1px solid #303952;
+    border: .5px solid #303952;
     position: absolute;
     left: 0;
     top: 0;
