@@ -49,7 +49,7 @@ class Piano{
     }
 
     /**
-     * Key the root note, set the inversion to 0, and update the chord type and family
+     * Key the root note, set the inversion to 0, and setChord the chord type and family
      * @param type
      * @param family
      */
@@ -61,7 +61,7 @@ class Piano{
     }
 
     /**
-     * Set the inversion of the chord, update the highlight and play the sound
+     * Set the inversion of the chord, setChord the highlight and play the sound
      * @param inversionNum
      */
     public setInversion(inversionNum: number){
