@@ -63,7 +63,7 @@ inversionBtn.onSetInversion = function (inversionNum: number) {
 progression.onActivate = function (chord: Chord) {
   piano.setChord(chord);
   chordTypeBtn.setTypeText(chord.type);
-  inversionBtn.setInversionText(chord.inversionNum);
+  inversionBtn.setInversionText(chord);
   console.log(`Set the chord to ${chord}`);
 };
 

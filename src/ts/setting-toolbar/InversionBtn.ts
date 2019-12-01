@@ -1,3 +1,5 @@
+import {Chord} from "../music-theory/Chord";
+
 export class InversionBtn{
     static readonly inversionTypes: any = { // Assigns inversionIDs to strings.
         0: "None",
@@ -62,11 +64,13 @@ export class InversionBtn{
 
     /**
      * Set the text on the inversion button
-     * @param inversionNum
+     * @param chord
      */
-    public setInversionText(inversionNum: number){
-        const inversionName = InversionBtn.inversionTypes[inversionNum];
+    public setInversionText(chord: Chord){
+        const inversionName = InversionBtn.inversionTypes[chord.inversionNum];
         this._setInverionBtn(inversionName);
+        const chordLen = Chord.getLen(chord.family, chord.type);
+        this._setInversionMenu(chordLen-1);
     }
 
     /**
