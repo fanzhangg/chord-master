@@ -31,7 +31,7 @@ const progression = new ChordProgression();
 
 
 piano.onKeyDown = function(chord: Chord){
-    progression.update(chord);
+    progression.setChord(chord);
 
     const notes = chord.getNotes();
     sound.keyDown(notes);
@@ -51,10 +51,13 @@ chordTypeBtn.onSetChordType = function (type: string, family: string) {
     const chordLen = Chord.getLen(family, type);
     inversionBtn.reset(chordLen);
     piano.setChordType(family, type);
+    progression.setChordType(family, type);
 };
 
 inversionBtn.onSetInversion = function (inversionNum: number) {
     piano.setInversion(inversionNum);
+    progression.setInversion(inversionNum);
+    console.log(`Set the inversion to ${inversionNum}`)
 };
 
 progression.onActivate = function (chord: Chord) {
