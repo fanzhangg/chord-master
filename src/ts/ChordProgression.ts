@@ -125,7 +125,7 @@ export class ChordProgression {
     }
 
     /**
-     * Activate the chord name button. and update the current index, btn, and chord
+     * Activate the chord name button. and setChord the current index, btn, and chord
      * @param chordNameBtn
      * @private
      */
@@ -177,16 +177,44 @@ export class ChordProgression {
      * Update the current chord, the chord list and the text of the current button
      * @param chord
      */
-    public update(chord: Chord){
+    public setChord(chord: Chord){
         this.curChord = chord;
         this.chordsList[this.curIndex] = chord;
 
+        this._setChordName()
+    }
+
+    private _setChordName(){
         this.curBtn!.innerHTML = "";    // Reset text
         const text = document.createElement("div");
-        if (this.curChord == null) {
+        if (this.curChord == null){
             throw new Error("curChord is null");
         }
         text.innerText = this.curChord.getChordName();  // Set the text to the name of the current chord
         this.curBtn!.appendChild(text);
+    }
+
+    public setChordType(family: string, type: string){
+        if (this.curChord == null){
+            throw new Error("curChord is null");
+        }
+        this.curChord.type = type;
+        this.curChord.family = family;
+        this.chordsList[this.curIndex] = this.curChord;
+
+        this._setChordName();
+    }
+
+    public setInversion(inversion: number){
+        if (inversion < 0){
+            throw new Error("Invalid inversion, inversion < 0");
+        }
+        if (this.curChord == null){
+            throw new Error("curChord is null");
+        }
+        this.curChord.inversionNum = inversion;
+        this.chordsList[this.curIndex] = this.curChord;
+
+        this._setChordName();
     }
 }
