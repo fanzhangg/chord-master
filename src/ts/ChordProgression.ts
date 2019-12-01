@@ -49,6 +49,10 @@ class ChordProgression {
             this.curBtn.classList.remove("active"); // Deactivate the current button
         }
 
+        this.chordsList.push(chord);
+        this.curChord = chord;
+        this.curIndex = this.chordsList.length - 1;
+
         const btnContainer = document.createElement("div");
         btnContainer.classList.add("btn-chord", "active");
 
