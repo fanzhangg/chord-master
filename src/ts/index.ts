@@ -49,7 +49,7 @@ piano.onSetChord = function(chord: Chord){
 chordTypeBtn.onSetChordType = function (type: string, family: string) {
     console.log(`Set the type to ${type}`);
     const chordLen = Chord.getLen(family, type);
-    inversionBtn.reset(chordLen);
+    inversionBtn.reset(chordLen);   // Reset the chord progression to none
     piano.setChordType(family, type);
     progression.setChordType(family, type);
 };
@@ -62,6 +62,8 @@ inversionBtn.onSetInversion = function (inversionNum: number) {
 
 progression.onActivate = function (chord: Chord) {
   piano.setChord(chord);
+  chordTypeBtn.setTypeText(chord.type);
+  inversionBtn.setInversionText(chord.inversionNum);
   console.log(`Set the chord to ${chord}`);
 };
 
