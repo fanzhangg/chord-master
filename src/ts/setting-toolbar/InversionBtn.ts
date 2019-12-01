@@ -49,9 +49,24 @@ export class InversionBtn{
         }
     }
 
+    /**
+     * Set the inversion, and call the callback event
+     * @param inversionName
+     * @param inversionNum
+     * @private
+     */
     private _setInversion(inversionName: string, inversionNum: number){
         this._setInverionBtn(inversionName);
         this.onSetInversion(inversionNum);
+    }
+
+    /**
+     * Set the text on the inversion button
+     * @param inversionNum
+     */
+    public setInversionText(inversionNum: number){
+        const inversionName = InversionBtn.inversionTypes[inversionNum];
+        this._setInverionBtn(inversionName);
     }
 
     /**
