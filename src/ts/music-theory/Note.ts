@@ -18,4 +18,15 @@ export class Note {
         const chroma = Note.chromas[keyNum % 12];
         return `${chroma}${octave}`
     }
+
+    /**
+     * Get the pitch of the key number
+     * @param keyNum
+     */
+    static toChroma(keyNum: number): string{
+        if (keyNum < 0) {
+            throw new Error("The key number is less than 0");
+        }
+        return Note.chromas[keyNum % 12];
+    }
 }
