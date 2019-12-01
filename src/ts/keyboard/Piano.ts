@@ -1,15 +1,14 @@
 import {Keyboard} from "./Keyboard";
 import { Chord } from "../music-theory/Chord";
-import {Note} from "../music-theory/Note";
 
 class Piano{
-    _container: Element;
-    _keyboardInterface: Keyboard;
-    onKeyDown: any;
-    onKeyUp: any;
+    private _keyboardInterface: Keyboard;
+    public onKeyDown: any;
+    public onKeyUp: any;
+    public currChord: Chord;
 
     constructor(container: Element){
-        this._container = container;
+        this.currChord = new Chord();
 
         // The piano keyboard interface
         this._keyboardInterface = new Keyboard(container);
@@ -41,18 +40,7 @@ class Piano{
      * @param keyNum
      */
     public keyDown(keyNum: number){
-        this._enableAddBtn();
         this._setChord(keyNum);
-    }
-
-    /**
-     * Enable add progression if the chord type is not single
-     */
-    _enableAddBtn(){
-        if (Chord.type !== "Single"){
-            const addBtn = document.querySelector("#addBtn") as HTMLElement;
-            addBtn.classList.remove("disabled");
-        }
     }
 
     /**
@@ -61,22 +49,19 @@ class Piano{
      * @private
      */
     _setChord(keyNum: number){
-        Chord.rootKeyNum = keyNum;
-        Chord.rootNoteName = Note.toNoteName(keyNum);
-        const chord = Chord.getChordList(keyNum);
-        Chord.notes = chord;    // Set the notes to the notes in the current chord
+        this.currChord.rootKeyNum = keyNum;  // Update root note
+        const notes = this.currChord.getNotes();
 
-        console.log(`Set the chord to ${chord}`);
-        this._keyboardInterface.highlight(chord);
-        this.onKeyDown(chord);
+        console.log(`Set the chord to ${notes}`);
+        this._keyboardInterface.highlight(notes);
+        this.onKeyDown(notes);
     }
 
     /**
      * Release the sound
-     * @param keyNum
      */
-    keyUp(keyNum: number){
-        const chord = Chord.getChordList(keyNum);
+    keyUp(){
+        const chord = this.currChord.getNotes();
         this.onKeyUp(chord);
     }
 }
