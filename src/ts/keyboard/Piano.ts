@@ -50,10 +50,19 @@ class Piano{
      * @param type
      * @param family
      */
-    public setChordType(type: string, family: string){
+    public setChordType(family: string, type: string){
         this.currChord.type = type;
         this.currChord.family = family;
         this.currChord.inversionNum = 0;
+        this._setChord(this.currChord.rootKeyNum, false);
+    }
+
+    /**
+     * Set the inversion of the chord, update the highlight and play the sound
+     * @param inversionNum
+     */
+    public setInversion(inversionNum: number){
+        this.currChord.inversionNum = inversionNum;
         this._setChord(this.currChord.rootKeyNum, false);
     }
 
