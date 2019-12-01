@@ -1,16 +1,14 @@
 import {Chord} from "../music-theory/Chord";
 import $ from "jquery";
 
-export class ChordTypeBtnGroup{
+export class ChordTypeBtn{
     onSetChordType: Function;
     constructor(){
         const menuContainer = document.getElementById("chordTypeDropdownMenu")!;
         this._renderDropdownMenu(menuContainer);
         // @ts-ignore
         $('[data-submenu]').submenupicker();
-
         this.onSetChordType = function(){};
-        // this._clickMenuItems();
     }
 
     /**
@@ -44,8 +42,9 @@ export class ChordTypeBtnGroup{
                 typeBtn.dataset.type = type;
                 typeBtn.addEventListener("pointerup", e=>{
                    const btn = e.target as HTMLElement;
-                   const type = btn.dataset.type!;
-                   this._setChordType(type);
+                   const type: string = btn.dataset.type!;
+                   const family: string = btn.dataset.family!;
+                   this.setChordType(type, family);
                 });
                 typesMenu.appendChild(typeBtn);
             }
@@ -55,10 +54,10 @@ export class ChordTypeBtnGroup{
         }
     }
 
-    private _setChordType(type: string){
+    public setChordType(type: string, family: string){
         // Change the text of the chord type
         const btn = document.getElementById("chordTypeBtn")!;
         btn.innerText = type;
-        this.onSetChordType(type);
+        this.onSetChordType(type, family);
     }
 }
