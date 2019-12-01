@@ -88,6 +88,9 @@ export class ChordProgression {
         icon.classList.add("material-icons");
         icon.innerText = "clear";
         deleteBtn.appendChild(icon);
+        deleteBtn.addEventListener("pointerup", ()=>{
+            this._delete(deleteBtn);
+        });
         container.appendChild(deleteBtn);
     }
 
@@ -99,7 +102,6 @@ export class ChordProgression {
     private _appendChordNameBtn(container: HTMLElement) {
         const btn = document.createElement("div");
         btn.classList.add("button-chord-name", "shadow");
-        btn.dataset.index = this.curIndex.toString();
 
         const text = document.createElement("div");
         if (this.curChord == null) {
@@ -130,5 +132,36 @@ export class ChordProgression {
         chordNameBtn.parentElement!.classList.add("active");
         this.curBtn = chordNameBtn;
         console.log(`Activate chord ${this.curChord} at ${this.curIndex}`);
+    }
+
+    /**
+     * Delete the chord button that the delete button is in, and activate the adjacent chord if the current chord is activated
+     * @param deleteBtn
+     * @private
+     */
+    _delete(deleteBtn: HTMLElement){
+        const chordNameBtn = deleteBtn.previousSibling as HTMLElement;
+        const index = this.chordNameBtns.indexOf(chordNameBtn);
+
+        this.chordsList.splice(index, 1); // Remove the chord at index
+        this.chordNameBtns.splice(index, 1);
+
+        if (this.curIndex > index){ // Delete a button before current button
+            this.curIndex -= 1; // Since an chord before has been removed, the current index decreased by 1
+        } else if (this.curIndex == 0 && this.chordsList.length >= 1){  // Delete an active button at index 0
+            this.curIndex = 0;
+            this.curChord = this.chordsList[0];
+            const newChordNameBtn = this.chordNameBtns[0];
+            this._activate(newChordNameBtn);    // Activate the new button at index 0
+        } else if (this.curIndex == index){ // Delete the last button
+            this.curIndex -= 1; // Shift to previous item
+            this.curChord = this.chordsList[this.curIndex]; // Update current chord
+            if (this.curIndex >= 0){    // Activate the previous node if it exists
+                const newChordNameBtn =  this.chordNameBtns[this.curIndex];
+                this._activate(newChordNameBtn);
+            }
+        }
+        console.log(`Delete chord at index ${index}. Change the chord to ${this.curChord} at ${this.curIndex}`);
+        deleteBtn.parentElement!.remove(); // Remove the chord button that the delete btn is in
     }
 }
