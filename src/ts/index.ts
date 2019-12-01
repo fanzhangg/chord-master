@@ -9,8 +9,6 @@ import "jquery"
 
 import {Piano} from "./keyboard/Piano";
 import {PianoSound} from "./sound/PianoSound";
-import { ChordSettingToolbar } from "./setting-toolbar/ChordSettingToolbar";
-import { ChordProgression } from "./ChordProgression";
 import { Loader } from "./interface/Loader";
 import {ChordTypeBtn} from "./setting-toolbar/ChordTypeBtn";
 import {InversionBtn} from "./setting-toolbar/InversionBtn";
@@ -18,8 +16,8 @@ import {InversionBtn} from "./setting-toolbar/InversionBtn";
 
 new Loader();
 
-// Chord Toolbar
-new ChordSettingToolbar();
+const chordTypeBtn = new ChordTypeBtn();
+const inversionBtn = new InversionBtn();
 
 const pianoContainer = document.getElementById("pianoContainer")!;
 const piano = new Piano(pianoContainer);
@@ -52,6 +50,10 @@ piano.onKeyUp = function(chord: Array<string>){
     sound.keyUp(chord);
 };
 
+chordTypeBtn.onSetChordType = function (type: string, family: string) {
+    console.log(`Set the type to ${type}`);
+  piano.setChordType(type, family);
+};
 
 chordProgression.onPlayChord = function(chords: Array<Array<string>>){
 	let events = [];
