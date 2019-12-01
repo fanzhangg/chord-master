@@ -47,9 +47,11 @@ export class PianoSound {
 
     /**
      * Play a chord and stop
-     * @param notes 
+     * @param notes
+     * @param duration
+     * @param time
      */
-    keyDownUp(notes: Array<string>, duration: string| number = "4n", time: number | string = 0){
+    keyDownUp(notes: Array<string>, duration: string| number = "2n", time=Tone.now()){
         this._piano.keyDownUp(notes, duration, time);
     }
 }
