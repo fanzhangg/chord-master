@@ -30,19 +30,82 @@ const chordSymbols: any = { // Holds the symbols for each chord name.
  */
 class ChordProgression {
     chordNameClicked: any;
-    chordsList: Array<Array<string>>;
-    onPlayChord: Function;
+    chordsList: Array<Chord>;
+    curIndex: number;
+    curChord: null | Chord;
+    curBtn: null | HTMLElement;
 
-    constructor(container: HTMLElement) {
+    constructor() {
         this.chordsList = [];   // An array to store each chord in the progression as an array of notes
-
-        this._renderView(container);
-        this._bindEventListeners();
+        this.curIndex = -1;
+        this.curChord = null;
+        this.curBtn = null;
 
         // callback events
         this.chordNameClicked = function(){};
 
         this.onPlayChord = function(){};
+    }
+
+    _appendAddBtn(){
+        const btnContainer = document.createElement("div");
+        btnContainer.classList.add("btn-chord");
+
+        const btn = document.createElement("div");
+        btn.classList.add("button-chord-name", "add", "shadow");
+
+        const icon = document.createElement("i");
+        icon.classList.add("material-icons");
+        icon.innerText = "add";
+        btn.appendChild(icon);
+
+        btn.addEventListener("pointerup", ()=> {
+            const chord = new Chord(48);
+            this._appendChord(chord, btnContainer);
+        });
+
+        btnContainer.appendChild(btn);
+
+        const progressionContainer = document.getElementById("progressionChordsContainer")!;
+        progressionContainer.appendChild(btnContainer);
+    }
+
+    _appendChord(chord: Chord, addBtn: HTMLElement | null){
+        if (this.curBtn !== null){
+            this.curBtn.classList.remove("active"); // Deactivate the current button
+        }
+
+        const btnContainer = document.createElement("div");
+        btnContainer.classList.add("btn-chord", "active");
+
+        const btn = document.createElement("div");
+        btn.classList.add("button-chord-name", "shadow");
+        this.curIndex += 1;
+        btn.dataset.index = this.curIndex.toString();
+
+        const text = document.createElement("div");
+        //TODO: change to the actual chord name
+        text.innerText = "C";
+        btn.appendChild(text);
+        btnContainer.appendChild(btn);
+
+        const deleteBtn = document.createElement("div");
+        deleteBtn.classList.add("btn-chord-delete", "shadow-sm");
+
+        const icon = document.createElement("i");
+        icon.classList.add("material-icons");
+        icon.innerText = "clear";
+        deleteBtn.appendChild(icon);
+        btnContainer.appendChild(deleteBtn);
+
+        const progressionContainer = document.getElementById("progressionChordsContainer")!;
+        progressionContainer.insertBefore(btnContainer, addBtn);    // Insert the new chord btn before add btn
+
+        this.chordsList.push(chord);
+        this.curChord = chord;
+        this.curBtn = btnContainer;
+        console.log(`Add chord ${chord}`);
+        console.log(`curIndex: ${this.curIndex}`);
     }
 
     _bindEventListeners() {
