@@ -110,9 +110,7 @@ export class ChordProgression {
         btn.classList.add("button-chord-name", "shadow");
 
         const text = document.createElement("div");
-        if (this.curChord == null) {
-            throw new Error("curChord is null");
-        }
+        this.curChord = new Chord();    // Initialize the current chord to a C4 major chord
         text.innerText = this.curChord.getChordName();  // Set the text to the name of the current chord
         btn.appendChild(text);
 
@@ -131,7 +129,7 @@ export class ChordProgression {
      * @param chordNameBtn
      * @private
      */
-    _activate(chordNameBtn: HTMLElement){
+    private _activate(chordNameBtn: HTMLElement){
         if (this.curBtn !== null) {
             this.curBtn.parentElement!.classList.remove("active"); // Deactivate the current button
         }
@@ -149,7 +147,7 @@ export class ChordProgression {
      * @param deleteBtn
      * @private
      */
-    _delete(deleteBtn: HTMLElement){
+    private _delete(deleteBtn: HTMLElement){
         const chordNameBtn = deleteBtn.previousSibling as HTMLElement;
         const index = this.chordNameBtns.indexOf(chordNameBtn);
 
@@ -173,5 +171,22 @@ export class ChordProgression {
         }
         console.log(`Delete chord at index ${index}. Change the chord to ${this.curChord} at ${this.curIndex}`);
         deleteBtn.parentElement!.remove(); // Remove the chord button that the delete btn is in
+    }
+
+    /**
+     * Update the current chord, the chord list and the text of the current button
+     * @param chord
+     */
+    public update(chord: Chord){
+        this.curChord = chord;
+        this.chordsList[this.curIndex] = chord;
+
+        this.curBtn!.innerHTML = "";    // Reset text
+        const text = document.createElement("div");
+        if (this.curChord == null) {
+            throw new Error("curChord is null");
+        }
+        text.innerText = this.curChord.getChordName();  // Set the text to the name of the current chord
+        this.curBtn!.appendChild(text);
     }
 }

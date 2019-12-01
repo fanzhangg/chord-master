@@ -54,7 +54,7 @@ inversionBtn.onSetInversion = function (inversionNum: number) {
 };
 
 progression.onActivate = function (chord: Chord) {
-  piano.setChord(chord.rootKeyNum, false);
+  piano.setChord(chord);
   console.log(`Set the chord to ${chord}`);
 };
 
