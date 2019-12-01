@@ -10,6 +10,7 @@ export class ChordProgression {
     curBtn: null | HTMLElement;
     chordNameBtns: Array<HTMLElement>;
     onActivate: Function;
+    onPlay: Function;
 
     constructor() {
         this.chordsList = [];   // An array to store each chord in the progression as an array of notes
@@ -20,6 +21,7 @@ export class ChordProgression {
 
         // Callback events
         this.onActivate = function () {};
+        this.onPlay = function () {};
 
         this._appendChord(new Chord(48), null);
         this._appendAddBtn();
@@ -31,9 +33,14 @@ export class ChordProgression {
      * @private
      */
     private _addEventListeners(){
-        const playBtn = document.getElementById("resetBtn")!;
-        playBtn.addEventListener("pointerup", ()=> {
+        const resetBtn = document.getElementById("resetBtn")!;
+        resetBtn.addEventListener("pointerup", ()=> {
             this._reset();
+        });
+
+        const playBtn = document.getElementById("playBtn")!;
+        playBtn.addEventListener("pointerup", ()=> {
+            this._play();
         })
     }
 
@@ -245,5 +252,19 @@ export class ChordProgression {
         container.innerHTML = ""; // Clear the progression
         this._appendChord(new Chord(48), null);
         this._appendAddBtn();
+    }
+
+    private _getNotesList(){
+        const notesList = [];
+        for (let chord of this.chordsList){
+            const notes = chord.getNotes();
+            notesList.push(notes);
+        }
+        return notesList;
+    }
+
+    private _play(){
+        const notesList = this._getNotesList();
+        this.onPlay(notesList);
     }
 }

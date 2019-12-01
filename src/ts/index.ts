@@ -14,6 +14,7 @@ import {ChordTypeBtn} from "./setting-toolbar/ChordTypeBtn";
 import {InversionBtn} from "./setting-toolbar/InversionBtn";
 import {Chord} from "./music-theory/Chord";
 import {ChordProgression} from "./ChordProgression";
+import {Part, Transport} from "tone";
 
 
 new Loader();
@@ -68,21 +69,22 @@ progression.onActivate = function (chord: Chord) {
 };
 
 
-// chordProgression.onPlayChord = function(chords: Array<Array<string>>){
-// 	let events = [];
-// 	for (let i = 0; i < chords.length; i++){
-// 		const event = {"time": i, "chord": chords[i]};
-// 		events.push(event);
-// 	}
-//
-// 	new Part(function(time, value){
-// 		//the value is an object which contains both the note and the velocity
-// 		sound.keyDownUp(value.chord, "2n", time);
-// 		//@ts-ignore
-// 	}, events).start(0);
-// 	//@ts-ignore
-// 	Transport.toggle();
-// };
+progression.onPlay = function(chords: Array<Array<string>>){
+	let events = [];
+	for (let i = 0; i < chords.length; i++){
+		const event = {"time": i, "chord": chords[i]};
+		events.push(event);
+	}
+
+	new Part(function(time, value){
+		//the value is an object which contains both the note and the velocity
+		// @ts-ignore
+        sound.keyDownUp(value.chord, "2n", time);
+		//@ts-ignore
+	}, events).start(0);
+	//@ts-ignore
+	Transport.toggle();
+};
 
 
 
