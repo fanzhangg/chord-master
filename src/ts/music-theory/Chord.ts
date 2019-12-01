@@ -54,7 +54,7 @@ export class Chord {
             "Seventh Augmented Eleventh": [0, 4, 7, 10, 14, 18],   // C E G B♭ D F♯
         }
     };
-    public halfSteps = [0];
+
     public type: string; // Must have a type
     public family: string;    // Family is nullable if it is a  single note
     public inversionNum: number;
@@ -117,7 +117,26 @@ export class Chord {
     public getChordName() {
         const typeSymbol = Chord.chordTypeSymbols[this.type];
         const chroma = Note.toChroma(this.rootKeyNum);
-        //TODO: show inversion in the chord name
-        return `${chroma}${typeSymbol}`;
+        const inversionSymbol = this._getInversionSymbol();
+        return `${chroma}${inversionSymbol}${typeSymbol}`;
+    }
+
+    private _getHalfSteps(): Array<number>{
+        const halfSteps = Chord.chordFamilies[this.family][this.type].slice(0);
+        if (halfSteps == null){
+            throw new Error("Cannot get the half steps");
+        }
+        return halfSteps
+    }
+
+    private _getInversionSymbol(): string{
+        if (this.inversionNum == 0){
+            return "";
+        }
+        const halfSteps = this._getHalfSteps();
+        const rootKeyNum = this.rootKeyNum;
+        const inversedKeyNum = rootKeyNum + halfSteps[this.inversionNum];
+        const inversedNote = Note.toChroma(inversedKeyNum);
+        return `/${inversedNote}`;
     }
 }
