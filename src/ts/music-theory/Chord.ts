@@ -65,6 +65,20 @@ class Chord {
 
         return notes;
     }
+
+    /**
+     * Get the half steps of the chord type
+     * @param family
+     * @param type
+     */
+    static getLen(family: string, type: string) {
+        const halfSteps = Chord.chordFamilies[family][type].slice(0);
+        if (halfSteps == []){
+            throw new Error("Cannot get the half steps");
+        } else {
+            return halfSteps.length;
+        }
+    }
 }
 
 export {Chord}
