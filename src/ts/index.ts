@@ -40,11 +40,8 @@ piano.onKeyDown = function(chord: Array<string>, clicked: boolean){
     if (clicked){   // The user clicked a key, the sound will be released after the user releases the key
         sound.keyDown(chord);
     } else {    // The user does not click the key, the sound will stop after a certain time
-        // sound.keyDown(chord);
-        // sound.keyUp(chord);
         sound.keyDownUp(chord);
     }
-
 };
 
 piano.onKeyUp = function(chord: Array<string>){
@@ -61,6 +58,23 @@ chordTypeBtn.onSetChordType = function (type: string, family: string) {
 inversionBtn.onSetInversion = function (inversionNum: number) {
     piano.setInversion(inversionNum);
 };
+
+
+// chordProgression.onPlayChord = function(chords: Array<Array<string>>){
+// 	let events = [];
+// 	for (let i = 0; i < chords.length; i++){
+// 		const event = {"time": i, "chord": chords[i]};
+// 		events.push(event);
+// 	}
+//
+// 	new Part(function(time, value){
+// 		//the value is an object which contains both the note and the velocity
+// 		sound.keyDownUp(value.chord, "2n", time);
+// 		//@ts-ignore
+// 	}, events).start(0);
+// 	//@ts-ignore
+// 	Transport.toggle();
+// };
 
 
 
