@@ -52,16 +52,19 @@ class ChordProgression {
         const btnContainer = document.createElement("div");
         btnContainer.classList.add("btn-chord", "active");
 
-        const btn = document.createElement("div");
-        btn.classList.add("button-chord-name", "shadow");
-        this.curIndex += 1;
-        btn.dataset.index = this.curIndex.toString();
+        this._appendChordNameBtn(chord, btnContainer);
+        this._appendDeleteBtn(btnContainer);
 
-        const text = document.createElement("div");
-        text.innerText = chord.getChordName();
-        btn.appendChild(text);
-        btnContainer.appendChild(btn);
+        const progressionContainer = document.getElementById("progressionChordsContainer")!;
+        progressionContainer.insertBefore(btnContainer, addBtn);    // Insert the new chord btn before add btn
 
+        this.curBtn = btnContainer;
+
+        console.log(`Add chord ${chord}`);
+        console.log(`curIndex: ${this.curIndex}`);
+    }
+
+    _appendDeleteBtn(container: HTMLElement){
         const deleteBtn = document.createElement("div");
         deleteBtn.classList.add("btn-chord-delete", "shadow-sm");
 
@@ -69,16 +72,18 @@ class ChordProgression {
         icon.classList.add("material-icons");
         icon.innerText = "clear";
         deleteBtn.appendChild(icon);
-        btnContainer.appendChild(deleteBtn);
+        container.appendChild(deleteBtn);
+    }
 
-        const progressionContainer = document.getElementById("progressionChordsContainer")!;
-        progressionContainer.insertBefore(btnContainer, addBtn);    // Insert the new chord btn before add btn
+    _appendChordNameBtn(chord: Chord, container: HTMLElement){
+        const btn = document.createElement("div");
+        btn.classList.add("button-chord-name", "shadow");
+        btn.dataset.index = this.curIndex.toString();
 
-        this.chordsList.push(chord);
-        this.curChord = chord;
-        this.curBtn = btnContainer;
-        console.log(`Add chord ${chord}`);
-        console.log(`curIndex: ${this.curIndex}`);
+        const text = document.createElement("div");
+        text.innerText = chord.getChordName();
+        btn.appendChild(text);
+        container.appendChild(btn);
     }
 
     _bindEventListeners() {
