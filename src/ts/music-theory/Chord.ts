@@ -30,60 +30,39 @@ const chordFamilies: any = {
 };
 
 class Chord {
-    static halfSteps = [0];
-    static type: string = "Single"; // Must have a type
-    static family: string | null = null;    // Family is nullable if it is a  single note
-    static inversionNum = 0;
-    static rootKeyNum: number | null = null;
-    static rootNoteName: string | null = null;
-    static notes: Array<string> | null = null;
+    public halfSteps = [0];
+    public type: string; // Must have a type
+    public family: string;    // Family is nullable if it is a  single note
+    public inversionNum: number;
+    public rootKeyNum: number;
 
-    /**
-     * Return the half steps of the chord from the root. [0] if no chord type is specified
-     * @return {Array}
-     */
-    static getHalfSteps(){
-        if (this.family === null){
-            return [0]
-        } else {
-            const family: string = this.family as unknown as string;
-            return [...chordFamilies[family][this.type]];
-        }
+    constructor(rootKeyNum=48, type="Major Triad", family="Triads", inversionNum=0){
+        this.type = type;
+        this.rootKeyNum = rootKeyNum;   // Root is C4 initially
+        this.family = family;
+        this.inversionNum = inversionNum;
     }
 
     /**
-     * Set the half steps of the chord from the root based on its type and inversion number
+     * Get an array of string of the note in the chord
      */
-    static setHalfSteps() {
-        const halfSteps = this.getHalfSteps();
-        if (Chord.family !== null) { // We have this condition to avoid the 1 note breaking the inversion.
-            for (let i = 0; i < this.inversionNum; i++) {
-                halfSteps[i] += 12;
-            }
-            Chord.halfSteps = halfSteps;
-            console.log(`Chord.curSteps: ${halfSteps}`);
+    public getNotes(): Array<string> {
+        const halfSteps = chordFamilies[this.family][this.type];
+        if (halfSteps == null){
+            throw new Error("Cannot get the half steps");
         }
-    }
+        for (let i = 0; i < this.inversionNum; i++){    // Inverse half steps
+            halfSteps[i] += 12;
+        }
 
-    /**
-     * Get the list of notes in the selected chord
-     * @returns {Array}
-     * @param rootKeyNum
-     */
-    static getChordList(rootKeyNum: number): Array<string>{
-        this.rootKeyNum = rootKeyNum;
-
-        const halfSteps = this.halfSteps;
         let notes = [];
         for (let halfStep of halfSteps){
-            const curKeyNum = rootKeyNum + halfStep;
+            const curKeyNum = this.rootKeyNum + halfStep;
             const curNote = Note.toNoteName(curKeyNum);
             notes.push(curNote);
         }
 
-        // this.notes = notes;
-
-        return notes
+        return notes;
     }
 }
 
