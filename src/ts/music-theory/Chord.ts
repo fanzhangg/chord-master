@@ -79,6 +79,14 @@ class Chord {
             return halfSteps.length;
         }
     }
+
+    /**
+     * Overwrite toString method
+     */
+    public toString(){
+        const notes = this.getNotes();
+        return notes.toString();
+    }
 }
 
 export {Chord}
