@@ -3,6 +3,31 @@ import {Note} from "./Note"
 
 
 class Chord {
+    //TODO: the symbol dictionary is not complete
+    static readonly chordTypeSymbols: any = {
+        //Triads
+        "Single Note": "",
+        "Major Triad": "",
+        "Minor Triad": "m",
+        "Augmented Triad": "aug",
+        "Diminished Triad": "dim",
+        //Sevenths
+        "Dominant Seventh": "7",
+        "Major Seventh": "maj7",
+        "Minor Seventh": "min7",
+        "Diminished Seventh": "dim7",
+        "Half Diminished Seventh": "min7♭5",
+        "Augmented Seventh": "aug7",
+        "Augmented Major Seventh": "augM7",
+        //Extended
+        "Dominant Ninth": "9",
+        "Dominant Thirtheenth": "13",
+        //Altered
+        "Seventh Minor Ninth": "7♭9",
+        "Seventh Sharp Ninth": "7#9",
+        "Seventh Augmented Eleventh": "7aug11"
+    };
+
     static readonly chordFamilies: any = {
         "Triads": {  // chord with 3 notes
             "Major Triad": [0, 4, 7],
@@ -86,6 +111,16 @@ class Chord {
     public toString(){
         const notes = this.getNotes();
         return notes.toString();
+    }
+
+    /**
+     * Get the chord name
+     */
+    public getChordName() {
+        const typeSymbol = Chord.chordTypeSymbols[this.type];
+        const chroma = Note.toChroma(this.rootKeyNum);
+        //TODO: show inversion in the chord name
+        return `${chroma}${typeSymbol}`;
     }
 }
 
