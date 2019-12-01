@@ -21,7 +21,11 @@ class ChordProgression {
         this._appendAddBtn();
     }
 
-    _appendAddBtn(){
+    /**
+     * Append an add button to the progression container
+     * @private
+     */
+    private _appendAddBtn(){
         const btnContainer = document.createElement("div");
         btnContainer.classList.add("btn-chord");
 
@@ -44,7 +48,13 @@ class ChordProgression {
         progressionContainer.appendChild(btnContainer);
     }
 
-    _appendChord(chord: Chord, addBtn: HTMLElement | null){
+    /**
+     * Insert a chord in front of the add button
+     * @param chord
+     * @param addBtn
+     * @private
+     */
+    private _appendChord(chord: Chord, addBtn: HTMLElement | null){
         if (this.curBtn !== null){
             this.curBtn.classList.remove("active"); // Deactivate the current button
         }
@@ -56,7 +66,7 @@ class ChordProgression {
         const btnContainer = document.createElement("div");
         btnContainer.classList.add("btn-chord", "active");
 
-        this._appendChordNameBtn(chord, btnContainer);
+        this._appendChordNameBtn(btnContainer);
         this._appendDeleteBtn(btnContainer);
 
         const progressionContainer = document.getElementById("progressionChordsContainer")!;
@@ -68,7 +78,12 @@ class ChordProgression {
         console.log(`curIndex: ${this.curIndex}`);
     }
 
-    _appendDeleteBtn(container: HTMLElement){
+    /**
+     * Append a delete button in the container
+     * @param container
+     * @private
+     */
+    private _appendDeleteBtn(container: HTMLElement){
         const deleteBtn = document.createElement("div");
         deleteBtn.classList.add("btn-chord-delete", "shadow-sm");
 
@@ -79,13 +94,21 @@ class ChordProgression {
         container.appendChild(deleteBtn);
     }
 
-    _appendChordNameBtn(chord: Chord, container: HTMLElement){
+    /**
+     * Append a chord name button to the container
+     * @param container
+     * @private
+     */
+    private _appendChordNameBtn(container: HTMLElement){
         const btn = document.createElement("div");
         btn.classList.add("button-chord-name", "shadow");
         btn.dataset.index = this.curIndex.toString();
 
         const text = document.createElement("div");
-        text.innerText = chord.getChordName();
+        if (this.curChord == null){
+            throw new Error("curChord is null");
+        }
+        text.innerText = this.curChord.getChordName();
         btn.appendChild(text);
         container.appendChild(btn);
     }
@@ -162,7 +185,7 @@ class ChordProgression {
         chordRepresentation.classList.add("col-2", "chord-column");
         chordRepresentation.innerText = rootNote + " " + chordSymbols[type];
         chordRepresentation.dataset.type = type; // Sets info attached to div. These aren't  used at all.
-        chordRepresentation.dataset.rootNote = rootNote;
+        chordRepresentation.dataset.rootKeyNum = rootNote;
         chordRepresentation.dataset.inversion = inversion.toString();
         chordRepresentation.dataset.notes = notes.toString();
         chordRepresentation.id = "chord-representation";
