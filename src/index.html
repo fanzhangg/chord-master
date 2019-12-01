@@ -96,11 +96,11 @@
         <div class="col mx-0">
             <div class="card shadow-sm mb-4">
                 <div class="card-header d-flex flex-row align-items-center flex-wrap">
-                    <span class="mr-2 text-muted">Major Triad:</span>
+                    <span class="mr-2 text-muted">Chord Type:</span>
                     <div class="dropup mr-4">
                         <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
                                 data-submenu aria-expanded="true" id="chordTypeBtn">
-                            Chord Type
+                            Major Triad
                         </button>
                         <div class="dropdown-menu" id="chordTypeDropdownMenu">
                         </div>
@@ -109,17 +109,14 @@
 
 
                     <span class="mr-2 text-muted">Inversion:</span>
-                    <div class="dropup">
+                    <div class="dropup" id="chordInversionDropup">
                         <a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button"
-                           id="ChordInversionDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                           id="chordInversionBtn" data-toggle="dropdown" aria-haspopup="true"
                            aria-expanded="false">
                             None
                         </a>
 
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="#">First</a>
-                            <a class="dropdown-item" href="#">Second</a>
-                            <a class="dropdown-item" href="#">Third</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" id="chordInversionDropdownMenu">
                         </div>
                     </div>
 
