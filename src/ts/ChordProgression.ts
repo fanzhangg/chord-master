@@ -8,12 +8,14 @@ export class ChordProgression {
     curIndex: number;
     curChord: null | Chord;
     curBtn: null | HTMLElement;
+    chordNameBtns: Array<HTMLElement>;
 
     constructor() {
         this.chordsList = [];   // An array to store each chord in the progression as an array of notes
         this.curIndex = -1;
         this.curChord = null;
         this.curBtn = null;
+        this.chordNameBtns = [];
 
         this._appendChord(new Chord(48), null);
         this._appendAddBtn();
@@ -70,9 +72,7 @@ export class ChordProgression {
         const progressionContainer = document.getElementById("progressionChordsContainer")!;
         progressionContainer.insertBefore(btnContainer, addBtn);    // Insert the new chord btn before add btn
 
-
-        console.log(`Add chord ${chord}`);
-        console.log(`curIndex: ${this.curIndex}`);
+        console.log(`Append a new chord ${this.curChord} at ${this.curIndex}`);
     }
 
     /**
@@ -105,24 +105,30 @@ export class ChordProgression {
         if (this.curChord == null) {
             throw new Error("curChord is null");
         }
-        text.innerText = this.curChord.getChordName();
+        text.innerText = this.curChord.getChordName();  // Set the text to the name of the current chord
         btn.appendChild(text);
 
         btn.addEventListener("pointerup", ()=>{
             this._activate(btn);
         });
         container.appendChild(btn);
+        this.chordNameBtns.push(btn);
         this.curBtn = btn;
     }
 
+    /**
+     * Activate the chord name button. and update the current index, btn, and chord
+     * @param chordNameBtn
+     * @private
+     */
     _activate(chordNameBtn: HTMLElement){
         if (this.curBtn !== null) {
             this.curBtn.parentElement!.classList.remove("active"); // Deactivate the current button
         }
-        this.curIndex = parseInt(chordNameBtn.dataset.index!);
+        this.curIndex = this.chordNameBtns.indexOf(chordNameBtn);
         this.curChord = this.chordsList[this.curIndex];
         chordNameBtn.parentElement!.classList.add("active");
         this.curBtn = chordNameBtn;
-        console.log(`curIndex: ${this.curIndex}, curChord: ${this.curChord}`);
+        console.log(`Activate chord ${this.curChord} at ${this.curIndex}`);
     }
 }
