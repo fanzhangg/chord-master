@@ -1,11 +1,9 @@
 import {Chord} from "./music-theory/Chord";
-import $ from "jquery";
 
 /**
  * Holds information for sequence of chords.
  */
-class ChordProgression {
-    chordNameClicked: any;
+export class ChordProgression {
     chordsList: Array<Chord>;
     curIndex: number;
     curChord: null | Chord;
@@ -25,7 +23,7 @@ class ChordProgression {
      * Append an add button to the progression container
      * @private
      */
-    private _appendAddBtn(){
+    private _appendAddBtn() {
         const btnContainer = document.createElement("div");
         btnContainer.classList.add("btn-chord");
 
@@ -37,7 +35,7 @@ class ChordProgression {
         icon.innerText = "add";
         btn.appendChild(icon);
 
-        btn.addEventListener("pointerup", ()=> {
+        btn.addEventListener("pointerup", () => {
             const chord = new Chord(48);
             this._appendChord(chord, btnContainer);
         });
@@ -54,9 +52,9 @@ class ChordProgression {
      * @param addBtn
      * @private
      */
-    private _appendChord(chord: Chord, addBtn: HTMLElement | null){
-        if (this.curBtn !== null){
-            this.curBtn.classList.remove("active"); // Deactivate the current button
+    private _appendChord(chord: Chord, addBtn: HTMLElement | null) {
+        if (this.curBtn !== null) {
+            this.curBtn.parentElement!.classList.remove("active"); // Deactivate the current button
         }
 
         this.chordsList.push(chord);
@@ -72,7 +70,6 @@ class ChordProgression {
         const progressionContainer = document.getElementById("progressionChordsContainer")!;
         progressionContainer.insertBefore(btnContainer, addBtn);    // Insert the new chord btn before add btn
 
-        this.curBtn = btnContainer;
 
         console.log(`Add chord ${chord}`);
         console.log(`curIndex: ${this.curIndex}`);
@@ -83,7 +80,7 @@ class ChordProgression {
      * @param container
      * @private
      */
-    private _appendDeleteBtn(container: HTMLElement){
+    private _appendDeleteBtn(container: HTMLElement) {
         const deleteBtn = document.createElement("div");
         deleteBtn.classList.add("btn-chord-delete", "shadow-sm");
 
@@ -99,105 +96,33 @@ class ChordProgression {
      * @param container
      * @private
      */
-    private _appendChordNameBtn(container: HTMLElement){
+    private _appendChordNameBtn(container: HTMLElement) {
         const btn = document.createElement("div");
         btn.classList.add("button-chord-name", "shadow");
         btn.dataset.index = this.curIndex.toString();
 
         const text = document.createElement("div");
-        if (this.curChord == null){
+        if (this.curChord == null) {
             throw new Error("curChord is null");
         }
         text.innerText = this.curChord.getChordName();
         btn.appendChild(text);
+
+        btn.addEventListener("pointerup", ()=>{
+            this._activate(btn);
+        });
         container.appendChild(btn);
+        this.curBtn = btn;
     }
 
-    _bindEventListeners() {
-        $("#addBtn").on("click", () => { // adds the logic for clicking.
-            if (Chord.type == "Single"){    // Does not add single chord to the progression
-                console.warn("Single note, cannot be added to progression")
-            } else {
-                this.addChord();
-            }
-        });
-
-        $("#playBtn").on("click", () => {  // Play button logic
-            console.log("Play progression");
-            this.playChord();
-
-        });
-
-        $("#resetBtn").on("click", () => {  // Play button logic
-            console.log("Play progression");
-            this.resetChordProgression();
-        });
-    }
-
-    _renderView(container: HTMLElement) {
-        // Created chordListHolder out of the class so I can edit it everywhere.
-        chordListHolder.classList.add("chord-list-holder");
-
-        container.append(chordListHolder);
-    }
-
-    /**
-     * Adds chord to chord list
-     */
-    addChord() {
-        if (this.chordsList.length >= 6) {
-            console.warn(`chordList len (${this.chordsList.length}) exceeds the max len. Cannot add new chord`);
-            alert("Progression List can not have length longer than six.")
+    _activate(chordNameBtn: HTMLElement){
+        if (this.curBtn !== null) {
+            this.curBtn.parentElement!.classList.remove("active"); // Deactivate the current button
         }
-        else {
-            if (Chord.notes === null){
-                console.warn("Current notes not set. Can't add the chord to the progression");
-                alert("Current notes not set. Can't add the chord to the progression");
-            } else {
-                const notes = [...Chord.notes]; // copy the notes
-                this.chordsList.push(notes);    // Add the notes in the chord to the chordList
-                console.log(`Add ${notes} to chordList`);
-                const chordEle = this.getRepresentation(Chord.rootNoteName!, Chord.type, Chord.inversionNum, Chord.notes);
-            chordListHolder.appendChild(chordEle); // attaches the div element to the chords holder.
-            }
-        }
-    }
-
-    /**
-     * Reset the chord progression
-     */
-    resetChordProgression() {
-        this.chordsList = [];   // Clear the chord list
-        chordListHolder.innerHTML = "";  // Clear the note elements
-        console.log("Chord list is reset")
-    }
-
-
-    /**
-     * Plays through the chords using sequencers.
-     */
-    playChord() {
-        this.onPlayChord(this.chordsList);
-    }
-
-    getRepresentation(rootNote: string, type: string, inversion: number, notes: Array<string>) { // Returns a div element that is put into the progression holder
-        const chordRepresentation = document.createElement("div");
-        chordRepresentation.classList.add("col-2", "chord-column");
-        chordRepresentation.innerText = rootNote + " " + chordSymbols[type];
-        chordRepresentation.dataset.type = type; // Sets info attached to div. These aren't  used at all.
-        chordRepresentation.dataset.rootKeyNum = rootNote;
-        chordRepresentation.dataset.inversion = inversion.toString();
-        chordRepresentation.dataset.notes = notes.toString();
-        chordRepresentation.id = "chord-representation";
-        chordRepresentation.addEventListener("pointerdown", () =>{ // adds the playable functionality whenever its clicked
-            this.chordNameClicked(rootNote, type, inversion, notes); // Re add this once we get this fixed!!!
-        });
-        return chordRepresentation;
-
+        this.curIndex = parseInt(chordNameBtn.dataset.index!);
+        this.curChord = this.chordsList[this.curIndex];
+        chordNameBtn.parentElement!.classList.add("active");
+        this.curBtn = chordNameBtn;
+        console.log(`curIndex: ${this.curIndex}, curChord: ${this.curChord}`);
     }
 }
-
-const chordListHolder = document.createElement("div"); // Creates global variables to be accessed throughout.
-chordListHolder.classList.add("row");
-
-export {ChordProgression}
