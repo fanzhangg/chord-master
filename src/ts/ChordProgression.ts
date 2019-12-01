@@ -41,10 +41,8 @@ class ChordProgression {
         this.curChord = null;
         this.curBtn = null;
 
-        // callback events
-        this.chordNameClicked = function(){};
-
-        this.onPlayChord = function(){};
+        this._appendChord(new Chord(48), null);
+        this._appendAddBtn();
     }
 
     _appendAddBtn(){
