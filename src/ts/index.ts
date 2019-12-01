@@ -12,6 +12,7 @@ import {PianoSound} from "./sound/PianoSound";
 import { Loader } from "./interface/Loader";
 import {ChordTypeBtn} from "./setting-toolbar/ChordTypeBtn";
 import {InversionBtn} from "./setting-toolbar/InversionBtn";
+import {Chord} from "./music-theory/Chord";
 
 
 new Loader();
@@ -52,7 +53,9 @@ piano.onKeyUp = function(chord: Array<string>){
 
 chordTypeBtn.onSetChordType = function (type: string, family: string) {
     console.log(`Set the type to ${type}`);
-  piano.setChordType(type, family);
+    const chordLen = Chord.getLen(family, type);
+    inversionBtn.reset(chordLen);
+    piano.setChordType(family, type);
 };
 
 chordProgression.onPlayChord = function(chords: Array<Array<string>>){
