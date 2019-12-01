@@ -3,7 +3,7 @@ import { Chord } from "../music-theory/Chord";
 
 class Piano{
     private _keyboardInterface: Keyboard;
-    public onKeyDown: any;
+    public onKeyDown: Function;
     public onKeyUp: any;
     public currChord: Chord;
 
@@ -21,6 +21,8 @@ class Piano{
         // Callback events
         this.onKeyDown = function(){};
         this.onKeyUp = function(){};
+
+        this._setChord(48);
     };
 
     /**
@@ -44,17 +46,30 @@ class Piano{
     }
 
     /**
+     * Key the root note, set the inversion to 0, and update the chord type and family
+     * @param type
+     * @param family
+     */
+    public setChordType(type: string, family: string){
+        this.currChord.type = type;
+        this.currChord.family = family;
+        this.currChord.inversionNum = 0;
+        this._setChord(this.currChord.rootKeyNum, false);
+    }
+
+    /**
      * Get the chord based on the root note, highlight the keys on the keyboard. and play the sound
      * @param keyNum
+     * @param clicked
      * @private
      */
-    _setChord(keyNum: number){
+    _setChord(keyNum: number, clicked=true){
         this.currChord.rootKeyNum = keyNum;  // Update root note
         const notes = this.currChord.getNotes();
 
         console.log(`Set the chord to ${notes}`);
         this._keyboardInterface.highlight(notes);
-        this.onKeyDown(notes);
+        this.onKeyDown(notes, clicked);
     }
 
     /**
