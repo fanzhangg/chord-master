@@ -48,7 +48,7 @@ class Chord {
      * Get an array of string of the note in the chord
      */
     public getNotes(): Array<string> {
-        const halfSteps = Chord.chordFamilies[this.family][this.type];
+        const halfSteps = Chord.chordFamilies[this.family][this.type].slice(0);
         if (halfSteps == null){
             throw new Error("Cannot get the half steps");
         }
