@@ -1,30 +1,6 @@
 import {Chord} from "./music-theory/Chord";
 import $ from "jquery";
 
-const chordSymbols: any = { // Holds the symbols for each chord name.
-    //Triads
-    "Single Note": "",
-    "Major Triad": "",
-    "Minor Triad": "m",
-    "Augmented Triad": "aug",
-    "Diminished Triad": "dim",
-    //Sevenths
-    "Dominant Seventh": "7",
-    "Major Seventh": "maj7",
-    "Minor Seventh": "min7",
-    "Diminished Seventh": "dim7",
-    "Half Diminished Seventh": "min7♭5",
-    "Augmented Seventh": "aug7",
-    "Augmented Major Seventh": "augM7",
-    //Extended
-    "Dominant Ninth": "9",
-    "Dominant Thirtheenth": "13",
-    //Altered
-    "Seventh Minor Ninth": "7♭9",
-    "Seventh Sharp Ninth": "7#9",
-    "Seventh Augmented Eleventh": "7aug11"
-};
-
 /**
  * Holds information for sequence of chords.
  */
@@ -82,8 +58,7 @@ class ChordProgression {
         btn.dataset.index = this.curIndex.toString();
 
         const text = document.createElement("div");
-        //TODO: change to the actual chord name
-        text.innerText = "C";
+        text.innerText = chord.getChordName();
         btn.appendChild(text);
         btnContainer.appendChild(btn);
 
