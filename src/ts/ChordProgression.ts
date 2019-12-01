@@ -9,6 +9,7 @@ export class ChordProgression {
     curChord: null | Chord;
     curBtn: null | HTMLElement;
     chordNameBtns: Array<HTMLElement>;
+    onActivate: Function;
 
     constructor() {
         this.chordsList = [];   // An array to store each chord in the progression as an array of notes
@@ -17,8 +18,13 @@ export class ChordProgression {
         this.curBtn = null;
         this.chordNameBtns = [];
 
+        // Callback events
+        this.onActivate = function () {};
+
         this._appendChord(new Chord(48), null);
         this._appendAddBtn();
+
+
     }
 
     /**
@@ -116,6 +122,8 @@ export class ChordProgression {
         container.appendChild(btn);
         this.chordNameBtns.push(btn);
         this.curBtn = btn;
+
+        this.onActivate(this.curChord);
     }
 
     /**
@@ -132,6 +140,8 @@ export class ChordProgression {
         chordNameBtn.parentElement!.classList.add("active");
         this.curBtn = chordNameBtn;
         console.log(`Activate chord ${this.curChord} at ${this.curIndex}`);
+
+        this.onActivate(this.curChord);
     }
 
     /**

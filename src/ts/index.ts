@@ -13,6 +13,7 @@ import { Loader } from "./interface/Loader";
 import {ChordTypeBtn} from "./setting-toolbar/ChordTypeBtn";
 import {InversionBtn} from "./setting-toolbar/InversionBtn";
 import {Chord} from "./music-theory/Chord";
+import {ChordProgression} from "./ChordProgression";
 
 
 new Loader();
@@ -23,17 +24,10 @@ const inversionBtn = new InversionBtn();
 const pianoContainer = document.getElementById("pianoContainer")!;
 const piano = new Piano(pianoContainer);
 
-// Progression
-const progresssionContainer = document.createElement("div");
-progresssionContainer.id = "progressionContainer";
-document.body.appendChild(progresssionContainer);
-
-new ProgressionButtons(progresssionContainer);
-
-const chordProgression = new ChordProgression(progresssionContainer);
-
 const sound = new PianoSound(0, 100);
 sound.load();
+
+const progression = new ChordProgression();
 
 
 piano.onKeyDown = function(chord: Array<string>, clicked: boolean){
@@ -57,6 +51,11 @@ chordTypeBtn.onSetChordType = function (type: string, family: string) {
 
 inversionBtn.onSetInversion = function (inversionNum: number) {
     piano.setInversion(inversionNum);
+};
+
+progression.onActivate = function (chord: Chord) {
+  piano.setChord(chord.rootKeyNum, false);
+  console.log(`Set the chord to ${chord}`);
 };
 
 
