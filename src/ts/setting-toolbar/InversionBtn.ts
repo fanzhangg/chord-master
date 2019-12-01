@@ -35,6 +35,7 @@ export class InversionBtn{
         for (let i = 0; i <= maxInversion; i++){
             const item = document.createElement("a");
             item.classList.add("dropdown-item");
+            item.href = "#";
             item.dataset.inversion = i.toString();
             item.innerText = InversionBtn.inversionTypes[i];
             item.addEventListener("pointerup", e=> {
