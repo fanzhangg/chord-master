@@ -23,8 +23,18 @@ export class ChordProgression {
 
         this._appendChord(new Chord(48), null);
         this._appendAddBtn();
+        this._addEventListeners();
+    }
 
-
+    /**
+     * Add event listeners to the elements
+     * @private
+     */
+    private _addEventListeners(){
+        const playBtn = document.getElementById("resetBtn")!;
+        playBtn.addEventListener("pointerup", ()=> {
+            this._reset();
+        })
     }
 
     /**
@@ -216,5 +226,24 @@ export class ChordProgression {
         this.chordsList[this.curIndex] = this.curChord;
 
         this._setChordName();
+    }
+
+    /**
+     * Reset the chord progression, and initialize with a C chord
+     * @private
+     */
+    private _reset(){
+        // Clear data
+        this.chordsList = [];
+        this.curChord = null;
+        this.curIndex = -1;
+        this.curBtn = null;
+        this.chordNameBtns = [];
+
+        // Clear html
+        const container = document.getElementById("progressionChordsContainer")!;
+        container.innerHTML = ""; // Clear the progression
+        this._appendChord(new Chord(48), null);
+        this._appendAddBtn();
     }
 }
