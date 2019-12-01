@@ -1,8 +1,6 @@
 import {Note} from "./Note"
 
-
-
-class Chord {
+export class Chord {
     //TODO: the symbol dictionary is not complete
     static readonly chordTypeSymbols: any = {
         //Triads
@@ -123,5 +121,3 @@ class Chord {
         return `${chroma}${typeSymbol}`;
     }
 }
-
-export {Chord}
