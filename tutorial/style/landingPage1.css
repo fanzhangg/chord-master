@@ -1,0 +1,82 @@
+a,
+a:focus,
+a:hover{
+  color: #BCD4E0;
+}
+
+h1{
+  text-align: center;
+  color: #BCD4E0;
+  font-size: 17vh;
+  margin-top: 25px;
+  margin-bottom: 50px;
+
+}
+
+
+body{
+  /*background-color: #697998;*/
+  background-color: #545371;
+
+}
+
+
+.blurb{
+  width: 55%;
+  text-align: center;
+  font-size: 2.3vh;
+
+
+  margin: 0 auto;
+}
+
+p1{
+  color: #E4EFF1;
+}
+
+.tipsinfo{
+  text-align: center;
+  width: 93vh;
+  padding: 2%;
+  font-size: 2.3vh;
+  /*background-color: white;*/
+  /*border-radius: 30px 0px 0px 30px;*/
+
+}
+
+p3{
+  color: #E4EFF1;
+}
+
+.pianoinfo{
+  text-align: center;
+  width: 93vh;
+  padding: 2%;
+  font-size: 2.3vh;
+  /*background-color: white;*/
+  /*border-radius: 0px 30px 30px 0px;*/
+}
+
+p4{
+  color: #E4EFF1;
+}
+
+.wrap{
+  display: flex;
+  justify-content: center;
+}
+
+
+#page-container{
+  position: relative;
+  min-height: 100vh;
+}
+
+.footer{
+  color: #E4EFF1;
+  font-size: 1.5vh;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  text-align: center;
+}

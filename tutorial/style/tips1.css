@@ -15,7 +15,29 @@ body{
 
 }
 
+.card-header{
+  background-color: #BCD4E0;
+}
+
+.wetwet{
+  display: flex;
+  justify-content: center;
+}
+
+.btn-link{
+  color: black;
+}
+
+#collapseTwo{
+  text-align: center;
+}
+
+
+.accordion{
+  width: 150vh;
+}
 .explanation{
+
 
   text-align: center;
   font-size: 2.5vh;
@@ -24,17 +46,10 @@ body{
 }
 
 
-.carousel-inner{
-  text-align: center;
-  padding-bottom: 75px;
-  width: 100vh;
-  margin: 0 auto;
+
+img{
+  margin-bottom: 10px;
 }
-
-.carousel-item{
-
-}
-
 p{
   color: #E4EFF1;
 }
