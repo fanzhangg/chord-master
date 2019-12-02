@@ -35,9 +35,8 @@ $bg-danger: #DC3445;
     border: 1px solid $border-secondary;
     border-radius: 50%;
     color: black;
-    width: 100px;
-    min-width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     text-align: center;
     text-decoration: none;
     // display: inline-block;
@@ -55,7 +54,7 @@ $bg-danger: #DC3445;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 40px;
+      font-size: 33px;
     }
 
     i {
