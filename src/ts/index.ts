@@ -76,7 +76,7 @@ progression.onPlay = function (chords: Array<Array<string>>) {
         events.push(event);
     }
 
-    const part = new Part(function (time, value) {
+    new Part(function (time, value) {
         //the value is an object which contains both the note and the velocity
         // @ts-ignore
         sound.keyDownUp(value.chord, "2n", time);
@@ -85,10 +85,6 @@ progression.onPlay = function (chords: Array<Array<string>>) {
 
     //@ts-ignore
     Transport.toggle();
-    // if(part.state == "stopped"){
-    //     const playBtn = document.getElementById("playBtn")!;
-    //     playBtn.innerHTML = "<i class=\"fas fa-play\"></i>";
-    // }
 };
 
 
