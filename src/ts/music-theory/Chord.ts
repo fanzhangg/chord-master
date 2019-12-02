@@ -10,20 +10,20 @@ export class Chord {
         "Augmented Triad": "aug",
         "Diminished Triad": "dim",
         //Sevenths
-        "Dominant Seventh": "7",
-        "Major Seventh": "maj7",
-        "Minor Seventh": "min7",
-        "Diminished Seventh": "dim7",
-        "Half Diminished Seventh": "min7♭5",
-        "Augmented Seventh": "aug7",
-        "Augmented Major Seventh": "augM7",
+        "Dominant Seventh": "<sup>7</sup>",
+        "Major Seventh": "maj<sup>7</sup>",
+        "Minor Seventh": "min<sup>7</sup>",
+        "Diminished Seventh": "dim<sup>7</sup>",
+        "Half Diminished Seventh": "min<sup>7♭5</sup>",
+        "Augmented Seventh": "aug<sup>7</sup>",
+        "Augmented Major Seventh": "aug<sup>M7</sup>",
         //Extended
-        "Dominant Ninth": "9",
-        "Dominant Thirtheenth": "13",
+        "Dominant Ninth": "<sup>9</sup>",
+        "Dominant Thirteenth": "<sup>13</sup>",
         //Altered
-        "Seventh Minor Ninth": "7♭9",
-        "Seventh Sharp Ninth": "7#9",
-        "Seventh Augmented Eleventh": "7aug11"
+        "Seventh Minor Ninth": "<sup>7♭9</sup>",
+        "Seventh Sharp Ninth": "<sup>7#9</sup>",
+        "Seventh Augmented Eleventh": "<sup>7</sup>aug<sup>11</sup>"
     };
 
     static readonly chordFamilies: any = {
