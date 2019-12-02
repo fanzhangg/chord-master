@@ -131,7 +131,7 @@ export class ChordProgression {
 
         const text = document.createElement("div");
         this.curChord = new Chord();    // Initialize the current chord to a C4 major chord
-        text.innerText = this.curChord.getChordName();  // Set the text to the name of the current chord
+        text.innerHTML = this.curChord.getChordName();  // Set the text to the name of the current chord
         btn.appendChild(text);
 
         btn.addEventListener("pointerup", () => {
@@ -210,7 +210,7 @@ export class ChordProgression {
         if (this.curChord == null) {
             throw new Error("curChord is null");
         }
-        text.innerText = this.curChord.getChordName();  // Set the text to the name of the current chord
+        text.innerHTML = this.curChord.getChordName();  // Set the text to the name of the current chord
         this.curBtn!.appendChild(text);
     }
 
