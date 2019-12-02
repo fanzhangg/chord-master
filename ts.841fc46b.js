@@ -19035,6 +19035,16 @@ function () {
     var rootKeyNum = this.rootKeyNum;
     var inversedKeyNum = rootKeyNum + halfSteps[this.inversionNum];
     var inversedNote = Note_1.Note.toChroma(inversedKeyNum);
+
+    if (inversedNote.indexOf("#") > -1) {
+      inversedNote = inversedNote.replace("#", "♯");
+    }
+
+    if (inversedNote == undefined) {
+      console.warn("Inversion note is undefined");
+      return "";
+    }
+
     return "/" + inversedNote;
   }; //TODO: the symbol dictionary is not complete
 
@@ -19047,20 +19057,20 @@ function () {
     "Augmented Triad": "aug",
     "Diminished Triad": "dim",
     //Sevenths
-    "Dominant Seventh": "7",
-    "Major Seventh": "maj7",
-    "Minor Seventh": "min7",
-    "Diminished Seventh": "dim7",
-    "Half Diminished Seventh": "min7♭5",
-    "Augmented Seventh": "aug7",
-    "Augmented Major Seventh": "augM7",
+    "Dominant Seventh": "<sup>7</sup>",
+    "Major Seventh": "maj<sup>7</sup>",
+    "Minor Seventh": "min<sup>7</sup>",
+    "Diminished Seventh": "dim<sup>7</sup>",
+    "Half Diminished Seventh": "min<sup>7♭5</sup>",
+    "Augmented Seventh": "aug<sup>7</sup>",
+    "Augmented Major Seventh": "aug<sup>M7</sup>",
     //Extended
-    "Dominant Ninth": "9",
-    "Dominant Thirtheenth": "13",
+    "Dominant Ninth": "<sup>9</sup>",
+    "Dominant Thirteenth": "<sup>13</sup>",
     //Altered
-    "Seventh Minor Ninth": "7♭9",
-    "Seventh Sharp Ninth": "7#9",
-    "Seventh Augmented Eleventh": "7aug11"
+    "Seventh Minor Ninth": "<sup>7♭9</sup>",
+    "Seventh Sharp Ninth": "<sup>7♯9</sup>",
+    "Seventh Augmented Eleventh": "<sup>7</sup>aug<sup>11</sup>"
   };
   Chord.chordFamilies = {
     "Triads": {
@@ -51196,7 +51206,6 @@ function () {
     for (var i = 0; i <= maxInversion; i++) {
       var item = document.createElement("a");
       item.classList.add("dropdown-item");
-      item.href = "#";
       item.dataset.inversion = i.toString();
       item.innerText = InversionBtn.inversionTypes[i];
       item.addEventListener("pointerup", function (e) {
@@ -51327,7 +51336,7 @@ function () {
     var btnContainer = document.createElement("div");
     btnContainer.classList.add("btn-chord");
     var btn = document.createElement("div");
-    btn.classList.add("button-chord-name", "add", "shadow");
+    btn.classList.add("button-chord-name", "add", "shadow-sm");
     var icon = document.createElement("i");
     icon.classList.add("material-icons");
     icon.innerText = "add";
@@ -51401,11 +51410,11 @@ function () {
     var _this = this;
 
     var btn = document.createElement("div");
-    btn.classList.add("button-chord-name", "shadow");
+    btn.classList.add("button-chord-name", "shadow-sm");
     var text = document.createElement("div");
     this.curChord = new Chord_1.Chord(); // Initialize the current chord to a C4 major chord
 
-    text.innerText = this.curChord.getChordName(); // Set the text to the name of the current chord
+    text.innerHTML = this.curChord.getChordName(); // Set the text to the name of the current chord
 
     btn.appendChild(text);
     btn.addEventListener("pointerup", function () {
@@ -51499,7 +51508,7 @@ function () {
       throw new Error("curChord is null");
     }
 
-    text.innerText = this.curChord.getChordName(); // Set the text to the name of the current chord
+    text.innerHTML = this.curChord.getChordName(); // Set the text to the name of the current chord
 
     this.curBtn.appendChild(text);
   };
@@ -51715,7 +51724,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62743" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50501" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

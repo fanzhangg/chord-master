@@ -182,9 +182,8 @@
     border: 1px solid #F7F7F7;
     border-radius: 50%;
     color: black;
-    width: 100px;
-    min-width: 100px;
-    height: 100px;
+    width: 130px;
+    height: 130px;
     text-align: center;
     text-decoration: none;
     font-size: 40px;
@@ -198,7 +197,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 40px; }
+      font-size: 33px; }
     .btn-chord .button-chord-name i {
       margin: 0;
       position: absolute;
@@ -229,6 +228,21 @@
 
 .active .btn-chord-delete {
   display: block; }
+
+.dropdown-item {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */ }
 
 /* set a max-width for horizontal fluid layout and make it centered */
 .container-fluid {
