@@ -1,0 +1,64 @@
+
+
+
+h1{
+  text-align: center;
+  font-size: 60px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+body{
+  background-color:#FFFFFF;
+
+}
+
+.card-header{
+  /*background-color: #BCD4E0;*/
+}
+
+.wetwet{
+  display: flex;
+  justify-content: center;
+}
+
+.btn-link{
+  color: black;
+}
+
+#collapseTwo{
+  text-align: center;
+}
+
+
+.accordion{
+  width: 150vh;
+}
+.explanation{
+
+
+  text-align: center;
+  font-size: 2.5vh;
+  margin-bottom: 50px;
+  color: #E4EFF1;
+}
+
+
+
+img{
+  margin-bottom: 10px;
+}
+p{
+  color: #E4EFF1;
+}
+
+
+.tip1{
+  color: #E4EFF1;
+  text-align: center;
+
+}
+
+
+
+/*# sourceMappingURL=/tips.01fa2b51.css.map */
