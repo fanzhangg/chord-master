@@ -253,5 +253,10 @@
 body {
   background-color: #ebecef; }
 
+.no-scroll {
+  margin: 0;
+  height: 100%;
+  overflow: hidden; }
+
 
 /*# sourceMappingURL=/style.e0c02e61.css.map */
