@@ -9,7 +9,7 @@ import "jquery"
 
 import {Piano} from "./keyboard/Piano";
 import {PianoSound} from "./sound/PianoSound";
-import { Loader } from "./interface/Loader";
+import {Loader} from "./interface/Loader";
 import {ChordTypeBtn} from "./setting-toolbar/ChordTypeBtn";
 import {InversionBtn} from "./setting-toolbar/InversionBtn";
 import {Chord} from "./music-theory/Chord";
@@ -31,18 +31,18 @@ sound.load();
 const progression = new ChordProgression();
 
 
-piano.onKeyDown = function(chord: Chord){
+piano.onKeyDown = function (chord: Chord) {
     progression.setChord(chord);
 
     const notes = chord.getNotes();
     sound.keyDown(notes);
 };
 
-piano.onKeyUp = function(chord: Array<string>){
+piano.onKeyUp = function (chord: Array<string>) {
     sound.keyUp(chord);
 };
 
-piano.onSetChord = function(chord: Chord){
+piano.onSetChord = function (chord: Chord) {
     const notes = chord.getNotes();
     sound.keyDownUp(notes);
 };
@@ -62,29 +62,35 @@ inversionBtn.onSetInversion = function (inversionNum: number) {
 };
 
 progression.onActivate = function (chord: Chord) {
-  piano.setChord(chord);
-  chordTypeBtn.setTypeText(chord.type);
-  inversionBtn.setInversionText(chord);
-  console.log(`Set the chord to ${chord}`);
+    piano.setChord(chord);
+    chordTypeBtn.setTypeText(chord.type);
+    inversionBtn.setInversionText(chord);
+    console.log(`Set the chord to ${chord}`);
 };
 
 
-progression.onPlay = function(chords: Array<Array<string>>){
-	let events = [];
-	for (let i = 0; i < chords.length; i++){
-		const event = {"time": i, "chord": chords[i]};
-		events.push(event);
-	}
+progression.onPlay = function (chords: Array<Array<string>>) {
+    let events = [];
+    for (let i = 0; i < chords.length; i++) {
+        const event = {"time": i, "chord": chords[i]};
+        events.push(event);
+    }
 
-	new Part(function(time, value){
-		//the value is an object which contains both the note and the velocity
-		// @ts-ignore
+    const part = new Part(function (time, value) {
+        //the value is an object which contains both the note and the velocity
+        // @ts-ignore
         sound.keyDownUp(value.chord, "2n", time);
-		//@ts-ignore
-	}, events).start(0);
-	//@ts-ignore
-	Transport.toggle();
+        //@ts-ignore
+    }, events).start(0);
+
+    //@ts-ignore
+    Transport.toggle();
+    // if(part.state == "stopped"){
+    //     const playBtn = document.getElementById("playBtn")!;
+    //     playBtn.innerHTML = "<i class=\"fas fa-play\"></i>";
+    // }
 };
+
 
 
 

@@ -2,7 +2,7 @@ import {Note} from "../music-theory/Note";
 
 const offsets = [0, 0.5, 1, 1.5, 2, 3, 3.5, 4, 4.5, 5, 5.5, 6];
 
-class Keyboard{
+class Keyboard {
     _container: HTMLElement;
     _keys: Array<HTMLElement>;
     _prevKeys: Array<HTMLElement>;
@@ -10,7 +10,7 @@ class Keyboard{
     onKeyDown: any;
     onKeyUp: any;
 
-    constructor(container: Element){
+    constructor(container: Element) {
         this._container = document.createElement('div');
         this._container.id = 'keyboard';
         container.setAttribute('touch-action', 'none');
@@ -22,8 +22,10 @@ class Keyboard{
         this._chords = [];
 
         // Callback events
-        this.onKeyDown = function(){};
-        this.onKeyUp = function(){};
+        this.onKeyDown = function () {
+        };
+        this.onKeyUp = function () {
+        };
     }
 
     /**
@@ -31,14 +33,14 @@ class Keyboard{
      * @param lowestKeyNum
      * @param octaves
      */
-    resize(lowestKeyNum=0, octaves: number){
+    resize(lowestKeyNum = 0, octaves: number) {
         this._container.innerHTML = ''; // Clear the previous ones
         const keyWidth = (1 / 7) / octaves;
-        for (let keyNum = lowestKeyNum; keyNum < lowestKeyNum + octaves * 12; keyNum++){
+        for (let keyNum = lowestKeyNum; keyNum < lowestKeyNum + octaves * 12; keyNum++) {
             let key = document.createElement('div');    // Add a div for a key
             key.classList.add('key');
             let isSharp = ([1, 3, 6, 8, 10].indexOf(keyNum % 12) !== -1);    // A key is sharp if the note it represents is a sharp note
-            if (isSharp){
+            if (isSharp) {
                 key.classList.add('black');
             } else {
                 key.classList.add('white');
@@ -47,7 +49,7 @@ class Keyboard{
             // Add the note on the key if it is C
             const noteName = Note.toNoteName(keyNum);
             const isC = keyNum % 12 === 0;
-            if (isC){  // Starts with C, not C#
+            if (isC) {  // Starts with C, not C#
                 const noteP = document.createElement("p");
                 noteP.classList.add('note-name');
                 noteP.dataset.noteName = noteName;
@@ -58,12 +60,12 @@ class Keyboard{
 
             // Calculate the position of the div
             let lowestOctave = Math.floor(lowestKeyNum / 12);
-            let lowestOffset = offsets[lowestKeyNum % 12]  + lowestOctave * 7;
+            let lowestOffset = offsets[lowestKeyNum % 12] + lowestOctave * 7;
 
             let noteOctave = Math.floor(keyNum / 12);
-            let offset = offsets[keyNum % 12]  + noteOctave * 7 - lowestOffset;
+            let offset = offsets[keyNum % 12] + noteOctave * 7 - lowestOffset;
 
-            if (Number.isInteger(offset) === true){  // Is white key
+            if (Number.isInteger(offset) === true) {  // Is white key
                 key.style.width = `${keyWidth * 100}%`;
                 key.style.left = `${offset * keyWidth * 100}%`;
             } else {    // is black key
@@ -111,8 +113,8 @@ class Keyboard{
      * Unhilight keys
      * @param keys an array of key element
      */
-    private _unhighlight(keys: Array<HTMLElement>){
-        keys.forEach(function (key){
+    private _unhighlight(keys: Array<HTMLElement>) {
+        keys.forEach(function (key) {
             key.classList.remove("highlight");
         })
     }
@@ -123,22 +125,22 @@ class Keyboard{
      * @public
      * @param chord
      */
-    public highlight(chord: Array<string>){
+    public highlight(chord: Array<string>) {
         // Change the previous keys' color back to the original color
         this._unhighlight(this._prevKeys);  // Unhilight previous keys
 
         this._prevKeys = [];    // Reset the prev keys
 
-        if (!chord){ // Chord does not exist
+        if (!chord) { // Chord does not exist
             console.warn("Notes not specified. Cannot play the chord");
             return false;
         }
 
-        for (const note of chord as Array<string>){ // Loop through the notes in the chord
+        for (const note of chord as Array<string>) { // Loop through the notes in the chord
             const selectorNote = note.replace("#", "\\#");  // # is encoded as \\#
             const key = document.querySelector(`.key[data-note-name=${selectorNote}]`);
             // Get the key of the note. Return null if there are no matches
-            if (key !== null){  // Only highlight the key if it is in the boundary
+            if (key !== null) {  // Only highlight the key if it is in the boundary
                 key.classList.add("highlight"); // Highlight the key
                 this._prevKeys.push(key as HTMLElement);    // Save the keys as prevKeys
             }
@@ -148,7 +150,7 @@ class Keyboard{
         return true;
     }
 
-    public keyUp(){
+    public keyUp() {
         return
     }
 }

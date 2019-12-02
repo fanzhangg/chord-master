@@ -60,7 +60,7 @@ export class Chord {
     public inversionNum: number;
     public rootKeyNum: number;
 
-    constructor(rootKeyNum=48, type="Major Triad", family="Triads", inversionNum=0){
+    constructor(rootKeyNum = 48, type = "Major Triad", family = "Triads", inversionNum = 0) {
         this.type = type;
         this.rootKeyNum = rootKeyNum;   // Root is C4 initially
         this.family = family;
@@ -72,15 +72,15 @@ export class Chord {
      */
     public getNotes(): Array<string> {
         const halfSteps = Chord.chordFamilies[this.family][this.type].slice(0);
-        if (halfSteps == null){
+        if (halfSteps == null) {
             throw new Error("Cannot get the half steps");
         }
-        for (let i = 0; i < this.inversionNum; i++){    // Inverse half steps
+        for (let i = 0; i < this.inversionNum; i++) {    // Inverse half steps
             halfSteps[i] += 12;
         }
 
         let notes = [];
-        for (let halfStep of halfSteps){
+        for (let halfStep of halfSteps) {
             const curKeyNum = this.rootKeyNum + halfStep;
             const curNote = Note.toNoteName(curKeyNum);
             notes.push(curNote);
@@ -96,7 +96,7 @@ export class Chord {
      */
     static getLen(family: string, type: string) {
         const halfSteps = Chord.chordFamilies[family][type].slice(0);
-        if (halfSteps == []){
+        if (halfSteps == []) {
             throw new Error("Cannot get the half steps");
         } else {
             return halfSteps.length;
@@ -106,7 +106,7 @@ export class Chord {
     /**
      * Overwrite toString method
      */
-    public toString(){
+    public toString() {
         const notes = this.getNotes();
         return notes.toString();
     }
@@ -121,16 +121,16 @@ export class Chord {
         return `${chroma}${typeSymbol}${inversionSymbol}`;
     }
 
-    private _getHalfSteps(): Array<number>{
+    private _getHalfSteps(): Array<number> {
         const halfSteps = Chord.chordFamilies[this.family][this.type].slice(0);
-        if (halfSteps == null){
+        if (halfSteps == null) {
             throw new Error("Cannot get the half steps");
         }
         return halfSteps
     }
 
-    private _getInversionSymbol(): string{
-        if (this.inversionNum == 0){
+    private _getInversionSymbol(): string {
+        if (this.inversionNum == 0) {
             return "";
         }
         const halfSteps = this._getHalfSteps();

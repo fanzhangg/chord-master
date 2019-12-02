@@ -2,7 +2,7 @@ import {note} from "@tonaljs/tonal";
 
 
 export class Note {
-    static chromas = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+    static readonly chromas = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
 
     static toKeyNum(noteName: string): number {
         const octave = note(noteName).oct as number;
@@ -23,7 +23,7 @@ export class Note {
      * Get the pitch of the key number
      * @param keyNum
      */
-    static toChroma(keyNum: number): string{
+    static toChroma(keyNum: number): string {
         if (keyNum < 0) {
             throw new Error("The key number is less than 0");
         }

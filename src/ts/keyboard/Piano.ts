@@ -1,14 +1,14 @@
 import {Keyboard} from "./Keyboard";
-import { Chord } from "../music-theory/Chord";
+import {Chord} from "../music-theory/Chord";
 
-class Piano{
+class Piano {
     private _keyboardInterface: Keyboard;
     public onKeyDown: Function;
     public onKeyUp: Function;
     public onSetChord: Function;
     public currChord: Chord;
 
-    constructor(container: Element){
+    constructor(container: Element) {
         this.currChord = new Chord();
 
         // The piano keyboard interface
@@ -20,9 +20,12 @@ class Piano{
         this._resize();
 
         // Callback events
-        this.onKeyDown = function(){};
-        this.onKeyUp = function(){};
-        this.onSetChord = function () {};
+        this.onKeyDown = function () {
+        };
+        this.onKeyUp = function () {
+        };
+        this.onSetChord = function () {
+        };
 
         this.setChord(new Chord());
     };
@@ -31,7 +34,7 @@ class Piano{
      * Resize the keyboard according to the window's width
      * @private
      */
-    _resize(){
+    _resize() {
         const keyWidth = 27;
         let octaves = Math.round((window.innerWidth / keyWidth) / 12);
         octaves = Math.max(octaves, 1); // Octave not less than 2
@@ -43,7 +46,7 @@ class Piano{
      * Set the chord after a key is down
      * @param keyNum
      */
-    public keyDown(keyNum: number){
+    public keyDown(keyNum: number) {
         this.setRootKeyNum(keyNum);
         this.onKeyDown(this.currChord);
     }
@@ -53,7 +56,7 @@ class Piano{
      * @param type
      * @param family
      */
-    public setChordType(family: string, type: string){
+    public setChordType(family: string, type: string) {
         this.currChord.type = type;
         this.currChord.family = family;
         this.currChord.inversionNum = 0;    // Reset inversion number to 0
@@ -64,7 +67,7 @@ class Piano{
      * Set the inversion of the chord, setChord the highlight and play the sound
      * @param inversionNum
      */
-    public setInversion(inversionNum: number){
+    public setInversion(inversionNum: number) {
         this.currChord.inversionNum = inversionNum; // Update inversion number
         this.setChord(this.currChord);
     }
@@ -74,7 +77,7 @@ class Piano{
      * @public
      * @param chord
      */
-    public setChord(chord: Chord){
+    public setChord(chord: Chord) {
         this.currChord = chord;  // Update current chord
         const notes = this.currChord.getNotes();
 
@@ -83,7 +86,7 @@ class Piano{
         this.onSetChord(chord);
     }
 
-    setRootKeyNum(keyNum: number){
+    setRootKeyNum(keyNum: number) {
         this.currChord.rootKeyNum = keyNum;
         const notes = this.currChord.getNotes();
         this._keyboardInterface.highlight(notes);
@@ -93,7 +96,7 @@ class Piano{
     /**
      * Release the sound
      */
-    keyUp(){
+    keyUp() {
         const chord = this.currChord.getNotes();
         this.onKeyUp(chord);
     }

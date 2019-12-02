@@ -11,7 +11,7 @@ export class PianoSound {
      * @param lowest: the lowest keyNum
      * @param highest: the highest keyNum
      */
-    constructor(lowest: number, highest: number){
+    constructor(lowest: number, highest: number) {
         this._lowest = lowest;
         this._highest = highest;
         // make the samples loaded a range of audios
@@ -22,7 +22,7 @@ export class PianoSound {
      * Load the piano audio
      * @return {Promise<[]>}
      */
-    load(){
+    load() {
         // return promise after resolving loading the sampler
         return Promise.all([this._piano.load()]);
     }
@@ -31,7 +31,7 @@ export class PianoSound {
      * Play a chord
      * @param notes Notes in the chord
      */
-    keyDown(notes: Array<string>){
+    keyDown(notes: Array<string>) {
         this._piano.keyDown(notes);
     }
 
@@ -40,7 +40,7 @@ export class PianoSound {
      * @param notes Notes in the chord
      * @param time The lag between releasing the key and stopping playing the chord
      */
-    keyUp(notes: Array<string>, time=Tone.now()){
+    keyUp(notes: Array<string>, time = Tone.now()) {
         time += .5;
         this._piano.keyUp(notes, time);
     }
@@ -51,7 +51,7 @@ export class PianoSound {
      * @param duration
      * @param time
      */
-    keyDownUp(notes: Array<string>, duration: string| number = "2n", time=Tone.now()){
+    keyDownUp(notes: Array<string>, duration: string | number = "2n", time = Tone.now()) {
         this._piano.keyDownUp(notes, duration, time);
     }
 }

@@ -3,7 +3,7 @@ import {Buffer} from "tone/tone";
 class Loader {
     loaded: boolean;
 
-    constructor(){
+    constructor() {
         // Add the loader to the screen
         const loader = document.createElement("div");
         loader.id = "loader";

@@ -20,8 +20,10 @@ export class ChordProgression {
         this.chordNameBtns = [];
 
         // Callback events
-        this.onActivate = function () {};
-        this.onPlay = function () {};
+        this.onActivate = function () {
+        };
+        this.onPlay = function () {
+        };
 
         this._appendChord(new Chord(48), null);
         this._appendAddBtn();
@@ -32,14 +34,15 @@ export class ChordProgression {
      * Add event listeners to the elements
      * @private
      */
-    private _addEventListeners(){
+    private _addEventListeners() {
         const resetBtn = document.getElementById("resetBtn")!;
-        resetBtn.addEventListener("pointerup", ()=> {
+        resetBtn.addEventListener("pointerup", () => {
             this._reset();
         });
 
         const playBtn = document.getElementById("playBtn")!;
-        playBtn.addEventListener("pointerup", ()=> {
+        playBtn.addEventListener("pointerup", () => {
+            playBtn.innerHTML = "<i class=\"fas fa-pause\"></i>";
             this._play();
         })
     }
@@ -111,7 +114,7 @@ export class ChordProgression {
         icon.classList.add("material-icons");
         icon.innerText = "clear";
         deleteBtn.appendChild(icon);
-        deleteBtn.addEventListener("pointerup", ()=>{
+        deleteBtn.addEventListener("pointerup", () => {
             this._delete(deleteBtn);
         });
         container.appendChild(deleteBtn);
@@ -131,7 +134,7 @@ export class ChordProgression {
         text.innerText = this.curChord.getChordName();  // Set the text to the name of the current chord
         btn.appendChild(text);
 
-        btn.addEventListener("pointerup", ()=>{
+        btn.addEventListener("pointerup", () => {
             this._activate(btn);
         });
         container.appendChild(btn);
@@ -146,7 +149,7 @@ export class ChordProgression {
      * @param chordNameBtn
      * @private
      */
-    private _activate(chordNameBtn: HTMLElement){
+    private _activate(chordNameBtn: HTMLElement) {
         if (this.curBtn !== null) {
             this.curBtn.parentElement!.classList.remove("active"); // Deactivate the current button
         }
@@ -164,25 +167,25 @@ export class ChordProgression {
      * @param deleteBtn
      * @private
      */
-    private _delete(deleteBtn: HTMLElement){
+    private _delete(deleteBtn: HTMLElement) {
         const chordNameBtn = deleteBtn.previousSibling as HTMLElement;
         const index = this.chordNameBtns.indexOf(chordNameBtn);
 
         this.chordsList.splice(index, 1); // Remove the chord at index
         this.chordNameBtns.splice(index, 1);
 
-        if (this.curIndex > index){ // Delete a button before current button
+        if (this.curIndex > index) { // Delete a button before current button
             this.curIndex -= 1; // Since an chord before has been removed, the current index decreased by 1
-        } else if (this.curIndex == 0 && this.chordsList.length >= 1){  // Delete an active button at index 0
+        } else if (this.curIndex == 0 && this.chordsList.length >= 1) {  // Delete an active button at index 0
             this.curIndex = 0;
             this.curChord = this.chordsList[0];
             const newChordNameBtn = this.chordNameBtns[0];
             this._activate(newChordNameBtn);    // Activate the new button at index 0
-        } else if (this.curIndex == index){ // Delete the last button
+        } else if (this.curIndex == index) { // Delete the last button
             this.curIndex -= 1; // Shift to previous item
             this.curChord = this.chordsList[this.curIndex]; // Update current chord
-            if (this.curIndex >= 0){    // Activate the previous node if it exists
-                const newChordNameBtn =  this.chordNameBtns[this.curIndex];
+            if (this.curIndex >= 0) {    // Activate the previous node if it exists
+                const newChordNameBtn = this.chordNameBtns[this.curIndex];
                 this._activate(newChordNameBtn);
             }
         }
@@ -194,25 +197,25 @@ export class ChordProgression {
      * Update the current chord, the chord list and the text of the current button
      * @param chord
      */
-    public setChord(chord: Chord){
+    public setChord(chord: Chord) {
         this.curChord = chord;
         this.chordsList[this.curIndex] = chord;
 
         this._setChordName()
     }
 
-    private _setChordName(){
+    private _setChordName() {
         this.curBtn!.innerHTML = "";    // Reset text
         const text = document.createElement("div");
-        if (this.curChord == null){
+        if (this.curChord == null) {
             throw new Error("curChord is null");
         }
         text.innerText = this.curChord.getChordName();  // Set the text to the name of the current chord
         this.curBtn!.appendChild(text);
     }
 
-    public setChordType(family: string, type: string){
-        if (this.curChord == null){
+    public setChordType(family: string, type: string) {
+        if (this.curChord == null) {
             throw new Error("curChord is null");
         }
         this.curChord.type = type;
@@ -222,11 +225,11 @@ export class ChordProgression {
         this._setChordName();
     }
 
-    public setInversion(inversion: number){
-        if (inversion < 0){
+    public setInversion(inversion: number) {
+        if (inversion < 0) {
             throw new Error("Invalid inversion, inversion < 0");
         }
-        if (this.curChord == null){
+        if (this.curChord == null) {
             throw new Error("curChord is null");
         }
         this.curChord.inversionNum = inversion;
@@ -239,7 +242,7 @@ export class ChordProgression {
      * Reset the chord progression, and initialize with a C chord
      * @private
      */
-    private _reset(){
+    private _reset() {
         // Clear data
         this.chordsList = [];
         this.curChord = null;
@@ -254,16 +257,16 @@ export class ChordProgression {
         this._appendAddBtn();
     }
 
-    private _getNotesList(){
+    private _getNotesList() {
         const notesList = [];
-        for (let chord of this.chordsList){
+        for (let chord of this.chordsList) {
             const notes = chord.getNotes();
             notesList.push(notes);
         }
         return notesList;
     }
 
-    private _play(){
+    private _play() {
         const notesList = this._getNotesList();
         this.onPlay(notesList);
     }
