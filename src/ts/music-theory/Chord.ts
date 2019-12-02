@@ -22,7 +22,7 @@ export class Chord {
         "Dominant Thirteenth": "<sup>13</sup>",
         //Altered
         "Seventh Minor Ninth": "<sup>7♭9</sup>",
-        "Seventh Sharp Ninth": "<sup>7#9</sup>",
+        "Seventh Sharp Ninth": "<sup>7♯9</sup>",
         "Seventh Augmented Eleventh": "<sup>7</sup>aug<sup>11</sup>"
     };
 
@@ -136,7 +136,14 @@ export class Chord {
         const halfSteps = this._getHalfSteps();
         const rootKeyNum = this.rootKeyNum;
         const inversedKeyNum = rootKeyNum + halfSteps[this.inversionNum];
-        const inversedNote = Note.toChroma(inversedKeyNum);
+        let inversedNote = Note.toChroma(inversedKeyNum);
+        if (inversedNote.indexOf("#") > -1){
+            inversedNote = inversedNote.replace("#", "♯");
+        }
+        if (inversedNote == undefined) {
+            console.warn("Inversion note is undefined");
+            return "";
+        }
         return `/${inversedNote}`;
     }
 }
