@@ -118,7 +118,7 @@ export class Chord {
         const typeSymbol = Chord.chordTypeSymbols[this.type];
         const chroma = Note.toChroma(this.rootKeyNum);
         const inversionSymbol = this._getInversionSymbol();
-        return `${chroma}${inversionSymbol}${typeSymbol}`;
+        return `${chroma}${typeSymbol}${inversionSymbol}`;
     }
 
     private _getHalfSteps(): Array<number>{
