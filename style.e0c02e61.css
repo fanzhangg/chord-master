@@ -161,6 +161,9 @@
   width: 100%;
   text-align: center; }
 
+#resetBtn:hover {
+  color: red; }
+
 .btn-chord {
   position: relative;
   margin-left: 10px;
@@ -230,19 +233,15 @@
   display: block; }
 
 .dropdown-item {
-  -webkit-touch-callout: none;
-  /* iOS Safari */
-  -webkit-user-select: none;
-  /* Safari */
-  -khtml-user-select: none;
-  /* Konqueror HTML */
   -moz-user-select: none;
-  /* Firefox */
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  /*
+    Introduced in Internet Explorer 10.
+    See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+  */
   -ms-user-select: none;
-  /* Internet Explorer/Edge */
-  user-select: none;
-  /* Non-prefixed version, currently
-                                  supported by Chrome and Opera */ }
+  user-select: none; }
 
 /* set a max-width for horizontal fluid layout and make it centered */
 .container-fluid {
