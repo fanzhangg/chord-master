@@ -17,10 +17,13 @@ $bg-danger: #DC3445;
   user-select: none;
 }
 
-#resetBtn:hover {
-  color: red;
-}
+#resetBtn {
+  color: #6c757d;
 
+  & :hover {
+    color: #DC3445;
+  }
+}
 
 .btn-chord {
   position: relative;
@@ -29,7 +32,7 @@ $bg-danger: #DC3445;
   margin-bottom: 4px;
   @include unselectable;
 
-  &:hover .btn-chord-delete{
+  &:hover .btn-chord-delete {
     display: block;
   }
 
@@ -79,7 +82,7 @@ $bg-danger: #DC3445;
     margin: 7px; // space between circles
     border-radius: 50%;
     text-align: center;
-    display: none;  // Hide the element
+    display: none; // Hide the element
 
     position: absolute;
     top: 0;
