@@ -59,7 +59,7 @@ export class ChordProgression {
         btnContainer.classList.add("btn-chord");
 
         const btn = document.createElement("div");
-        btn.classList.add("button-chord-name", "add", "shadow-sm");
+        btn.classList.add("button-chord-name", "add", "shadow");
 
         const icon = document.createElement("i");
         icon.classList.add("material-icons");
@@ -130,7 +130,7 @@ export class ChordProgression {
      */
     private _appendChordNameBtn(container: HTMLElement) {
         const btn = document.createElement("div");
-        btn.classList.add("button-chord-name", "shadow-sm");
+        btn.classList.add("button-chord-name", "shadow");
 
         const text = document.createElement("div");
         this.curChord = new Chord();    // Initialize the current chord to a C4 major chord
