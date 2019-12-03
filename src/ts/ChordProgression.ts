@@ -1,4 +1,5 @@
 import {Chord} from "./music-theory/Chord";
+import {Transport} from "tone";
 
 /**
  * Holds information for sequence of chords.
@@ -12,12 +13,16 @@ export class ChordProgression {
     onActivate: Function;
     onPlay: Function;
 
+    _playButton: HTMLElement;
+
     constructor() {
         this.chordsList = [];   // An array to store each chord in the progression as an array of notes
         this.curIndex = -1;
         this.curChord = null;
         this.curBtn = null;
         this.chordNameBtns = [];
+
+        this._playButton = document.getElementById("playBtn")!;
 
         // Callback events
         this.onActivate = function () {
@@ -40,9 +45,7 @@ export class ChordProgression {
             this._reset();
         });
 
-        const playBtn = document.getElementById("playBtn")!;
-        playBtn.addEventListener("pointerup", () => {
-            playBtn.innerHTML = "<i class=\"fas fa-pause\"></i>";
+        this._playButton.addEventListener("pointerup", () => {
             this._play();
         })
     }
@@ -267,6 +270,14 @@ export class ChordProgression {
     }
 
     private _play() {
+        // e.preventDefault();
+        if (Transport.state === 'started') {
+            this._playButton.innerHTML = "<i class=\"fas fa-play\"></i>";
+            Transport.stop();
+        } else {
+            this._playButton.innerHTML = "<i class=\"fas fa-pause\"></i>";
+            Transport.start('+0.1');
+        }
         const notesList = this._getNotesList();
         this.onPlay(notesList);
     }
