@@ -8,9 +8,14 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
-<body class="no-scroll">
-<div id="mask"></div>
-<div id="progressText">0%</div>
+<body class="no-scroll" style="background-color: #ebecef;">
+
+<!--loader-->
+<div id="mask" class="d-flex justify-content-center align-items-center">
+    <div class="progress" id="progress">
+        <div class="progress-bar" id="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+</div>
 
 <nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand text-muted">Chord Master</a>
