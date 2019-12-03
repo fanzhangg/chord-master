@@ -51352,7 +51352,7 @@ function () {
     var btnContainer = document.createElement("div");
     btnContainer.classList.add("btn-chord");
     var btn = document.createElement("div");
-    btn.classList.add("button-chord-name", "add", "shadow-sm");
+    btn.classList.add("button-chord-name", "add", "shadow");
     var icon = document.createElement("i");
     icon.classList.add("material-icons");
     icon.innerText = "add";
@@ -51426,7 +51426,7 @@ function () {
     var _this = this;
 
     var btn = document.createElement("div");
-    btn.classList.add("button-chord-name", "shadow-sm");
+    btn.classList.add("button-chord-name", "shadow");
     var text = document.createElement("div");
     this.curChord = new Chord_1.Chord(); // Initialize the current chord to a C4 major chord
 
@@ -51746,7 +51746,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49558" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49442" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
