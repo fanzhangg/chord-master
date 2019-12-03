@@ -4,31 +4,32 @@ class Loader {
     loaded: boolean;
 
     constructor() {
-        // Add the loader to the screen
-        const loader = document.createElement("div");
-        loader.id = "loader";
-        document.body.appendChild(loader);
 
         const mask = document.querySelector("#mask") as HTMLElement;   // Mask to hide all other elements
 
-        const progText = document.querySelector("#progressText") as HTMLElement;
+        const progBar = document.querySelector("#progressBar") as HTMLElement;
+        const prog = document.querySelector("#progress") as HTMLElement;
 
         this.loaded = false;
 
+        /**
+         * Remove the progress bar, mask and enable scroll after loaded
+         */
         //@ts-ignore
         Buffer.on("load", () => {
             this.loaded = true;
-            // const loader = document.querySelector("#loader") as HTMLElement;
-            loader.remove();
-            // const mask = document.querySelector("#mask") as HTMLElement;
             mask.remove();
-            progText.remove();
+            prog.remove();
             document.body.classList.remove("no-scroll");
         });
 
+        /**
+         * Update the progress bar
+         */
         //@ts-ignore
         Buffer.on("progress", (prog) => {
-            progText.innerText = `${(prog * 100).toFixed(2)}%`;
+            progBar.innerText = `${(prog * 100).toFixed(2)}%`;
+            progBar.style.width = `${(prog * 100).toFixed(2)}%`;
         })
     }
 }
