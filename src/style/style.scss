@@ -1,0 +1,15 @@
+@import "keyboard";
+@import "loader";
+@import "progression";
+@import "dropdown";
+
+/* set a max-width for horizontal fluid layout and make it centered */
+.container-fluid {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1400px; /* or 950px */
+}
+
+.no-scroll {
+    margin: 0; height: 100%; overflow: hidden
+}

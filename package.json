@@ -1,5 +1,56 @@
 {
-  "name": "chord-master",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "author": "azu",
+  "license": "MIT",
+  "files": [
+    "bin/",
+    "lib/",
+    "src/"
+  ],
+  "name": "parcel-typescript-example",
   "version": "1.0.0",
-  "dependencies": {}
+  "description": "TypeScript app with parcel bundler.",
+  "main": "lib/parcel-typescript-example.js",
+  "scripts": {
+    "start": "parcel serve src/index.html",
+    "build": "cross-env NODE_ENV=production parcel build src/index.html --public-url .",
+    "watch": "parcel watch src/index.html",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azu/parcel-typescript-example.git"
+  },
+  "bugs": {
+    "url": "https://github.com/azu/parcel-typescript-example/issues"
+  },
+  "homepage": "https://azu.github.io/parcel-typescript-example/",
+  "devDependencies": {
+    "@types/jquery": "^3.3.31",
+    "@types/node": "^12.12.8",
+    "@types/tone": "https://github.com/Tonejs/TypeScript.git",
+    "cross-env": "^5.2.0",
+    "gh-pages": "^1.2.0",
+    "node-sass": "^4.13.0",
+    "parcel-bundler": "^1.9.7",
+    "sass": "^1.23.7",
+    "typescript": "^3.7.2"
+  },
+  "dependencies": {
+    "@tonaljs/tonal": "^3.2.2",
+    "@types/d3": "^5.7.2",
+    "d3": "^5.14.0",
+    "jquery": "^3.4.1",
+    "tone": "^13.8.25",
+    "@fortawesome/fontawesome-free": "^5.11.2",
+    "bootstrap": "^4.3.1",
+    "bootstrap-submenu": "^3.0.1",
+    "material-design-icons": "^3.0.1",
+    "popper.js": "^1.16.0",
+    "sass": "^1.23.7"
+  }
 }

@@ -1,0 +1,102 @@
+#pianoContainer {
+    width: 100%;
+    height: 200px;
+    background-color: black;
+}
+
+#keyboard {
+    /* leave a space for the border */
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border: .5px solid black;
+}
+
+#keyboard p {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    /* Disable text selection */
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
+}
+
+#keyboard .key {
+    height: calc(100% - 2 * 1px);
+    position: absolute;
+    top: 1px;
+}
+
+#keyboard .key {
+    border: .5px solid #303952;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+#keyboard .key.white {
+    /* white key behind black key */
+    z-index: 0;
+    text-align: center;
+    color: gray;
+    background-color: white;
+}
+
+#keyboard .key.white > .note-name {
+    position: absolute;
+    top: 130px;
+    width: 100%;
+}
+
+#keyboard .key.white > .keyStr {
+    position: absolute;
+    top: 150px;
+    width: 100%;
+}
+
+#keyboard .key.white:hover {
+    background-color: #f0f0f0;
+}
+
+#keyboard .key.white:active {
+    background-color: yellow;
+}
+
+#keyboard .key.black {
+    z-index: 1;
+    height: 50%;
+    text-align: center;
+    color: lightgrey;
+    background-color: #303952;
+    width: 100%;
+}
+
+#keyboard .key.black > .keyStr {
+    position: absolute;
+    width: 100%;
+    top: 50px;
+}
+
+#keyboard .key.black:hover {
+    background-color: #596275;
+}
+
+#keyboard .key.black:active {
+    background-color: gray;
+}
+
+#keyboard .key.highlight {
+    background-color: yellow;
+}
+
+#keyboard .key.highlight:hover {
+    background-color: orange;
+}

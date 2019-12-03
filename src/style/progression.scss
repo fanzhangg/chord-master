@@ -1,0 +1,107 @@
+$border-secondary: #F7F7F7;
+$text-secondary: #6C757C;
+$text-highlight: #4e73df;
+$bg-secondary: #6C757C;
+$bg-light: #F8F9FA;
+$bg-danger: #DC3445;
+
+@mixin unselectable {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  /*
+    Introduced in Internet Explorer 10.
+    See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+  */
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#resetBtn:hover {
+  color: red;
+}
+
+
+.btn-chord {
+  position: relative;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 4px;
+  @include unselectable;
+
+  &:hover .btn-chord-delete{
+    display: block;
+  }
+
+  .button-chord-name {
+
+    background-color: white;
+    border: 1px solid $border-secondary;
+    border-radius: 50%;
+    color: black;
+    width: 130px;
+    height: 130px;
+    text-align: center;
+    text-decoration: none;
+    // display: inline-block;
+    font-size: 40px;
+    position: relative;
+    margin: 5px;
+
+    &:hover {
+      background: $bg-light;
+    }
+
+    div {
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 33px;
+    }
+
+    i {
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 50px;
+      color: $text-secondary;
+    }
+  }
+
+  .btn-chord-delete {
+    background: $bg-secondary;
+    width: 30px;
+    height: 30px;
+    margin: 7px; // space between circles
+    border-radius: 50%;
+    text-align: center;
+    display: none;  // Hide the element
+
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    &:hover {
+      background: $bg-danger;
+    }
+
+    i {
+      color: white;
+      vertical-align: middle;
+    }
+  }
+}
+
+.active {
+  .button-chord-name {
+    color: $text-highlight;
+  }
+
+  .btn-chord-delete {
+    display: block;
+  }
+}

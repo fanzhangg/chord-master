@@ -1,0 +1,17 @@
+#mask {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #ebecef;
+    z-index: 999;
+}
+
+
+#progress {
+    width: 30%;
+    height: 30px;
+    margin: auto;
+    z-index: 1000;
+}

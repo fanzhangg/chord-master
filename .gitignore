@@ -93,3 +93,6 @@ public
 .dynamodb/
 .idea
 .DS_Store
+
+# Ignore bundled files in dist
+dist/*
