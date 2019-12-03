@@ -68,15 +68,19 @@ progression.onActivate = function (chord: Chord) {
     console.log(`Set the chord to ${chord}`);
 };
 
+let part = new Part(function h(){}, []); // Declaring an outside part to remove the part as soon as you call it
 
 progression.onPlay = function (chords: Array<Array<string>>) {
+    // @ts-ignore
+    part.removeAll();
+
     let events = [];
     for (let i = 0; i < chords.length; i++) {
         const event = {"time": i, "chord": chords[i]};
         events.push(event);
     }
 
-    new Part(function (time, value) {
+    part = new Part(function (time, value) {
         //the value is an object which contains both the note and the velocity
         // @ts-ignore
         sound.keyDownUp(value.chord, "2n", time);
