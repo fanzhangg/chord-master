@@ -21,9 +21,9 @@ export class Chord {
         "Dominant Ninth": "<sup>9</sup>",
         "Dominant Thirteenth": "<sup>13</sup>",
         //Altered
-        "Seventh Minor Ninth": "<sup>7♭9</sup>",
+        "Seventh Minor Ninth": "m<sup>9</sup>", //"<sup>7♭9</sup>"
         "Seventh Sharp Ninth": "<sup>7♯9</sup>",
-        "Seventh Augmented Eleventh": "<sup>7</sup>aug<sup>11</sup>"
+        "Seventh Augmented Eleventh": "<sup>7</sup>aug<sup>11</sup>" // I can't find this chord anywhere!
     };
 
     static readonly chordFamilies: any = {
