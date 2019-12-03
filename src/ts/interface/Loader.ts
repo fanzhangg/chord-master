@@ -23,6 +23,7 @@ class Loader {
             // const mask = document.querySelector("#mask") as HTMLElement;
             mask.remove();
             progText.remove();
+            document.body.classList.remove("no-scroll");
         });
 
         //@ts-ignore
