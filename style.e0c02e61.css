@@ -90,76 +90,20 @@
 #keyboard .key.highlight:hover {
   background-color: orange; }
 
-/* ref: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_loader5 */
-#loader {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: 1000;
-  width: 150px;
-  height: 150px;
-  margin: -75px 0 0 -75px;
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 16px solid #6c757d;
-  width: 120px;
-  height: 120px;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite; }
-
-@-webkit-keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg); }
-  100% {
-    -webkit-transform: rotate(360deg); } }
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg); }
-  100% {
-    transform: rotate(360deg); } }
-
-/* Add animation to "page content" */
-.animate-bottom {
-  position: relative;
-  -webkit-animation-name: animatebottom;
-  -webkit-animation-duration: 1s;
-  animation-name: animatebottom;
-  animation-duration: 1s; }
-
-@-webkit-keyframes animatebottom {
-  from {
-    bottom: -100px;
-    opacity: 0; }
-  to {
-    bottom: 0px;
-    opacity: 1; } }
-
-@keyframes animatebottom {
-  from {
-    bottom: -100px;
-    opacity: 0; }
-  to {
-    bottom: 0;
-    opacity: 1; } }
-
 #mask {
   height: 100%;
   width: 100%;
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #373737;
+  background-color: #ebecef;
   z-index: 999; }
 
-#progressText {
-  position: absolute;
-  top: 60%;
-  z-index: 1000;
-  color: white;
-  font-size: 20px;
-  width: 100%;
-  text-align: center; }
+#progress {
+  width: 30%;
+  height: 30px;
+  margin: auto;
+  z-index: 1000; }
 
 #resetBtn:hover {
   color: red; }
@@ -249,9 +193,6 @@
   margin-left: auto;
   max-width: 1400px;
   /* or 950px */ }
-
-body {
-  background-color: #ebecef; }
 
 .no-scroll {
   margin: 0;
