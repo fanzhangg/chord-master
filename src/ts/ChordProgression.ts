@@ -53,12 +53,25 @@ export class ChordProgression {
     }
 
     /**
+     * Remove the add btn from the container
+     * @private
+     */
+    private _removeAddBtn() {
+        const addButton = document.getElementById("addBtn");
+        if (addButton == null){
+            throw new Error("addBtn does not exist. Cannot delete")
+        }
+        addButton.remove();
+    }
+
+    /**
      * Append an add button to the progression container
      * @private
      */
     private _appendAddBtn() {
         const btnContainer = document.createElement("div");
         btnContainer.classList.add("btn-chord");
+        btnContainer.id = "addBtn";
 
         const btn = document.createElement("div");
         btn.classList.add("button-chord-name", "add", "shadow");
@@ -335,15 +348,15 @@ export class ChordProgression {
             this._playButton.innerHTML = "<i class=\"fas fa-play\"></i>";
             this._playButton.classList.remove("active");
             Transport.stop();
+            this._appendAddBtn();
             this.onStop();
         } else {
             this._playButton.innerHTML = "<i class=\"fas fa-pause\"></i>";
             this._playButton.classList.add("active");
             Transport.start('+0.1');
             const notesList = this._getNotesList();
+            this._removeAddBtn();
             this.onPlay(notesList);
         }
-
-
     }
 }
