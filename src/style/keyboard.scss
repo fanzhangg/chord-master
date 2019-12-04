@@ -12,6 +12,7 @@
     bottom: 0;
     left: 0;
     border: .5px solid black;
+    border-bottom: 1px solid black;
 }
 
 #keyboard p {
@@ -33,7 +34,7 @@
 }
 
 #keyboard .key {
-    border: .5px solid #303952;
+    border: 1px solid #303952;
     position: absolute;
     left: 0;
     top: 0;
