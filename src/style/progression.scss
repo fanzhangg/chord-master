@@ -1,6 +1,6 @@
-$border-secondary: #F7F7F7;
+$border-secondary: #b2bec3;
 $text-secondary: #6C757C;
-$text-highlight: #4e73df;
+$text-highlight: white;
 $bg-secondary: #6C757C;
 $bg-light: #F8F9FA;
 $bg-danger: #DC3445;
@@ -17,10 +17,17 @@ $bg-danger: #DC3445;
   user-select: none;
 }
 
-#resetBtn:hover {
-  color: red;
+#resetBtn {
+  color: #6c757d;
+
+  & :hover {
+    color: #DC3445;
+  }
 }
 
+#playBtn {
+  border-radius: 50%;
+}
 
 .btn-chord {
   position: relative;
@@ -29,21 +36,19 @@ $bg-danger: #DC3445;
   margin-bottom: 4px;
   @include unselectable;
 
-  &:hover .btn-chord-delete{
+  &:hover .btn-chord-delete {
     display: block;
   }
 
   .button-chord-name {
 
     background-color: white;
-    border: 1px solid $border-secondary;
     border-radius: 50%;
     color: black;
     width: 130px;
     height: 130px;
     text-align: center;
     text-decoration: none;
-    // display: inline-block;
     font-size: 40px;
     position: relative;
     margin: 5px;
@@ -79,7 +84,7 @@ $bg-danger: #DC3445;
     margin: 7px; // space between circles
     border-radius: 50%;
     text-align: center;
-    display: none;  // Hide the element
+    display: none; // Hide the element
 
     position: absolute;
     top: 0;
@@ -99,6 +104,11 @@ $bg-danger: #DC3445;
 .active {
   .button-chord-name {
     color: $text-highlight;
+    background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+
+    &:hover{
+      background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+    }
   }
 
   .btn-chord-delete {

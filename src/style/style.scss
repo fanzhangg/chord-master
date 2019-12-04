@@ -10,7 +10,12 @@
     max-width: 1400px; /* or 950px */
 }
 
+.no-scroll {
+    margin: 0; height: 100%; overflow: hidden
+}
 
-body {
-    background-color: #ebecef;
+#helpBtn {
+    &:hover {
+        color: $bg-light;
+    }
 }

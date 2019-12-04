@@ -8,19 +8,28 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
-<body>
-<div id="mask"></div>
-<div id="progressText">0%</div>
+<body class="no-scroll" style="background-color: #ebecef;">
 
+<!--loader-->
+<div id="mask" class="d-flex justify-content-center align-items-center">
+    <div class="progress" id="progress">
+        <div class="progress-bar" id="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+</div>
+
+<!--navbar-->
 <nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand text-muted">Chord Master</a>
 
+    <a href="tutorial.html" target="_blank">
     <button class="btn text-muted">
-        <i class="fas fa-question-circle"></i>
+        <i class="fas fa-question-circle" id="helpBtn"></i>
     </button>
+    </a>
 </nav>
 
 <main class="container-fluid mt-5">
+    <!--chord progression-->
     <div class="row">
         <div class="col mx-0">
             <div class="card shadow-sm mb-4">
@@ -28,9 +37,6 @@
                     <div class="btn-group" role="group" aria-label="Player">
                         <button type="button" class="btn btn-small btn-outline-secondary" id="playBtn">
                             <i class="fas fa-play"></i>
-                        </button>
-                        <button type="button" class="btn btn-small btn-outline-secondary">
-                            <i class="fas fa-tachometer-alt"></i>
                         </button>
                     </div>
                     <button type="button" class="btn btn-small" id="resetBtn">
