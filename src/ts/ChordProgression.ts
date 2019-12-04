@@ -195,6 +195,51 @@ export class ChordProgression {
     }
 
     /**
+     * Disable deleting the chord at index by deleting the delete button in the chord button
+     * @param index
+     * @private
+     * @return true if it deletes, else false
+     */
+    private _disableDelete(index: number): boolean{
+        const button = this.chordNameBtns[index];
+        if (button == null){
+            throw new Error("Button does not exist. Cannot disable deleting");
+        }
+
+        const deleteButton = button.nextElementSibling;
+        if (deleteButton == null){
+            console.warn("The chord button does not have a delete button. Cannot disable deleting");
+            return false;
+        }
+        deleteButton.remove();
+        return true;
+    }
+
+    /**
+     * Disable deleting on all chords
+     * @private
+     */
+    private _disableDeleteAll(){
+        for (let i = 0; i < this.chordNameBtns.length; i++){
+            this._disableDelete(i);
+        }
+    }
+
+    /**
+     * Enable deleting on all chords
+     * @private
+     */
+    private _enableDeleteAll(){
+        for (let chordNameBtn of this.chordNameBtns){
+            const container = chordNameBtn.parentElement;
+            if (container == null){
+                throw new Error("The chord name button does not have a container. Cannot enable deleting");
+            }
+            this._appendDeleteBtn(container);
+        }
+    }
+
+    /**
      * Disable deleting the first chord if the chord's length <= 1
      * @private
      */
@@ -349,6 +394,7 @@ export class ChordProgression {
             this._playButton.classList.remove("active");
             Transport.stop();
             this._appendAddBtn();
+            this._enableDeleteAll();
             this.onStop();
         } else {
             this._playButton.innerHTML = "<i class=\"fas fa-pause\"></i>";
@@ -356,6 +402,7 @@ export class ChordProgression {
             Transport.start('+0.1');
             const notesList = this._getNotesList();
             this._removeAddBtn();
+            this._disableDeleteAll();
             this.onPlay(notesList);
         }
     }
