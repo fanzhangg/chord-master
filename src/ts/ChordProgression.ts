@@ -44,7 +44,10 @@ export class ChordProgression {
     private _addEventListeners() {
         const resetBtn = document.getElementById("resetBtn")!;
         resetBtn.addEventListener("pointerup", () => {
-            this._reset();
+            if (!resetBtn.classList.contains("disabled")){
+                this._reset();
+            }
+
         });
 
         this._playButton.addEventListener("pointerup", () => {
@@ -395,6 +398,7 @@ export class ChordProgression {
             Transport.stop();
             this._appendAddBtn();
             this._enableDeleteAll();
+            this._enableReset();
             this.onStop();
         } else {
             this._playButton.innerHTML = "<i class=\"fas fa-pause\"></i>";
@@ -403,7 +407,27 @@ export class ChordProgression {
             const notesList = this._getNotesList();
             this._removeAddBtn();
             this._disableDeleteAll();
+            this._disableReset();
             this.onPlay(notesList);
         }
+    }
+
+    /**
+     * Disable the reset button
+     * @private
+     */
+    private _disableReset(){
+        const resetBtn = document.getElementById("resetBtn")!;
+        resetBtn.classList.add("disabled");
+        resetBtn.removeEventListener("pointerup", this._reset, true);
+    }
+
+    /**
+     * Enable the reset button
+     * @private
+     */
+    private _enableReset(){
+        const resetBtn = document.getElementById("resetBtn")!;
+        resetBtn.classList.remove("disabled");
     }
 }
