@@ -26,6 +26,10 @@ $bg-danger: #DC3445;
 }
 
 #playBtn {
+  &.active {
+    background: #8ec5fc;
+    border: 0;
+  }
   border-radius: 50%;
 }
 

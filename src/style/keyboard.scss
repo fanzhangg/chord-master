@@ -97,6 +97,14 @@
     background-color: #ffeaa7;
 }
 
+#keyboard .key.highlight-root {
+    background-color: #dfe6e9;
+
+    &:hover {
+        background: #ccd3d6;
+    }
+}
+
 #keyboard .key.highlight:hover {
     background-color: #fdcb6e;
 }
