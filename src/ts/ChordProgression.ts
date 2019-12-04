@@ -102,6 +102,8 @@ export class ChordProgression {
         progressionContainer.insertBefore(btnContainer, addBtn);    // Insert the new chord btn before add btn
 
         console.log(`Append a new chord ${this.curChord} at ${this.curIndex}`);
+
+        this._disableDeleteFirstChord();
     }
 
     /**
@@ -165,6 +167,20 @@ export class ChordProgression {
         this.onActivate(this.curChord);
     }
 
+    private _disableDeleteFirstChord(){
+        if (this.chordsList.length <= 1){
+            const button = this.chordNameBtns[0];
+            const deleteButton = button.nextElementSibling!;
+            deleteButton.remove();
+            console.log("The first delete button is deleted")
+        } else {
+            const button = this.chordNameBtns[0];
+            const container = button.parentElement!;
+            this._appendDeleteBtn(container);
+            console.log("The first delete button is added")
+        }
+    };
+
     /**
      * Delete the chord button that the delete button is in, and activate the adjacent chord if the current chord is activated
      * @param deleteBtn
@@ -194,6 +210,8 @@ export class ChordProgression {
         }
         console.log(`Delete chord at index ${index}. Change the chord to ${this.curChord} at ${this.curIndex}`);
         deleteBtn.parentElement!.remove(); // Remove the chord button that the delete btn is in
+
+        this._disableDeleteFirstChord();
     }
 
     /**
