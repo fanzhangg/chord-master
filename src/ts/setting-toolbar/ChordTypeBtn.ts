@@ -56,12 +56,21 @@ export class ChordTypeBtn {
         }
     }
 
+    /**
+     * Set the type and the family of the chord
+     * @param type
+     * @param family
+     */
     public setChordType(type: string, family: string) {
         // Change the text of the chord type
         this.setTypeText(type);
         this.onSetChordType(type, family);
     }
 
+    /**
+     * Change the text in the button
+     * @param type
+     */
     public setTypeText(type: string) {
         const btn = document.getElementById("chordTypeBtn")!;
         btn.innerText = type;
