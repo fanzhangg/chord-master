@@ -10,7 +10,8 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  border: .5px solid black; }
+  border: .5px solid black;
+  border-bottom: 1px solid black; }
 
 #keyboard p {
   font-family: 'Barlow Semi Condensed', sans-serif;
@@ -35,7 +36,7 @@
   top: 1px; }
 
 #keyboard .key {
-  border: .5px solid #303952;
+  border: 1px solid #303952;
   position: absolute;
   left: 0;
   top: 0;
@@ -87,6 +88,11 @@
 #keyboard .key.highlight {
   background-color: #ffeaa7; }
 
+#keyboard .key.highlight-root {
+  background-color: #dfe6e9; }
+  #keyboard .key.highlight-root:hover {
+    background: #ccd3d6; }
+
 #keyboard .key.highlight:hover {
   background-color: #fdcb6e; }
 
@@ -115,6 +121,9 @@
 
 #playBtn {
   border-radius: 50%; }
+  #playBtn.active {
+    background: #8ec5fc;
+    border: 0; }
 
 .btn-chord {
   position: relative;

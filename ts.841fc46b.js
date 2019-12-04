@@ -18689,12 +18689,22 @@ var Note =
 /** @class */
 function () {
   function Note() {}
+  /**
+   * Gets the id number of a note given its string representation.
+   * @param noteName
+   */
+
 
   Note.toKeyNum = function (noteName) {
     var octave = tonal_1.note(noteName).oct;
     var chroma = tonal_1.note(noteName).chroma;
     return octave * 12 + chroma;
   };
+  /**
+   * Returns the name of a note given its id number representation.
+   * @param keyNum
+   */
+
 
   Note.toNoteName = function (keyNum) {
     if (keyNum < 0) {
@@ -18862,16 +18872,18 @@ function () {
   Keyboard.prototype._unhighlight = function (keys) {
     keys.forEach(function (key) {
       key.classList.remove("highlight");
+      key.classList.remove("highlight-root");
     });
   };
   /**
    * Show the chord by displaying the chord string and highlight the keys in the chord
+   * Highlight the root note in a gray color if the inversion is not None
    * @public
    * @param chord
    */
 
 
-  Keyboard.prototype.highlight = function (chord) {
+  Keyboard.prototype.highlight = function (chord, rootNote) {
     // Change the previous keys' color back to the original color
     this._unhighlight(this._prevKeys); // Unhilight previous keys
 
@@ -18902,7 +18914,25 @@ function () {
 
     this._chords.push(chord);
 
+    if (rootNote) {
+      this._highlightRootNote(rootNote);
+    }
+
     return true;
+  };
+
+  Keyboard.prototype._highlightRootNote = function (note) {
+    var selectorNote = note.replace("#", "\\#"); // # is encoded as \\#
+
+    var key = document.querySelector(".key[data-note-name=" + selectorNote + "]");
+
+    if (key !== null) {
+      // Only highlight the key if it is in the boundary
+      key.classList.add("highlight-root"); // Highlight the key
+
+      this._prevKeys.push(key); // Save the keys as prevKeys
+
+    }
   };
 
   Keyboard.prototype.keyUp = function () {
@@ -19002,7 +19032,7 @@ function () {
     return notes.toString();
   };
   /**
-   * Get the chord name
+   * Get the chord name to place in the chord inversion symbol
    */
 
 
@@ -19014,6 +19044,11 @@ function () {
 
     return "" + chroma + typeSymbol + inversionSymbol;
   };
+  /**
+   * Returns the array of halfsteps of the current Chord.
+   * @private
+   */
+
 
   Chord.prototype._getHalfSteps = function () {
     var halfSteps = Chord.chordFamilies[this.family][this.type].slice(0);
@@ -19024,6 +19059,11 @@ function () {
 
     return halfSteps;
   };
+  /**
+   * Gets the note if there is an inversion. (IE: C/E) in first inversion.
+   * @private
+   */
+
 
   Chord.prototype._getInversionSymbol = function () {
     if (this.inversionNum == 0) {
@@ -19054,7 +19094,7 @@ function () {
     "Single Note": "",
     "Major Triad": "",
     "Minor Triad": "m",
-    "Augmented Triad": "<sup>+",
+    "Augmented Triad": "+",
     "Diminished Triad": "<sup>o",
     //Sevenths
     "Dominant Seventh": "<sup>7</sup>",
@@ -19062,8 +19102,8 @@ function () {
     "Minor Seventh": "min<sup>7</sup>",
     "Diminished Seventh": "<sup>o7</sup>",
     "Half Diminished Seventh": "min<sup>7♭5</sup>",
-    "Augmented Seventh": "<sup>+7</sup>",
-    "Augmented Major Seventh": "<sup>+M7</sup>",
+    "Augmented Seventh": "+<sup>7</sup>",
+    "Augmented Major Seventh": "+<sup>M7</sup>",
     //Extended
     "Dominant Ninth": "<sup>9</sup>",
     "Dominant Thirteenth": "<sup>13</sup>",
@@ -19116,6 +19156,8 @@ Object.defineProperty(exports, "__esModule", {
 var Keyboard_1 = require("./Keyboard");
 
 var Chord_1 = require("../music-theory/Chord");
+
+var Note_1 = require("../music-theory/Note");
 
 var Piano =
 /** @class */
@@ -19193,7 +19235,7 @@ function () {
     this.setChord(this.currChord);
   };
   /**
-   * Get the chord based on the root note, highlight the keys on the keyboard. and play the sound
+   * Get the chord based on the root note, highlight the keys in the chord and the root note on the keyboard. and play the sound
    * @public
    * @param chord
    */
@@ -19202,19 +19244,34 @@ function () {
   Piano.prototype.setChord = function (chord) {
     this.currChord = chord; // Update current chord
 
-    var notes = this.currChord.getNotes();
-    console.log("Set the chord to " + notes);
+    var notes = this.currChord.getNotes(); // Highlight the chord
 
-    this._keyboardInterface.highlight(notes);
+    console.log("Set the chord to " + notes); // Highlight the root note if the inversion is not None
+
+    var rootNote = null;
+
+    if (this.currChord.inversionNum > 0) {
+      var rootKeyNum = this.currChord.rootKeyNum;
+      rootNote = Note_1.Note.toNoteName(rootKeyNum);
+    }
+
+    this._keyboardInterface.highlight(notes, rootNote);
 
     this.onSetChord(chord);
   };
 
   Piano.prototype.setRootKeyNum = function (keyNum) {
     this.currChord.rootKeyNum = keyNum;
-    var notes = this.currChord.getNotes();
+    var notes = this.currChord.getNotes(); // Highlight the root note if the inversion is not None
 
-    this._keyboardInterface.highlight(notes);
+    var rootNote = null;
+
+    if (this.currChord.inversionNum > 0) {
+      var rootKeyNum = this.currChord.rootKeyNum;
+      rootNote = Note_1.Note.toNoteName(rootKeyNum);
+    }
+
+    this._keyboardInterface.highlight(notes, rootNote);
 
     console.log("Set the root key num to " + this.currChord.rootKeyNum);
   };
@@ -19232,7 +19289,7 @@ function () {
 }();
 
 exports.Piano = Piano;
-},{"./Keyboard":"ts/keyboard/Keyboard.ts","../music-theory/Chord":"ts/music-theory/Chord.ts"}],"../node_modules/tone/tone/version.js":[function(require,module,exports) {
+},{"./Keyboard":"ts/keyboard/Keyboard.ts","../music-theory/Chord":"ts/music-theory/Chord.ts","../music-theory/Note":"ts/music-theory/Note.ts"}],"../node_modules/tone/tone/version.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51684,36 +51741,66 @@ var piano = new Piano_1.Piano(pianoContainer);
 var sound = new PianoSound_1.PianoSound(0, 100);
 sound.load();
 var progression = new ChordProgression_1.ChordProgression();
+/**
+ * Handles the key presses for the piano class.
+ * @param chord
+ */
 
 piano.onKeyDown = function (chord) {
   progression.setChord(chord);
   var notes = chord.getNotes();
   sound.keyDown(notes);
 };
+/**
+ * Stops the chord sound when the mouse is releases
+ * @param chord
+ */
+
 
 piano.onKeyUp = function (chord) {
   sound.keyUp(chord);
 };
+/**
+ * Sets the chord when a chord progression chord is clicked.
+ * @param chord
+ */
+
 
 piano.onSetChord = function (chord) {
   var notes = chord.getNotes();
   sound.keyDownUp(notes);
 };
+/**
+ * Changes the chord type when you click from the menu.
+ * @param type
+ * @param family
+ */
+
 
 chordTypeBtn.onSetChordType = function (type, family) {
   console.log("Set the type to " + type);
   var chordLen = Chord_1.Chord.getLen(family, type);
-  inversionBtn.reset(chordLen); // Reset the chord progression to none
+  inversionBtn.reset(chordLen); // Reset the chord inversion to none
 
   piano.setChordType(family, type);
   progression.setChordType(family, type);
 };
+/**
+ * Changes the inversion when you click from the menu
+ * @param inversionNum
+ */
+
 
 inversionBtn.onSetInversion = function (inversionNum) {
   piano.setInversion(inversionNum);
   progression.setInversion(inversionNum);
   console.log("Set the inversion to " + inversionNum);
 };
+/**
+ * Sets chord on piano, changes text on chord type button and inversion button.
+ * @param chord
+ */
+
 
 progression.onActivate = function (chord) {
   piano.setChord(chord);
@@ -51722,7 +51809,12 @@ progression.onActivate = function (chord) {
   console.log("Set the chord to " + chord);
 };
 
-var part = new tone_1.Part(function h() {}, []); // Declaring an outside part to remove the part as soon as you call it
+var part = new tone_1.Part(function () {}, []); // Declaring a blank part to be used in progression.onPlay()
+
+/**
+ * Plays through the chord progression when play button is clicked.
+ * @param chords
+ */
 
 progression.onPlay = function (chords) {
   // @ts-ignore
@@ -51776,7 +51868,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51916" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52356" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
