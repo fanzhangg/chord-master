@@ -287,12 +287,13 @@ export class ChordProgression {
     }
 
     private _play() {
-        // e.preventDefault();
         if (Transport.state === 'started') {
             this._playButton.innerHTML = "<i class=\"fas fa-play\"></i>";
+            this._playButton.classList.remove("active");
             Transport.stop();
         } else {
             this._playButton.innerHTML = "<i class=\"fas fa-pause\"></i>";
+            this._playButton.classList.add("active");
             Transport.start('+0.1');
         }
         const notesList = this._getNotesList();

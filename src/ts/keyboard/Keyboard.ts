@@ -110,7 +110,7 @@ class Keyboard {
     }
 
     /**
-     * Unhilight keys
+     * Unhighlight keys
      * @param keys an array of key element
      */
     private _unhighlight(keys: Array<HTMLElement>) {
