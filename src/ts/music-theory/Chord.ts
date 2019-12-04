@@ -111,7 +111,7 @@ export class Chord {
     }
 
     /**
-     * Get the chord name
+     * Get the chord name to place in the chord inversion symbol
      */
     public getChordName() {
         const typeSymbol = Chord.chordTypeSymbols[this.type];
@@ -120,6 +120,10 @@ export class Chord {
         return `${chroma}${typeSymbol}${inversionSymbol}`;
     }
 
+    /**
+     * Returns the array of halfsteps of the current Chord.
+     * @private
+     */
     private _getHalfSteps(): Array<number> {
         const halfSteps = Chord.chordFamilies[this.family][this.type].slice(0);
         if (halfSteps == null) {
@@ -128,6 +132,10 @@ export class Chord {
         return halfSteps
     }
 
+    /**
+     * Gets the note if there is an inversion. (IE: C/E) in first inversion.
+     * @private
+     */
     private _getInversionSymbol(): string {
         if (this.inversionNum == 0) {
             return "";
