@@ -12,12 +12,14 @@ export class InversionBtn {
     };
 
     onSetInversion: Function;
+    btn: HTMLElement;
 
     constructor() {
         this._setInversionMenu(2); // renders the inversion dropdown
 
-        this.onSetInversion = function () {
-        }
+        this.btn = document.getElementById("chordInversionBtn")!;
+
+        this.onSetInversion = function () {};
     }
 
     /**
@@ -80,6 +82,20 @@ export class InversionBtn {
     private _setInverionBtn(inversionName: string) {
         const btn = document.getElementById("chordInversionBtn")!;
         btn.innerText = inversionName;
+    }
+
+    /**
+     * Disable clicking the button
+     */
+    public disable(){
+        this.btn.classList.add("disabled");
+    }
+
+    /**
+     * Enable clicking the button
+     */
+    public enable(){
+        this.btn.classList.remove("disabled");
     }
 }
 

@@ -55,7 +55,7 @@ piano.onKeyUp = function (chord: Array<string>) {
  */
 piano.onSetChord = function (chord: Chord) {
     const notes = chord.getNotes();
-    sound.keyDownUp(notes);
+    sound.keyDownUp(notes, 1);
 };
 
 /**
@@ -108,7 +108,7 @@ progression.onPlay = function (chords: Array<Array<string>>) {
         events.push(event);
     }
 
-    part = new Part(function (time, value) {
+    part = new Part(function (value) {
         //the value is an object which contains both the note and the velocity
         progression.switch();
         // @ts-ignore
@@ -117,14 +117,21 @@ progression.onPlay = function (chords: Array<Array<string>>) {
     }, events).start(0);
     part.loop = true;
     part.loopStart = 0;
-    part.loopEnd = chords.length + .5;
+    part.loopEnd = chords.length;
 };
 
 
 progression.onSwitch = function () {
     chordTypeBtn.disable();
+    inversionBtn.disable();
+    piano.disable();
 };
 
+progression.onStop = function () {
+    chordTypeBtn.enable();
+    inversionBtn.enable();
+    piano.enable();
+};
 
 
 

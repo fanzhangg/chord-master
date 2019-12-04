@@ -14,6 +14,7 @@ export class ChordProgression {
     onPlay: Function;
     _playButton: HTMLElement;
     onSwitch: Function;
+    onStop: Function;
 
     constructor() {
         this.chordsList = [];   // An array to store each chord in the progression as an array of notes
@@ -28,6 +29,7 @@ export class ChordProgression {
         this.onActivate = function () {};
         this.onPlay = function () {};
         this.onSwitch = function () {};
+        this.onStop = function() {};
 
         // Initialize the progression with an add button and a C chord
         this._appendChord(new Chord(48), null);
@@ -42,12 +44,27 @@ export class ChordProgression {
     private _addEventListeners() {
         const resetBtn = document.getElementById("resetBtn")!;
         resetBtn.addEventListener("pointerup", () => {
-            this._reset();
+            if (!resetBtn.classList.contains("disabled")){
+                this._reset();
+            }
+
         });
 
         this._playButton.addEventListener("pointerup", () => {
             this._toggleProgression();
         })
+    }
+
+    /**
+     * Remove the add btn from the container
+     * @private
+     */
+    private _removeAddBtn() {
+        const addButton = document.getElementById("addBtn");
+        if (addButton == null){
+            throw new Error("addBtn does not exist. Cannot delete")
+        }
+        addButton.remove();
     }
 
     /**
@@ -57,6 +74,7 @@ export class ChordProgression {
     private _appendAddBtn() {
         const btnContainer = document.createElement("div");
         btnContainer.classList.add("btn-chord");
+        btnContainer.id = "addBtn";
 
         const btn = document.createElement("div");
         btn.classList.add("button-chord-name", "add", "shadow");
@@ -150,7 +168,12 @@ export class ChordProgression {
     }
 
     public switch(){
-        const btnIndex = this.curIndex + 1;
+        let btnIndex = 0;
+        if (this.curIndex >= this.chordsList.length - 1){
+            btnIndex = 0;
+        } else {
+            btnIndex = this.curIndex + 1;
+        }
         const newBtn = this.chordNameBtns[btnIndex];
         this._activate(newBtn);
         this.onSwitch();
@@ -172,6 +195,51 @@ export class ChordProgression {
         console.log(`Activate chord ${this.curChord} at ${this.curIndex}`);
 
         this.onActivate(this.curChord);
+    }
+
+    /**
+     * Disable deleting the chord at index by deleting the delete button in the chord button
+     * @param index
+     * @private
+     * @return true if it deletes, else false
+     */
+    private _disableDelete(index: number): boolean{
+        const button = this.chordNameBtns[index];
+        if (button == null){
+            throw new Error("Button does not exist. Cannot disable deleting");
+        }
+
+        const deleteButton = button.nextElementSibling;
+        if (deleteButton == null){
+            console.warn("The chord button does not have a delete button. Cannot disable deleting");
+            return false;
+        }
+        deleteButton.remove();
+        return true;
+    }
+
+    /**
+     * Disable deleting on all chords
+     * @private
+     */
+    private _disableDeleteAll(){
+        for (let i = 0; i < this.chordNameBtns.length; i++){
+            this._disableDelete(i);
+        }
+    }
+
+    /**
+     * Enable deleting on all chords
+     * @private
+     */
+    private _enableDeleteAll(){
+        for (let chordNameBtn of this.chordNameBtns){
+            const container = chordNameBtn.parentElement;
+            if (container == null){
+                throw new Error("The chord name button does not have a container. Cannot enable deleting");
+            }
+            this._appendDeleteBtn(container);
+        }
     }
 
     /**
@@ -328,14 +396,37 @@ export class ChordProgression {
             this._playButton.innerHTML = "<i class=\"fas fa-play\"></i>";
             this._playButton.classList.remove("active");
             Transport.stop();
+            this._appendAddBtn();
+            this._enableDeleteAll();
+            this._enableReset();
+            this.onStop();
         } else {
             this._playButton.innerHTML = "<i class=\"fas fa-pause\"></i>";
             this._playButton.classList.add("active");
             Transport.start('+0.1');
             const notesList = this._getNotesList();
+            this._removeAddBtn();
+            this._disableDeleteAll();
+            this._disableReset();
             this.onPlay(notesList);
         }
+    }
 
+    /**
+     * Disable the reset button
+     * @private
+     */
+    private _disableReset(){
+        const resetBtn = document.getElementById("resetBtn")!;
+        resetBtn.classList.add("disabled");
+    }
 
+    /**
+     * Enable the reset button
+     * @private
+     */
+    private _enableReset(){
+        const resetBtn = document.getElementById("resetBtn")!;
+        resetBtn.classList.remove("disabled");
     }
 }

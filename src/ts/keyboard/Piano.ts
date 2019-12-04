@@ -8,9 +8,11 @@ class Piano {
     public onKeyUp: Function;
     public onSetChord: Function;
     public currChord: Chord;
+    private _container: Element;
 
     constructor(container: Element) {
         this.currChord = new Chord();
+        this._container = container;
 
         // The piano keyboard interface
         this._keyboardInterface = new Keyboard(container);
@@ -48,6 +50,9 @@ class Piano {
      * @param keyNum
      */
     public keyDown(keyNum: number) {
+        if (this._container.classList.contains("disabled")){
+            return;
+        }
         this.setRootKeyNum(keyNum);
         this.onKeyDown(this.currChord);
     }
@@ -116,8 +121,25 @@ class Piano {
      * Release the sound
      */
     keyUp() {
+        if (this._container.classList.contains("disabled")){
+            return;
+        }
         const chord = this.currChord.getNotes();
         this.onKeyUp(chord);
+    }
+
+    /**
+     * Disable changing the root note on the piano
+     */
+    public disable(){
+        this._container.classList.add("disabled");
+    }
+
+    /**
+     * Enable changing the root note on the piano
+     */
+    public enable(){
+        this._container.classList.remove("disabled");
     }
 }
 
