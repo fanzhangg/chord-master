@@ -18854,7 +18854,7 @@ function () {
     });
   };
   /**
-   * Unhilight keys
+   * Unhighlight keys
    * @param keys an array of key element
    */
 
@@ -19068,10 +19068,9 @@ function () {
     "Dominant Ninth": "<sup>9</sup>",
     "Dominant Thirteenth": "<sup>13</sup>",
     //Altered
+    "Seventh Augmented Fifth": "<sup>7♯5</sup>",
     "Seventh Minor Ninth": "m<sup>9</sup>",
-    "Seventh Sharp Ninth": "<sup>7♯9</sup>",
-    "Seventh Augmented Eleventh": "<sup>7</sup>aug<sup>11</sup>" // I can't find this chord anywhere!
-
+    "Seventh Sharp Ninth": "<sup>7♯9</sup>"
   };
   Chord.chordFamilies = {
     "Triads": {
@@ -19099,8 +19098,8 @@ function () {
     "Altered": {
       "Seventh Augmented Fifth": [0, 4, 8, 10],
       "Seventh Minor Ninth": [0, 4, 7, 10, 13],
-      "Seventh Sharp Ninth": [0, 4, 7, 10, 15],
-      "Seventh Augmented Eleventh": [0, 4, 7, 10, 14, 18]
+      "Seventh Sharp Ninth": [0, 4, 7, 10, 15] // C E G B♭ D♯
+
     }
   };
   return Chord;
@@ -51306,11 +51305,16 @@ function () {
   function ChordProgression() {
     this.chordsList = []; // An array to store each chord in the progression as an array of notes
 
-    this.curIndex = -1;
-    this.curChord = null;
-    this.curBtn = null;
-    this.chordNameBtns = [];
-    this._playButton = document.getElementById("playBtn"); // Callback events
+    this.curIndex = -1; // The current index of the chord in the list
+
+    this.curChord = null; // The current chord
+
+    this.curChordNameBtn = null; // The current chord name button
+
+    this.chordNameBtns = []; // An array of chord name buttons
+
+    this._playButton = document.getElementById("playBtn"); // The button to play the chord progression
+    // Callback events
 
     this.onActivate = function () {};
 
@@ -51375,8 +51379,8 @@ function () {
 
 
   ChordProgression.prototype._appendChord = function (chord, addBtn) {
-    if (this.curBtn !== null) {
-      this.curBtn.parentElement.classList.remove("active"); // Deactivate the current button
+    if (this.curChordNameBtn !== null) {
+      this.curChordNameBtn.parentElement.classList.remove("active"); // Deactivate the current button
     }
 
     this.chordsList.push(chord);
@@ -51393,6 +51397,8 @@ function () {
     progressionContainer.insertBefore(btnContainer, addBtn); // Insert the new chord btn before add btn
 
     console.log("Append a new chord " + this.curChord + " at " + this.curIndex);
+
+    this._disableDeleteFirstChord();
   };
   /**
    * Append a delete button in the container
@@ -51438,7 +51444,7 @@ function () {
     });
     container.appendChild(btn);
     this.chordNameBtns.push(btn);
-    this.curBtn = btn;
+    this.curChordNameBtn = btn;
     this.onActivate(this.curChord);
   };
   /**
@@ -51449,23 +51455,40 @@ function () {
 
 
   ChordProgression.prototype._activate = function (chordNameBtn) {
-    if (this.curBtn !== null) {
-      this.curBtn.parentElement.classList.remove("active"); // Deactivate the current button
+    if (this.curChordNameBtn !== null) {
+      this.curChordNameBtn.parentElement.classList.remove("active"); // Deactivate the current button
     }
 
     this.curIndex = this.chordNameBtns.indexOf(chordNameBtn);
     this.curChord = this.chordsList[this.curIndex];
     chordNameBtn.parentElement.classList.add("active");
-    this.curBtn = chordNameBtn;
+    this.curChordNameBtn = chordNameBtn;
     console.log("Activate chord " + this.curChord + " at " + this.curIndex);
     this.onActivate(this.curChord);
   };
+
+  ChordProgression.prototype._disableDeleteFirstChord = function () {
+    if (this.chordsList.length <= 1) {
+      var button = this.chordNameBtns[0];
+      var deleteButton = button.nextElementSibling;
+      deleteButton.remove();
+      console.log("The first delete button is deleted");
+    } else {
+      var button = this.chordNameBtns[0];
+      var container = button.parentElement;
+
+      this._appendDeleteBtn(container);
+
+      console.log("The first delete button is added");
+    }
+  };
+
+  ;
   /**
    * Delete the chord button that the delete button is in, and activate the adjacent chord if the current chord is activated
    * @param deleteBtn
    * @private
    */
-
 
   ChordProgression.prototype._delete = function (deleteBtn) {
     var chordNameBtn = deleteBtn.previousSibling;
@@ -51501,6 +51524,8 @@ function () {
 
     console.log("Delete chord at index " + index + ". Change the chord to " + this.curChord + " at " + this.curIndex);
     deleteBtn.parentElement.remove(); // Remove the chord button that the delete btn is in
+
+    this._disableDeleteFirstChord();
   };
   /**
    * Update the current chord, the chord list and the text of the current button
@@ -51516,7 +51541,7 @@ function () {
   };
 
   ChordProgression.prototype._setChordName = function () {
-    this.curBtn.innerHTML = ""; // Reset text
+    this.curChordNameBtn.innerHTML = ""; // Reset text
 
     var text = document.createElement("div");
 
@@ -51526,7 +51551,7 @@ function () {
 
     text.innerHTML = this.curChord.getChordName(); // Set the text to the name of the current chord
 
-    this.curBtn.appendChild(text);
+    this.curChordNameBtn.appendChild(text);
   };
 
   ChordProgression.prototype.setChordType = function (family, type) {
@@ -51566,7 +51591,7 @@ function () {
     this.chordsList = [];
     this.curChord = null;
     this.curIndex = -1;
-    this.curBtn = null;
+    this.curChordNameBtn = null;
     this.chordNameBtns = []; // Clear html
 
     var container = document.getElementById("progressionChordsContainer");
@@ -51746,7 +51771,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49442" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62845" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
