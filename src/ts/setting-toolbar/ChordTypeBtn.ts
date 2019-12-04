@@ -90,6 +90,6 @@ export class ChordTypeBtn {
      * Enable clicking the button
      */
     public enable(){
-        this.btn.classList.remove("enable");
+        this.btn.classList.remove("disabled");
     }
 }
