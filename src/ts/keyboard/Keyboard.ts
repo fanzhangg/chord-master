@@ -1,6 +1,6 @@
 import {Note} from "../music-theory/Note";
 
-const offsets = [0, 0.5, 1, 1.5, 2, 3, 3.5, 4, 4.5, 5, 5.5, 6];
+const offsets = [0, 0.5, 1, 1.5, 2, 3, 3.5, 4, 4.5, 5, 5.5, 6]; // The offset of a key from the left of the octave
 
 class Keyboard {
     _container: HTMLElement;
@@ -33,7 +33,7 @@ class Keyboard {
      * @param lowestKeyNum
      * @param octaves
      */
-    resize(lowestKeyNum = 0, octaves: number) {
+    public resize(lowestKeyNum = 0, octaves: number) {
         this._container.innerHTML = ''; // Clear the previous ones
         const keyWidth = (1 / 7) / octaves;
         for (let keyNum = lowestKeyNum; keyNum < lowestKeyNum + octaves * 12; keyNum++) {
@@ -129,7 +129,7 @@ class Keyboard {
      */
     public highlight(chord: Array<string>, rootNote: null|string) {
         // Change the previous keys' color back to the original color
-        this._unhighlight(this._prevKeys);  // Unhilight previous keys
+        this._unhighlight(this._prevKeys);  // Unhighlight previous keys
 
         this._prevKeys = [];    // Reset the prev keys
 
@@ -150,6 +150,7 @@ class Keyboard {
 
         this._chords.push(chord);
 
+        // Highlight the root note in a gray color if the inversion is not None
         if (rootNote){
             this._highlightRootNote(rootNote);
         }
@@ -158,6 +159,11 @@ class Keyboard {
     }
 
 
+    /**
+     * Highlight the root note in a gray color
+     * @param note
+     * @private
+     */
     private _highlightRootNote(note: string){
         const selectorNote = note.replace("#", "\\#");  // # is encoded as \\#
         const key = document.querySelector(`.key[data-note-name=${selectorNote}]`);
