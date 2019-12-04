@@ -30,7 +30,10 @@ sound.load();
 
 const progression = new ChordProgression();
 
-
+/**
+ * Handles the key presses for the piano class.
+ * @param chord
+ */
 piano.onKeyDown = function (chord: Chord) {
     progression.setChord(chord);
 
@@ -38,29 +41,50 @@ piano.onKeyDown = function (chord: Chord) {
     sound.keyDown(notes);
 };
 
+/**
+ * Stops the chord sound when the mouse is releases
+ * @param chord
+ */
 piano.onKeyUp = function (chord: Array<string>) {
     sound.keyUp(chord);
 };
 
+/**
+ * Sets the chord when a chord progression chord is clicked.
+ * @param chord
+ */
 piano.onSetChord = function (chord: Chord) {
     const notes = chord.getNotes();
     sound.keyDownUp(notes);
 };
 
+/**
+ * Changes the chord type when you click from the menu.
+ * @param type
+ * @param family
+ */
 chordTypeBtn.onSetChordType = function (type: string, family: string) {
     console.log(`Set the type to ${type}`);
     const chordLen = Chord.getLen(family, type);
-    inversionBtn.reset(chordLen);   // Reset the chord progression to none
+    inversionBtn.reset(chordLen);   // Reset the chord inversion to none
     piano.setChordType(family, type);
     progression.setChordType(family, type);
 };
 
+/**
+ * Changes the inversion when you click from the menu
+ * @param inversionNum
+ */
 inversionBtn.onSetInversion = function (inversionNum: number) {
     piano.setInversion(inversionNum);
     progression.setInversion(inversionNum);
     console.log(`Set the inversion to ${inversionNum}`)
 };
 
+/**
+ * Sets chord on piano, changes text on chord type button and inversion button.
+ * @param chord
+ */
 progression.onActivate = function (chord: Chord) {
     piano.setChord(chord);
     chordTypeBtn.setTypeText(chord.type);
@@ -68,8 +92,12 @@ progression.onActivate = function (chord: Chord) {
     console.log(`Set the chord to ${chord}`);
 };
 
-let part = new Part(function h(){}, []); // Declaring an outside part to remove the part as soon as you call it
 
+let part = new Part(() => {}, []); // Declaring a blank part to be used in progression.onPlay()
+/**
+ * Plays through the chord progression when play button is clicked.
+ * @param chords
+ */
 progression.onPlay = function (chords: Array<Array<string>>) {
     // @ts-ignore
     part.removeAll();
