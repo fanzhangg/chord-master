@@ -18885,7 +18885,7 @@ function () {
 
   Keyboard.prototype.highlight = function (chord, rootNote) {
     // Change the previous keys' color back to the original color
-    this._unhighlight(this._prevKeys); // Unhilight previous keys
+    this._unhighlight(this._prevKeys); // Unhighlight previous keys
 
 
     this._prevKeys = []; // Reset the prev keys
@@ -18912,7 +18912,8 @@ function () {
       }
     }
 
-    this._chords.push(chord);
+    this._chords.push(chord); // Highlight the root note in a gray color if the inversion is not None
+
 
     if (rootNote) {
       this._highlightRootNote(rootNote);
@@ -18920,6 +18921,12 @@ function () {
 
     return true;
   };
+  /**
+   * Highlight the root note in a gray color
+   * @param note
+   * @private
+   */
+
 
   Keyboard.prototype._highlightRootNote = function (note) {
     var selectorNote = note.replace("#", "\\#"); // # is encoded as \\#
@@ -19091,7 +19098,6 @@ function () {
 
   Chord.chordTypeSymbols = {
     //Triads
-    "Single Note": "",
     "Major Triad": "",
     "Minor Triad": "m",
     "Augmented Triad": "+",
@@ -19109,7 +19115,7 @@ function () {
     "Dominant Thirteenth": "<sup>13</sup>",
     //Altered
     "Seventh Augmented Fifth": "<sup>7♯5</sup>",
-    "Seventh Minor Ninth": "m<sup>9</sup>",
+    "Seventh Minor Ninth": "<sup>7♭9</sup>",
     "Seventh Sharp Ninth": "<sup>7♯9</sup>"
   };
   Chord.chordFamilies = {
@@ -19163,7 +19169,8 @@ var Piano =
 /** @class */
 function () {
   function Piano(container) {
-    this.currChord = new Chord_1.Chord(); // The piano keyboard interface
+    this.currChord = new Chord_1.Chord();
+    this._container = container; // The piano keyboard interface
 
     this._keyboardInterface = new Keyboard_1.Keyboard(container);
     this._keyboardInterface.onKeyDown = this.keyDown.bind(this); // Trigger the callback event after clicking a key
@@ -19206,6 +19213,10 @@ function () {
 
 
   Piano.prototype.keyDown = function (keyNum) {
+    if (this._container.classList.contains("disabled")) {
+      return;
+    }
+
     this.setRootKeyNum(keyNum);
     this.onKeyDown(this.currChord);
   };
@@ -19281,8 +19292,28 @@ function () {
 
 
   Piano.prototype.keyUp = function () {
+    if (this._container.classList.contains("disabled")) {
+      return;
+    }
+
     var chord = this.currChord.getNotes();
     this.onKeyUp(chord);
+  };
+  /**
+   * Disable changing the root note on the piano
+   */
+
+
+  Piano.prototype.disable = function () {
+    this._container.classList.add("disabled");
+  };
+  /**
+   * Enable changing the root note on the piano
+   */
+
+
+  Piano.prototype.enable = function () {
+    this._container.classList.remove("disabled");
   };
 
   return Piano;
@@ -51161,6 +51192,8 @@ function () {
     jquery_1.default('[data-submenu]').submenupicker();
 
     this.onSetChordType = function () {};
+
+    this.btn = document.getElementById("chordTypeBtn");
   }
   /**
    * Render the btn-group view in the container
@@ -51208,16 +51241,43 @@ function () {
       container.appendChild(submenu);
     }
   };
+  /**
+   * Set the type and the family of the chord
+   * @param type
+   * @param family
+   */
+
 
   ChordTypeBtn.prototype.setChordType = function (type, family) {
     // Change the text of the chord type
     this.setTypeText(type);
     this.onSetChordType(type, family);
   };
+  /**
+   * Change the text in the button
+   * @param type
+   */
+
 
   ChordTypeBtn.prototype.setTypeText = function (type) {
     var btn = document.getElementById("chordTypeBtn");
     btn.innerText = type;
+  };
+  /**
+   * Disable clicking the button
+   */
+
+
+  ChordTypeBtn.prototype.disable = function () {
+    this.btn.classList.add("disabled");
+  };
+  /**
+   * Enable clicking the button
+   */
+
+
+  ChordTypeBtn.prototype.enable = function () {
+    this.btn.classList.remove("disabled");
   };
 
   return ChordTypeBtn;
@@ -51239,6 +51299,8 @@ function () {
   function InversionBtn() {
     this._setInversionMenu(2); // renders the inversion dropdown
 
+
+    this.btn = document.getElementById("chordInversionBtn");
 
     this.onSetInversion = function () {};
   }
@@ -51317,6 +51379,22 @@ function () {
     var btn = document.getElementById("chordInversionBtn");
     btn.innerText = inversionName;
   };
+  /**
+   * Disable clicking the button
+   */
+
+
+  InversionBtn.prototype.disable = function () {
+    this.btn.classList.add("disabled");
+  };
+  /**
+   * Enable clicking the button
+   */
+
+
+  InversionBtn.prototype.enable = function () {
+    this.btn.classList.remove("disabled");
+  };
 
   InversionBtn.inversionTypes = {
     0: "None",
@@ -51352,7 +51430,7 @@ var Chord_1 = require("./music-theory/Chord");
 
 var tone_1 = require("tone");
 /**
- * Holds information for sequence of chords.
+ * Holds information for sequence of chords in the progression
  */
 
 
@@ -51377,6 +51455,11 @@ function () {
 
     this.onPlay = function () {};
 
+    this.onSwitch = function () {};
+
+    this.onStop = function () {}; // Initialize the progression with an add button and a C chord
+
+
     this._appendChord(new Chord_1.Chord(48), null);
 
     this._appendAddBtn();
@@ -51394,12 +51477,29 @@ function () {
 
     var resetBtn = document.getElementById("resetBtn");
     resetBtn.addEventListener("pointerup", function () {
-      _this._reset();
+      if (!resetBtn.classList.contains("disabled")) {
+        _this._reset();
+      }
     });
 
     this._playButton.addEventListener("pointerup", function () {
-      _this._play();
+      _this._toggleProgression();
     });
+  };
+  /**
+   * Remove the add btn from the container
+   * @private
+   */
+
+
+  ChordProgression.prototype._removeAddBtn = function () {
+    var addButton = document.getElementById("addBtn");
+
+    if (addButton == null) {
+      throw new Error("addBtn does not exist. Cannot delete");
+    }
+
+    addButton.remove();
   };
   /**
    * Append an add button to the progression container
@@ -51412,6 +51512,7 @@ function () {
 
     var btnContainer = document.createElement("div");
     btnContainer.classList.add("btn-chord");
+    btnContainer.id = "addBtn";
     var btn = document.createElement("div");
     btn.classList.add("button-chord-name", "add", "shadow");
     var icon = document.createElement("i");
@@ -51504,6 +51605,22 @@ function () {
     this.curChordNameBtn = btn;
     this.onActivate(this.curChord);
   };
+
+  ChordProgression.prototype.switch = function () {
+    var btnIndex = 0;
+
+    if (this.curIndex >= this.chordsList.length - 1) {
+      btnIndex = 0;
+    } else {
+      btnIndex = this.curIndex + 1;
+    }
+
+    var newBtn = this.chordNameBtns[btnIndex];
+
+    this._activate(newBtn);
+
+    this.onSwitch();
+  };
   /**
    * Activate the chord name button. and setChord the current index, btn, and chord
    * @param chordNameBtn
@@ -51513,16 +51630,77 @@ function () {
 
   ChordProgression.prototype._activate = function (chordNameBtn) {
     if (this.curChordNameBtn !== null) {
+      // Current Chord name button exists
       this.curChordNameBtn.parentElement.classList.remove("active"); // Deactivate the current button
     }
 
     this.curIndex = this.chordNameBtns.indexOf(chordNameBtn);
     this.curChord = this.chordsList[this.curIndex];
-    chordNameBtn.parentElement.classList.add("active");
+    chordNameBtn.parentElement.classList.add("active"); // Active the button
+
     this.curChordNameBtn = chordNameBtn;
     console.log("Activate chord " + this.curChord + " at " + this.curIndex);
     this.onActivate(this.curChord);
   };
+  /**
+   * Disable deleting the chord at index by deleting the delete button in the chord button
+   * @param index
+   * @private
+   * @return true if it deletes, else false
+   */
+
+
+  ChordProgression.prototype._disableDelete = function (index) {
+    var button = this.chordNameBtns[index];
+
+    if (button == null) {
+      throw new Error("Button does not exist. Cannot disable deleting");
+    }
+
+    var deleteButton = button.nextElementSibling;
+
+    if (deleteButton == null) {
+      console.warn("The chord button does not have a delete button. Cannot disable deleting");
+      return false;
+    }
+
+    deleteButton.remove();
+    return true;
+  };
+  /**
+   * Disable deleting on all chords
+   * @private
+   */
+
+
+  ChordProgression.prototype._disableDeleteAll = function () {
+    for (var i = 0; i < this.chordNameBtns.length; i++) {
+      this._disableDelete(i);
+    }
+  };
+  /**
+   * Enable deleting on all chords
+   * @private
+   */
+
+
+  ChordProgression.prototype._enableDeleteAll = function () {
+    for (var _i = 0, _a = this.chordNameBtns; _i < _a.length; _i++) {
+      var chordNameBtn = _a[_i];
+      var container = chordNameBtn.parentElement;
+
+      if (container == null) {
+        throw new Error("The chord name button does not have a container. Cannot enable deleting");
+      }
+
+      this._appendDeleteBtn(container);
+    }
+  };
+  /**
+   * Disable deleting the first chord if the chord's length <= 1
+   * @private
+   */
+
 
   ChordProgression.prototype._disableDeleteFirstChord = function () {
     if (this.chordsList.length <= 1) {
@@ -51549,7 +51727,7 @@ function () {
 
   ;
   /**
-   * Delete the chord button that the delete button is in, and activate the adjacent chord if the current chord is activated
+   * Delete the chord button that the delete button is in, and _activate the adjacent chord if the current chord is activated
    * @param deleteBtn
    * @private
    */
@@ -51603,6 +51781,11 @@ function () {
 
     this._setChordName();
   };
+  /**
+   * Set the name of the current chord
+   * @private
+   */
+
 
   ChordProgression.prototype._setChordName = function () {
     this.curChordNameBtn.innerHTML = ""; // Reset text
@@ -51617,6 +51800,12 @@ function () {
 
     this.curChordNameBtn.appendChild(text);
   };
+  /**
+   * Set the type and family of the current chord
+   * @param family
+   * @param type
+   */
+
 
   ChordProgression.prototype.setChordType = function (family, type) {
     if (this.curChord == null) {
@@ -51629,6 +51818,11 @@ function () {
 
     this._setChordName();
   };
+  /**
+   * Set the inversion of the current chord
+   * @param inversion
+   */
+
 
   ChordProgression.prototype.setInversion = function (inversion) {
     if (inversion < 0) {
@@ -51665,6 +51859,11 @@ function () {
 
     this._appendAddBtn();
   };
+  /**
+   * Return an array of an array of notes in the chord
+   * @private
+   */
+
 
   ChordProgression.prototype._getNotesList = function () {
     var notesList = [];
@@ -51677,25 +51876,64 @@ function () {
 
     return notesList;
   };
+  /**
+   * Play the progression if it is not played, otherwise stop it
+   * @private
+   */
 
-  ChordProgression.prototype._play = function () {
+
+  ChordProgression.prototype._toggleProgression = function () {
     if (tone_1.Transport.state === 'started') {
       this._playButton.innerHTML = "<i class=\"fas fa-play\"></i>";
 
       this._playButton.classList.remove("active");
 
       tone_1.Transport.stop();
+
+      this._appendAddBtn();
+
+      this._enableDeleteAll();
+
+      this._enableReset();
+
+      this.onStop();
     } else {
       this._playButton.innerHTML = "<i class=\"fas fa-pause\"></i>";
 
       this._playButton.classList.add("active");
 
       tone_1.Transport.start('+0.1');
+
+      var notesList = this._getNotesList();
+
+      this._removeAddBtn();
+
+      this._disableDeleteAll();
+
+      this._disableReset();
+
+      this.onPlay(notesList);
     }
+  };
+  /**
+   * Disable the reset button
+   * @private
+   */
 
-    var notesList = this._getNotesList();
 
-    this.onPlay(notesList);
+  ChordProgression.prototype._disableReset = function () {
+    var resetBtn = document.getElementById("resetBtn");
+    resetBtn.classList.add("disabled");
+  };
+  /**
+   * Enable the reset button
+   * @private
+   */
+
+
+  ChordProgression.prototype._enableReset = function () {
+    var resetBtn = document.getElementById("resetBtn");
+    resetBtn.classList.remove("disabled");
   };
 
   return ChordProgression;
@@ -51775,7 +52013,7 @@ piano.onKeyUp = function (chord) {
 
 piano.onSetChord = function (chord) {
   var notes = chord.getNotes();
-  sound.keyDownUp(notes);
+  sound.keyDownUp(notes, 1);
 };
 /**
  * Changes the chord type when you click from the menu.
@@ -51836,16 +52074,27 @@ progression.onPlay = function (chords) {
     events.push(event);
   }
 
-  part = new tone_1.Part(function (time, value) {
+  part = new tone_1.Part(function (value) {
     //the value is an object which contains both the note and the velocity
-    // @ts-ignore
-    sound.keyDownUp(value.chord, 0.8, time); // @ts-ignore
+    progression.switch(); // @ts-ignore
 
     console.log("Play the chord " + value.chord); //@ts-ignore
   }, events).start(0);
   part.loop = true;
   part.loopStart = 0;
-  part.loopEnd = chords.length + .5;
+  part.loopEnd = chords.length;
+};
+
+progression.onSwitch = function () {
+  chordTypeBtn.disable();
+  inversionBtn.disable();
+  piano.disable();
+};
+
+progression.onStop = function () {
+  chordTypeBtn.enable();
+  inversionBtn.enable();
+  piano.enable();
 };
 },{"bootstrap":"../node_modules/bootstrap/dist/js/bootstrap.js","bootstrap/dist/css/bootstrap.css":"../node_modules/bootstrap/dist/css/bootstrap.css","@fortawesome/fontawesome-free/css/all.css":"../node_modules/@fortawesome/fontawesome-free/css/all.css","material-design-icons":"../node_modules/material-design-icons/index.js","bootstrap-submenu/dist/css/bootstrap-submenu.css":"../node_modules/bootstrap-submenu/dist/css/bootstrap-submenu.css","bootstrap-submenu/dist/js/bootstrap-submenu":"../node_modules/bootstrap-submenu/dist/js/bootstrap-submenu.js","jquery":"../node_modules/jquery/dist/jquery.js","./keyboard/Piano":"ts/keyboard/Piano.ts","./sound/PianoSound":"ts/sound/PianoSound.ts","./interface/Loader":"ts/interface/Loader.ts","./setting-toolbar/ChordTypeBtn":"ts/setting-toolbar/ChordTypeBtn.ts","./setting-toolbar/InversionBtn":"ts/setting-toolbar/InversionBtn.ts","./music-theory/Chord":"ts/music-theory/Chord.ts","./ChordProgression":"ts/ChordProgression.ts","tone":"../node_modules/tone/build/Tone.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -51875,7 +52124,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53884" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60012" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
