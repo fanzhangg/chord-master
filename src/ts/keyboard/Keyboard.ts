@@ -116,16 +116,18 @@ class Keyboard {
     private _unhighlight(keys: Array<HTMLElement>) {
         keys.forEach(function (key) {
             key.classList.remove("highlight");
+            key.classList.remove("highlight-root")
         })
     }
 
 
     /**
      * Show the chord by displaying the chord string and highlight the keys in the chord
+     * Highlight the root note in a gray color if the inversion is not None
      * @public
      * @param chord
      */
-    public highlight(chord: Array<string>) {
+    public highlight(chord: Array<string>, rootNote: null|string) {
         // Change the previous keys' color back to the original color
         this._unhighlight(this._prevKeys);  // Unhilight previous keys
 
@@ -147,7 +149,22 @@ class Keyboard {
         }
 
         this._chords.push(chord);
+
+        if (rootNote){
+            this._highlightRootNote(rootNote);
+        }
+
         return true;
+    }
+
+
+    private _highlightRootNote(note: string){
+        const selectorNote = note.replace("#", "\\#");  // # is encoded as \\#
+        const key = document.querySelector(`.key[data-note-name=${selectorNote}]`);
+        if (key !== null) {  // Only highlight the key if it is in the boundary
+            key.classList.add("highlight-root"); // Highlight the key
+            this._prevKeys.push(key as HTMLElement);    // Save the keys as prevKeys
+        }
     }
 
     public keyUp() {

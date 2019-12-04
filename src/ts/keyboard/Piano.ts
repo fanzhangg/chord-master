@@ -1,5 +1,6 @@
 import {Keyboard} from "./Keyboard";
 import {Chord} from "../music-theory/Chord";
+import {Note} from "../music-theory/Note";
 
 class Piano {
     private _keyboardInterface: Keyboard;
@@ -73,7 +74,7 @@ class Piano {
     }
 
     /**
-     * Get the chord based on the root note, highlight the keys on the keyboard. and play the sound
+     * Get the chord based on the root note, highlight the keys in the chord and the root note on the keyboard. and play the sound
      * @public
      * @param chord
      */
@@ -81,15 +82,33 @@ class Piano {
         this.currChord = chord;  // Update current chord
         const notes = this.currChord.getNotes();
 
+        // Highlight the chord
         console.log(`Set the chord to ${notes}`);
-        this._keyboardInterface.highlight(notes);
+
+        // Highlight the root note if the inversion is not None
+        let rootNote = null;
+        if (this.currChord.inversionNum > 0){
+            const rootKeyNum = this.currChord.rootKeyNum;
+            rootNote = Note.toNoteName(rootKeyNum);
+        }
+
+        this._keyboardInterface.highlight(notes, rootNote);
+
         this.onSetChord(chord);
     }
 
     setRootKeyNum(keyNum: number) {
         this.currChord.rootKeyNum = keyNum;
         const notes = this.currChord.getNotes();
-        this._keyboardInterface.highlight(notes);
+
+        // Highlight the root note if the inversion is not None
+        let rootNote = null;
+        if (this.currChord.inversionNum > 0){
+            const rootKeyNum = this.currChord.rootKeyNum;
+            rootNote = Note.toNoteName(rootKeyNum);
+        }
+
+        this._keyboardInterface.highlight(notes, rootNote);
         console.log(`Set the root key num to ${this.currChord.rootKeyNum}`);
     }
 
