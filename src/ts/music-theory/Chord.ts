@@ -4,7 +4,6 @@ export class Chord {
     //TODO: the symbol dictionary is not complete
     static readonly chordTypeSymbols: any = {
         //Triads
-        "Single Note": "",
         "Major Triad": "",
         "Minor Triad": "m",
         "Augmented Triad": "+",
@@ -22,7 +21,7 @@ export class Chord {
         "Dominant Thirteenth": "<sup>13</sup>",
         //Altered
         "Seventh Augmented Fifth": "<sup>7♯5</sup>",
-        "Seventh Minor Ninth": "m<sup>9</sup>", //"<sup>7♭9</sup>"
+        "Seventh Minor Ninth": "<sup>7♭9</sup>",
         "Seventh Sharp Ninth": "<sup>7♯9</sup>"
     };
 
