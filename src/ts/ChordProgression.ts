@@ -2,7 +2,7 @@ import {Chord} from "./music-theory/Chord";
 import {Transport} from "tone";
 
 /**
- * Holds information for sequence of chords.
+ * Holds information for sequence of chords in the progression
  */
 export class ChordProgression {
     chordsList: Array<Chord>;
@@ -12,7 +12,6 @@ export class ChordProgression {
     chordNameBtns: Array<HTMLElement>;
     onActivate: Function;
     onPlay: Function;
-
     _playButton: HTMLElement;
 
     constructor() {
@@ -29,6 +28,7 @@ export class ChordProgression {
         this.onPlay = function () {
         };
 
+        // Initialize the progression with an add button and a C chord
         this._appendChord(new Chord(48), null);
         this._appendAddBtn();
         this._addEventListeners();
@@ -45,7 +45,7 @@ export class ChordProgression {
         });
 
         this._playButton.addEventListener("pointerup", () => {
-            this._play();
+            this._toggleProgression();
         })
     }
 
@@ -154,18 +154,22 @@ export class ChordProgression {
      * @private
      */
     private _activate(chordNameBtn: HTMLElement) {
-        if (this.curChordNameBtn !== null) {
+        if (this.curChordNameBtn !== null) {    // Current Chord name button exists
             this.curChordNameBtn.parentElement!.classList.remove("active"); // Deactivate the current button
         }
         this.curIndex = this.chordNameBtns.indexOf(chordNameBtn);
         this.curChord = this.chordsList[this.curIndex];
-        chordNameBtn.parentElement!.classList.add("active");
+        chordNameBtn.parentElement!.classList.add("active");    // Active the button
         this.curChordNameBtn = chordNameBtn;
         console.log(`Activate chord ${this.curChord} at ${this.curIndex}`);
 
         this.onActivate(this.curChord);
     }
 
+    /**
+     * Disable deleting the first chord if the chord's length <= 1
+     * @private
+     */
     private _disableDeleteFirstChord(){
         if (this.chordsList.length <= 1){
             const button = this.chordNameBtns[0];
@@ -228,6 +232,10 @@ export class ChordProgression {
         this._setChordName()
     }
 
+    /**
+     * Set the name of the current chord
+     * @private
+     */
     private _setChordName() {
         this.curChordNameBtn!.innerHTML = "";    // Reset text
         const text = document.createElement("div");
@@ -238,6 +246,11 @@ export class ChordProgression {
         this.curChordNameBtn!.appendChild(text);
     }
 
+    /**
+     * Set the type and family of the current chord
+     * @param family
+     * @param type
+     */
     public setChordType(family: string, type: string) {
         if (this.curChord == null) {
             throw new Error("curChord is null");
@@ -249,6 +262,10 @@ export class ChordProgression {
         this._setChordName();
     }
 
+    /**
+     * Set the inversion of the current chord
+     * @param inversion
+     */
     public setInversion(inversion: number) {
         if (inversion < 0) {
             throw new Error("Invalid inversion, inversion < 0");
@@ -281,6 +298,10 @@ export class ChordProgression {
         this._appendAddBtn();
     }
 
+    /**
+     * Return an array of an array of notes in the chord
+     * @private
+     */
     private _getNotesList() {
         const notesList = [];
         for (let chord of this.chordsList) {
@@ -290,7 +311,11 @@ export class ChordProgression {
         return notesList;
     }
 
-    private _play() {
+    /**
+     * Play the progression if it is not played, otherwise stop it
+     * @private
+     */
+    private _toggleProgression() {
         if (Transport.state === 'started') {
             this._playButton.innerHTML = "<i class=\"fas fa-play\"></i>";
             this._playButton.classList.remove("active");
