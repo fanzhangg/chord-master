@@ -7,7 +7,7 @@ export class Chord {
         "Single Note": "",
         "Major Triad": "",
         "Minor Triad": "m",
-        "Augmented Triad": "<sup>+",
+        "Augmented Triad": "+",
         "Diminished Triad": "<sup>o",
         //Sevenths
         "Dominant Seventh": "<sup>7</sup>",
@@ -15,8 +15,8 @@ export class Chord {
         "Minor Seventh": "min<sup>7</sup>",
         "Diminished Seventh": "<sup>o7</sup>",
         "Half Diminished Seventh": "min<sup>7♭5</sup>",
-        "Augmented Seventh": "<sup>+7</sup>",
-        "Augmented Major Seventh": "<sup>+M7</sup>",
+        "Augmented Seventh": "+<sup>7</sup>",
+        "Augmented Major Seventh": "+<sup>M7</sup>",
         //Extended
         "Dominant Ninth": "<sup>9</sup>",
         "Dominant Thirteenth": "<sup>13</sup>",
