@@ -174,6 +174,10 @@ export class ChordProgression {
             console.log("The first delete button is deleted")
         } else {
             const button = this.chordNameBtns[0];
+            if (button.nextElementSibling !== null){    // The button has a delete button
+                return; // Not add a new delete button
+            }
+            // Add a delete button
             const container = button.parentElement!;
             this._appendDeleteBtn(container);
             console.log("The first delete button is added")
