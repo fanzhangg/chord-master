@@ -21,9 +21,9 @@ export class Chord {
         "Dominant Ninth": "<sup>9</sup>",
         "Dominant Thirteenth": "<sup>13</sup>",
         //Altered
+        "Seventh Augmented Fifth": "<sup>7♯5</sup>",
         "Seventh Minor Ninth": "m<sup>9</sup>", //"<sup>7♭9</sup>"
-        "Seventh Sharp Ninth": "<sup>7♯9</sup>",
-        "Seventh Augmented Eleventh": "<sup>7</sup>aug<sup>11</sup>" // I can't find this chord anywhere!
+        "Seventh Sharp Ninth": "<sup>7♯9</sup>"
     };
 
     static readonly chordFamilies: any = {
@@ -50,8 +50,7 @@ export class Chord {
         "Altered": {
             "Seventh Augmented Fifth": [0, 4, 8, 10],   // C E G♯ B♭
             "Seventh Minor Ninth": [0, 4, 7, 10, 13],   // C E G B♭ D♭
-            "Seventh Sharp Ninth": [0, 4, 7, 10, 15],  // C E G B♭ D♯
-            "Seventh Augmented Eleventh": [0, 4, 7, 10, 14, 18],   // C E G B♭ D F♯
+            "Seventh Sharp Ninth": [0, 4, 7, 10, 15]  // C E G B♭ D♯
         }
     };
 
