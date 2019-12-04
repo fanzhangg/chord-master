@@ -124,11 +124,13 @@ progression.onPlay = function (chords: Array<Array<string>>) {
 progression.onSwitch = function () {
     chordTypeBtn.disable();
     inversionBtn.disable();
+    piano.disable();
 };
 
 progression.onStop = function () {
     chordTypeBtn.enable();
     inversionBtn.enable();
+    piano.enable();
 };
 
 

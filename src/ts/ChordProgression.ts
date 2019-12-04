@@ -419,7 +419,6 @@ export class ChordProgression {
     private _disableReset(){
         const resetBtn = document.getElementById("resetBtn")!;
         resetBtn.classList.add("disabled");
-        resetBtn.removeEventListener("pointerup", this._reset, true);
     }
 
     /**
