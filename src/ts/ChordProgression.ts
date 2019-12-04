@@ -13,6 +13,7 @@ export class ChordProgression {
     onActivate: Function;
     onPlay: Function;
     _playButton: HTMLElement;
+    onSwitch: Function;
 
     constructor() {
         this.chordsList = [];   // An array to store each chord in the progression as an array of notes
@@ -25,8 +26,8 @@ export class ChordProgression {
 
         // Callback events
         this.onActivate = function () {};
-        this.onPlay = function () {
-        };
+        this.onPlay = function () {};
+        this.onSwitch = function () {};
 
         // Initialize the progression with an add button and a C chord
         this._appendChord(new Chord(48), null);
@@ -148,6 +149,13 @@ export class ChordProgression {
         this.onActivate(this.curChord);
     }
 
+    public switch(){
+        const btnIndex = this.curIndex + 1;
+        const newBtn = this.chordNameBtns[btnIndex];
+        this._activate(newBtn);
+        this.onSwitch();
+    }
+
     /**
      * Activate the chord name button. and setChord the current index, btn, and chord
      * @param chordNameBtn
@@ -189,7 +197,7 @@ export class ChordProgression {
     };
 
     /**
-     * Delete the chord button that the delete button is in, and activate the adjacent chord if the current chord is activated
+     * Delete the chord button that the delete button is in, and _activate the adjacent chord if the current chord is activated
      * @param deleteBtn
      * @private
      */
@@ -324,8 +332,10 @@ export class ChordProgression {
             this._playButton.innerHTML = "<i class=\"fas fa-pause\"></i>";
             this._playButton.classList.add("active");
             Transport.start('+0.1');
+            const notesList = this._getNotesList();
+            this.onPlay(notesList);
         }
-        const notesList = this._getNotesList();
-        this.onPlay(notesList);
+
+
     }
 }

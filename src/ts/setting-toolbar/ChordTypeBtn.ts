@@ -3,6 +3,7 @@ import $ from "jquery";
 
 export class ChordTypeBtn {
     onSetChordType: Function;
+    btn: HTMLElement;
 
     constructor() {
         const menuContainer = document.getElementById("chordTypeDropdownMenu")!;
@@ -11,6 +12,8 @@ export class ChordTypeBtn {
         $('[data-submenu]').submenupicker();
         this.onSetChordType = function () {
         };
+
+        this.btn = document.getElementById("chordTypeBtn")!;
     }
 
     /**
@@ -74,5 +77,19 @@ export class ChordTypeBtn {
     public setTypeText(type: string) {
         const btn = document.getElementById("chordTypeBtn")!;
         btn.innerText = type;
+    }
+
+    /**
+     * Disable clicking the button
+     */
+    public disable(){
+        this.btn.classList.add("disabled");
+    }
+
+    /**
+     * Enable clicking the button
+     */
+    public enable(){
+        this.btn.classList.remove("enable");
     }
 }
