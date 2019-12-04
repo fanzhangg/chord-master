@@ -87,11 +87,6 @@
 #keyboard .key.highlight {
   background-color: #ffeaa7; }
 
-#keyboard .key.highlight-root {
-  background-color: #dfe6e9; }
-  #keyboard .key.highlight-root:hover {
-    background: #ccd3d6; }
-
 #keyboard .key.highlight:hover {
   background-color: #fdcb6e; }
 
@@ -120,9 +115,6 @@
 
 #playBtn {
   border-radius: 50%; }
-  #playBtn.active {
-    background: #8ec5fc;
-    border: 0; }
 
 .btn-chord {
   position: relative;
