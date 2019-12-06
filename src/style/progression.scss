@@ -30,6 +30,19 @@ $bg-danger: #DC3445;
   }
 }
 
+
+#copyBtn {
+  color: #6c757d;
+
+&:hover {
+  color: #8ec5fc;
+}
+
+&.disabled {
+  color: $text-muted;
+}
+}
+
 #playBtn {
   &.active {
     background: #8ec5fc;
