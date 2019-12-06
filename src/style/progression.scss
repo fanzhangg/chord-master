@@ -95,7 +95,7 @@ $bg-danger: #DC3445;
       left: 50%;
       transform: translate(-50%, -50%);
       font-size: 50px;
-      color: $text-secondary;
+      color: $text-muted;
     }
   }
 
@@ -103,7 +103,7 @@ $bg-danger: #DC3445;
     background: $bg-secondary;
     width: 30px;
     height: 30px;
-    margin: 7px; // space between circles
+    margin: 10px; // space between circles
     border-radius: 50%;
     text-align: center;
     display: none; // Hide the element
