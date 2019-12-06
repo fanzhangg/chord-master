@@ -37,6 +37,9 @@ export class InversionBtn {
     private _setInversionMenu(maxInversion: number) {
         const menu = document.getElementById("chordInversionDropdownMenu")!;
         menu.innerHTML = ""; // Remove all items
+        if (maxInversion >= 3) { // Limits inversion to third (7th as root)
+            maxInversion = 3;
+        }
         for (let i = 0; i <= maxInversion; i++) {
             const item = document.createElement("a");
             item.classList.add("dropdown-item");
