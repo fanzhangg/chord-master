@@ -456,6 +456,7 @@ export class ChordProgression {
             this._appendAddBtn();
             this._enableDeleteAll();
             this._enableReset();
+            this._enableCopy();
             this.onStop();
         } else {
             this._playButton.innerHTML = "<i class=\"fas fa-pause\"></i>";
@@ -465,6 +466,7 @@ export class ChordProgression {
             this._removeAddBtn();
             this._disableDeleteAll();
             this._disableReset();
+            this._disableCopy();
             this.onPlay(notesList);
         }
     }
@@ -485,5 +487,23 @@ export class ChordProgression {
     private _enableReset(){
         const resetBtn = document.getElementById("resetBtn")!;
         resetBtn.classList.remove("disabled");
+    }
+
+    /**
+     * Disable the reset button
+     * @private
+     */
+    private _disableCopy(){
+        const copyBtn = document.getElementById("copyBtn")!;
+        copyBtn.classList.add("disabled");
+    }
+
+    /**
+     * Enable the reset button
+     * @private
+     */
+    private _enableCopy(){
+        const copyBtn = document.getElementById("copyBtn")!;
+        copyBtn.classList.remove("disabled");
     }
 }
