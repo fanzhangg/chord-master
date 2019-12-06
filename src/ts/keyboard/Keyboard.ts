@@ -41,7 +41,7 @@ class Keyboard {
             key.classList.add('key');
             let isSharp = ([1, 3, 6, 8, 10].indexOf(keyNum % 12) !== -1);    // A key is sharp if the note it represents is a sharp note
             if (isSharp) {
-                key.classList.add('black');
+                key.classList.add('black', "shadow");
             } else {
                 key.classList.add('white');
             }
