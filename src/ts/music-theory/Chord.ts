@@ -7,7 +7,7 @@ export class Chord {
         "Major Triad": "",
         "Minor Triad": "m",
         "Augmented Triad": "+",
-        "Diminished Triad": "<sup>o",
+        "Diminished Triad": "<sup>o</sup>",
         //Sevenths
         "Dominant Seventh": "<sup>7</sup>",
         "Major Seventh": "maj<sup>7</sup>",
