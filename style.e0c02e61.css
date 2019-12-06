@@ -116,8 +116,17 @@
 
 #resetBtn {
   color: #6c757d; }
-  #resetBtn :hover {
+  #resetBtn:hover {
     color: #DC3445; }
+  #resetBtn.disabled {
+    color: #939aa0; }
+
+#copyBtn {
+  color: #6c757d; }
+  #copyBtn:hover {
+    color: #8ec5fc; }
+  #copyBtn.disabled {
+    color: #939aa0; }
 
 #playBtn {
   border-radius: 50%; }

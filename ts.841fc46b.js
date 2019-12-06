@@ -51514,6 +51514,13 @@ function () {
     this._playButton.addEventListener("pointerup", function () {
       _this._toggleProgression();
     });
+
+    var copyBtn = document.getElementById("copyBtn");
+    copyBtn.addEventListener("pointerup", function () {
+      if (!copyBtn.classList.contains("disabled")) {
+        _this._insertChord(_this.curChord, _this.curIndex + 1);
+      }
+    });
   };
   /**
    * Remove the add btn from the container
@@ -51587,6 +51594,30 @@ function () {
 
     this._disableDeleteFirstChord();
   };
+
+  ChordProgression.prototype._insertChord = function (chord, index) {
+    if (this.curChordNameBtn !== null) {
+      this.curChordNameBtn.parentElement.classList.remove("active"); // Deactivate the current button
+    }
+
+    this.chordsList.splice(index, 0, chord);
+    this.curChord = chord;
+    this.curIndex = index;
+    var btnContainer = document.createElement("div");
+    btnContainer.classList.add("btn-chord", "active");
+
+    this._insertChordNameBtn(btnContainer, index);
+
+    this._appendDeleteBtn(btnContainer);
+
+    var prevButton = this.chordNameBtns[index - 1];
+    var progressionContainer = document.getElementById("progressionChordsContainer");
+    progressionContainer.insertBefore(btnContainer, prevButton.parentElement.nextSibling); // Insert the new chord btn before add btn
+
+    console.log("Insert a new chord " + this.curChord + " at " + this.curIndex);
+
+    this._disableDeleteFirstChord();
+  };
   /**
    * Append a delete button in the container
    * @param container
@@ -51631,6 +51662,32 @@ function () {
     });
     container.appendChild(btn);
     this.chordNameBtns.push(btn);
+    this.curChordNameBtn = btn;
+    this.onActivate(this.curChord);
+  };
+  /**
+   * Append a chord name button to the container
+   * @param container
+   * @private
+   */
+
+
+  ChordProgression.prototype._insertChordNameBtn = function (container, index) {
+    var _this = this;
+
+    var btn = document.createElement("div");
+    btn.classList.add("button-chord-name", "shadow");
+    var text = document.createElement("div");
+    this.curChord = new Chord_1.Chord(); // Initialize the current chord to a C4 major chord
+
+    text.innerHTML = this.curChord.getChordName(); // Set the text to the name of the current chord
+
+    btn.appendChild(text);
+    btn.addEventListener("pointerup", function () {
+      _this._activate(btn);
+    });
+    container.appendChild(btn);
+    this.chordNameBtns.splice(index, 0, btn);
     this.curChordNameBtn = btn;
     this.onActivate(this.curChord);
   };
@@ -51925,6 +51982,8 @@ function () {
 
       this._enableReset();
 
+      this._enableCopy();
+
       this.onStop();
     } else {
       this._playButton.innerHTML = "<i class=\"fas fa-pause\"></i>";
@@ -51940,6 +51999,8 @@ function () {
       this._disableDeleteAll();
 
       this._disableReset();
+
+      this._disableCopy();
 
       this.onPlay(notesList);
     }
@@ -51963,6 +52024,26 @@ function () {
   ChordProgression.prototype._enableReset = function () {
     var resetBtn = document.getElementById("resetBtn");
     resetBtn.classList.remove("disabled");
+  };
+  /**
+   * Disable the reset button
+   * @private
+   */
+
+
+  ChordProgression.prototype._disableCopy = function () {
+    var copyBtn = document.getElementById("copyBtn");
+    copyBtn.classList.add("disabled");
+  };
+  /**
+   * Enable the reset button
+   * @private
+   */
+
+
+  ChordProgression.prototype._enableCopy = function () {
+    var copyBtn = document.getElementById("copyBtn");
+    copyBtn.classList.remove("disabled");
   };
 
   return ChordProgression;
@@ -52153,7 +52234,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55242" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57613" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
