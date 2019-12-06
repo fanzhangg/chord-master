@@ -52,7 +52,15 @@ export class ChordProgression {
 
         this._playButton.addEventListener("pointerup", () => {
             this._toggleProgression();
-        })
+        });
+
+        const copyBtn = document.getElementById("copyBtn")!;
+        copyBtn.addEventListener("pointerup", () => {
+            if (!copyBtn.classList.contains("disabled")){
+                this._insertChord(this.curChord!, this.curIndex+1);
+            }
+
+        });
     }
 
     /**
@@ -124,6 +132,31 @@ export class ChordProgression {
         this._disableDeleteFirstChord();
     }
 
+    private _insertChord(chord: Chord, index: number) {
+        if (this.curChordNameBtn !== null) {
+            this.curChordNameBtn.parentElement!.classList.remove("active"); // Deactivate the current button
+        }
+
+        this.chordsList.splice(index, 0, chord);
+        this.curChord = chord;
+        this.curIndex = index;
+
+        const btnContainer = document.createElement("div");
+        btnContainer.classList.add("btn-chord", "active");
+
+        this._insertChordNameBtn(btnContainer, index);
+        this._appendDeleteBtn(btnContainer);
+
+        const prevButton = this.chordNameBtns[index-1];
+
+        const progressionContainer = document.getElementById("progressionChordsContainer")!;
+        progressionContainer.insertBefore(btnContainer, prevButton.parentElement!.nextSibling);    // Insert the new chord btn before add btn
+
+        console.log(`Insert a new chord ${this.curChord} at ${this.curIndex}`);
+
+        this._disableDeleteFirstChord();
+    }
+
     /**
      * Append a delete button in the container
      * @param container
@@ -162,6 +195,30 @@ export class ChordProgression {
         });
         container.appendChild(btn);
         this.chordNameBtns.push(btn);
+        this.curChordNameBtn = btn;
+
+        this.onActivate(this.curChord);
+    }
+
+    /**
+     * Append a chord name button to the container
+     * @param container
+     * @private
+     */
+    private _insertChordNameBtn(container: HTMLElement, index: number) {
+        const btn = document.createElement("div");
+        btn.classList.add("button-chord-name", "shadow");
+
+        const text = document.createElement("div");
+        this.curChord = new Chord();    // Initialize the current chord to a C4 major chord
+        text.innerHTML = this.curChord.getChordName();  // Set the text to the name of the current chord
+        btn.appendChild(text);
+
+        btn.addEventListener("pointerup", () => {
+            this._activate(btn);
+        });
+        container.appendChild(btn);
+        this.chordNameBtns.splice(index, 0, btn);
         this.curChordNameBtn = btn;
 
         this.onActivate(this.curChord);
