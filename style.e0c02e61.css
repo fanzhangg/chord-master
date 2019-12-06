@@ -177,12 +177,12 @@
       left: 50%;
       transform: translate(-50%, -50%);
       font-size: 50px;
-      color: #6C757C; }
+      color: #939aa0; }
   .btn-chord .btn-chord-delete {
     background: #6C757C;
     width: 30px;
     height: 30px;
-    margin: 7px;
+    margin: 10px;
     border-radius: 50%;
     text-align: center;
     display: none;
