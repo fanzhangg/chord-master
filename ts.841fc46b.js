@@ -19080,11 +19080,34 @@ function () {
     var halfSteps = this._getHalfSteps();
 
     var rootKeyNum = this.rootKeyNum;
-    var inversedKeyNum = rootKeyNum + halfSteps[this.inversionNum];
-    var inversedNote = Note_1.Note.toChroma(inversedKeyNum);
+    var rootKeyName = Note_1.Note.toNoteName(rootKeyNum); // Gets name of root key
+
+    var inversedKeyNum = rootKeyNum + halfSteps[this.inversionNum]; // Key or ID number of lowest note in chord.
+
+    var inversedNote = Note_1.Note.toChroma(inversedKeyNum); // Name of inversed (lowest) note in chord.
+
+    console.log(inversedNote[0]);
+    console.log(rootKeyName[0]);
+    var noteDiff = Chord.letters.indexOf(inversedNote[0]) - Chord.letters.indexOf(rootKeyName[0]);
+    console.log(noteDiff); // Calculates the difference of the note letters
+
+    var firstInversionBoolean = this.inversionNum === 1 && [1, -6].includes(noteDiff); // Checks to see if a note needs to be changed for chord inversions
+
+    var secondInversionBoolean = this.inversionNum === 2 && [3, -4].includes(noteDiff);
+    var thirdInversionBoolean = this.inversionNum === 3 && [5, -2].includes(noteDiff); // Messes up with double flats
+
+    if (firstInversionBoolean || secondInversionBoolean || thirdInversionBoolean) {
+      // Checks to see if there are any of the errors above
+      inversedNote = Chord.letters[Chord.letters.indexOf(inversedNote[0]) + 1] + "♭"; // Changes it to the next note up but flat
+    }
+
+    if (this.inversionNum === 3 && this.type === "Diminished Seventh" && rootKeyName[0] === "C") {
+      // Adds a double flat for the one outlier case of c-dim7
+      inversedNote = Chord.letters[Chord.letters.indexOf(rootKeyName[0]) - 1] + "♭♭";
+    }
 
     if (inversedNote.indexOf("#") > -1) {
-      inversedNote = inversedNote.replace("#", "♯");
+      inversedNote = inversedNote.replace("#", "♯"); // Changes the sharp sign to a fancy sharp.
     }
 
     if (inversedNote == undefined) {
@@ -19101,7 +19124,7 @@ function () {
     "Major Triad": "",
     "Minor Triad": "m",
     "Augmented Triad": "+",
-    "Diminished Triad": "<sup>o",
+    "Diminished Triad": "<sup>o</sup>",
     //Sevenths
     "Dominant Seventh": "<sup>7</sup>",
     "Major Seventh": "maj<sup>7</sup>",
@@ -19148,6 +19171,7 @@ function () {
 
     }
   };
+  Chord.letters = ["A", "B", "C", "D", "E", "F", "G"];
   return Chord;
 }();
 
@@ -51326,6 +51350,11 @@ function () {
     var menu = document.getElementById("chordInversionDropdownMenu");
     menu.innerHTML = ""; // Remove all items
 
+    if (maxInversion >= 3) {
+      // Limits inversion to third (7th as root)
+      maxInversion = 3;
+    }
+
     for (var i = 0; i <= maxInversion; i++) {
       var item = document.createElement("a");
       item.classList.add("dropdown-item");
@@ -52124,7 +52153,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60012" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55242" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
