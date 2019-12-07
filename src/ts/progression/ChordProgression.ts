@@ -197,7 +197,7 @@ export class ChordProgression {
         btn.appendChild(text);
 
         btn.addEventListener("pointerup", () => {
-            this._activate(btn);
+            this.activate(btn);
         });
         container.appendChild(btn);
         this.chordNameBtns.push(btn);
@@ -223,7 +223,7 @@ export class ChordProgression {
         btn.appendChild(text);
 
         btn.addEventListener("pointerup", () => {
-            this._activate(btn);
+            this.activate(btn);
         });
         container.appendChild(btn);
         this.chordNameBtns.splice(index, 0, btn);
@@ -232,24 +232,27 @@ export class ChordProgression {
         this.onActivate(this.curChord);
     }
 
+    /**
+     * Switch to and activate the next chord after the current one
+     */
     public switch(){
         let btnIndex = 0;
-        if (this.curIndex >= this.chordsList.length - 1){
+        if (this.curIndex >= this.chordsList.length - 1){   // At the end of the list
             btnIndex = 0;
         } else {
-            btnIndex = this.curIndex + 1;
+            btnIndex = this.curIndex + 1;   // Go to next index
         }
         const newBtn = this.chordNameBtns[btnIndex];
-        this._activate(newBtn);
+        this.activate(newBtn);
         this.onSwitch();
     }
 
     /**
      * Activate the chord name button. and setChord the current index, btn, and chord
      * @param chordNameBtn
-     * @private
+     * @public
      */
-    private _activate(chordNameBtn: HTMLElement) {
+    public activate(chordNameBtn: HTMLElement) {
         if (this.curChordNameBtn !== null) {    // Current Chord name button exists
             this.curChordNameBtn.parentElement!.classList.remove("active"); // Deactivate the current button
         }
@@ -347,13 +350,13 @@ export class ChordProgression {
             this.curIndex = 0;
             this.curChord = this.chordsList[0];
             const newChordNameBtn = this.chordNameBtns[0];
-            this._activate(newChordNameBtn);    // Activate the new button at index 0
+            this.activate(newChordNameBtn);    // Activate the new button at index 0
         } else if (this.curIndex == index) { // Delete the last button
             this.curIndex -= 1; // Shift to previous item
             this.curChord = this.chordsList[this.curIndex]; // Update current chord
             if (this.curIndex >= 0) {    // Activate the previous node if it exists
                 const newChordNameBtn = this.chordNameBtns[this.curIndex];
-                this._activate(newChordNameBtn);
+                this.activate(newChordNameBtn);
             }
         }
         console.log(`Delete chord at index ${index}. Change the chord to ${this.curChord} at ${this.curIndex}`);
@@ -469,7 +472,10 @@ export class ChordProgression {
         } else {
             this._playButton.innerHTML = "<i class=\"fas fa-pause\"></i>";
             this._playButton.classList.add("active");
-            Transport.start('+0.1');
+            this.activate(this.curChordNameBtn!);
+
+            Transport.start('+1.1');
+
             const notesList = this._getNotesList();
             this._removeAddBtn();
             this._disableDeleteAll();

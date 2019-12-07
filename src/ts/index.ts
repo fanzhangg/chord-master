@@ -108,9 +108,11 @@ progression.onPlay = function (chords: Array<Array<string>>) {
         events.push(event);
     }
 
-    part = new Part(function (value) {
+    part = new Part(function (time, value) {
         //the value is an object which contains both the note and the velocity
         progression.switch();
+        
+        
         // @ts-ignore
         console.log(`Play the chord ${value.chord}`);
         //@ts-ignore
