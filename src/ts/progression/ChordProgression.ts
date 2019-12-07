@@ -1,5 +1,6 @@
 import {Chord} from "../music-theory/Chord";
 import {Transport} from "tone";
+import $ from "jquery";
 
 /**
  * Holds information for sequence of chords in the progression
@@ -43,23 +44,23 @@ export class ChordProgression {
      */
     private _addEventListeners() {
         const resetBtn = document.getElementById("resetBtn")!;
-        resetBtn.addEventListener("pointerup", () => {
+        resetBtn.addEventListener("pointerup", () => {  // Reset button
             if (!resetBtn.classList.contains("disabled")){
                 this._reset();
             }
 
         });
 
-        this._playButton.addEventListener("pointerup", () => {
+        this._playButton.addEventListener("pointerup", () => {  // Play button
             this._toggleProgression();
         });
 
         const copyBtn = document.getElementById("copyBtn")!;
-        copyBtn.addEventListener("pointerup", () => {
+        copyBtn.addEventListener("pointerup", () => {   // Copy Button
+            const chord = $.extend(true, {}, this.curChord);    // Copy the current chord to chord to avoid manupilating the same object
             if (!copyBtn.classList.contains("disabled")){
-                this._insertChord(this.curChord!, this.curIndex+1);
+                this._insertChord(chord, this.curIndex+1);  // Copy the current chord, and insert it after the current chord
             }
-
         });
     }
 
@@ -132,6 +133,11 @@ export class ChordProgression {
         this._disableDeleteFirstChord();
     }
 
+    /**
+     * Insert a chord at index in the progression
+     * @param chord 
+     * @param index 
+     */
     private _insertChord(chord: Chord, index: number) {
         if (this.curChordNameBtn !== null) {
             this.curChordNameBtn.parentElement!.classList.remove("active"); // Deactivate the current button
@@ -144,7 +150,7 @@ export class ChordProgression {
         const btnContainer = document.createElement("div");
         btnContainer.classList.add("btn-chord", "active");
 
-        this._insertChordNameBtn(btnContainer, index);
+        this._insertChordNameBtn(btnContainer, index, chord);
         this._appendDeleteBtn(btnContainer);
 
         const prevButton = this.chordNameBtns[index-1];
@@ -203,14 +209,16 @@ export class ChordProgression {
     /**
      * Append a chord name button to the container
      * @param container
+     * @param index The index of the chord in the progression
+     * @param chord Add a C major chord by default
      * @private
      */
-    private _insertChordNameBtn(container: HTMLElement, index: number) {
+    private _insertChordNameBtn(container: HTMLElement, index: number, chord = new Chord(48)) {
         const btn = document.createElement("div");
         btn.classList.add("button-chord-name", "shadow");
 
         const text = document.createElement("div");
-        this.curChord = new Chord();    // Initialize the current chord to a C4 major chord
+        this.curChord = chord;    // Initialize the current chord to a C4 major chord
         text.innerHTML = this.curChord.getChordName();  // Set the text to the name of the current chord
         btn.appendChild(text);
 
