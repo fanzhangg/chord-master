@@ -10,8 +10,8 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  border: .5px solid black;
-  border-bottom: 1px solid black; }
+  border: 0.5px solid #929aa0;
+  border-bottom: 1px solid #929aa0; }
 
 #keyboard p {
   font-family: 'Barlow Semi Condensed', sans-serif;
@@ -36,7 +36,7 @@
   top: 1px; }
 
 #keyboard .key {
-  border: 1px solid #303952;
+  border: 1px solid #929aa0;
   position: absolute;
   left: 0;
   top: 0;
@@ -86,7 +86,8 @@
   background-color: gray; }
 
 #keyboard .key.highlight {
-  background-color: #ffeaa7; }
+  background-color: #f6d365;
+  box-shadow: inset 0 3px 15px rgba(253, 160, 133, 0.74); }
 
 #keyboard .key.highlight-root {
   background-color: #dfe6e9; }
@@ -110,7 +111,8 @@
   width: 40%;
   height: 30px;
   margin: auto;
-  z-index: 1000; }
+  z-index: 1000;
+  border: 2px solid white; }
   #progress .progress-bar {
     background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%); }
 
