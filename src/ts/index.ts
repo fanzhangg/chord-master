@@ -13,7 +13,7 @@ import {Loader} from "./interface/Loader";
 import {ChordTypeBtn} from "./setting-toolbar/ChordTypeBtn";
 import {InversionBtn} from "./setting-toolbar/InversionBtn";
 import {Chord} from "./music-theory/Chord";
-import {ChordProgression} from "./ChordProgression";
+import {ChordProgression} from "./progression/ChordProgression";
 import {Part} from "tone";
 
 

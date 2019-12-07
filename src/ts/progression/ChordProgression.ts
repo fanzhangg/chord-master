@@ -1,4 +1,4 @@
-import {Chord} from "./music-theory/Chord";
+import {Chord} from "../music-theory/Chord";
 import {Transport} from "tone";
 
 /**
