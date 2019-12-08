@@ -137,8 +137,8 @@ export class ChordProgression {
 
     /**
      * Insert a chord at index in the progression
-     * @param chord 
-     * @param index 
+     * @param chord
+     * @param index
      */
     private _insertChord(chord: Chord, index: number) {
         if (this.curChordNameBtn !== null) {
@@ -257,7 +257,7 @@ export class ChordProgression {
     public activate(chordNameBtn: HTMLElement) {
 
         for (let chordButton of this.chordNameBtns) {
-            chordButton.classList.remove('bounce', 'animated');
+            chordButton.classList.remove('animated');
         }
 
         if (this.curChordNameBtn !== null) {    // Current Chord name button exists
@@ -269,7 +269,7 @@ export class ChordProgression {
         this.curChordNameBtn = chordNameBtn;
         console.log(`Activate chord ${this.curChord} at ${this.curIndex}`);
 
-        chordNameBtn.classList.add('bounce', 'animated');
+        chordNameBtn.classList.add('animated');
 
         this.onActivate(this.curChord);
     }
