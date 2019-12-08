@@ -49,19 +49,19 @@ $border-color: #212224;
     /* white key behind black key */
     z-index: 0;
     text-align: center;
-    color: gray;
+    color: rgb(147, 154, 160);
     background-color: white;
 }
 
 #keyboard .key.white > .note-name {
     position: absolute;
-    top: 130px;
+    top: 160px;
     width: 100%;
 }
 
 #keyboard .key.white > .keyStr {
     position: absolute;
-    top: 150px;
+    top: 180px;
     width: 100%;
 }
 
@@ -95,7 +95,7 @@ $border-color: #212224;
 #keyboard .key.black > .keyStr {
     position: absolute;
     width: 100%;
-    top: 50px;
+    top: 30px;
 }
 
 #keyboard .key.black:hover {
