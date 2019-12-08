@@ -205,7 +205,7 @@ export class ChordProgression {
         this.chordNameBtns.push(btn);
         this.curChordNameBtn = btn;
 
-        this.onActivate(this.curChord);
+        this.activate(btn);
     }
 
     /**
@@ -231,7 +231,7 @@ export class ChordProgression {
         this.chordNameBtns.splice(index, 0, btn);
         this.curChordNameBtn = btn;
 
-        this.onActivate(this.curChord);
+        this.activate(btn);
     }
 
     /**
