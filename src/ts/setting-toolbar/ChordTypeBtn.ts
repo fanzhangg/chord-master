@@ -1,18 +1,20 @@
 import {Chord} from "../music-theory/Chord";
 import $ from "jquery";
 
+/**
+ * Control the current chord's type
+ */
 export class ChordTypeBtn {
     onSetChordType: Function;
     btn: HTMLElement;
 
     constructor() {
         const menuContainer = document.getElementById("chordTypeDropdownMenu")!;
-        this._renderDropdownMenu(menuContainer);
+        this._renderDropdownMenu(menuContainer);    // Append menu in the container
         // @ts-ignore
-        $('[data-submenu]').submenupicker();
+        $('[data-submenu]').submenupicker();    // Enable toggle the submenu on click
         this.onSetChordType = function () {
         };
-
         this.btn = document.getElementById("chordTypeBtn")!;
     }
 
@@ -75,8 +77,7 @@ export class ChordTypeBtn {
      * @param type
      */
     public setTypeText(type: string) {
-        const btn = document.getElementById("chordTypeBtn")!;
-        btn.innerText = type;
+        this.btn.innerText = type;
     }
 
     /**
