@@ -19086,8 +19086,7 @@ function () {
 
     var inversedNote = Note_1.Note.toChroma(inversedKeyNum); // Name of inversed (lowest) note in chord.
 
-    console.log(inversedNote[0]);
-    console.log(rootKeyName[0]);
+    console.log(inversedNote);
     var noteDiff = Chord.letters.indexOf(inversedNote[0]) - Chord.letters.indexOf(rootKeyName[0]);
     console.log(noteDiff); // Calculates the difference of the note letters
 
@@ -19098,7 +19097,7 @@ function () {
 
     if (firstInversionBoolean || secondInversionBoolean || thirdInversionBoolean) {
       // Checks to see if there are any of the errors above
-      inversedNote = Chord.letters[Chord.letters.indexOf(inversedNote[0]) + 1] + "♭"; // Changes it to the next note up but flat
+      inversedNote = Chord.letters[7 % Chord.letters.indexOf(inversedNote[0] + 1)] + "♭"; // Changes it to the next note up but flat
     }
 
     if (this.inversionNum === 3 && this.type === "Diminished Seventh" && rootKeyName[0] === "C") {
@@ -51605,6 +51604,7 @@ function () {
     progressionContainer.insertBefore(btnContainer, addBtn); // Insert the new chord btn before add btn
 
     console.log("Append a new chord " + this.curChord + " at " + this.curIndex);
+    this.activate(this.curChordNameBtn);
 
     this._disableDeleteFirstChord();
   };
@@ -51683,7 +51683,7 @@ function () {
     container.appendChild(btn);
     this.chordNameBtns.push(btn);
     this.curChordNameBtn = btn;
-    this.onActivate(this.curChord);
+    this.activate(btn);
   };
   /**
    * Append a chord name button to the container
@@ -51715,7 +51715,7 @@ function () {
     container.appendChild(btn);
     this.chordNameBtns.splice(index, 0, btn);
     this.curChordNameBtn = btn;
-    this.onActivate(this.curChord);
+    this.activate(btn);
   };
   /**
    * Switch to and activate the next chord after the current one
@@ -51744,6 +51744,11 @@ function () {
 
 
   ChordProgression.prototype.activate = function (chordNameBtn) {
+    for (var _i = 0, _a = this.chordNameBtns; _i < _a.length; _i++) {
+      var chordButton = _a[_i];
+      chordButton.classList.remove('animated');
+    }
+
     if (this.curChordNameBtn !== null) {
       // Current Chord name button exists
       this.curChordNameBtn.parentElement.classList.remove("active"); // Deactivate the current button
@@ -51755,6 +51760,7 @@ function () {
 
     this.curChordNameBtn = chordNameBtn;
     console.log("Activate chord " + this.curChord + " at " + this.curIndex);
+    chordNameBtn.classList.add('animated');
     this.onActivate(this.curChord);
   };
   /**
@@ -52209,7 +52215,8 @@ progression.onPlay = function (chords) {
       "chord": chords[i]
     };
     events.push(event);
-  }
+  } // @ts-ignore
+
 
   part = new tone_1.Part(function (time, value) {
     //the value is an object which contains both the note and the velocity
@@ -52261,7 +52268,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50616" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55544" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
