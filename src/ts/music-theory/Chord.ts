@@ -148,8 +148,7 @@ export class Chord {
         const inversedKeyNum = rootKeyNum + halfSteps[this.inversionNum]; // Key or ID number of lowest note in chord.
         let inversedNote = Note.toChroma(inversedKeyNum); // Name of inversed (lowest) note in chord.
 
-        console.log(inversedNote[0]);
-        console.log(rootKeyName[0]);
+        console.log(inversedNote);
 
         let noteDiff = Chord.letters.indexOf(inversedNote[0]) - Chord.letters.indexOf(rootKeyName[0]);
         console.log(noteDiff); // Calculates the difference of the note letters
@@ -159,7 +158,7 @@ export class Chord {
         let thirdInversionBoolean = (this.inversionNum === 3) && [5, -2].includes(noteDiff); // Messes up with double flats
 
         if (firstInversionBoolean || secondInversionBoolean || thirdInversionBoolean){ // Checks to see if there are any of the errors above
-            inversedNote = Chord.letters[Chord.letters.indexOf(inversedNote[0]) + 1] + "♭"; // Changes it to the next note up but flat
+            inversedNote = Chord.letters[7%(Chord.letters.indexOf((inversedNote[0]) + 1))] + "♭"; // Changes it to the next note up but flat
         }
 
         if (this.inversionNum === 3 && this.type === "Diminished Seventh" && rootKeyName[0] === "C") { // Adds a double flat for the one outlier case of c-dim7
