@@ -14,7 +14,7 @@ import {ChordTypeBtn} from "./setting-toolbar/ChordTypeBtn";
 import {InversionBtn} from "./setting-toolbar/InversionBtn";
 import {Chord} from "./music-theory/Chord";
 import {ChordProgression} from "./progression/ChordProgression";
-import {Part} from "tone";
+import {Part, Transport} from "tone";
 
 
 new Loader();
@@ -108,10 +108,11 @@ progression.onPlay = function (chords: Array<Array<string>>) {
         events.push(event);
     }
 
+    // @ts-ignore
     part = new Part(function (time, value) {
         //the value is an object which contains both the note and the velocity
         progression.switch();
-        
+
         
         // @ts-ignore
         console.log(`Play the chord ${value.chord}`);

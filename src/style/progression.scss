@@ -6,6 +6,22 @@ $bg-secondary: #6C757C;
 $bg-light: #F8F9FA;
 $bg-danger: #DC3445;
 
+.animated {
+  -webkit-animation-duration: .5s;
+  animation-duration: .5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+}
+
+.bounce {
+  -webkit-animation-name: bounce;
+  animation-name: bounce;
+}
+
 @mixin unselectable {
   -moz-user-select: none;
   -khtml-user-select: none;
@@ -136,4 +152,40 @@ $bg-danger: #DC3445;
   .btn-chord-delete {
     display: block;
   }
+}
+
+// For the bouncing
+
+
+@-webkit-keyframes bounce {
+  0%, 100% {
+    -webkit-transform: translateY(0);
+  }
+  50% {
+    -webkit-transform: translateY(-5px);
+  }
+}
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+#animated-example {
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  position: relative;
+  top: 100px;
+  left: 100px;
+  border-radius: 50%;
+}
+hr {
+  position: relative;
+  top: 92px;
+  left: -300px;
+  width: 200px;
 }

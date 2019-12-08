@@ -130,7 +130,9 @@ export class ChordProgression {
 
         console.log(`Append a new chord ${this.curChord} at ${this.curIndex}`);
 
+        this.activate(this.curChordNameBtn!);
         this._disableDeleteFirstChord();
+
     }
 
     /**
@@ -253,6 +255,11 @@ export class ChordProgression {
      * @public
      */
     public activate(chordNameBtn: HTMLElement) {
+
+        for (let chordButton of this.chordNameBtns) {
+            chordButton.classList.remove('bounce', 'animated');
+        }
+
         if (this.curChordNameBtn !== null) {    // Current Chord name button exists
             this.curChordNameBtn.parentElement!.classList.remove("active"); // Deactivate the current button
         }
@@ -261,6 +268,8 @@ export class ChordProgression {
         chordNameBtn.parentElement!.classList.add("active");    // Active the button
         this.curChordNameBtn = chordNameBtn;
         console.log(`Activate chord ${this.curChord} at ${this.curIndex}`);
+
+        chordNameBtn.classList.add('bounce', 'animated');
 
         this.onActivate(this.curChord);
     }
@@ -473,6 +482,7 @@ export class ChordProgression {
             this._playButton.innerHTML = "<i class=\"fas fa-pause\"></i>";
             this._playButton.classList.add("active");
             this.activate(this.curChordNameBtn!);
+
 
             Transport.start('+1.1');
 
