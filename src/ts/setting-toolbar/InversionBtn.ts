@@ -26,7 +26,7 @@ export class InversionBtn {
      * Reset inversion btn to None, and menu items based on the chord length
      */
     public reset(chordLen: number) {
-        this._setInverionBtn("None");
+        this._setInversionButton("None");
         this._setInversionMenu(chordLen - 1);
     }
 
@@ -63,18 +63,18 @@ export class InversionBtn {
      * @private
      */
     private _setInversion(inversionName: string, inversionNum: number) {
-        this._setInverionBtn(inversionName);
+        this._setInversionButton(inversionName);
         this.onSetInversion(inversionNum);
     }
 
     /**
-     * Set the text on the inversion button
+     * Set the text on the inversion button and change the menu items
      * @param chord
      */
     public setInversionText(chord: Chord) {
         const inversionName = InversionBtn.inversionTypes[chord.inversionNum];
-        this._setInverionBtn(inversionName);
-        const chordLen = Chord.getLen(chord.family, chord.type);
+        this._setInversionButton(inversionName);    // Change the text in the button
+        const chordLen = Chord.getLen(chord.family, chord.type);    // Change the menu
         this._setInversionMenu(chordLen - 1);
     }
 
@@ -82,7 +82,7 @@ export class InversionBtn {
      * Set the text in the inversion button
      * @param inversionName
      */
-    private _setInverionBtn(inversionName: string) {
+    private _setInversionButton(inversionName: string) {
         this.btn.innerText = inversionName;
     }
 
