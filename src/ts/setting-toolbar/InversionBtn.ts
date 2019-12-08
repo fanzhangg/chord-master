@@ -83,8 +83,7 @@ export class InversionBtn {
      * @param inversionName
      */
     private _setInverionBtn(inversionName: string) {
-        const btn = document.getElementById("chordInversionBtn")!;
-        btn.innerText = inversionName;
+        this.btn.innerText = inversionName;
     }
 
     /**
