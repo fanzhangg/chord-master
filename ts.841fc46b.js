@@ -51202,6 +51202,10 @@ Object.defineProperty(exports, "__esModule", {
 var Chord_1 = require("../music-theory/Chord");
 
 var jquery_1 = __importDefault(require("jquery"));
+/**
+ * Control the current chord's type
+ */
+
 
 var ChordTypeBtn =
 /** @class */
@@ -51209,10 +51213,11 @@ function () {
   function ChordTypeBtn() {
     var menuContainer = document.getElementById("chordTypeDropdownMenu");
 
-    this._renderDropdownMenu(menuContainer); // @ts-ignore
+    this._renderDropdownMenu(menuContainer); // Append menu in the container
+    // @ts-ignore
 
 
-    jquery_1.default('[data-submenu]').submenupicker();
+    jquery_1.default('[data-submenu]').submenupicker(); // Enable toggle the submenu on click
 
     this.onSetChordType = function () {};
 
@@ -51283,8 +51288,7 @@ function () {
 
 
   ChordTypeBtn.prototype.setTypeText = function (type) {
-    var btn = document.getElementById("chordTypeBtn");
-    btn.innerText = type;
+    this.btn.innerText = type;
   };
   /**
    * Disable clicking the button
@@ -51333,7 +51337,7 @@ function () {
 
 
   InversionBtn.prototype.reset = function (chordLen) {
-    this._setInverionBtn("None");
+    this._setInversionButton("None");
 
     this._setInversionMenu(chordLen - 1);
   };
@@ -51378,12 +51382,12 @@ function () {
 
 
   InversionBtn.prototype._setInversion = function (inversionName, inversionNum) {
-    this._setInverionBtn(inversionName);
+    this._setInversionButton(inversionName);
 
     this.onSetInversion(inversionNum);
   };
   /**
-   * Set the text on the inversion button
+   * Set the text on the inversion button and change the menu items
    * @param chord
    */
 
@@ -51391,9 +51395,10 @@ function () {
   InversionBtn.prototype.setInversionText = function (chord) {
     var inversionName = InversionBtn.inversionTypes[chord.inversionNum];
 
-    this._setInverionBtn(inversionName);
+    this._setInversionButton(inversionName); // Change the text in the button
 
-    var chordLen = Chord_1.Chord.getLen(chord.family, chord.type);
+
+    var chordLen = Chord_1.Chord.getLen(chord.family, chord.type); // Change the menu
 
     this._setInversionMenu(chordLen - 1);
   };
@@ -51403,9 +51408,8 @@ function () {
    */
 
 
-  InversionBtn.prototype._setInverionBtn = function (inversionName) {
-    var btn = document.getElementById("chordInversionBtn");
-    btn.innerText = inversionName;
+  InversionBtn.prototype._setInversionButton = function (inversionName) {
+    this.btn.innerText = inversionName;
   };
   /**
    * Disable clicking the button
@@ -52257,7 +52261,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63576" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50616" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
