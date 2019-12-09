@@ -472,6 +472,8 @@ export class ChordProgression {
         if (Transport.state === 'started') {
             this._playButton.innerHTML = "<i class=\"fas fa-play\"></i>";
             this._playButton.classList.remove("active");
+            this._enableBtnsAnimation();
+
             Transport.stop();
             this._appendAddBtn();
             this._enableDeleteAll();
@@ -481,10 +483,12 @@ export class ChordProgression {
         } else {
             this._playButton.innerHTML = "<i class=\"fas fa-pause\"></i>";
             this._playButton.classList.add("active");
-            this.activate(this.curChordNameBtn!);
+            this._disableBtnsAnimation();
+
+            this.activate(this.curChordNameBtn!);   // Play the current chord
 
 
-            Transport.start('+1.1');
+            Transport.start('+1.1');    // Wait until the first chord played
 
             const notesList = this._getNotesList();
             this._removeAddBtn();
@@ -492,6 +496,24 @@ export class ChordProgression {
             this._disableReset();
             this._disableCopy();
             this.onPlay(notesList);
+        }
+    }
+
+    /**
+     * Disable button's jumping animation
+     */
+    private _disableBtnsAnimation(){
+        for (let btn of this.chordNameBtns){
+            btn.classList.add("disable")
+        }
+    }
+
+    /**
+     * Enable button's jumping animation
+     */
+    private _enableBtnsAnimation(){
+        for (let btn of this.chordNameBtns){
+            btn.classList.remove("disable")
         }
     }
 
