@@ -1,3 +1,6 @@
+$border-color: #212224;
+$highlight-root-color: #dfe6e9;
+
 #pianoContainer {
     width: 100%;
     height: 200px;
@@ -11,7 +14,8 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    border: .5px solid black;
+    border: .5px solid $border-color;
+    border-bottom: 1px solid $border-color;
 }
 
 #keyboard p {
@@ -33,7 +37,7 @@
 }
 
 #keyboard .key {
-    border: .5px solid #303952;
+    border: 1px solid $border-color;
     position: absolute;
     left: 0;
     top: 0;
@@ -46,19 +50,19 @@
     /* white key behind black key */
     z-index: 0;
     text-align: center;
-    color: gray;
+    color: rgb(147, 154, 160);
     background-color: white;
 }
 
 #keyboard .key.white > .note-name {
     position: absolute;
-    top: 130px;
+    top: 160px;
     width: 100%;
 }
 
 #keyboard .key.white > .keyStr {
     position: absolute;
-    top: 150px;
+    top: 180px;
     width: 100%;
 }
 
@@ -67,7 +71,7 @@
 }
 
 #keyboard .key.white:active {
-    background-color: yellow;
+    background-color: #fdcb6e;
 }
 
 #keyboard .key.black {
@@ -75,17 +79,36 @@
     height: 50%;
     text-align: center;
     color: lightgrey;
-    background-color: #303952;
+    box-shadow: inset 10px 10px 100px rgba(132, 189, 245, 0.98);
+    //background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+    background-image: linear-gradient(0deg, #575960 0%, #2e2d31 100%);
     width: 100%;
+    border-bottom: 8px solid $border-color;
+    border-left: 2px solid $border-color;
+    border-right: 2px solid $border-color;
+    border-top: 1px solid $border-color;
+
+    &.highlight {
+        background-image: linear-gradient(0deg, #F6D365 50%, rgba(253, 160, 133, 0.82) 100%);
+    }
+
+    &.highlight-root {
+        background-image: linear-gradient(0deg, #848d90 50%, #65696c 100%);
+
+        &:hover {
+            background-color: #4c5053;
+        }
+    }
 }
 
 #keyboard .key.black > .keyStr {
     position: absolute;
     width: 100%;
-    top: 50px;
+    top: 30px;
 }
 
 #keyboard .key.black:hover {
+    background-image: none;
     background-color: #596275;
 }
 
@@ -94,7 +117,18 @@
 }
 
 #keyboard .key.highlight {
-    background-color: #ffeaa7;
+    background-image: none;
+    background-color: #f6d365;
+    box-shadow: inset 0 3px 15px rgb(253, 160, 133);
+}
+
+#keyboard .key.highlight-root {
+    background-image: none;
+    background-color: #dfe6e9;
+
+    &:hover {
+        background: #ccd3d6;
+    }
 }
 
 #keyboard .key.highlight:hover {

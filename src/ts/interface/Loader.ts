@@ -28,7 +28,6 @@ class Loader {
          */
         //@ts-ignore
         Buffer.on("progress", (prog) => {
-            progBar.innerText = `${(prog * 100).toFixed(2)}%`;
             progBar.style.width = `${(prog * 100).toFixed(2)}%`;
         })
     }

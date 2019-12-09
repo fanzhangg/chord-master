@@ -1,16 +1,21 @@
 import {Chord} from "../music-theory/Chord";
 import $ from "jquery";
 
+/**
+ * Control the current chord's type
+ */
 export class ChordTypeBtn {
     onSetChordType: Function;
+    btn: HTMLElement;
 
     constructor() {
         const menuContainer = document.getElementById("chordTypeDropdownMenu")!;
-        this._renderDropdownMenu(menuContainer);
+        this._renderDropdownMenu(menuContainer);    // Append menu in the container
         // @ts-ignore
-        $('[data-submenu]').submenupicker();
+        $('[data-submenu]').submenupicker();    // Enable toggle the submenu on click
         this.onSetChordType = function () {
         };
+        this.btn = document.getElementById("chordTypeBtn")!;
     }
 
     /**
@@ -56,14 +61,36 @@ export class ChordTypeBtn {
         }
     }
 
+    /**
+     * Set the type and the family of the chord
+     * @param type
+     * @param family
+     */
     public setChordType(type: string, family: string) {
         // Change the text of the chord type
         this.setTypeText(type);
         this.onSetChordType(type, family);
     }
 
+    /**
+     * Change the text in the button
+     * @param type
+     */
     public setTypeText(type: string) {
-        const btn = document.getElementById("chordTypeBtn")!;
-        btn.innerText = type;
+        this.btn.innerText = type;
+    }
+
+    /**
+     * Disable clicking the button
+     */
+    public disable(){
+        this.btn.classList.add("disabled");
+    }
+
+    /**
+     * Enable clicking the button
+     */
+    public enable(){
+        this.btn.classList.remove("disabled");
     }
 }

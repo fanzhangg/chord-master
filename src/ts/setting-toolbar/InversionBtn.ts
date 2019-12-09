@@ -12,19 +12,21 @@ export class InversionBtn {
     };
 
     onSetInversion: Function;
+    btn: HTMLElement;
 
     constructor() {
         this._setInversionMenu(2); // renders the inversion dropdown
 
-        this.onSetInversion = function () {
-        }
+        this.btn = document.getElementById("chordInversionBtn")!;
+
+        this.onSetInversion = function () {};
     }
 
     /**
      * Reset inversion btn to None, and menu items based on the chord length
      */
     public reset(chordLen: number) {
-        this._setInverionBtn("None");
+        this._setInversionButton("None");
         this._setInversionMenu(chordLen - 1);
     }
 
@@ -35,6 +37,9 @@ export class InversionBtn {
     private _setInversionMenu(maxInversion: number) {
         const menu = document.getElementById("chordInversionDropdownMenu")!;
         menu.innerHTML = ""; // Remove all items
+        if (maxInversion >= 3) { // Limits inversion to third (7th as root)
+            maxInversion = 3;
+        }
         for (let i = 0; i <= maxInversion; i++) {
             const item = document.createElement("a");
             item.classList.add("dropdown-item");
@@ -58,18 +63,18 @@ export class InversionBtn {
      * @private
      */
     private _setInversion(inversionName: string, inversionNum: number) {
-        this._setInverionBtn(inversionName);
+        this._setInversionButton(inversionName);
         this.onSetInversion(inversionNum);
     }
 
     /**
-     * Set the text on the inversion button
+     * Set the text on the inversion button and change the menu items
      * @param chord
      */
     public setInversionText(chord: Chord) {
         const inversionName = InversionBtn.inversionTypes[chord.inversionNum];
-        this._setInverionBtn(inversionName);
-        const chordLen = Chord.getLen(chord.family, chord.type);
+        this._setInversionButton(inversionName);    // Change the text in the button
+        const chordLen = Chord.getLen(chord.family, chord.type);    // Change the menu
         this._setInversionMenu(chordLen - 1);
     }
 
@@ -77,9 +82,22 @@ export class InversionBtn {
      * Set the text in the inversion button
      * @param inversionName
      */
-    private _setInverionBtn(inversionName: string) {
-        const btn = document.getElementById("chordInversionBtn")!;
-        btn.innerText = inversionName;
+    private _setInversionButton(inversionName: string) {
+        this.btn.innerText = inversionName;
+    }
+
+    /**
+     * Disable clicking the button
+     */
+    public disable(){
+        this.btn.classList.add("disabled");
+    }
+
+    /**
+     * Enable clicking the button
+     */
+    public enable(){
+        this.btn.classList.remove("disabled");
     }
 }
 

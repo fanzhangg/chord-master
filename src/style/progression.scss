@@ -1,9 +1,11 @@
 $border-secondary: #b2bec3;
 $text-secondary: #6C757C;
+$text-muted: #939aa0;
 $text-highlight: white;
 $bg-secondary: #6C757C;
 $bg-light: #F8F9FA;
 $bg-danger: #DC3445;
+
 
 @mixin unselectable {
   -moz-user-select: none;
@@ -20,12 +22,33 @@ $bg-danger: #DC3445;
 #resetBtn {
   color: #6c757d;
 
-  & :hover {
+  &:hover {
     color: #DC3445;
+  }
+
+  &.disabled {
+    color: $text-muted;
   }
 }
 
+
+#copyBtn {
+  color: #6c757d;
+
+&:hover {
+  color: #8ec5fc;
+}
+
+&.disabled {
+  color: $text-muted;
+}
+}
+
 #playBtn {
+  &.active {
+    background: #8ec5fc;
+    border: 0;
+  }
   border-radius: 50%;
 }
 
@@ -73,7 +96,7 @@ $bg-danger: #DC3445;
       left: 50%;
       transform: translate(-50%, -50%);
       font-size: 50px;
-      color: $text-secondary;
+      color: $text-muted;
     }
   }
 
@@ -81,7 +104,7 @@ $bg-danger: #DC3445;
     background: $bg-secondary;
     width: 30px;
     height: 30px;
-    margin: 7px; // space between circles
+    margin: 10px; // space between circles
     border-radius: 50%;
     text-align: center;
     display: none; // Hide the element
@@ -107,11 +130,26 @@ $bg-danger: #DC3445;
     background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
 
     &:hover{
-      background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+      background-image: linear-gradient(120deg, #d9bef5 0%, #84bdf5 100%);
     }
   }
 
   .btn-chord-delete {
     display: block;
+  }
+}
+
+.animated {
+  animation: .4s jump ease infinite alternate;
+}
+
+@keyframes jump {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  }
+  100% {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0,0,0,.1);
   }
 }

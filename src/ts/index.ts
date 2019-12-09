@@ -13,8 +13,8 @@ import {Loader} from "./interface/Loader";
 import {ChordTypeBtn} from "./setting-toolbar/ChordTypeBtn";
 import {InversionBtn} from "./setting-toolbar/InversionBtn";
 import {Chord} from "./music-theory/Chord";
-import {ChordProgression} from "./ChordProgression";
-import {Part} from "tone";
+import {ChordProgression} from "./progression/ChordProgression";
+import {Part, Transport} from "tone";
 
 
 new Loader();
@@ -30,7 +30,10 @@ sound.load();
 
 const progression = new ChordProgression();
 
-
+/**
+ * Handles the key presses for the piano class.
+ * @param chord
+ */
 piano.onKeyDown = function (chord: Chord) {
     progression.setChord(chord);
 
@@ -38,29 +41,50 @@ piano.onKeyDown = function (chord: Chord) {
     sound.keyDown(notes);
 };
 
+/**
+ * Stops the chord sound when the mouse is releases
+ * @param chord
+ */
 piano.onKeyUp = function (chord: Array<string>) {
     sound.keyUp(chord);
 };
 
+/**
+ * Sets the chord when a chord progression chord is clicked.
+ * @param chord
+ */
 piano.onSetChord = function (chord: Chord) {
     const notes = chord.getNotes();
-    sound.keyDownUp(notes);
+    sound.keyDownUp(notes, 1);
 };
 
+/**
+ * Changes the chord type when you click from the menu.
+ * @param type
+ * @param family
+ */
 chordTypeBtn.onSetChordType = function (type: string, family: string) {
     console.log(`Set the type to ${type}`);
     const chordLen = Chord.getLen(family, type);
-    inversionBtn.reset(chordLen);   // Reset the chord progression to none
+    inversionBtn.reset(chordLen);   // Reset the chord inversion to none
     piano.setChordType(family, type);
     progression.setChordType(family, type);
 };
 
+/**
+ * Changes the inversion when you click from the menu
+ * @param inversionNum
+ */
 inversionBtn.onSetInversion = function (inversionNum: number) {
     piano.setInversion(inversionNum);
     progression.setInversion(inversionNum);
     console.log(`Set the inversion to ${inversionNum}`)
 };
 
+/**
+ * Sets chord on piano, changes text on chord type button and inversion button.
+ * @param chord
+ */
 progression.onActivate = function (chord: Chord) {
     piano.setChord(chord);
     chordTypeBtn.setTypeText(chord.type);
@@ -68,8 +92,12 @@ progression.onActivate = function (chord: Chord) {
     console.log(`Set the chord to ${chord}`);
 };
 
-let part = new Part(function h(){}, []); // Declaring an outside part to remove the part as soon as you call it
 
+let part = new Part(() => {}, []); // Declaring a blank part to be used in progression.onPlay()
+/**
+ * Plays through the chord progression when play button is clicked.
+ * @param chords
+ */
 progression.onPlay = function (chords: Array<Array<string>>) {
     // @ts-ignore
     part.removeAll();
@@ -80,19 +108,33 @@ progression.onPlay = function (chords: Array<Array<string>>) {
         events.push(event);
     }
 
+    // @ts-ignore
     part = new Part(function (time, value) {
         //the value is an object which contains both the note and the velocity
-        // @ts-ignore
-        sound.keyDownUp(value.chord, 0.8, time);
+        progression.switch();
+
+        
         // @ts-ignore
         console.log(`Play the chord ${value.chord}`);
         //@ts-ignore
     }, events).start(0);
     part.loop = true;
     part.loopStart = 0;
-    part.loopEnd = chords.length + .5;
+    part.loopEnd = chords.length;
 };
 
+
+progression.onSwitch = function () {
+    chordTypeBtn.disable();
+    inversionBtn.disable();
+    piano.disable();
+};
+
+progression.onStop = function () {
+    chordTypeBtn.enable();
+    inversionBtn.enable();
+    piano.enable();
+};
 
 
 
