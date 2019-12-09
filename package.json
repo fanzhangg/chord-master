@@ -3,17 +3,17 @@
     "lib": "lib",
     "test": "test"
   },
-  "author": "azu",
+  "author": "fanzhangg",
   "license": "MIT",
   "files": [
     "bin/",
     "lib/",
     "src/"
   ],
-  "name": "parcel-typescript-example",
+  "name": "chord-master",
   "version": "1.0.0",
-  "description": "TypeScript app with parcel bundler.",
-  "main": "lib/parcel-typescript-example.js",
+  "description": "An web application to build a chord progression",
+  "main": "lib/chord-master.js",
   "scripts": {
     "start": "parcel serve src/index.html",
     "build": "cross-env NODE_ENV=production parcel build src/index.html --public-url .",
@@ -23,12 +23,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/azu/parcel-typescript-example.git"
+    "url": "https://github.com/fanzhangg/chord-master"
   },
   "bugs": {
-    "url": "https://github.com/azu/parcel-typescript-example/issues"
+    "url": "https://github.com/fanzhangg/chord-master/issues"
   },
-  "homepage": "https://azu.github.io/parcel-typescript-example/",
+  "homepage": "https://fanzhangg.github.io/chord-master/",
   "devDependencies": {
     "@types/jquery": "^3.3.31",
     "@types/node": "^12.12.8",
