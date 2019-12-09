@@ -1,6 +1,5 @@
 
 
-
 h1{
   text-align: center;
   font-size: 60px;
@@ -13,13 +12,13 @@ body{
 
 }
 
-.card-header{
-  /*background-color: #BCD4E0;*/
-}
-
 .wetwet{
   display: flex;
   justify-content: center;
+}
+
+.card-body{
+  text-align: center;
 }
 
 .btn-link{
@@ -31,31 +30,16 @@ body{
 }
 
 
-.accordion{
+.accordion {
   width: 150vh;
 }
-.explanation{
-
-
-  text-align: center;
-  font-size: 2.5vh;
-  margin-bottom: 50px;
-  color: #E4EFF1;
-}
-
-
 
 img{
   margin-bottom: 10px;
 }
+
 p{
-  color: #E4EFF1;
+  color: black;
 }
 
-
-.tip1{
-  color: #E4EFF1;
-  text-align: center;
-
-}
 
