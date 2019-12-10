@@ -124,7 +124,7 @@ export class ChordProgression {
 
         console.log(`Append a new chord ${this.curChord} at ${this.curIndex}`);
 
-        this.activate(this.curChordNameBtn!);
+        // this.activate(this.curChordNameBtn!);
         this._toggleFirstChordDelete();
 
     }
