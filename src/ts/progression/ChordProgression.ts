@@ -55,14 +55,6 @@ export class ChordProgression {
         this._playButton.addEventListener("pointerup", () => {  // Play button
             this._toggleProgression();
         });
-
-        const copyBtn = document.getElementById("copyBtn")!;
-        copyBtn.addEventListener("pointerup", () => {   // Copy Button
-            const chord = $.extend(true, {}, this.curChord);    // Copy the current chord to chord to avoid manupilating the same object
-            if (!copyBtn.classList.contains("disabled")){
-                this._insertChord(chord, this.curIndex+1);  // Copy the current chord, and insert it after the current chord
-            }
-        });
     }
 
     /**
@@ -133,7 +125,7 @@ export class ChordProgression {
         console.log(`Append a new chord ${this.curChord} at ${this.curIndex}`);
 
         this.activate(this.curChordNameBtn!);
-        this._disableDeleteFirstChord();
+        this._toggleFirstChordDelete();
 
     }
 
@@ -165,7 +157,7 @@ export class ChordProgression {
 
         console.log(`Insert a new chord ${this.curChord} at ${this.curIndex}`);
 
-        this._disableDeleteFirstChord();
+        this._toggleFirstChordDelete();
     }
 
     /**
@@ -292,18 +284,27 @@ export class ChordProgression {
      * @private
      * @return true if it deletes, else false
      */
-    private _disableDelete(index: number): boolean{
+    private _disableEdit(index: number): boolean{
         const button = this.chordNameBtns[index];
         if (button == null){
             throw new Error("Button does not exist. Cannot disable deleting");
         }
 
-        const deleteButton = button.nextElementSibling;
-        if (deleteButton == null){
-            console.warn("The chord button does not have a delete button. Cannot disable deleting");
-            return false;
-        }
-        deleteButton.remove();
+        const container = button.parentElement!;
+
+        // Remove delete buttons
+        const deleteBtns = container.querySelectorAll(".btn-chord-delete");
+        
+        deleteBtns.forEach( e => {
+            e.remove();
+        })
+        
+        // Remove copy buttons
+        const copyBtns = container.querySelectorAll(".btn-chord-copy");
+
+        copyBtns.forEach( e => {
+            e.remove();
+        })
         return true;
     }
 
@@ -311,9 +312,9 @@ export class ChordProgression {
      * Disable deleting on all chords
      * @private
      */
-    private _disableDeleteAll(){
+    private _disableEditAll(){
         for (let i = 0; i < this.chordNameBtns.length; i++){
-            this._disableDelete(i);
+            this._disableEdit(i);
         }
     }
 
@@ -321,13 +322,15 @@ export class ChordProgression {
      * Enable deleting on all chords
      * @private
      */
-    private _enableDeleteAll(){
+    private _enableEditAll(){
         for (let chordNameBtn of this.chordNameBtns){
             const container = chordNameBtn.parentElement;
             if (container == null){
                 throw new Error("The chord name button does not have a container. Cannot enable deleting");
             }
             this._appendDeleteBtn(container);
+            this._appendCopyBtn(container);
+            this._toggleFirstChordDelete();
         }
     }
 
@@ -335,15 +338,19 @@ export class ChordProgression {
      * Disable deleting the first chord if the chord's length <= 1
      * @private
      */
-    private _disableDeleteFirstChord(){
+    private _toggleFirstChordDelete(){
         if (this.chordsList.length <= 1){
             const button = this.chordNameBtns[0];
-            const deleteButton = button.nextElementSibling!;
-            deleteButton.remove();
+            const container = button.parentElement!;
+            const deleteBtn = container.querySelector(".btn-chord-delete");
+            if (deleteBtn == null) {
+                throw new Error("Delete button does not exist");
+            }
+            deleteBtn.remove();
             console.log("The first delete button is deleted")
         } else {
             const button = this.chordNameBtns[0];
-            if (button.nextElementSibling !== null){    // The button has a delete button
+            if (button.parentElement?.querySelector(".btn-chord-delete")){    // The button has a delete button
                 return; // Not add a new delete button
             }
             // Add a delete button
@@ -383,7 +390,7 @@ export class ChordProgression {
         console.log(`Delete chord at index ${index}. Change the chord to ${this.curChord} at ${this.curIndex}`);
         deleteBtn.parentElement!.remove(); // Remove the chord button that the delete btn is in
 
-        this._disableDeleteFirstChord();
+        this._toggleFirstChordDelete();
     }
 
     /**
@@ -488,9 +495,8 @@ export class ChordProgression {
 
             Transport.stop();
             this._appendAddBtn();
-            this._enableDeleteAll();
+            this._enableEditAll();
             this._enableReset();
-            this._enableCopy();
             this.onStop();
         } else {
             this._playButton.innerHTML = "<i class=\"fas fa-pause\"></i>";
@@ -504,9 +510,8 @@ export class ChordProgression {
 
             const notesList = this._getNotesList();
             this._removeAddBtn();
-            this._disableDeleteAll();
+            this._disableEditAll();
             this._disableReset();
-            this._disableCopy();
             this.onPlay(notesList);
         }
     }
@@ -545,23 +550,5 @@ export class ChordProgression {
     private _enableReset(){
         const resetBtn = document.getElementById("resetBtn")!;
         resetBtn.classList.remove("disabled");
-    }
-
-    /**
-     * Disable the reset button
-     * @private
-     */
-    private _disableCopy(){
-        const copyBtn = document.getElementById("copyBtn")!;
-        copyBtn.classList.add("disabled");
-    }
-
-    /**
-     * Enable the reset button
-     * @private
-     */
-    private _enableCopy(){
-        const copyBtn = document.getElementById("copyBtn")!;
-        copyBtn.classList.remove("disabled");
     }
 }
