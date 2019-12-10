@@ -2,9 +2,13 @@ $border-secondary: #b2bec3;
 $text-secondary: #6C757C;
 $text-muted: #939aa0;
 $text-highlight: white;
+$text-light: #f8f9fa;
+
 $bg-secondary: #6C757C;
 $bg-light: #F8F9FA;
 $bg-danger: #DC3445;
+$bg-blue: #8ec5fc;
+$bg-secondary-highlight: #5A628D;
 
 
 @mixin unselectable {
@@ -36,7 +40,7 @@ $bg-danger: #DC3445;
   color: #6c757d;
 
 &:hover {
-  color: #8ec5fc;
+  color: $bg-blue;
 }
 
 &.disabled {
@@ -46,7 +50,7 @@ $bg-danger: #DC3445;
 
 #playBtn {
   &.active {
-    background: #8ec5fc;
+    background: $bg-blue;
     border: 0;
   }
   border-radius: 50%;
@@ -60,6 +64,10 @@ $bg-danger: #DC3445;
   @include unselectable;
 
   &:hover .btn-chord-delete {
+    display: block;
+  }
+
+  &:hover .btn-chord-copy {
     display: block;
   }
 
@@ -119,15 +127,39 @@ $bg-danger: #DC3445;
 
     position: absolute;
     top: 0;
-    right: 0;
+    left: 0;
 
     &:hover {
       background: $bg-danger;
     }
 
     i {
-      color: white;
+      color: $text-light;
       vertical-align: middle;
+    }
+  }
+
+  .btn-chord-copy {
+    background: $text-secondary;
+    width: 30px;
+    height: 30px;
+    margin: 10px; // space between circles
+    border-radius: 50%;
+    text-align: center;
+    display: none; // Hide the element
+
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    &:hover {
+      background: $bg-secondary-highlight;
+    }
+
+    i {
+      color: $text-light;
+      vertical-align: middle;
+      font-size: 18px;
     }
   }
 }
@@ -143,6 +175,10 @@ $bg-danger: #DC3445;
   }
 
   .btn-chord-delete {
+    display: block;
+  }
+
+  .btn-chord-copy {
     display: block;
   }
 

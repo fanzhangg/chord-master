@@ -33,6 +33,7 @@ export class ChordProgression {
         this.onStop = function() {};
 
         // Initialize the progression with an add button and a C chord
+        
         this._appendChord(new Chord(48), null);
         this._appendAddBtn();
         this._addEventListeners();
@@ -105,7 +106,7 @@ export class ChordProgression {
     }
 
     /**
-     * Insert a chord in front of the add button
+     * Insert a C chord in front of the add button
      * @param chord
      * @param addBtn
      * @private
@@ -124,6 +125,7 @@ export class ChordProgression {
 
         this._appendChordNameBtn(btnContainer);
         this._appendDeleteBtn(btnContainer);
+        this._appendCopyBtn(btnContainer);
 
         const progressionContainer = document.getElementById("progressionChordsContainer")!;
         progressionContainer.insertBefore(btnContainer, addBtn);    // Insert the new chord btn before add btn
@@ -154,11 +156,12 @@ export class ChordProgression {
 
         this._insertChordNameBtn(btnContainer, index, chord);
         this._appendDeleteBtn(btnContainer);
+        this._appendCopyBtn(btnContainer);
 
         const prevButton = this.chordNameBtns[index-1];
 
         const progressionContainer = document.getElementById("progressionChordsContainer")!;
-        progressionContainer.insertBefore(btnContainer, prevButton.parentElement!.nextSibling);    // Insert the new chord btn before add btn
+        progressionContainer.insertBefore(btnContainer, prevButton.parentElement!.nextSibling);    // Insert the new chord btn before next btn
 
         console.log(`Insert a new chord ${this.curChord} at ${this.curIndex}`);
 
@@ -167,15 +170,15 @@ export class ChordProgression {
 
     /**
      * Append a delete button in the container
-     * @param container
+     * @param container HTMLElement
      * @private
      */
     private _appendDeleteBtn(container: HTMLElement) {
         const deleteBtn = document.createElement("div");
         deleteBtn.classList.add("btn-chord-delete", "shadow-sm");
 
-        const icon = document.createElement("i");
-        icon.classList.add("material-icons");
+        const icon = document.createElement("i");   // Add the icon
+        icon.classList.add("material-icons-outlined");
         icon.innerText = "clear";
         deleteBtn.appendChild(icon);
         deleteBtn.addEventListener("pointerup", () => {
@@ -185,27 +188,36 @@ export class ChordProgression {
     }
 
     /**
-     * Append a chord name button to the container
+     * Append a copy button in the container
+     * @param container HTMLElement
+     * @private
+     */
+    private _appendCopyBtn(container: HTMLElement){
+        const copyBtn = document.createElement("div");
+        copyBtn.classList.add("btn-chord-copy", "shadow-sm");
+
+        const icon = document.createElement("i");   // Add the icon
+        icon.classList.add("material-icons-outlined");
+        icon.innerText = "file_copy";
+        copyBtn.appendChild(icon);
+        copyBtn.addEventListener("pointerup", () => {
+            const chord = $.extend(true, {}, this.curChord);    // Copy the current chord to chord to avoid manupilating the same object
+            if (!copyBtn.classList.contains("disabled")){
+                this._insertChord(chord, this.curIndex+1);  // Copy the current chord, and insert it after the current chord
+            }
+        });
+        container.appendChild(copyBtn);
+    }
+
+    /**
+     * Append a C chord name button to the container
      * @param container
      * @private
      */
     private _appendChordNameBtn(container: HTMLElement) {
-        const btn = document.createElement("div");
-        btn.classList.add("button-chord-name", "shadow");
-
-        const text = document.createElement("div");
-        this.curChord = new Chord();    // Initialize the current chord to a C4 major chord
-        text.innerHTML = this.curChord.getChordName();  // Set the text to the name of the current chord
-        btn.appendChild(text);
-
-        btn.addEventListener("pointerup", () => {
-            this.activate(btn);
-        });
-        container.appendChild(btn);
-        this.chordNameBtns.push(btn);
-        this.curChordNameBtn = btn;
-
-        this.activate(btn);
+        const chord = new Chord();
+        const index = this.chordsList.length;
+        this._insertChordNameBtn(container, index, chord)
     }
 
     /**
@@ -215,7 +227,7 @@ export class ChordProgression {
      * @param chord Add a C major chord by default
      * @private
      */
-    private _insertChordNameBtn(container: HTMLElement, index: number, chord = new Chord(48)) {
+    private _insertChordNameBtn(container: HTMLElement, index: number, chord: Chord = new Chord(48)) {
         const btn = document.createElement("div");
         btn.classList.add("button-chord-name", "shadow");
 
