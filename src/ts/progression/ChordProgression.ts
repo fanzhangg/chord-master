@@ -195,7 +195,13 @@ export class ChordProgression {
         copyBtn.addEventListener("pointerup", () => {
             const chord = $.extend(true, {}, this.curChord);    // Copy the current chord to chord to avoid manupilating the same object
             if (!copyBtn.classList.contains("disabled")){
-                this._insertChord(chord, this.curIndex+1);  // Copy the current chord, and insert it after the current chord
+                const chordNameBtn = copyBtn.parentElement?.querySelector(".button-chord-name");
+                if (chordNameBtn ==  null){
+                    throw new Error("Cannot find the chord name button");
+                }
+                const index = this.chordNameBtns.indexOf(chordNameBtn as HTMLElement);
+
+                this._insertChord(chord, index+1);  // Copy the current chord, and insert it after the chord that the copy button is in
             }
         });
         container.appendChild(copyBtn);
