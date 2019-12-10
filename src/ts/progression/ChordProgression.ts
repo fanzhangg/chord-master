@@ -208,8 +208,8 @@ export class ChordProgression {
                 const chord = $.extend(true, {}, this.chordsList[index]);
                 // Get the chord by index
                 // Deep copy the chord to avoid manupilating the same object
-                // this._insertChord(chord, this.chordsList.length);  // Copy the current chord, and insert it at the end of the chord list.
-                this._insertChord(chord, index+1);  // Copy the current chord, and insert it after the chord that the copy button is in
+                this._insertChord(chord, this.chordsList.length);  // Copy the current chord, and insert it at the end of the chord list.
+                // this._insertChord(chord, index+1);  // Copy the current chord, and insert it after the chord that the copy button is in
             }
         });
         container.appendChild(copyBtn);
