@@ -24,8 +24,8 @@
     <a class="navbar-brand text-muted">Chord Master</a>
 
     <a href="tutorial.html" target="_blank">
-    <button class="btn text-muted">
-        <i class="fas fa-question-circle" id="helpBtn"></i>
+    <button class="btn text-muted" id="helpBtn" data-toggle="tooltip" data-placement="left" title="Tutorial">
+        <i class="fas fa-question-circle"></i>
     </button>
     </a>
 </nav>
@@ -37,12 +37,12 @@
             <div class="card shadow-sm mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <div class="btn-group" role="group" aria-label="Player">
-                        <button type="button" class="btn btn-small btn-outline-secondary" id="playBtn">
+                        <button type="button" class="btn btn-small btn-outline-secondary" id="playBtn" data-toggle="tooltip" data-placement="right" title="Player">
                             <i class="fas fa-play"></i>
                         </button>
                     </div>
                     <div class="btn-group" role="group" aria-label="Editor">
-                        <button type="button" class="btn btn-small" id="resetBtn">
+                        <button type="button" class="btn btn-small" id="resetBtn" data-toggle="tooltip" data-placement="top" title="Reset">
                         <i class="far fa-trash-alt"></i>
                         </button>
                     </div>

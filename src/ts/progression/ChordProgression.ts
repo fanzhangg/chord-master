@@ -37,6 +37,11 @@ export class ChordProgression {
         this._appendChord(new Chord(48), null);
         this._appendAddBtn();
         this._addEventListeners();
+
+        // @ts-ignore
+        $('#resetBtn').tooltip();   // Trigger the tooltip of the reset button
+        // @ts-ignore
+        $('#playBtn').tooltip();   // Trigger the tooltip of the play button
     }
 
     /**
