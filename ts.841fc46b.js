@@ -18145,8 +18145,8 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./../webfonts/fa-brands-400.eot":[["fa-brands-400.7b5acd02.eot","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.eot"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.eot"],"./../webfonts/fa-brands-400.woff2":[["fa-brands-400.34cc846b.woff2","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"],"./../webfonts/fa-brands-400.woff":[["fa-brands-400.75159956.woff","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff"],"./../webfonts/fa-brands-400.ttf":[["fa-brands-400.f885063e.ttf","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf"],"./../webfonts/fa-brands-400.svg":[["fa-brands-400.1f0eb095.svg","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.svg"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.svg"],"./../webfonts/fa-regular-400.eot":[["fa-regular-400.d4b9b17f.eot","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.eot"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.eot"],"./../webfonts/fa-regular-400.woff2":[["fa-regular-400.82c42f2f.woff2","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"],"./../webfonts/fa-regular-400.woff":[["fa-regular-400.adc5c7aa.woff","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff"],"./../webfonts/fa-regular-400.ttf":[["fa-regular-400.b073eab5.ttf","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf"],"./../webfonts/fa-regular-400.svg":[["fa-regular-400.16d6ac71.svg","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.svg"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.svg"],"./../webfonts/fa-solid-900.eot":[["fa-solid-900.0b60ff24.eot","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.eot"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.eot"],"./../webfonts/fa-solid-900.woff2":[["fa-solid-900.55d5ef42.woff2","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"],"./../webfonts/fa-solid-900.woff":[["fa-solid-900.f824330b.woff","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff"],"./../webfonts/fa-solid-900.ttf":[["fa-solid-900.47a039f3.ttf","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"],"./../webfonts/fa-solid-900.svg":[["fa-solid-900.d08d5f59.svg","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.svg"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.svg"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/material-design-icons/index.js":[function(require,module,exports) {
-var __dirname = "/Users/fanzhang/Documents/dev/web/chord-master/node_modules/material-design-icons";
+},{"./..\\webfonts\\fa-brands-400.eot":[["fa-brands-400.7b5acd02.eot","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.eot"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.eot"],"./..\\webfonts\\fa-brands-400.woff2":[["fa-brands-400.34cc846b.woff2","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"],"./..\\webfonts\\fa-brands-400.woff":[["fa-brands-400.75159956.woff","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff"],"./..\\webfonts\\fa-brands-400.ttf":[["fa-brands-400.f885063e.ttf","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf"],"./..\\webfonts\\fa-brands-400.svg":[["fa-brands-400.1f0eb095.svg","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.svg"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.svg"],"./..\\webfonts\\fa-regular-400.eot":[["fa-regular-400.d4b9b17f.eot","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.eot"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.eot"],"./..\\webfonts\\fa-regular-400.woff2":[["fa-regular-400.82c42f2f.woff2","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"],"./..\\webfonts\\fa-regular-400.woff":[["fa-regular-400.adc5c7aa.woff","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff"],"./..\\webfonts\\fa-regular-400.ttf":[["fa-regular-400.b073eab5.ttf","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf"],"./..\\webfonts\\fa-regular-400.svg":[["fa-regular-400.16d6ac71.svg","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.svg"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.svg"],"./..\\webfonts\\fa-solid-900.eot":[["fa-solid-900.0b60ff24.eot","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.eot"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.eot"],"./..\\webfonts\\fa-solid-900.woff2":[["fa-solid-900.55d5ef42.woff2","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"],"./..\\webfonts\\fa-solid-900.woff":[["fa-solid-900.f824330b.woff","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff"],"./..\\webfonts\\fa-solid-900.ttf":[["fa-solid-900.47a039f3.ttf","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"],"./..\\webfonts\\fa-solid-900.svg":[["fa-solid-900.d08d5f59.svg","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.svg"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.svg"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/material-design-icons/index.js":[function(require,module,exports) {
+var __dirname = "C:\\Users\\aaron\\Documents\\softdev_225\\chordmaster\\node_modules\\material-design-icons";
 module.exports = {
   STATIC_PATH: __dirname,
 };
@@ -19049,6 +19049,10 @@ function () {
 
     var inversionSymbol = this._getInversionSymbol();
 
+    if (chroma.indexOf("#") > -1) {
+      chroma = chroma.replace("#", "♯"); // Changes the sharp sign to a fancy sharp.
+    }
+
     return "" + chroma + typeSymbol + inversionSymbol;
   };
   /**
@@ -19159,7 +19163,7 @@ function () {
     },
     "Extended": {
       "Dominant Ninth": [0, 4, 7, 10, 14],
-      "Dominant Seventh": [0, 4, 7, 10, 14, 16],
+      "Dominant Eleventh": [0, 4, 7, 10, 14, 16],
       "Dominant Thirteenth": [0, 4, 7, 10, 14, 16, 20] // C E G B♭ D F A
 
     },
@@ -51503,7 +51507,13 @@ function () {
 
     this._appendAddBtn();
 
-    this._addEventListeners();
+    this._addEventListeners(); // @ts-ignore
+
+
+    jquery_1.default('#resetBtn').tooltip(); // Trigger the tooltip of the reset button
+    // @ts-ignore
+
+    jquery_1.default('#playBtn').tooltip(); // Trigger the tooltip of the play button
   }
   /**
    * Add event listeners to the elements
@@ -51523,16 +51533,6 @@ function () {
 
     this._playButton.addEventListener("pointerup", function () {
       _this._toggleProgression();
-    });
-
-    var copyBtn = document.getElementById("copyBtn");
-    copyBtn.addEventListener("pointerup", function () {
-      var chord = jquery_1.default.extend(true, {}, _this.curChord); // Copy the current chord to chord to avoid manupilating the same object
-
-      if (!copyBtn.classList.contains("disabled")) {
-        _this._insertChord(chord, _this.curIndex + 1); // Copy the current chord, and insert it after the current chord
-
-      }
     });
   };
   /**
@@ -51578,7 +51578,7 @@ function () {
     progressionContainer.appendChild(btnContainer);
   };
   /**
-   * Insert a chord in front of the add button
+   * Insert a C chord in front of the add button
    * @param chord
    * @param addBtn
    * @private
@@ -51600,13 +51600,14 @@ function () {
 
     this._appendDeleteBtn(btnContainer);
 
+    this._appendCopyBtn(btnContainer);
+
     var progressionContainer = document.getElementById("progressionChordsContainer");
     progressionContainer.insertBefore(btnContainer, addBtn); // Insert the new chord btn before add btn
 
     console.log("Append a new chord " + this.curChord + " at " + this.curIndex);
-    this.activate(this.curChordNameBtn);
 
-    this._disableDeleteFirstChord();
+    this._toggleFirstChordDelete();
   };
   /**
    * Insert a chord at index in the progression
@@ -51630,17 +51631,19 @@ function () {
 
     this._appendDeleteBtn(btnContainer);
 
+    this._appendCopyBtn(btnContainer);
+
     var prevButton = this.chordNameBtns[index - 1];
     var progressionContainer = document.getElementById("progressionChordsContainer");
-    progressionContainer.insertBefore(btnContainer, prevButton.parentElement.nextSibling); // Insert the new chord btn before add btn
+    progressionContainer.insertBefore(btnContainer, prevButton.parentElement.nextSibling); // Insert the new chord btn before next btn
 
     console.log("Insert a new chord " + this.curChord + " at " + this.curIndex);
 
-    this._disableDeleteFirstChord();
+    this._toggleFirstChordDelete();
   };
   /**
    * Append a delete button in the container
-   * @param container
+   * @param container HTMLElement
    * @private
    */
 
@@ -51650,8 +51653,9 @@ function () {
 
     var deleteBtn = document.createElement("div");
     deleteBtn.classList.add("btn-chord-delete", "shadow-sm");
-    var icon = document.createElement("i");
-    icon.classList.add("material-icons");
+    var icon = document.createElement("i"); // Add the icon
+
+    icon.classList.add("material-icons-outlined");
     icon.innerText = "clear";
     deleteBtn.appendChild(icon);
     deleteBtn.addEventListener("pointerup", function () {
@@ -51660,7 +51664,47 @@ function () {
     container.appendChild(deleteBtn);
   };
   /**
-   * Append a chord name button to the container
+   * Append a copy button in the container
+   * @param container HTMLElement
+   * @private
+   */
+
+
+  ChordProgression.prototype._appendCopyBtn = function (container) {
+    var _this = this;
+
+    var copyBtn = document.createElement("div");
+    copyBtn.classList.add("btn-chord-copy", "shadow-sm");
+    var icon = document.createElement("i"); // Add the icon
+
+    icon.classList.add("material-icons-outlined");
+    icon.innerText = "file_copy";
+    copyBtn.appendChild(icon);
+    copyBtn.addEventListener("pointerup", function () {
+      var _a;
+
+      var chord = jquery_1.default.extend(true, {}, _this.curChord);
+
+      if (!copyBtn.classList.contains("disabled")) {
+        var chordNameBtn = (_a = copyBtn.parentElement) === null || _a === void 0 ? void 0 : _a.querySelector(".button-chord-name");
+
+        if (chordNameBtn == null) {
+          throw new Error("Cannot find the chord name button");
+        }
+
+        var index = _this.chordNameBtns.indexOf(chordNameBtn);
+
+        var chord_1 = jquery_1.default.extend(true, {}, _this.chordsList[index]); // Get the chord by index
+        // Deep copy the chord to avoid manupilating the same object
+
+        _this._insertChord(chord_1, _this.chordsList.length); // Copy the current chord, and insert it after the chord that the copy button is in
+
+      }
+    });
+    container.appendChild(copyBtn);
+  };
+  /**
+   * Append a C chord name button to the container
    * @param container
    * @private
    */
@@ -51771,21 +51815,24 @@ function () {
    */
 
 
-  ChordProgression.prototype._disableDelete = function (index) {
+  ChordProgression.prototype._disableEdit = function (index) {
     var button = this.chordNameBtns[index];
 
     if (button == null) {
       throw new Error("Button does not exist. Cannot disable deleting");
     }
 
-    var deleteButton = button.nextElementSibling;
+    var container = button.parentElement; // Remove delete buttons
 
-    if (deleteButton == null) {
-      console.warn("The chord button does not have a delete button. Cannot disable deleting");
-      return false;
-    }
+    var deleteBtns = container.querySelectorAll(".btn-chord-delete");
+    deleteBtns.forEach(function (e) {
+      e.remove();
+    }); // Remove copy buttons
 
-    deleteButton.remove();
+    var copyBtns = container.querySelectorAll(".btn-chord-copy");
+    copyBtns.forEach(function (e) {
+      e.remove();
+    });
     return true;
   };
   /**
@@ -51794,9 +51841,9 @@ function () {
    */
 
 
-  ChordProgression.prototype._disableDeleteAll = function () {
+  ChordProgression.prototype._disableEditAll = function () {
     for (var i = 0; i < this.chordNameBtns.length; i++) {
-      this._disableDelete(i);
+      this._disableEdit(i);
     }
   };
   /**
@@ -51805,7 +51852,7 @@ function () {
    */
 
 
-  ChordProgression.prototype._enableDeleteAll = function () {
+  ChordProgression.prototype._enableEditAll = function () {
     for (var _i = 0, _a = this.chordNameBtns; _i < _a.length; _i++) {
       var chordNameBtn = _a[_i];
       var container = chordNameBtn.parentElement;
@@ -51815,6 +51862,10 @@ function () {
       }
 
       this._appendDeleteBtn(container);
+
+      this._appendCopyBtn(container);
+
+      this._toggleFirstChordDelete();
     }
   };
   /**
@@ -51823,16 +51874,24 @@ function () {
    */
 
 
-  ChordProgression.prototype._disableDeleteFirstChord = function () {
+  ChordProgression.prototype._toggleFirstChordDelete = function () {
+    var _a;
+
     if (this.chordsList.length <= 1) {
       var button = this.chordNameBtns[0];
-      var deleteButton = button.nextElementSibling;
-      deleteButton.remove();
+      var container = button.parentElement;
+      var deleteBtn = container.querySelector(".btn-chord-delete");
+
+      if (deleteBtn == null) {
+        throw new Error("Delete button does not exist");
+      }
+
+      deleteBtn.remove();
       console.log("The first delete button is deleted");
     } else {
       var button = this.chordNameBtns[0];
 
-      if (button.nextElementSibling !== null) {
+      if ((_a = button.parentElement) === null || _a === void 0 ? void 0 : _a.querySelector(".btn-chord-delete")) {
         // The button has a delete button
         return; // Not add a new delete button
       } // Add a delete button
@@ -51854,7 +51913,9 @@ function () {
    */
 
   ChordProgression.prototype._delete = function (deleteBtn) {
-    var chordNameBtn = deleteBtn.previousSibling;
+    var _a;
+
+    var chordNameBtn = (_a = deleteBtn.parentElement) === null || _a === void 0 ? void 0 : _a.querySelector(".button-chord-name");
     var index = this.chordNameBtns.indexOf(chordNameBtn);
     this.chordsList.splice(index, 1); // Remove the chord at index
 
@@ -51885,7 +51946,7 @@ function () {
     console.log("Delete chord at index " + index + ". Change the chord to " + this.curChord + " at " + this.curIndex);
     deleteBtn.parentElement.remove(); // Remove the chord button that the delete btn is in
 
-    this._disableDeleteFirstChord();
+    this._toggleFirstChordDelete();
   };
   /**
    * Update the current chord, the chord list and the text of the current button
@@ -52006,15 +52067,15 @@ function () {
 
       this._playButton.classList.remove("active");
 
+      this._enableBtnsAnimation();
+
       tone_1.Transport.stop();
 
       this._appendAddBtn();
 
-      this._enableDeleteAll();
+      this._enableEditAll();
 
       this._enableReset();
-
-      this._enableCopy();
 
       this.onStop();
     } else {
@@ -52022,20 +52083,43 @@ function () {
 
       this._playButton.classList.add("active");
 
-      this.activate(this.curChordNameBtn);
-      tone_1.Transport.start('+1.1');
+      this._disableBtnsAnimation();
+
+      this.activate(this.curChordNameBtn); // Play the current chord
+
+      tone_1.Transport.start('+1.1'); // Wait until the first chord played
 
       var notesList = this._getNotesList();
 
       this._removeAddBtn();
 
-      this._disableDeleteAll();
+      this._disableEditAll();
 
       this._disableReset();
 
-      this._disableCopy();
-
       this.onPlay(notesList);
+    }
+  };
+  /**
+   * Disable button's jumping animation
+   */
+
+
+  ChordProgression.prototype._disableBtnsAnimation = function () {
+    for (var _i = 0, _a = this.chordNameBtns; _i < _a.length; _i++) {
+      var btn = _a[_i];
+      btn.classList.add("disable");
+    }
+  };
+  /**
+   * Enable button's jumping animation
+   */
+
+
+  ChordProgression.prototype._enableBtnsAnimation = function () {
+    for (var _i = 0, _a = this.chordNameBtns; _i < _a.length; _i++) {
+      var btn = _a[_i];
+      btn.classList.remove("disable");
     }
   };
   /**
@@ -52058,26 +52142,6 @@ function () {
     var resetBtn = document.getElementById("resetBtn");
     resetBtn.classList.remove("disabled");
   };
-  /**
-   * Disable the reset button
-   * @private
-   */
-
-
-  ChordProgression.prototype._disableCopy = function () {
-    var copyBtn = document.getElementById("copyBtn");
-    copyBtn.classList.add("disabled");
-  };
-  /**
-   * Enable the reset button
-   * @private
-   */
-
-
-  ChordProgression.prototype._enableCopy = function () {
-    var copyBtn = document.getElementById("copyBtn");
-    copyBtn.classList.remove("disabled");
-  };
 
   return ChordProgression;
 }();
@@ -52085,6 +52149,12 @@ function () {
 exports.ChordProgression = ChordProgression;
 },{"../music-theory/Chord":"ts/music-theory/Chord.ts","tone":"../node_modules/tone/build/Tone.js","jquery":"../node_modules/jquery/dist/jquery.js"}],"ts/index.ts":[function(require,module,exports) {
 "use strict";
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -52120,6 +52190,8 @@ var Chord_1 = require("./music-theory/Chord");
 var ChordProgression_1 = require("./progression/ChordProgression");
 
 var tone_1 = require("tone");
+
+var jquery_1 = __importDefault(require("jquery"));
 
 new Loader_1.Loader();
 var chordTypeBtn = new ChordTypeBtn_1.ChordTypeBtn();
@@ -52239,7 +52311,10 @@ progression.onStop = function () {
   chordTypeBtn.enable();
   inversionBtn.enable();
   piano.enable();
-};
+}; // @ts-ignore
+
+
+jquery_1.default('#helpBtn').tooltip(); // Trigger the tooltip of the play button
 },{"bootstrap":"../node_modules/bootstrap/dist/js/bootstrap.js","bootstrap/dist/css/bootstrap.css":"../node_modules/bootstrap/dist/css/bootstrap.css","@fortawesome/fontawesome-free/css/all.css":"../node_modules/@fortawesome/fontawesome-free/css/all.css","material-design-icons":"../node_modules/material-design-icons/index.js","bootstrap-submenu/dist/css/bootstrap-submenu.css":"../node_modules/bootstrap-submenu/dist/css/bootstrap-submenu.css","bootstrap-submenu/dist/js/bootstrap-submenu":"../node_modules/bootstrap-submenu/dist/js/bootstrap-submenu.js","jquery":"../node_modules/jquery/dist/jquery.js","./keyboard/Piano":"ts/keyboard/Piano.ts","./sound/PianoSound":"ts/sound/PianoSound.ts","./interface/Loader":"ts/interface/Loader.ts","./setting-toolbar/ChordTypeBtn":"ts/setting-toolbar/ChordTypeBtn.ts","./setting-toolbar/InversionBtn":"ts/setting-toolbar/InversionBtn.ts","./music-theory/Chord":"ts/music-theory/Chord.ts","./progression/ChordProgression":"ts/progression/ChordProgression.ts","tone":"../node_modules/tone/build/Tone.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -52268,7 +52343,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55544" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55482" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

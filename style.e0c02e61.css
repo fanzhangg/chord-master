@@ -166,6 +166,14 @@
   user-select: none; }
   .btn-chord:hover .btn-chord-delete {
     display: block; }
+  .btn-chord:hover .btn-chord-copy {
+    display: block; }
+  .btn-chord .disable {
+    -webkit-animation: none !important;
+    -moz-animation: none !important;
+    -o-animation: none !important;
+    -ms-animation: none !important;
+    animation: none !important; }
   .btn-chord .button-chord-name {
     background-color: white;
     border-radius: 50%;
@@ -204,12 +212,29 @@
     display: none;
     position: absolute;
     top: 0;
-    right: 0; }
+    left: 0; }
     .btn-chord .btn-chord-delete:hover {
       background: #DC3445; }
     .btn-chord .btn-chord-delete i {
-      color: white;
+      color: #f8f9fa;
       vertical-align: middle; }
+  .btn-chord .btn-chord-copy {
+    background: #6C757C;
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+    border-radius: 50%;
+    text-align: center;
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 0; }
+    .btn-chord .btn-chord-copy:hover {
+      background: #5A628D; }
+    .btn-chord .btn-chord-copy i {
+      color: #f8f9fa;
+      vertical-align: middle;
+      font-size: 18px; }
 
 .active .button-chord-name {
   color: white;
@@ -220,7 +245,10 @@
 .active .btn-chord-delete {
   display: block; }
 
-.animated {
+.active .btn-chord-copy {
+  display: block; }
+
+.active .animated {
   animation: .4s jump ease infinite alternate; }
 
 @keyframes jump {

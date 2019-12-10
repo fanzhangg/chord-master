@@ -4,15 +4,23 @@ h1 {
   margin-top: 25px;
   margin-bottom: 25px; }
 
+h3 {
+  font-size: 35px;
+  font-weight: bold; }
+
 body {
   background-color: #FFFFFF; }
-
-.card-header {
-  /*background-color: #BCD4E0;*/ }
 
 .wetwet {
   display: flex;
   justify-content: center; }
+
+span {
+  font-size: 20px;
+  font-weight: bold; }
+
+.pics {
+  text-align: center; }
 
 .btn-link {
   color: black; }
@@ -20,24 +28,18 @@ body {
 #collapseTwo {
   text-align: center; }
 
+li {
+  text-align: left; }
+
 .accordion {
   width: 150vh; }
-
-.explanation {
-  text-align: center;
-  font-size: 2.5vh;
-  margin-bottom: 50px;
-  color: #E4EFF1; }
 
 img {
   margin-bottom: 10px; }
 
 p {
-  color: #E4EFF1; }
-
-.tip1 {
-  color: #E4EFF1;
-  text-align: center; }
+  text-align: left;
+  color: black; }
 
 
 /*# sourceMappingURL=/tutorial.6ac9a6ef.css.map */
