@@ -43,7 +43,7 @@ export class Chord {
         },
         "Extended": {
             "Dominant Ninth": [0, 4, 7, 10, 14],    // C E G B♭ D
-            "Dominant Seventh": [0, 4, 7, 10, 14, 16],  // C E G B♭ D F WRONG FIX!
+            "Dominant Eleventh": [0, 4, 7, 10, 14, 16],  // C E G B♭ D F
             "Dominant Thirteenth": [0, 4, 7, 10, 14, 16, 20] // C E G B♭ D F A
         },
         "Altered": {
@@ -116,8 +116,13 @@ export class Chord {
      */
     public getChordName() {
         const typeSymbol = Chord.chordTypeSymbols[this.type];
-        const chroma = Note.toChroma(this.rootKeyNum);
+        let chroma = Note.toChroma(this.rootKeyNum);
         const inversionSymbol = this._getInversionSymbol();
+
+        if (chroma.indexOf("#") > -1){
+            chroma = chroma.replace("#", "♯"); // Changes the sharp sign to a fancy sharp.
+        }
+
         return `${chroma}${typeSymbol}${inversionSymbol}`;
     }
 
