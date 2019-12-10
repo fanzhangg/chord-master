@@ -124,7 +124,6 @@ export class ChordProgression {
 
         console.log(`Append a new chord ${this.curChord} at ${this.curIndex}`);
 
-        // this.activate(this.curChordNameBtn!);
         this._toggleFirstChordDelete();
 
     }
@@ -151,6 +150,7 @@ export class ChordProgression {
         this._appendCopyBtn(btnContainer);
 
         const prevButton = this.chordNameBtns[index-1];
+
 
         const progressionContainer = document.getElementById("progressionChordsContainer")!;
         progressionContainer.insertBefore(btnContainer, prevButton.parentElement!.nextSibling);    // Insert the new chord btn before next btn
@@ -207,9 +207,22 @@ export class ChordProgression {
      * @private
      */
     private _appendChordNameBtn(container: HTMLElement) {
-        const chord = new Chord();
-        const index = this.chordsList.length;
-        this._insertChordNameBtn(container, index, chord)
+        const btn = document.createElement("div");
+        btn.classList.add("button-chord-name", "shadow");
+
+        const text = document.createElement("div");
+        this.curChord = new Chord();    // Initialize the current chord to a C4 major chord
+        text.innerHTML = this.curChord.getChordName();  // Set the text to the name of the current chord
+        btn.appendChild(text);
+
+        btn.addEventListener("pointerup", () => {
+            this.activate(btn);
+        });
+        container.appendChild(btn);
+        this.chordNameBtns.push(btn);
+        this.curChordNameBtn = btn;
+
+        this.activate(btn);
     }
 
     /**
@@ -366,7 +379,7 @@ export class ChordProgression {
      * @private
      */
     private _delete(deleteBtn: HTMLElement) {
-        const chordNameBtn = deleteBtn.previousSibling as HTMLElement;
+        const chordNameBtn = deleteBtn.parentElement?.querySelector(".button-chord-name") as HTMLElement;
         const index = this.chordNameBtns.indexOf(chordNameBtn);
 
         this.chordsList.splice(index, 1); // Remove the chord at index
