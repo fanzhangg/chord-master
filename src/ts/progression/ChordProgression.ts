@@ -33,7 +33,6 @@ export class ChordProgression {
         this.onStop = function() {};
 
         // Initialize the progression with an add button and a C chord
-        
         this._appendChord(new Chord(48), null);
         this._appendAddBtn();
         this._addEventListeners();
@@ -130,7 +129,6 @@ export class ChordProgression {
         console.log(`Append a new chord ${this.curChord} at ${this.curIndex}`);
 
         this._toggleFirstChordDelete();
-
     }
 
     /**
@@ -198,7 +196,6 @@ export class ChordProgression {
         icon.innerText = "file_copy";
         copyBtn.appendChild(icon);
         copyBtn.addEventListener("pointerup", () => {
-            const chord = $.extend(true, {}, this.curChord);    
             if (!copyBtn.classList.contains("disabled")){
                 const chordNameBtn = copyBtn.parentElement?.querySelector(".button-chord-name");
                 if (chordNameBtn ==  null){
@@ -209,7 +206,6 @@ export class ChordProgression {
                 // Get the chord by index
                 // Deep copy the chord to avoid manupilating the same object
                 this._insertChord(chord, this.chordsList.length);  // Copy the current chord, and insert it at the end of the chord list.
-                // this._insertChord(chord, index+1);  // Copy the current chord, and insert it after the chord that the copy button is in
             }
         });
         container.appendChild(copyBtn);
@@ -321,11 +317,11 @@ export class ChordProgression {
 
         // Remove delete buttons
         const deleteBtns = container.querySelectorAll(".btn-chord-delete");
-        
+
         deleteBtns.forEach( e => {
             e.remove();
         })
-        
+
         // Remove copy buttons
         const copyBtns = container.querySelectorAll(".btn-chord-copy");
 
