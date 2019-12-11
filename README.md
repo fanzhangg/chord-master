@@ -11,13 +11,9 @@ Chords in the progression is represented by the lead sheet symbol. To build a ch
 
 ### Installation
 
-First, install nodeJS from https://nodejs.org/en/download/
-
-Then install yarn:
-
-`npm install yarn`
-
-`yarn install`
+1. Install nodeJS from https://nodejs.org/en/download/
+2. Install yarn:`npm install yarn`
+3. Install dependencies: `yarn install`
 
 ### Development
 
