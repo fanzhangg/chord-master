@@ -33,7 +33,6 @@ export class ChordProgression {
         this.onStop = function() {};
 
         // Initialize the progression with an add button and a C chord
-        
         this._appendChord(new Chord(48), null);
         this._appendAddBtn();
         this._addEventListeners();
@@ -130,7 +129,6 @@ export class ChordProgression {
         console.log(`Append a new chord ${this.curChord} at ${this.curIndex}`);
 
         this._toggleFirstChordDelete();
-
     }
 
     /**
@@ -320,11 +318,11 @@ export class ChordProgression {
 
         // Remove delete buttons
         const deleteBtns = container.querySelectorAll(".btn-chord-delete");
-        
+
         deleteBtns.forEach( e => {
             e.remove();
         })
-        
+
         // Remove copy buttons
         const copyBtns = container.querySelectorAll(".btn-chord-copy");
 

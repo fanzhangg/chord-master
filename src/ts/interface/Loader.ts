@@ -7,8 +7,8 @@ class Loader {
 
         const mask = document.querySelector("#mask") as HTMLElement;   // Mask to hide all other elements
 
-        const progBar = document.querySelector("#progressBar") as HTMLElement;
-        const prog = document.querySelector("#progress") as HTMLElement;
+        const progBar = document.querySelector("#progressBar") as HTMLElement;  // Progression bar
+        const prog = document.querySelector("#progress") as HTMLElement;    // Progression container
 
         this.loaded = false;
 

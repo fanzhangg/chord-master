@@ -120,12 +120,12 @@ class Keyboard {
         })
     }
 
-
     /**
      * Show the chord by displaying the chord string and highlight the keys in the chord
      * Highlight the root note in a gray color if the inversion is not None
      * @public
      * @param chord
+     * @param rootNote
      */
     public highlight(chord: Array<string>, rootNote: null|string) {
         // Change the previous keys' color back to the original color
@@ -171,10 +171,6 @@ class Keyboard {
             key.classList.add("highlight-root"); // Highlight the key
             this._prevKeys.push(key as HTMLElement);    // Save the keys as prevKeys
         }
-    }
-
-    public keyUp() {
-        return
     }
 }
 
