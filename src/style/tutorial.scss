@@ -7,6 +7,11 @@ h1{
   margin-bottom: 25px;
 }
 
+h3{
+  font-size: 35px;
+  font-weight: bold;
+}
+
 body{
   background-color:#FFFFFF;
 
@@ -17,7 +22,13 @@ body{
   justify-content: center;
 }
 
-.card-body{
+span{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+.pics{
   text-align: center;
 }
 
@@ -29,6 +40,9 @@ body{
   text-align: center;
 }
 
+li{
+  text-align: left;
+}
 
 .accordion {
   width: 150vh;
@@ -39,6 +53,7 @@ img{
 }
 
 p{
+  text-align: left;
   color: black;
 }
 
