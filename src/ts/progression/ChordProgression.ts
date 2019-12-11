@@ -198,7 +198,6 @@ export class ChordProgression {
         icon.innerText = "file_copy";
         copyBtn.appendChild(icon);
         copyBtn.addEventListener("pointerup", () => {
-            const chord = $.extend(true, {}, this.curChord);    
             if (!copyBtn.classList.contains("disabled")){
                 const chordNameBtn = copyBtn.parentElement?.querySelector(".button-chord-name");
                 if (chordNameBtn ==  null){
