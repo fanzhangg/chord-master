@@ -11,32 +11,27 @@ Chords in the progression is represented by the lead sheet symbol. To build a ch
 
 ### Installation
 
-1. Install nodeJS from https://nodejs.org/en/download/
+1. Install Node.js from https://nodejs.org/en/download/
 2. Install yarn:`npm install yarn`
 3. Install dependencies: `yarn install`
 
 ### Development
 
-Launch development server.
-
-`yarn start`
+Launch development server: `yarn start`
 
 ### Build
 
-Compile TypeScript app and copy index.html to the dist folder.
-
-`yarn run build`
+Compile TypeScript app and copy index.html to the dist folder: `yarn run build`
 
 ### Deploy
 
-Deploy dist folder to GitHub Pages.
-
-`yarn run deploy`
+Deploy dist folder to GitHub Pages: `yarn run deploy`
 
 
 ## Credit
 
-It is built by Fan Zhang, Aaron Gould, Randy Jose Beidelschies, and Roman Bactol. It uses Tone.js to generate the piano sound, jQuery to manipulate the document element.
+It is built by Fan Zhang, Aaron Gould, Randy Jose Beidelschies, and Roman Bactol. It uses Tone.js to play the piano sound, jQuery to manipulate the document element, and Bootstrap as the front-end framework.
+
 Many thanks to Shilad Sen for providing much help and guidance throughout our project.
 
 ## Contributing
