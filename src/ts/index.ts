@@ -6,6 +6,8 @@ import "material-design-icons"
 import "bootstrap-submenu/dist/css/bootstrap-submenu.css"
 import "bootstrap-submenu/dist/js/bootstrap-submenu"
 import "jquery"
+import {Part} from "tone";
+import $ from "jquery";
 
 import {Piano} from "./keyboard/Piano";
 import {PianoSound} from "./sound/PianoSound";
@@ -14,11 +16,10 @@ import {ChordTypeBtn} from "./setting-toolbar/ChordTypeBtn";
 import {InversionBtn} from "./setting-toolbar/InversionBtn";
 import {Chord} from "./music-theory/Chord";
 import {ChordProgression} from "./progression/ChordProgression";
-import {Part, Transport} from "tone";
-import $ from "jquery";
 
 
-new Loader();
+
+new Loader();   // Loader to create the loading page
 
 const chordTypeBtn = new ChordTypeBtn();
 const inversionBtn = new InversionBtn();
@@ -114,7 +115,7 @@ progression.onPlay = function (chords: Array<Array<string>>) {
         //the value is an object which contains both the note and the velocity
         progression.switch();
 
-        
+
         // @ts-ignore
         console.log(`Play the chord ${value.chord}`);
         //@ts-ignore
@@ -124,13 +125,20 @@ progression.onPlay = function (chords: Array<Array<string>>) {
     part.loopEnd = chords.length;
 };
 
-
+/**
+ * Callback after switching to the next chord
+ * Disable the chord, and inversion buttons and the piano interface
+ */
 progression.onSwitch = function () {
     chordTypeBtn.disable();
     inversionBtn.disable();
     piano.disable();
 };
 
+/**
+ * Callback after stopping playing the progression
+ * Enable the chord type, and inversion button and piano
+ */
 progression.onStop = function () {
     chordTypeBtn.enable();
     inversionBtn.enable();
