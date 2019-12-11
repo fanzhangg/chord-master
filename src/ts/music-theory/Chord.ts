@@ -1,7 +1,6 @@
 import {Note} from "./Note"
 
 export class Chord {
-    //TODO: the symbol dictionary is not complete
     static readonly chordTypeSymbols: any = {
         //Triads
         "Major Triad": "",
@@ -150,12 +149,12 @@ export class Chord {
         const halfSteps = this._getHalfSteps();
         const rootKeyNum = this.rootKeyNum;
         const rootKeyName = Note.toNoteName(rootKeyNum); // Gets name of root key
-        const inversedKeyNum = rootKeyNum + halfSteps[this.inversionNum]; // Key or ID number of lowest note in chord.
-        let inversedNote = Note.toChroma(inversedKeyNum); // Name of inversed (lowest) note in chord.
+        const inversionKeyNum = rootKeyNum + halfSteps[this.inversionNum]; // Key or ID number of lowest note in chord.
+        let inversionNote = Note.toChroma(inversionKeyNum); // Name of inversion (lowest) note in chord.
 
-        console.log(inversedNote);
+        console.log(inversionNote);
 
-        let noteDiff = Chord.letters.indexOf(inversedNote[0]) - Chord.letters.indexOf(rootKeyName[0]);
+        let noteDiff = Chord.letters.indexOf(inversionNote[0]) - Chord.letters.indexOf(rootKeyName[0]);
         console.log(noteDiff); // Calculates the difference of the note letters
 
         let firstInversionBoolean = (this.inversionNum === 1 && [1, -6].includes(noteDiff)); // Checks to see if a note needs to be changed for chord inversions
@@ -163,20 +162,20 @@ export class Chord {
         let thirdInversionBoolean = (this.inversionNum === 3) && [5, -2].includes(noteDiff); // Messes up with double flats
 
         if (firstInversionBoolean || secondInversionBoolean || thirdInversionBoolean){ // Checks to see if there are any of the errors above
-            inversedNote = Chord.letters[7%(Chord.letters.indexOf((inversedNote[0]) + 1))] + "♭"; // Changes it to the next note up but flat
+            inversionNote = Chord.letters[7%(Chord.letters.indexOf((inversionNote[0]) + 1))] + "♭"; // Changes it to the next note up but flat
         }
 
         if (this.inversionNum === 3 && this.type === "Diminished Seventh" && rootKeyName[0] === "C") { // Adds a double flat for the one outlier case of c-dim7
-            inversedNote = Chord.letters[Chord.letters.indexOf(rootKeyName[0]) - 1] + "♭♭"
+            inversionNote = Chord.letters[Chord.letters.indexOf(rootKeyName[0]) - 1] + "♭♭"
         }
 
-        if (inversedNote.indexOf("#") > -1){
-            inversedNote = inversedNote.replace("#", "♯"); // Changes the sharp sign to a fancy sharp.
+        if (inversionNote.indexOf("#") > -1){
+            inversionNote = inversionNote.replace("#", "♯"); // Changes the sharp sign to a fancy sharp.
         }
-        if (inversedNote == undefined) {
+        if (inversionNote == undefined) {
             console.warn("Inversion note is undefined");
             return "";
         }
-        return `/${inversedNote}`;
+        return `/${inversionNote}`;
     }
 }
