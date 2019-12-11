@@ -2,7 +2,10 @@
 
 [Demo](https://fanzhangg.github.io/chord-master/)
 
-Chord Master is a web application for musician to create wonderful harmonies for their music. It provides tools to select between many different chord types, inverse chords and build chord progressions.
+Chord Master is a web application to help musicians creating the chord progression. This app helps you find chords that work together.
+
+Chords in the progression is represented by the lead sheet symbol. To build a chord, you can click the + button to add a chord, select the chord type and inversion in the dropdown menu, and choose the root note by clicking its key on the keyboard interface. You can also edit, delete or copy a chord. You can click the play button to listen to the entire chord progression.
+
 
 ## Usage
 
