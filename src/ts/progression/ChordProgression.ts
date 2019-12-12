@@ -512,9 +512,15 @@ export class ChordProgression {
      */
     private _toggleProgression() {
         if (Transport.state === 'started') {
-            this._playButton.innerHTML = "<i class=\"fas fa-play\"></i>";
-            this._playButton.classList.remove("active");
+            this._playButton.innerHTML = "<i class=\"fas fa-play\"></i>";   // Change icon
+            this._playButton.classList.remove("active");    // Change style
             this._enableBtnsAnimation();
+
+            // Change the tooltip to Play
+            //@ts-ignore
+            $("#playBtn").tooltip('hide')
+          .attr('data-original-title', "Play")
+          .tooltip('show');
 
             Transport.stop();
             this._appendAddBtn();
@@ -527,6 +533,12 @@ export class ChordProgression {
             this._disableBtnsAnimation();
 
             this.activate(this.curChordNameBtn!);   // Play the current chord
+
+            // Change the tooltip to Stop
+            // @ts-ignore
+            $("#playBtn").tooltip('hide')
+          .attr('data-original-title', "Stop")
+          .tooltip('show'); // Set text tooltip to "Play"
 
 
             Transport.start('+1.1');    // Wait until the first chord played
