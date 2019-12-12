@@ -19,9 +19,6 @@ class Piano {
         this._keyboardInterface.onKeyDown = this.keyDown.bind(this);    // Trigger the callback event after clicking a key
         this._keyboardInterface.onKeyUp = this.keyUp.bind(this);
 
-        window.addEventListener('resize', this._resize.bind(this)); // Resize the keyboard according to the width of the window
-        this._resize();
-
         // Callback events
         this.onKeyDown = function () {
         };
@@ -30,7 +27,10 @@ class Piano {
         this.onSetChord = function () {
         };
 
-        this.setChord(new Chord());
+        this.setChord(new Chord()); // Highlight the C major chord initially
+
+        window.addEventListener('resize', this._resize.bind(this)); // Resize the keyboard according to the width of the window
+        this._resize();
     };
 
     /**
@@ -43,6 +43,15 @@ class Piano {
         octaves = Math.max(octaves, 1); // Octave not less than 2
         octaves = Math.min(octaves, 4); // Octave not greater than 7
         this._keyboardInterface.resize(36, octaves);  // Populate keys from G2
+        const notes = this.currChord.getNotes();
+
+        // Set the highlight of the current note
+        let rootNote = null;
+        if (this.currChord.inversionNum > 0){
+            const rootKeyNum = this.currChord.rootKeyNum;
+            rootNote = Note.toNoteName(rootKeyNum);
+        }
+        this._keyboardInterface.highlight(notes, rootNote)
     }
 
     /**
