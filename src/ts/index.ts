@@ -147,3 +147,8 @@ progression.onStop = function () {
 
 // @ts-ignore
 $('#helpBtn').tooltip();   // Trigger the tooltip of the play button
+
+
+window.onbeforeunload = function() {
+    return "Data will be lost if you leave the page, are you sure?";
+  };
