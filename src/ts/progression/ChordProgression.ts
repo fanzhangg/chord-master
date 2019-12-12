@@ -488,6 +488,12 @@ export class ChordProgression {
      * @private
      */
     private _reset() {
+        var ans = confirm("Are you sure to reset the chord progression?\nAfter reset, all progress will be lost.")
+
+        if (ans == false){
+            return false
+        }
+
         // Clear data
         this.chordsList = [];
         this.curChord = null;
