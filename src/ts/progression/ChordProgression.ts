@@ -189,6 +189,14 @@ export class ChordProgression {
      */
     private _appendCopyBtn(container: HTMLElement){
         const copyBtn = document.createElement("div");
+
+        // Set the tooltip to "Copy to End"
+        //@ts-ignore
+        $(copyBtn).tooltip('hide')
+            .attr("data-placement", "bottom")
+            .attr('data-original-title', "Copy at End")
+            .tooltip('show');
+
         copyBtn.classList.add("btn-chord-copy", "shadow-sm");
 
         const icon = document.createElement("i");   // Add the icon
@@ -197,6 +205,7 @@ export class ChordProgression {
         copyBtn.appendChild(icon);
         copyBtn.addEventListener("pointerup", () => {
             if (!copyBtn.classList.contains("disabled")){
+                // $('').tooltip();
                 const chordNameBtn = copyBtn.parentElement?.querySelector(".button-chord-name");
                 if (chordNameBtn ==  null){
                     throw new Error("Cannot find the chord name button");
