@@ -1,5 +1,8 @@
 $border-color: #212224;
 $highlight-root-color: #dfe6e9;
+$highlight-gradient: linear-gradient(0deg, #ffeaa7 70%, #fdcb6e 100%);
+$highlight-color: #ffeaa7;
+$highlight-shadow: #fdcb6e;
 
 #pianoContainer {
     width: 100%;
@@ -71,7 +74,7 @@ $highlight-root-color: #dfe6e9;
 }
 
 #keyboard .key.white:active {
-    background-color: #fdcb6e;
+    background-color: $highlight-color;
 }
 
 #keyboard .key.black {
@@ -89,7 +92,7 @@ $highlight-root-color: #dfe6e9;
     border-top: 1px solid $border-color;
 
     &.highlight {
-        background-image: linear-gradient(0deg, #F6D365 50%, rgba(253, 160, 133, 0.82) 100%);
+        background-image: $highlight-gradient;
     }
 
     &.highlight-root {
@@ -118,8 +121,8 @@ $highlight-root-color: #dfe6e9;
 
 #keyboard .key.highlight {
     background-image: none;
-    background-color: #f6d365;
-    box-shadow: inset 0 3px 15px rgb(253, 160, 133);
+    background-color: $highlight-color;
+    box-shadow: inset 0 3px 20px $highlight-shadow;
 }
 
 #keyboard .key.highlight-root {
@@ -132,5 +135,5 @@ $highlight-root-color: #dfe6e9;
 }
 
 #keyboard .key.highlight:hover {
-    background-color: #fdcb6e;
+    background-color: $highlight-shadow;
 }
