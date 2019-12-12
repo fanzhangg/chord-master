@@ -506,6 +506,8 @@ export class ChordProgression {
         container.innerHTML = ""; // Clear the progression
         this._appendChord(new Chord(48), null);
         this._appendAddBtn();
+
+        return true;
     }
 
     /**
