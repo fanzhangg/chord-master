@@ -1,3 +1,5 @@
+$bg-blue: #8ec5fc;
+
 .dropdown-item {
   -moz-user-select: none;
   -khtml-user-select: none;
@@ -8,4 +10,9 @@
   */
   -ms-user-select: none;
   user-select: none;
+
+  &:active {
+    background-color: $bg-blue;
+  }
+
 }
