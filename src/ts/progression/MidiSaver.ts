@@ -1,3 +1,5 @@
+import $ from "jquery";
+
 export class MidiSaver {
     downloadBtn: HTMLElement;
     onGetChords: Function;
@@ -7,6 +9,8 @@ export class MidiSaver {
         this.downloadBtn.addEventListener("pointerup", ()=> {
             this._write()
         })
+        // @ts-ignore
+        $("#downloadBtn").tooltip();   // Trigger the tooltip of the play button
     }
 
     private _getChords(){
@@ -31,7 +35,7 @@ export class MidiSaver {
 
         // Generate a data URI
         var write = new MidiWriter.Writer(track);
-        
+
         // Download the midi file
         // @ts-ignore
         document.getElementById('my_iframe')!.src = write.dataUri();
