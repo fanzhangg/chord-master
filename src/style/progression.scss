@@ -35,6 +35,18 @@ $bg-secondary-highlight: #5A628D;
   }
 }
 
+#downloadBtn {
+  color: #6c757d;
+
+  &:hover {
+    color: $bg-blue;
+  }
+
+  &.disabled {
+    color: $text-muted;
+  }
+}
+
 
 #copyBtn {
   color: #6c757d;
@@ -52,6 +64,9 @@ $bg-secondary-highlight: #5A628D;
   &.active {
     background: $bg-blue;
     border: 0;
+  }
+  &:hover {
+    background: $bg-blue;
   }
   border-radius: 50%;
 }
