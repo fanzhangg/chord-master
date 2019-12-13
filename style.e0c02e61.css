@@ -64,7 +64,7 @@
   background-color: #f0f0f0; }
 
 #keyboard .key.white:active {
-  background-color: #fdcb6e; }
+  background-color: #ffeaa7; }
 
 #keyboard .key.black {
   z-index: 1;
@@ -79,7 +79,7 @@
   border-right: 2px solid #212224;
   border-top: 1px solid #212224; }
   #keyboard .key.black.highlight {
-    background-image: linear-gradient(0deg, #F6D365 50%, rgba(253, 160, 133, 0.82) 100%); }
+    background-image: linear-gradient(0deg, #ffeaa7 50%, #fdcb6e 100%); }
   #keyboard .key.black.highlight-root {
     background-image: linear-gradient(0deg, #848d90 50%, #65696c 100%); }
     #keyboard .key.black.highlight-root:hover {
@@ -99,8 +99,8 @@
 
 #keyboard .key.highlight {
   background-image: none;
-  background-color: #f6d365;
-  box-shadow: inset 0 3px 15px #fda085; }
+  background-color: #ffeaa7;
+  box-shadow: inset 0 3px 20px #fdcb6e; }
 
 #keyboard .key.highlight-root {
   background-image: none;
@@ -137,6 +137,13 @@
   #resetBtn.disabled {
     color: #939aa0; }
 
+#downloadBtn {
+  color: #6c757d; }
+  #downloadBtn:hover {
+    color: #8ec5fc; }
+  #downloadBtn.disabled {
+    color: #939aa0; }
+
 #copyBtn {
   color: #6c757d; }
   #copyBtn:hover {
@@ -149,6 +156,8 @@
   #playBtn.active {
     background: #8ec5fc;
     border: 0; }
+  #playBtn:hover {
+    background: #8ec5fc; }
 
 .btn-chord {
   position: relative;
@@ -178,8 +187,8 @@
     background-color: white;
     border-radius: 50%;
     color: black;
-    width: 130px;
-    height: 130px;
+    width: 140px;
+    height: 140px;
     text-align: center;
     text-decoration: none;
     font-size: 40px;
@@ -269,6 +278,8 @@
   */
   -ms-user-select: none;
   user-select: none; }
+  .dropdown-item:active {
+    background-color: #8ec5fc; }
 
 /* set a max-width for horizontal fluid layout and make it centered */
 .container-fluid {

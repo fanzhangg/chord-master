@@ -9,11 +9,14 @@ h3 {
   font-weight: bold; }
 
 body {
-  background-color: #FFFFFF; }
+  background-color: #ebecef; }
 
-.wetwet {
+.accordionWrapper {
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  max-width: 680px;
+  margin: auto;
+  font-size: 21px; }
 
 span {
   font-size: 20px;
@@ -39,7 +42,16 @@ img {
 
 p {
   text-align: left;
-  color: black; }
+  color: black;
+  font-size: 20px;
+  line-height: 1.58;
+  letter-spacing: -0.004em; }
+
+.btn {
+  font-size: 20px; }
+
+#introduction {
+  padding: 1.25rem; }
 
 
 /*# sourceMappingURL=/tutorial.6ac9a6ef.css.map */
