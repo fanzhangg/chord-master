@@ -118,7 +118,7 @@ export class Chord {
         let chroma = Note.toChroma(this.rootKeyNum);
         const inversionSymbol = this._getInversionSymbol();
 
-        if (chroma.indexOf("#") > -1){
+        if (chroma.indexOf("#") > -1) {
             chroma = chroma.replace("#", "♯"); // Changes the sharp sign to a fancy sharp.
         }
 
@@ -154,13 +154,14 @@ export class Chord {
 
         console.log("rootKeyName:" + rootKeyName);
 
-        let rootKeyLettersIndex = Chord.letters.indexOf(rootKeyName[0]);
+        const rootNoteLetter = rootKeyName[0];
+        let rootNoteLetterIndex = Chord.letters.indexOf(rootNoteLetter);    // Get the index of root note letter
 
-        console.log("rootKeyLettersIndex:" + rootKeyLettersIndex);
-        console.log("indexOfInversionLetterNoMod: " + (rootKeyLettersIndex + 2*this.inversionNum));
-        console.log("indexOfInversionLetter: " + (rootKeyLettersIndex + 2*this.inversionNum)%7);
+        console.log("rootKeyLettersIndex:" + rootNoteLetterIndex);
+        console.log("indexOfInversionLetterNoMod: " + (rootNoteLetterIndex + 2 * this.inversionNum));
+        console.log("indexOfInversionLetter: " + (rootNoteLetterIndex + 2 * this.inversionNum) % 7);
 
-        let inversionLetter = Chord.letters[(rootKeyLettersIndex + 2*this.inversionNum)%7];
+        let inversionLetter = Chord.letters[(rootNoteLetterIndex + 2 * this.inversionNum) % 7];
 
         let chromaIDOfLetter = Note.chromas.indexOf(inversionLetter); // This starts on C and includes half steps
         console.log("chromaIDOfLetter: " + chromaIDOfLetter);
@@ -177,7 +178,7 @@ export class Chord {
 
         let inversionSymbol = inversionLetter;
 
-        switch ((chromaIDOfLetter - chromaIDOfPlayed)%Note.chromas.length) {
+        switch ((chromaIDOfLetter - chromaIDOfPlayed) % Note.chromas.length) {
             case -2:
                 inversionSymbol = inversionLetter + "♯♯";
                 break;
@@ -195,7 +196,7 @@ export class Chord {
                 break;
         }
 
-        if (inversionNote.indexOf("#") > -1){
+        if (inversionNote.indexOf("#") > -1) {
             inversionNote = inversionNote.replace("#", "♯"); // Changes the sharp sign to a fancy sharp.
         }
         if (inversionNote == undefined) {
