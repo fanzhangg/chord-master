@@ -1,11 +1,16 @@
 $font-size: 20px;
 
+.introwrapper{
+  display: flex;
+  justify-content: center;
 
-
+}
 .intro{
-  width:200vh;
+  width:680px;
 
-  text-align: center;
+  text-align: left;
+  margin-bottom: 10px;
+
 }
 
 h1{
