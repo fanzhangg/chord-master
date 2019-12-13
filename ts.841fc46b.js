@@ -51603,9 +51603,10 @@ function () {
     btn.addEventListener("pointerup", function () {
       var chord = new Chord_1.Chord(48);
 
-      _this._appendChord(chord, btnContainer); // @ts-ignore
-
-
+      _this._appendChord(chord, btnContainer);
+    });
+    btn.addEventListener("pointerover", function () {
+      // @ts-ignore
       jquery_1.default(btn).tooltip('hide').attr("data-placement", "bottom").attr('data-original-title', "Add a Chord").tooltip('show');
     });
     btnContainer.appendChild(btn);
@@ -56432,7 +56433,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57224" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58922" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
