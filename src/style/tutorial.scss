@@ -1,4 +1,4 @@
-$font-size: 18px;
+$font-size: 20px;
 
 h1{
   text-align: center;
@@ -58,6 +58,8 @@ p{
   text-align: left;
   color: black;
   font-size: $font-size;
+  line-height: 1.58;
+  letter-spacing: -0.004em;
 }
 
 .btn {
