@@ -93,6 +93,12 @@ export class ChordProgression {
         btn.addEventListener("pointerup", () => {
             const chord = new Chord(48);
             this._appendChord(chord, btnContainer);
+
+            // @ts-ignore
+            $(btn).tooltip('hide')
+                .attr("data-placement", "bottom")
+                .attr('data-original-title', "Add a Chord")
+                .tooltip('show');
         });
 
         btnContainer.appendChild(btn);
