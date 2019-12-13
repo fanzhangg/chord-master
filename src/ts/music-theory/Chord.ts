@@ -152,22 +152,66 @@ export class Chord {
         const inversionKeyNum = rootKeyNum + halfSteps[this.inversionNum]; // Key or ID number of lowest note in chord.
         let inversionNote = Note.toChroma(inversionKeyNum); // Name of inversion (lowest) note in chord.
 
-        console.log(inversionNote);
+        console.log("rootKeyName:" + rootKeyName);
 
-        let noteDiff = Chord.letters.indexOf(inversionNote[0]) - Chord.letters.indexOf(rootKeyName[0]);
-        console.log(noteDiff); // Calculates the difference of the note letters
+        let rootKeyLettersIndex = Chord.letters.indexOf(rootKeyName[0]);
 
-        let firstInversionBoolean = (this.inversionNum === 1 && [1, -6].includes(noteDiff)); // Checks to see if a note needs to be changed for chord inversions
-        let secondInversionBoolean = (this.inversionNum === 2 && [3, -4].includes(noteDiff));
-        let thirdInversionBoolean = (this.inversionNum === 3) && [5, -2].includes(noteDiff); // Messes up with double flats
+        console.log("rootKeyLettersIndex:" + rootKeyLettersIndex);
+        console.log("indexOfInversionLetterNoMod: " + (rootKeyLettersIndex + 2*this.inversionNum));
+        console.log("indexOfInversionLetter: " + (rootKeyLettersIndex + 2*this.inversionNum)%7);
 
-        if (firstInversionBoolean || secondInversionBoolean || thirdInversionBoolean){ // Checks to see if there are any of the errors above
-            inversionNote = Chord.letters[7%(Chord.letters.indexOf((inversionNote[0]) + 1))] + "♭"; // Changes it to the next note up but flat
+        let inversionLetter = Chord.letters[(rootKeyLettersIndex + 2*this.inversionNum)%7];
+
+        let chromaIDOfLetter = Note.chromas.indexOf(inversionLetter); // This starts on C and includes half steps
+        console.log("chromaIDOfLetter: " + chromaIDOfLetter);
+
+        let idOfPlayed = rootKeyNum + halfSteps[this.inversionNum]; // The actual ID of the note being played
+
+        let nameOfPlayed = Note.toNoteName(idOfPlayed);
+        let shortNameOfPlayed = nameOfPlayed.substring(0, nameOfPlayed.length - 1);
+        console.log(shortNameOfPlayed);
+
+        let chromaIDOfPlayed = Note.chromas.indexOf(shortNameOfPlayed);
+
+        console.log("Difference: " + (chromaIDOfLetter - chromaIDOfPlayed));
+
+        let inversionSymbol = inversionLetter;
+
+        switch ((chromaIDOfLetter - chromaIDOfPlayed)%Note.chromas.length) {
+            case -2:
+                inversionSymbol = inversionLetter + "♯♯";
+                break;
+            case -1:
+                inversionSymbol = inversionLetter + "♯";
+                break;
+            case 0:
+                inversionSymbol = inversionLetter;
+                break;
+            case 1:
+                inversionSymbol = inversionLetter + "♭";
+                break;
+            case 2:
+                inversionSymbol = inversionLetter + "♭♭";
+                break;
         }
 
-        if (this.inversionNum === 3 && this.type === "Diminished Seventh" && rootKeyName[0] === "C") { // Adds a double flat for the one outlier case of c-dim7
-            inversionNote = Chord.letters[Chord.letters.indexOf(rootKeyName[0]) - 1] + "♭♭"
-        }
+
+        // let noteDiff = Chord.letters.indexOf(inversionNote[0]) - Chord.letters.indexOf(rootKeyName[0]);
+        // console.log(noteDiff); // Calculates the difference of the note letters
+        //
+        // let firstInversionBoolean = (this.inversionNum === 1 && [1, -6].includes(noteDiff)); // Checks to see if a note needs to be changed for chord inversions
+        // let secondInversionBoolean = (this.inversionNum === 2 && [3, -4].includes(noteDiff));
+        // let thirdInversionBoolean = (this.inversionNum === 3) && [5, -2].includes(noteDiff); // Messes up with double flats
+        //
+        // if (firstInversionBoolean || secondInversionBoolean || thirdInversionBoolean){ // Checks to see if there are any of the errors above
+        //     inversionNote = Chord.letters[7%(Chord.letters.indexOf((inversionNote[0]) + 1))] + "♭"; // Changes it to the next note up but flat
+        // }
+        //
+        // if (this.inversionNum === 3 && this.type === "Diminished Seventh" && rootKeyName[0] === "C") { // Adds a double flat for the one outlier case of c-dim7
+        //     inversionNote = Chord.letters[Chord.letters.indexOf(rootKeyName[0]) - 1] + "♭♭"
+        // }
+
+
 
         if (inversionNote.indexOf("#") > -1){
             inversionNote = inversionNote.replace("#", "♯"); // Changes the sharp sign to a fancy sharp.
@@ -176,6 +220,6 @@ export class Chord {
             console.warn("Inversion note is undefined");
             return "";
         }
-        return `/${inversionNote}`;
+        return `/${inversionSymbol}`;
     }
 }
