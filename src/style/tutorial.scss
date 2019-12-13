@@ -1,5 +1,13 @@
 $font-size: 20px;
 
+
+
+.intro{
+  width:200vh;
+
+  text-align: center;
+}
+
 h1{
   text-align: center;
   font-size: 60px;
@@ -24,6 +32,11 @@ body{
   font-size:21px;
 }
 
+
+.accordion {
+  width: 150vh;
+}
+
 span{
   font-size: $font-size;
   font-weight: bold;
@@ -38,17 +51,10 @@ span{
   color: black;
 }
 
-#collapseTwo{
-  text-align: center;
-}
-
 li{
   text-align: left;
 }
 
-.accordion {
-  width: 150vh;
-}
 
 img{
   margin-bottom: 10px;
@@ -62,10 +68,8 @@ p{
   letter-spacing: -0.004em;
 }
 
+
+
 .btn {
   font-size: $font-size;
-}
-
-#introduction {
-  padding: 1.25rem;
 }
