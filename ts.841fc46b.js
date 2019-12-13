@@ -52031,7 +52031,7 @@ function () {
 
     this.curChord.type = type;
     this.curChord.family = family;
-    this.chordsList[this.curIndex] = this.curChord;
+    this.curChord.inversionNum = 0;
 
     this._setChordName();
   };
@@ -56433,7 +56433,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58922" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53125" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
