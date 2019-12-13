@@ -19,15 +19,18 @@
 
 <div class="accordionWrapper">
     <div class="accordion" id="accordionExample">
-        <p>Chord Master is a web application to help musicians creating chord progression. This app helps you find chords that work together.
-
-            Chords in the progression is represented by the lead sheet symbol. To build a chord, you can click the + button to add a chord, select the chord type and inversion in the dropdown menu, and choose the root note by clicking its key on the keyboard interface. You can also edit, delete each chord or copy a chord to the end of the progression. You can click the play button to listen to the entire chord progression.
-        </p>
+        <div id="introduction">
+            <p>Chord Master is a web application to help musicians creating chord progression. This app helps you find chords that work together.
+            </p>
+            <p>
+                Chords in the progression is represented by the lead sheet symbol. To build a chord, you can click the + button to add a chord, select the chord type and inversion in the dropdown menu, and choose the root note by clicking its key on the keyboard interface. You can also edit, delete each chord or copy a chord to the end of the progression. You can click the play button to listen to the entire chord progression.
+            </p>
+        </div>
         <div class="card">
             <div class="card-header" id="headingOne" >
                 <h2 class="mb-0">
                     <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
-                        Information
+                        Music Theory Crash Course
                     </button>
 
                 </h2>
@@ -37,11 +40,10 @@
                 <div class="card-body">
 
                     <ul>
-                        <li>A <span>key</span> refers to a piano key. Our Piano begins on the C3 key and ends on B6 key.</li>
-                        <li>A <span>chord</span> is a combination of notes played together to create a rich harmony.</li>
-                        <li>A <span> Chord Family </span> is a classification that different chords can fall under.</li>
-                        <li>A <span>Chord Inversion</span> is a modification on a chord that changes which note is the lowest in that chord.</li>
-                        <li>A <span>Chord Progression</span> is a sequence of chords put together.</li>
+                        <li><span>Chord:</span> a combination of notes played together to create a rich harmony.</li>
+                        <li><span>Chord Family:</span> a classification that different chords can fall under.</li>
+                        <li><span>Chord Inversion:</span> a modification on a chord that changes which note is the lowest in that chord.</li>
+                        <li>A <span>Chord Progression:</span> a sequence of chords put together.</li>
                     </ul>
 
 
@@ -54,7 +56,7 @@
             <div class="card-header" id="headingTwo">
                 <h2 class="mb-0">
                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        Display
+                        User Interface
                     </button>
                 </h2>
             </div>
@@ -69,8 +71,7 @@
                     </div>
 
                     <ul>
-                        <li>The default chord on our Piano is the Major C Triad. You may notice that this chord
-                        is displayed on the key above</li>
+                        <li>The default chord on our Piano is the Major C Triad. The lead sheet symbol of the chord is displayed</li>
                         <li>To hear this chord, simply click on either the chord symbol, or any C on the piano.</li>
                         <li>You may have noticed that when you press a key on the piano, other keys that you havn't pressed become highlighted. These
                             other highlighted keys are the other notes that belong in your selected chord.</li>
@@ -111,22 +112,22 @@
             <div class="card-header" id="headingFour">
                 <h2 class="mb-0">
                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                        Chord Inversion
+                        Inverse a chord
                     </button>
                 </h2>
             </div>
             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                 <div class="card-body">
                     <div class="pics">
-                        <h3>Inversion</h3>
                         <img src="images/chordinversion.png" class="img-fluid" alt="">
                     </div>
 
 
-                    <ul>
-                        <li>Clicking on the chord inversion drop down, brings up a menu that has labels from "None" through "Third"</li>
-                        <li>Clicking on an inversion will change which note is the lowest note in the chord. </li>
-                    </ul>
+
+                    To inverse a chord, you can click the inversion menu, and select the inversion number in the dropdown.
+                    If you do not want the inversion, select "None".
+                    The chord symbol, the keys on the keyboard will be updated accordingly.
+
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-
+$font-size: 18px;
 
 h1{
   text-align: center;
@@ -13,17 +13,19 @@ h3{
 }
 
 body{
-  background-color:#FFFFFF;
-
+  background-color:#ebecef;
 }
 
 .accordionWrapper{
   display: flex;
   justify-content: center;
+  max-width: 680px;
+  margin: auto;
+  font-size:21px;
 }
 
 span{
-  font-size: 20px;
+  font-size: $font-size;
   font-weight: bold;
 }
 
@@ -55,6 +57,13 @@ img{
 p{
   text-align: left;
   color: black;
+  font-size: $font-size;
 }
 
+.btn {
+  font-size: $font-size;
+}
 
+#introduction {
+  padding: 1.25rem;
+}
