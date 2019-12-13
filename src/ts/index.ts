@@ -17,6 +17,7 @@ import {InversionBtn} from "./setting-toolbar/InversionBtn";
 import {Chord} from "./music-theory/Chord";
 import {ChordProgression} from "./progression/ChordProgression";
 
+import {MidiSaver} from "./progression/MidiSaver"
 
 
 new Loader();   // Loader to create the loading page
@@ -31,6 +32,8 @@ const sound = new PianoSound(0, 100);
 sound.load();
 
 const progression = new ChordProgression();
+
+const midiSaver = new MidiSaver();
 
 /**
  * Handles the key presses for the piano class.
@@ -142,6 +145,13 @@ progression.onStop = function () {
     chordTypeBtn.enable();
     inversionBtn.enable();
     piano.enable();
+};
+
+/**
+ * Get the chord progression from the progression for writing to the midi file
+ */
+midiSaver.onGetChords = function(){
+    return progression.chordsList
 };
 
 
