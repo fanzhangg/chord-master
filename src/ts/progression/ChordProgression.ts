@@ -469,7 +469,7 @@ export class ChordProgression {
         }
         this.curChord.type = type;
         this.curChord.family = family;
-        this.chordsList[this.curIndex] = this.curChord;
+        this.curChord.inversionNum = 0;
 
         this._setChordName();
     }
