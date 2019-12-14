@@ -17,6 +17,7 @@ export class Chord {
         "Augmented Major Seventh": "+<sup>M7</sup>",
         //Extended
         "Dominant Ninth": "<sup>9</sup>",
+        "Dominant Eleventh": "<sup>11</sup>",
         "Dominant Thirteenth": "<sup>13</sup>",
         //Altered
         "Seventh Augmented Fifth": "<sup>7♯5</sup>",
