@@ -140,7 +140,7 @@ export class Chord {
 
 
     /**
-     * Gets the note if there is an inversion. (IE: C/E) in first inversion.
+     * Gets the base note if there is an inversion. (IE: C/E) in first inversion.
      * @private
      */
     private _getInversionSymbol(): string {
@@ -150,36 +150,21 @@ export class Chord {
         const halfSteps = this._getHalfSteps();
         const rootKeyNum = this.rootKeyNum;
         const rootKeyName = Note.toNoteName(rootKeyNum); // Gets name of root key
-        const inversionKeyNum = rootKeyNum + halfSteps[this.inversionNum]; // Key or ID number of lowest note in chord.
-        let inversionNote = Note.toChroma(inversionKeyNum); // Name of inversion (lowest) note in chord.
-
-        console.log("rootKeyName:" + rootKeyName);
 
         const rootNoteLetter = rootKeyName[0];
-        let rootNoteLetterIndex = Chord.letters.indexOf(rootNoteLetter);    // Get the index of root note letter
+        const rootNoteLetterIndex = Chord.letters.indexOf(rootNoteLetter);    // Get the index of root note letter
 
-        console.log("rootKeyLettersIndex:" + rootNoteLetterIndex);
-        console.log("indexOfInversionLetterNoMod: " + (rootNoteLetterIndex + 2 * this.inversionNum));
-        console.log("indexOfInversionLetter: " + (rootNoteLetterIndex + 2 * this.inversionNum) % 7);
+        const inversionLetter = Chord.letters[(rootNoteLetterIndex + 2 * this.inversionNum) % 7]; // Gets just the letter of the note being played
+        const chromaIDOfLetter = Note.chromas.indexOf(inversionLetter); // Note.chromas starts on C and includes half steps
 
-        let inversionLetter = Chord.letters[(rootNoteLetterIndex + 2 * this.inversionNum) % 7];
-
-        let chromaIDOfLetter = Note.chromas.indexOf(inversionLetter); // This starts on C and includes half steps
-        console.log("chromaIDOfLetter: " + chromaIDOfLetter);
-
-        let idOfPlayed = rootKeyNum + halfSteps[this.inversionNum]; // The actual ID of the note being played
-
-        let nameOfPlayed = Note.toNoteName(idOfPlayed);
-        let shortNameOfPlayed = nameOfPlayed.substring(0, nameOfPlayed.length - 1);
-        console.log(shortNameOfPlayed);
-
-        let chromaIDOfPlayed = Note.chromas.indexOf(shortNameOfPlayed);
-
-        console.log("Difference: " + (chromaIDOfLetter - chromaIDOfPlayed));
+        const idOfPlayed = rootKeyNum + halfSteps[this.inversionNum]; // The actual ID of the note being played
+        const nameOfPlayed = Note.toNoteName(idOfPlayed);
+        const shortNameOfPlayed = nameOfPlayed.substring(0, nameOfPlayed.length - 1); // Gets just the chroma of played note.
+        const chromaIDOfPlayed = Note.chromas.indexOf(shortNameOfPlayed);
 
         let inversionSymbol = inversionLetter;
 
-        switch ((chromaIDOfLetter - chromaIDOfPlayed) % Note.chromas.length) {
+        switch ((chromaIDOfLetter - chromaIDOfPlayed) % Note.chromas.length) { // The difference between the two notes.
             case -2:
                 inversionSymbol = inversionLetter + "♯♯";
                 break;
@@ -197,13 +182,6 @@ export class Chord {
                 break;
         }
 
-        if (inversionNote.indexOf("#") > -1) {
-            inversionNote = inversionNote.replace("#", "♯"); // Changes the sharp sign to a fancy sharp.
-        }
-        if (inversionNote == undefined) {
-            console.warn("Inversion note is undefined");
-            return "";
-        }
         return `/${inversionSymbol}`;
     }
 }
