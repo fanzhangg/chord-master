@@ -1,3 +1,12 @@
+.introwrapper {
+  display: flex;
+  justify-content: center; }
+
+.intro {
+  width: 680px;
+  text-align: left;
+  margin-bottom: 10px; }
+
 h1 {
   text-align: center;
   font-size: 60px;
@@ -18,6 +27,9 @@ body {
   margin: auto;
   font-size: 21px; }
 
+.accordion {
+  width: 150vh; }
+
 span {
   font-size: 20px;
   font-weight: bold; }
@@ -28,14 +40,8 @@ span {
 .btn-link {
   color: black; }
 
-#collapseTwo {
-  text-align: center; }
-
 li {
   text-align: left; }
-
-.accordion {
-  width: 150vh; }
 
 img {
   margin-bottom: 10px; }
@@ -49,9 +55,6 @@ p {
 
 .btn {
   font-size: 20px; }
-
-#introduction {
-  padding: 1.25rem; }
 
 
 /*# sourceMappingURL=/tutorial.6ac9a6ef.css.map */
