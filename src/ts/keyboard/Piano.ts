@@ -111,6 +111,10 @@ class Piano {
         this.onSetChord(chord);
     }
 
+    /**
+     * Set the key number of the root note
+     * @param keyNum number
+     */
     setRootKeyNum(keyNum: number) {
         this.currChord.rootKeyNum = keyNum;
         const notes = this.currChord.getNotes();
