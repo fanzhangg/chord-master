@@ -19078,7 +19078,7 @@ function () {
     return halfSteps;
   };
   /**
-   * Gets the note if there is an inversion. (IE: C/E) in first inversion.
+   * Gets the base note if there is an inversion. (IE: C/E) in first inversion.
    * @private
    */
 
@@ -19093,31 +19093,23 @@ function () {
     var rootKeyNum = this.rootKeyNum;
     var rootKeyName = Note_1.Note.toNoteName(rootKeyNum); // Gets name of root key
 
-    var inversionKeyNum = rootKeyNum + halfSteps[this.inversionNum]; // Key or ID number of lowest note in chord.
-
-    var inversionNote = Note_1.Note.toChroma(inversionKeyNum); // Name of inversion (lowest) note in chord.
-
-    console.log("rootKeyName:" + rootKeyName);
     var rootNoteLetter = rootKeyName[0];
     var rootNoteLetterIndex = Chord.letters.indexOf(rootNoteLetter); // Get the index of root note letter
 
-    console.log("rootKeyLettersIndex:" + rootNoteLetterIndex);
-    console.log("indexOfInversionLetterNoMod: " + (rootNoteLetterIndex + 2 * this.inversionNum));
-    console.log("indexOfInversionLetter: " + (rootNoteLetterIndex + 2 * this.inversionNum) % 7);
-    var inversionLetter = Chord.letters[(rootNoteLetterIndex + 2 * this.inversionNum) % 7];
-    var chromaIDOfLetter = Note_1.Note.chromas.indexOf(inversionLetter); // This starts on C and includes half steps
+    var inversionLetter = Chord.letters[(rootNoteLetterIndex + 2 * this.inversionNum) % 7]; // Gets just the letter of the note being played
 
-    console.log("chromaIDOfLetter: " + chromaIDOfLetter);
+    var chromaIDOfLetter = Note_1.Note.chromas.indexOf(inversionLetter); // Note.chromas starts on C and includes half steps
+
     var idOfPlayed = rootKeyNum + halfSteps[this.inversionNum]; // The actual ID of the note being played
 
     var nameOfPlayed = Note_1.Note.toNoteName(idOfPlayed);
-    var shortNameOfPlayed = nameOfPlayed.substring(0, nameOfPlayed.length - 1);
-    console.log(shortNameOfPlayed);
+    var shortNameOfPlayed = nameOfPlayed.substring(0, nameOfPlayed.length - 1); // Gets just the chroma of played note.
+
     var chromaIDOfPlayed = Note_1.Note.chromas.indexOf(shortNameOfPlayed);
-    console.log("Difference: " + (chromaIDOfLetter - chromaIDOfPlayed));
     var inversionSymbol = inversionLetter;
 
     switch ((chromaIDOfLetter - chromaIDOfPlayed) % Note_1.Note.chromas.length) {
+      // The difference between the two notes.
       case -2:
         inversionSymbol = inversionLetter + "♯♯";
         break;
@@ -19137,15 +19129,6 @@ function () {
       case 2:
         inversionSymbol = inversionLetter + "♭♭";
         break;
-    }
-
-    if (inversionNote.indexOf("#") > -1) {
-      inversionNote = inversionNote.replace("#", "♯"); // Changes the sharp sign to a fancy sharp.
-    }
-
-    if (inversionNote == undefined) {
-      console.warn("Inversion note is undefined");
-      return "";
     }
 
     return "/" + inversionSymbol;
@@ -19338,6 +19321,11 @@ function () {
 
     this.onSetChord(chord);
   };
+  /**
+   * Set the key number of the root note
+   * @param keyNum number
+   */
+
 
   Piano.prototype.setRootKeyNum = function (keyNum) {
     this.currChord.rootKeyNum = keyNum;
@@ -56434,7 +56422,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50134" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58001" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
