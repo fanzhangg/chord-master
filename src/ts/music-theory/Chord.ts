@@ -62,16 +62,16 @@ export class Chord {
 
     constructor(rootKeyNum = 48, type = "Major Triad", family = "Triads", inversionNum = 0) {
         this.type = type;
-        this.rootKeyNum = rootKeyNum;   // Root is C4 initially
+        this.rootKeyNum = rootKeyNum;   // Root is C4 by default
         this.family = family;
         this.inversionNum = inversionNum;
     }
 
     /**
-     * Get an array of string of the note in the chord
+     * @returns an array of string of the note in the chord
      */
     public getNotes(): Array<string> {
-        const halfSteps = Chord.chordFamilies[this.family][this.type].slice(0);
+        const halfSteps = Chord.chordFamilies[this.family][this.type].slice(0); // Copy the half steps
         if (halfSteps == null) {
             throw new Error("Cannot get the half steps");
         }
@@ -79,7 +79,7 @@ export class Chord {
             halfSteps[i] += 12;
         }
 
-        let notes = [];
+        let notes = []; // Get the notes in the chord
         for (let halfStep of halfSteps) {
             const curKeyNum = this.rootKeyNum + halfStep;
             const curNote = Note.toNoteName(curKeyNum);
@@ -90,9 +90,9 @@ export class Chord {
     }
 
     /**
-     * Get the half steps of the chord type
      * @param family
      * @param type
+     * @returns the length of the half steps
      */
     static getLen(family: string, type: string) {
         const halfSteps = Chord.chordFamilies[family][type].slice(0);
