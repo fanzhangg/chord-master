@@ -1,5 +1,8 @@
 import $ from "jquery";
 
+/**
+ * Save the chord progression as a midi file
+ */
 export class MidiSaver {
     downloadBtn: HTMLElement;
     onGetChords: Function;

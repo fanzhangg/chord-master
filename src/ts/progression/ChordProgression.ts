@@ -53,7 +53,6 @@ export class ChordProgression {
             if (!resetBtn.classList.contains("disabled")){
                 this._reset();
             }
-
         });
 
         this._playButton.addEventListener("pointerup", () => {  // Play button

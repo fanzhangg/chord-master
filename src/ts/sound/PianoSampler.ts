@@ -1,6 +1,9 @@
 import {Buffer, Sampler} from "tone/tone";
 import "../audio/*.mp3";
 
+/**
+ * A sampler that loads the audios of the piano notes and generate authentic piano sound
+ */
 class PianoSampler {
     _lowest: number;
     _highest: number;

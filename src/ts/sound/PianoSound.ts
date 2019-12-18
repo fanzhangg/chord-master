@@ -1,6 +1,9 @@
 import {PianoSampler} from "./PianoSampler";
 import * as Tone from "tone/tone";
 
+/**
+ * Play the piano sound of the notes
+ */
 export class PianoSound {
     _lowest: number;
     _highest: number;
