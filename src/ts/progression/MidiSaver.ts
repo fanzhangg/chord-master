@@ -10,13 +10,19 @@ export class MidiSaver {
             this._write()
         })
         // @ts-ignore
-        $("#downloadBtn").tooltip();   // Trigger the tooltip of the play button
+        $("#downloadBtn").tooltip();   // Trigger the tooltip of the download button
     }
 
+    /**
+     * @returns an array of chords in the progression
+     */
     private _getChords(){
         return this.onGetChords();
     }
 
+    /**
+     * Write the chords to a MIDI file, and download it
+     */
     private _write(){
         const chords = this._getChords();
         const MidiWriter = require('midi-writer-js');
@@ -27,7 +33,7 @@ export class MidiSaver {
         // Define an instrument (optional):
         track.addEvent(new MidiWriter.ProgramChangeEvent({instrument: 1}));
         for (let chord of chords){
-            const pitch = chord.getNotes(); //TODO: Not sure if it has been inversed
+            const pitch = chord.getNotes();
             var note = new MidiWriter.NoteEvent({pitch: pitch, duration: '2'}); // Set the duration to half
             // Add some notes:
             track.addEvent(note);
