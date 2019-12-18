@@ -36,7 +36,7 @@ const progression = new ChordProgression();
 const midiSaver = new MidiSaver();
 
 /**
- * Handles the key presses for the piano class.
+ * Highlights the keys on the chord, and play the sound after the key of the piano is pressed down
  * @param chord
  */
 piano.onKeyDown = function (chord: Chord) {
@@ -47,7 +47,7 @@ piano.onKeyDown = function (chord: Chord) {
 };
 
 /**
- * Stops the chord sound when the mouse is releases
+ * Stops the chord sound when the key is released
  * @param chord
  */
 piano.onKeyUp = function (chord: Array<string>) {
@@ -55,7 +55,7 @@ piano.onKeyUp = function (chord: Array<string>) {
 };
 
 /**
- * Sets the chord when a chord progression chord is clicked.
+ * Plays the sound when a chord is updated
  * @param chord
  */
 piano.onSetChord = function (chord: Chord) {
@@ -64,7 +64,7 @@ piano.onSetChord = function (chord: Chord) {
 };
 
 /**
- * Changes the chord type when you click from the menu.
+ * Changes the chord type when an item in the chord type menu is clicked
  * @param type
  * @param family
  */
@@ -77,7 +77,7 @@ chordTypeBtn.onSetChordType = function (type: string, family: string) {
 };
 
 /**
- * Changes the inversion when you click from the menu
+ * Changes the inversion when an item in the inversion meny is clicked
  * @param inversionNum
  */
 inversionBtn.onSetInversion = function (inversionNum: number) {
@@ -87,7 +87,7 @@ inversionBtn.onSetInversion = function (inversionNum: number) {
 };
 
 /**
- * Sets chord on piano, changes text on chord type button and inversion button.
+ * Sets chord on piano, changes text on chord type button and inversion button when an chord in the progression is activated
  * @param chord
  */
 progression.onActivate = function (chord: Chord) {
@@ -99,15 +99,16 @@ progression.onActivate = function (chord: Chord) {
 
 
 let part = new Part(() => {}, []); // Declaring a blank part to be used in progression.onPlay()
+
 /**
  * Plays through the chord progression when play button is clicked.
  * @param chords
  */
 progression.onPlay = function (chords: Array<Array<string>>) {
     // @ts-ignore
-    part.removeAll();
+    part.removeAll();   // Clear the previous parts
 
-    let events = [];
+    let events = [];    // Create a list of events
     for (let i = 0; i < chords.length; i++) {
         const event = {"time": i, "chord": chords[i]};
         events.push(event);
@@ -116,20 +117,19 @@ progression.onPlay = function (chords: Array<Array<string>>) {
     // @ts-ignore
     part = new Part(function (time, value) {
         //the value is an object which contains both the note and the velocity
-        progression.switch();
+        progression.switch();   // Switch to the next chord
 
         // @ts-ignore
         console.log(`Play the chord ${value.chord}`);
         //@ts-ignore
     }, events).start(0);
-    part.loop = true;
+    part.loop = true;   // Loop the chord
     part.loopStart = 0;
     part.loopEnd = chords.length;
 };
 
 /**
- * Callback after switching to the next chord
- * Disable the chord, and inversion buttons and the piano interface
+ * Disable the chord, inversion buttons and the piano interface on playing the progression
  */
 progression.onSwitch = function () {
     chordTypeBtn.disable();
@@ -138,7 +138,7 @@ progression.onSwitch = function () {
 };
 
 /**
- * Callback after stopping playing the progression
+ * Enable the chord, inversion buttons and the piano interface after the progression stops to play
  * Enable the chord type, and inversion button and piano
  */
 progression.onStop = function () {
@@ -159,6 +159,7 @@ midiSaver.onGetChords = function(){
 $('#helpBtn').tooltip();   // Trigger the tooltip of the play button
 
 
+// Warn the user when he attempts to leave the page
 window.onbeforeunload = function() {
     return "Data will be lost if you leave the page, are you sure?";
   };

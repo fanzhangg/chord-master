@@ -22,10 +22,8 @@ class Keyboard {
         this._chords = [];
 
         // Callback events
-        this.onKeyDown = function () {
-        };
-        this.onKeyUp = function () {
-        };
+        this.onKeyDown = function () {};
+        this.onKeyUp = function () {};
     }
 
     /**
@@ -35,6 +33,7 @@ class Keyboard {
      */
     public resize(lowestKeyNum = 0, octaves: number) {
         this._container.innerHTML = ''; // Clear the previous ones
+        
         const keyWidth = (1 / 7) / octaves;
         for (let keyNum = lowestKeyNum; keyNum < lowestKeyNum + octaves * 12; keyNum++) {
             let key = document.createElement('div');    // Add a div for a key
