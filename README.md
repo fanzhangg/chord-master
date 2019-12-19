@@ -1,4 +1,4 @@
-![Logo of Chord Master](./src/favicon.ico)
+![Logo of Chord Master](./src/images/icons/android-chrome-256x256.png)
 
 # Chord Master
 
