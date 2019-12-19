@@ -1,14 +1,10 @@
 ![Logo of Chord Master](./src/images/icons/android-chrome-192x192.png)
 
 # Chord Master &middot; [![Build Status](https://img.shields.io/travis/npm/npm/latest.svg?style=flat-square)](https://travis-ci.org/npm/npm) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
-> Additional information or tag line
 
 [Demo](https://fanzhangg.github.io/chord-master/)
 
-Chord Master is a web application to help musicians creating the chord progression. This app helps you find chords that work together.
-
-Chords in the progression is represented by the lead sheet symbol. To build a chord, you can click the + button to add a chord, select the chord type and inversion in the dropdown menu, and choose the root note by clicking its key on the keyboard interface. You can also edit, delete or copy a chord. You can click the play button to listen to the entire chord progression. In addition, you can save your progression as a MIDI file.
-
+Chord Master is a web application for musicians to find new chord and create the chord progression.
 
 ## Usage
 
