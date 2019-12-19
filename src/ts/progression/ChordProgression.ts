@@ -64,7 +64,7 @@ export class ChordProgression {
      * Remove the add btn from the container
      * @private
      */
-    private _removeAddBtn() {
+    private static _removeAddBtn() {
         const addButton = document.getElementById("addBtn");
         if (addButton == null){
             throw new Error("addBtn does not exist. Cannot delete")
@@ -100,7 +100,7 @@ export class ChordProgression {
                 .attr("data-placement", "bottom")
                 .attr('data-original-title', "Add a Chord")
                 .tooltip('show');
-        })
+        });
 
         btnContainer.appendChild(btn);
 
@@ -336,14 +336,14 @@ export class ChordProgression {
 
         deleteBtns.forEach( e => {
             e.remove();
-        })
+        });
 
         // Remove copy buttons
-        const copyBtns = container.querySelectorAll(".btn-chord-copy");
+        const copyButtons = container.querySelectorAll(".btn-chord-copy");
 
-        copyBtns.forEach( e => {
+        copyButtons.forEach( e => {
             e.remove();
-        })
+        });
         return true;
     }
 
@@ -495,7 +495,7 @@ export class ChordProgression {
      * @private
      */
     private _reset() {
-        var ans = confirm("Are you sure to reset the chord progression?\nAfter reset, all progress will be lost.")
+        const ans = confirm("Are you sure to reset the chord progression?\nAfter reset, all progress will be lost.");
 
         if (ans == false){
             return false
@@ -549,7 +549,7 @@ export class ChordProgression {
             Transport.stop();
             this._appendAddBtn();
             this._enableEditAll();
-            this._enableReset();
+            ChordProgression._enableReset();
             this.onStop();
         } else {
             this._playButton.innerHTML = "<i class=\"fas fa-pause\"></i>";
@@ -568,9 +568,9 @@ export class ChordProgression {
             Transport.start('+1.1');    // Wait until the first chord played
 
             const notesList = this._getNotesList();
-            this._removeAddBtn();
+            ChordProgression._removeAddBtn();
             this._disableEditAll();
-            this._disableReset();
+            ChordProgression._disableReset();
             this.onPlay(notesList);
         }
     }
@@ -597,7 +597,7 @@ export class ChordProgression {
      * Disable the reset button
      * @private
      */
-    private _disableReset(){
+    private static _disableReset(){
         const resetBtn = document.getElementById("resetBtn")!;
         resetBtn.classList.add("disabled");
     }
@@ -606,7 +606,7 @@ export class ChordProgression {
      * Enable the reset button
      * @private
      */
-    private _enableReset(){
+    private static _enableReset(){
         const resetBtn = document.getElementById("resetBtn")!;
         resetBtn.classList.remove("disabled");
     }
