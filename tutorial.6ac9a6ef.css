@@ -1,47 +1,22 @@
-.introwrapper {
-  display: flex;
-  justify-content: center; }
-
-.intro {
-  width: 680px;
-  text-align: left;
-  margin-bottom: 10px; }
-
 h1 {
-  text-align: center;
-  font-size: 60px;
-  margin-top: 25px;
   margin-bottom: 25px; }
 
-h3 {
-  font-size: 35px;
-  font-weight: bold; }
+h2 {
+  margin-bottom: 20px; }
 
-body {
-  background-color: #ebecef; }
-
-.accordionWrapper {
-  display: flex;
+.text-container {
   justify-content: center;
   max-width: 680px;
   margin: auto;
+  padding-top: 60px;
   font-size: 21px; }
 
 .accordion {
   width: 150vh; }
 
-span {
-  font-size: 20px;
-  font-weight: bold; }
-
-.pics {
-  text-align: center; }
-
-.btn-link {
-  color: black; }
-
-li {
-  text-align: left; }
+img {
+  text-align: center;
+  width: 100%; }
 
 img {
   margin-bottom: 10px; }
@@ -52,9 +27,6 @@ p {
   font-size: 20px;
   line-height: 1.58;
   letter-spacing: -0.004em; }
-
-.btn {
-  font-size: 20px; }
 
 
 /*# sourceMappingURL=/tutorial.6ac9a6ef.css.map */

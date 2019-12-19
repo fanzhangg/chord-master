@@ -18145,8 +18145,8 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./..\\webfonts\\fa-brands-400.eot":[["fa-brands-400.7b5acd02.eot","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.eot"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.eot"],"./..\\webfonts\\fa-brands-400.woff2":[["fa-brands-400.34cc846b.woff2","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"],"./..\\webfonts\\fa-brands-400.woff":[["fa-brands-400.75159956.woff","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff"],"./..\\webfonts\\fa-brands-400.ttf":[["fa-brands-400.f885063e.ttf","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf"],"./..\\webfonts\\fa-brands-400.svg":[["fa-brands-400.1f0eb095.svg","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.svg"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.svg"],"./..\\webfonts\\fa-regular-400.eot":[["fa-regular-400.d4b9b17f.eot","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.eot"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.eot"],"./..\\webfonts\\fa-regular-400.woff2":[["fa-regular-400.82c42f2f.woff2","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"],"./..\\webfonts\\fa-regular-400.woff":[["fa-regular-400.adc5c7aa.woff","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff"],"./..\\webfonts\\fa-regular-400.ttf":[["fa-regular-400.b073eab5.ttf","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf"],"./..\\webfonts\\fa-regular-400.svg":[["fa-regular-400.16d6ac71.svg","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.svg"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.svg"],"./..\\webfonts\\fa-solid-900.eot":[["fa-solid-900.0b60ff24.eot","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.eot"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.eot"],"./..\\webfonts\\fa-solid-900.woff2":[["fa-solid-900.55d5ef42.woff2","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"],"./..\\webfonts\\fa-solid-900.woff":[["fa-solid-900.f824330b.woff","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff"],"./..\\webfonts\\fa-solid-900.ttf":[["fa-solid-900.47a039f3.ttf","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"],"./..\\webfonts\\fa-solid-900.svg":[["fa-solid-900.d08d5f59.svg","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.svg"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.svg"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/material-design-icons/index.js":[function(require,module,exports) {
-var __dirname = "C:\\Users\\aaron\\Documents\\softdev_225\\chordmaster\\node_modules\\material-design-icons";
+},{"./../webfonts/fa-brands-400.eot":[["fa-brands-400.7b5acd02.eot","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.eot"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.eot"],"./../webfonts/fa-brands-400.woff2":[["fa-brands-400.34cc846b.woff2","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"],"./../webfonts/fa-brands-400.woff":[["fa-brands-400.75159956.woff","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff"],"./../webfonts/fa-brands-400.ttf":[["fa-brands-400.f885063e.ttf","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf"],"./../webfonts/fa-brands-400.svg":[["fa-brands-400.1f0eb095.svg","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.svg"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.svg"],"./../webfonts/fa-regular-400.eot":[["fa-regular-400.d4b9b17f.eot","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.eot"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.eot"],"./../webfonts/fa-regular-400.woff2":[["fa-regular-400.82c42f2f.woff2","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff2"],"./../webfonts/fa-regular-400.woff":[["fa-regular-400.adc5c7aa.woff","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.woff"],"./../webfonts/fa-regular-400.ttf":[["fa-regular-400.b073eab5.ttf","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.ttf"],"./../webfonts/fa-regular-400.svg":[["fa-regular-400.16d6ac71.svg","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.svg"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-regular-400.svg"],"./../webfonts/fa-solid-900.eot":[["fa-solid-900.0b60ff24.eot","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.eot"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.eot"],"./../webfonts/fa-solid-900.woff2":[["fa-solid-900.55d5ef42.woff2","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"],"./../webfonts/fa-solid-900.woff":[["fa-solid-900.f824330b.woff","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff"],"./../webfonts/fa-solid-900.ttf":[["fa-solid-900.47a039f3.ttf","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"],"./../webfonts/fa-solid-900.svg":[["fa-solid-900.d08d5f59.svg","../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.svg"],"../node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.svg"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/material-design-icons/index.js":[function(require,module,exports) {
+var __dirname = "/Users/fanzhang/Documents/dev/web/chord-master/node_modules/material-design-icons";
 module.exports = {
   STATIC_PATH: __dirname,
 };
@@ -18987,18 +18987,18 @@ function () {
     }
 
     this.type = type;
-    this.rootKeyNum = rootKeyNum; // Root is C4 initially
+    this.rootKeyNum = rootKeyNum; // Root is C4 by default
 
     this.family = family;
     this.inversionNum = inversionNum;
   }
   /**
-   * Get an array of string of the note in the chord
+   * @returns an array of string of the note in the chord
    */
 
 
   Chord.prototype.getNotes = function () {
-    var halfSteps = Chord.chordFamilies[this.family][this.type].slice(0);
+    var halfSteps = Chord.chordFamilies[this.family][this.type].slice(0); // Copy the half steps
 
     if (halfSteps == null) {
       throw new Error("Cannot get the half steps");
@@ -19009,7 +19009,7 @@ function () {
       halfSteps[i] += 12;
     }
 
-    var notes = [];
+    var notes = []; // Get the notes in the chord
 
     for (var _i = 0, halfSteps_1 = halfSteps; _i < halfSteps_1.length; _i++) {
       var halfStep = halfSteps_1[_i];
@@ -19021,9 +19021,9 @@ function () {
     return notes;
   };
   /**
-   * Get the half steps of the chord type
    * @param family
    * @param type
+   * @returns the length of the half steps
    */
 
 
@@ -50956,6 +50956,10 @@ Object.defineProperty(exports, "__esModule", {
 var tone_1 = require("tone/tone");
 
 require("../audio/*.mp3");
+/**
+ * A sampler that loads the audios of the piano notes and generate authentic piano sound
+ */
+
 
 var PianoSampler =
 /** @class */
@@ -51099,6 +51103,10 @@ Object.defineProperty(exports, "__esModule", {
 var PianoSampler_1 = require("./PianoSampler");
 
 var Tone = __importStar(require("tone/tone"));
+/**
+ * Play the piano sound of the notes
+ */
+
 
 var PianoSound =
 /** @class */
@@ -51562,7 +51570,7 @@ function () {
    */
 
 
-  ChordProgression.prototype._removeAddBtn = function () {
+  ChordProgression._removeAddBtn = function () {
     var addButton = document.getElementById("addBtn");
 
     if (addButton == null) {
@@ -51856,8 +51864,8 @@ function () {
       e.remove();
     }); // Remove copy buttons
 
-    var copyBtns = container.querySelectorAll(".btn-chord-copy");
-    copyBtns.forEach(function (e) {
+    var copyButtons = container.querySelectorAll(".btn-chord-copy");
+    copyButtons.forEach(function (e) {
       e.remove();
     });
     return true;
@@ -52114,7 +52122,7 @@ function () {
 
       this._enableEditAll();
 
-      this._enableReset();
+      ChordProgression._enableReset();
 
       this.onStop();
     } else {
@@ -52134,11 +52142,11 @@ function () {
 
       var notesList = this._getNotesList();
 
-      this._removeAddBtn();
+      ChordProgression._removeAddBtn();
 
       this._disableEditAll();
 
-      this._disableReset();
+      ChordProgression._disableReset();
 
       this.onPlay(notesList);
     }
@@ -52171,7 +52179,7 @@ function () {
    */
 
 
-  ChordProgression.prototype._disableReset = function () {
+  ChordProgression._disableReset = function () {
     var resetBtn = document.getElementById("resetBtn");
     resetBtn.classList.add("disabled");
   };
@@ -52181,7 +52189,7 @@ function () {
    */
 
 
-  ChordProgression.prototype._enableReset = function () {
+  ChordProgression._enableReset = function () {
     var resetBtn = document.getElementById("resetBtn");
     resetBtn.classList.remove("disabled");
   };
@@ -56142,6 +56150,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var jquery_1 = __importDefault(require("jquery"));
+/**
+ * Save the chord progression as a midi file
+ */
+
 
 var MidiSaver =
 /** @class */
@@ -56157,12 +56169,20 @@ function () {
       _this._write();
     }); // @ts-ignore
 
-    jquery_1.default("#downloadBtn").tooltip(); // Trigger the tooltip of the play button
+    jquery_1.default("#downloadBtn").tooltip(); // Trigger the tooltip of the download button
   }
+  /**
+   * @returns an array of chords in the progression
+   */
+
 
   MidiSaver.prototype._getChords = function () {
     return this.onGetChords();
   };
+  /**
+   * Write the chords to a MIDI file, and download it
+   */
+
 
   MidiSaver.prototype._write = function () {
     var chords = this._getChords();
@@ -56178,8 +56198,7 @@ function () {
 
     for (var _i = 0, chords_1 = chords; _i < chords_1.length; _i++) {
       var chord = chords_1[_i];
-      var pitch = chord.getNotes(); //TODO: Not sure if it has been inversed
-
+      var pitch = chord.getNotes();
       var note = new MidiWriter.NoteEvent({
         pitch: pitch,
         duration: '2'
@@ -56259,7 +56278,7 @@ sound.load();
 var progression = new ChordProgression_1.ChordProgression();
 var midiSaver = new MidiSaver_1.MidiSaver();
 /**
- * Handles the key presses for the piano class.
+ * Highlights the keys on the chord, and play the sound after the key of the piano is pressed down
  * @param chord
  */
 
@@ -56269,7 +56288,7 @@ piano.onKeyDown = function (chord) {
   sound.keyDown(notes);
 };
 /**
- * Stops the chord sound when the mouse is releases
+ * Stops the chord sound when the key is released
  * @param chord
  */
 
@@ -56278,7 +56297,7 @@ piano.onKeyUp = function (chord) {
   sound.keyUp(chord);
 };
 /**
- * Sets the chord when a chord progression chord is clicked.
+ * Plays the sound when a chord is updated
  * @param chord
  */
 
@@ -56288,7 +56307,7 @@ piano.onSetChord = function (chord) {
   sound.keyDownUp(notes, 1);
 };
 /**
- * Changes the chord type when you click from the menu.
+ * Changes the chord type when an item in the chord type menu is clicked
  * @param type
  * @param family
  */
@@ -56303,7 +56322,7 @@ chordTypeBtn.onSetChordType = function (type, family) {
   progression.setChordType(family, type);
 };
 /**
- * Changes the inversion when you click from the menu
+ * Changes the inversion when an item in the inversion meny is clicked
  * @param inversionNum
  */
 
@@ -56314,7 +56333,7 @@ inversionBtn.onSetInversion = function (inversionNum) {
   console.log("Set the inversion to " + inversionNum);
 };
 /**
- * Sets chord on piano, changes text on chord type button and inversion button.
+ * Sets chord on piano, changes text on chord type button and inversion button when an chord in the progression is activated
  * @param chord
  */
 
@@ -56335,8 +56354,9 @@ var part = new tone_1.Part(function () {}, []); // Declaring a blank part to be 
 
 progression.onPlay = function (chords) {
   // @ts-ignore
-  part.removeAll();
-  var events = [];
+  part.removeAll(); // Clear the previous parts
+
+  var events = []; // Create a list of events
 
   for (var i = 0; i < chords.length; i++) {
     var event = {
@@ -56349,17 +56369,18 @@ progression.onPlay = function (chords) {
 
   part = new tone_1.Part(function (time, value) {
     //the value is an object which contains both the note and the velocity
-    progression.switch(); // @ts-ignore
+    progression.switch(); // Switch to the next chord
+    // @ts-ignore
 
     console.log("Play the chord " + value.chord); //@ts-ignore
   }, events).start(0);
-  part.loop = true;
+  part.loop = true; // Loop the chord
+
   part.loopStart = 0;
   part.loopEnd = chords.length;
 };
 /**
- * Callback after switching to the next chord
- * Disable the chord, and inversion buttons and the piano interface
+ * Disable the chord, inversion buttons and the piano interface on playing the progression
  */
 
 
@@ -56369,7 +56390,7 @@ progression.onSwitch = function () {
   piano.disable();
 };
 /**
- * Callback after stopping playing the progression
+ * Enable the chord, inversion buttons and the piano interface after the progression stops to play
  * Enable the chord type, and inversion button and piano
  */
 
@@ -56390,6 +56411,7 @@ midiSaver.onGetChords = function () {
 
 
 jquery_1.default('#helpBtn').tooltip(); // Trigger the tooltip of the play button
+// Warn the user when he attempts to leave the page
 
 window.onbeforeunload = function () {
   return "Data will be lost if you leave the page, are you sure?";
@@ -56422,7 +56444,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58001" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62755" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
