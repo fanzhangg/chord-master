@@ -159,7 +159,7 @@ midiSaver.onGetChords = function(){
 $('#helpBtn').tooltip();   // Trigger the tooltip of the play button
 
 
-// // Warn the user when he attempts to leave the page
-// window.onbeforeunload = function() {
-//     return "Data will be lost if you leave the page, are you sure?";
-//   };
+// Warn the user when he attempts to leave the page
+window.onbeforeunload = function() {
+    return "Data will be lost if you leave the page, are you sure?";
+  };
