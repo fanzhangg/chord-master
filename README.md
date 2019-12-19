@@ -1,3 +1,5 @@
+![Logo of Chord Master](./src/favicon.ico)
+
 # Chord Master
 
 [Demo](https://fanzhangg.github.io/chord-master/)
