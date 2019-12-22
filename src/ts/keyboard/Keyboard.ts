@@ -28,6 +28,7 @@ class Keyboard {
 
     /**
      * Resize the keyboard according to the window's width
+     * Reference: https://github.com/googlecreativelab/aiexperiments-ai-duet
      * @param lowestKeyNum
      * @param octaves
      */

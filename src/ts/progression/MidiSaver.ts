@@ -25,6 +25,7 @@ export class MidiSaver {
 
     /**
      * Write the chords to a MIDI file, and download it
+     * Reference: https://github.com/grimmdude/MidiWriterJS
      */
     private _write(){
         const chords = this._getChords();
