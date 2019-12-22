@@ -18773,6 +18773,7 @@ function () {
   }
   /**
    * Resize the keyboard according to the window's width
+   * Reference: https://github.com/googlecreativelab/aiexperiments-ai-duet
    * @param lowestKeyNum
    * @param octaves
    */
@@ -52130,23 +52131,21 @@ function () {
 
       this._playButton.classList.add("active");
 
-      this._disableBtnsAnimation();
-
-      this.activate(this.curChordNameBtn); // Play the current chord
-      // Change the tooltip to Stop
+      this._disableBtnsAnimation(); // Change the tooltip to Stop
       // @ts-ignore
 
-      jquery_1.default("#playBtn").tooltip('hide').attr('data-original-title', "Stop").tooltip('show'); // Set text tooltip to "Play"
 
-      tone_1.Transport.start('+1.1'); // Wait until the first chord played
+      jquery_1.default("#playBtn").tooltip('hide').attr('data-original-title', "Stop").tooltip('show'); // Set text tooltip to "Play"
 
       var notesList = this._getNotesList();
 
       ChordProgression._removeAddBtn();
 
-      this._disableEditAll();
+      this._disableEditAll(); // Disable editing each chord
 
-      ChordProgression._disableReset();
+
+      ChordProgression._disableReset(); // Disable reseting the progression
+
 
       this.onPlay(notesList);
     }
@@ -56181,6 +56180,7 @@ function () {
   };
   /**
    * Write the chords to a MIDI file, and download it
+   * Reference: https://github.com/grimmdude/MidiWriterJS
    */
 
 
@@ -56377,17 +56377,14 @@ progression.onPlay = function (chords) {
   part.loop = true; // Loop the chord
 
   part.loopStart = 0;
-  part.loopEnd = chords.length;
-};
-/**
- * Disable the chord, inversion buttons and the piano interface on playing the progression
- */
+  part.loopEnd = chords.length; // Disable editing the chord
 
-
-progression.onSwitch = function () {
   chordTypeBtn.disable();
   inversionBtn.disable();
   piano.disable();
+  this.activate(this.curChordNameBtn); // Play the current chord
+
+  tone_1.Transport.start('+1.1'); // Wait until the first chord played
 };
 /**
  * Enable the chord, inversion buttons and the piano interface after the progression stops to play
@@ -56444,7 +56441,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64480" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56457" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
