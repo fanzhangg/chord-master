@@ -556,21 +556,16 @@ export class ChordProgression {
             this._playButton.classList.add("active");
             this._disableBtnsAnimation();
 
-            this.activate(this.curChordNameBtn!);   // Play the current chord
-
             // Change the tooltip to Stop
             // @ts-ignore
             $("#playBtn").tooltip('hide')
           .attr('data-original-title', "Stop")
           .tooltip('show'); // Set text tooltip to "Play"
 
-
-            Transport.start('+1.1');    // Wait until the first chord played
-
             const notesList = this._getNotesList();
             ChordProgression._removeAddBtn();
-            this._disableEditAll();
-            ChordProgression._disableReset();
+            this._disableEditAll(); // Disable editing each chord
+            ChordProgression._disableReset();   // Disable reseting the progression
             this.onPlay(notesList);
         }
     }

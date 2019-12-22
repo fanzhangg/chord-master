@@ -6,7 +6,7 @@ import "material-design-icons"
 import "bootstrap-submenu/dist/css/bootstrap-submenu.css"
 import "bootstrap-submenu/dist/js/bootstrap-submenu"
 import "jquery"
-import {Part} from "tone";
+import {Part, Transport} from "tone";
 import $ from "jquery";
 
 import {Piano} from "./keyboard/Piano";
@@ -105,6 +105,7 @@ let part = new Part(() => {}, []); // Declaring a blank part to be used in progr
  * @param chords
  */
 progression.onPlay = function (chords: Array<Array<string>>) {
+
     // @ts-ignore
     part.removeAll();   // Clear the previous parts
 
@@ -126,15 +127,15 @@ progression.onPlay = function (chords: Array<Array<string>>) {
     part.loop = true;   // Loop the chord
     part.loopStart = 0;
     part.loopEnd = chords.length;
-};
 
-/**
- * Disable the chord, inversion buttons and the piano interface on playing the progression
- */
-progression.onSwitch = function () {
+    // Disable editing the chord
     chordTypeBtn.disable();
     inversionBtn.disable();
     piano.disable();
+
+    this.activate(this.curChordNameBtn!);   // Play the current chord
+
+    Transport.start('+1.1');    // Wait until the first chord played
 };
 
 /**
