@@ -13,7 +13,8 @@ Chords in the progression are represented by the lead sheet symbol. To build a c
 ### Installation
 
 1. Install Node.js from https://nodejs.org/en/download/
-2. Install yarn: `npm install yarn`
+2. Install Homebrew: `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+2. Install yarn: `brew install yarn`
 3. Install dependencies: `yarn install`
 
 ### Development
