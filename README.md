@@ -32,7 +32,7 @@ Deploy dist folder to GitHub Pages: `yarn run deploy`
 
 ## Credit
 
-It is built by Fan Zhang, Aaron Gould, Randy Jose Beidelschies, and Roman Bactol. It uses Tone.js to play the piano sound, jQuery to manipulate the document element, Bootstrap as the front-end framework, and MidiWriter to write the MIDI file.
+It is built by [Fan Zhang](mailto:vanadiumzhang@gmail.com), Aaron Gould, Randy Jose Beidelschies, and Roman Bactol. It uses Tone.js to play the piano sound, jQuery to manipulate the document element, Bootstrap as the front-end framework, and MidiWriter to write the MIDI file.
 
 Many thanks to Shilad Sen for providing much help and guidance throughout our project.
 
