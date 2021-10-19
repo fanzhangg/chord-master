@@ -27,30 +27,57 @@ export class Chord {
 
     static readonly chordFamilies: any = {
         "Triads": {  // chord with 3 notes
+            "Major Flat Fifth": [0, 4, 6],
             "Major Triad": [0, 4, 7],
-            "Minor Triad": [0, 3, 7],
-            "Augmented Triad": [0, 4, 8],
-            "Diminished Triad": [0, 3, 6]
+            "Minor": [0, 3, 7],
+            "Augmented": [0, 4, 8],
+            "Diminished": [0, 3, 6],
+            "Suspended Second": [0, 2, 7],
+            "Suspended Fourth": [0, 5, 7],
+        },
+        "Sixths": {   // triads with a 6th added on
+            "Major Sixth": [0, 4, 7, 9],
+            "Minor Flat Sixth": [0, 3, 7, 8],
+            "Minor Sixth": [0, 3, 7, 9],
         },
         "Sevenths": {   // triads with a 7th added on
+            "Dominant Seventh Flat Five": [0, 4, 6, 10],
             "Dominant Seventh": [0, 4, 7, 10],
             "Major Seventh": [0, 4, 7, 11], // C E G B
             "Minor Seventh": [0, 3, 7, 10],
+            "Minor Major Seventh": [0, 3, 7, 11],
             "Diminished Seventh": [0, 3, 6, 9], // C E♭ G♭ B♭♭
             "Half Diminished Seventh": [0, 3, 6, 10],
+            "Diminished Major Seventh": [0, 3, 6, 11],
             "Augmented Seventh": [0, 4, 8, 10], // C E G♯ B♭
-            "Augmented Major Seventh": [0, 4, 8, 11] // C E G♯ B
+            "Augmented Major Seventh": [0, 4, 8, 11],
+            "Seventh Sixth": [0, 4, 7, 9, 10],
         },
         "Extended": {
+            "Major Added Ninth": [0, 4, 7, 14],
+            "Minor Flat Sixth Ninth": [0, 3, 7, 8, 14],
+            "Major Sixth Ninth": [0, 4, 7, 9, 14],
+            "Minor Ninth": [0, 3, 7, 10, 14],
             "Dominant Ninth": [0, 4, 7, 10, 14],    // C E G B♭ D
-            "Dominant Eleventh": [0, 4, 7, 10, 14, 16],  // C E G B♭ D F
-            "Dominant Thirteenth": [0, 4, 7, 10, 14, 16, 20] // C E G B♭ D F A
+            "Major Ninth": [0, 4, 7, 11, 14],
+            "Minor Eleventh": [0, 3, 7, 10, 17],
+            "Dominant Eleventh": [0, 4, 7, 10, 17],  // C E G B♭ F
+            "Major Eleventh": [0, 4, 7, 11, 17],
+            "Minor Ninth Eleventh": [0, 3, 7, 10, 14, 17],
+            "Dominant Ninth Eleventh": [0, 4, 7, 10, 14, 17],
+            "Major Ninth Eleventh": [0, 4, 7, 11, 14, 17],
+            "Major Seventh Sharp Eleventh": [0, 4, 7, 11, 18],
+            "Minor Thirteenth": [0, 3, 7, 10, 21],
+            "Dominant Thirteenth": [0, 4, 7, 10, 21],
+            "Major Thirteenth": [0, 4, 7, 11, 21],
         },
         "Altered": {
-            "Seventh Augmented Fifth": [0, 4, 8, 10],   // C E G♯ B♭
             "Seventh Minor Ninth": [0, 4, 7, 10, 13],   // C E G B♭ D♭
-            "Seventh Sharp Ninth": [0, 4, 7, 10, 15]  // C E G B♭ D♯
-        }
+            "Seventh Sharp Ninth": [0, 4, 7, 10, 15],
+        },
+        "Others": {
+            "Fifth": [0, 7],
+        },
     };
 
     static readonly letters = ["A", "B", "C", "D", "E", "F", "G"];
